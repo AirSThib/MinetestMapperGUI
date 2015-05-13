@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="minetest">images/minetest-icon.svg</file>
+        <file alias="open">images/document-open.png</file>
+        <file alias="save">images/document-save.png</file>
+        <file>doc/intro.html</file>
+        <file>doc/manual.html</file>
+        <file>images/help.svg</file>
+    </qresource>
+</RCC>

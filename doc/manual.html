@@ -1,0 +1,1816 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title>Minetest Mapper Manual</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7614 2013-02-21 15:55:51Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="minetest-mapper-manual">
+<h1 class="title">Minetest Mapper Manual</h1>
+<h2 class="subtitle" id="a-tool-to-generate-maps-of-minetest-and-freeminer-worlds">A tool to generate maps of minetest and freeminer worlds.</h2>
+
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#invocation" id="id3">Invocation</a><ul>
+<li><a class="reference internal" href="#basic-usage" id="id4">Basic Usage</a></li>
+<li><a class="reference internal" href="#command-line-options-summary" id="id5">Command-line Options Summary</a></li>
+<li><a class="reference internal" href="#detailed-description-of-options" id="id6">Detailed Description of Options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#color-syntax" id="id7">Color Syntax</a><ul>
+<li><a class="reference internal" href="#color-codes" id="id8">Color Codes</a></li>
+<li><a class="reference internal" href="#symbolic-colors" id="id9">Symbolic Colors</a></li>
+<li><a class="reference internal" href="#lighter-or-darker-colors" id="id10">Lighter or Darker Colors</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#geometry-syntax" id="id11">Geometry Syntax</a><ul>
+<li><a class="reference internal" href="#geometry-using-two-corners" id="id12">Geometry Using Two Corners</a></li>
+<li><a class="reference internal" href="#geometry-using-corner-and-dimensions" id="id13">Geometry Using Corner and Dimensions</a></li>
+<li><a class="reference internal" href="#geometry-using-center-and-dimensions" id="id14">Geometry Using Center and Dimensions</a></li>
+<li><a class="reference internal" href="#legacy-geometry-format" id="id15">Legacy Geometry Format</a></li>
+<li><a class="reference internal" href="#advanced-coordinate-specification" id="id16">Advanced coordinate specification</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#colors-and-nodes-files" id="id17">Colors and Nodes Files</a><ul>
+<li><a class="reference internal" href="#colors-txt-syntax" id="id18">Colors.txt Syntax</a></li>
+<li><a class="reference internal" href="#heightmap-nodes-txt-syntax" id="id19">Heightmap-nodes.txt Syntax</a></li>
+<li><a class="reference internal" href="#heightmap-colors-txt-syntax" id="id20">Heightmap-colors.txt Syntax</a></li>
+<li><a class="reference internal" href="#colors-files-common-syntax" id="id21">Colors Files Common Syntax</a></li>
+<li><a class="reference internal" href="#colors-files-search-locations" id="id22">Colors Files Search Locations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#more-information" id="id23">More Information</a></li>
+</ul>
+</div>
+<div class="section" id="invocation">
+<h1><a class="toc-backref" href="#id3">Invocation</a></h1>
+<div class="section" id="basic-usage">
+<h2><a class="toc-backref" href="#id4">Basic Usage</a></h2>
+<p>After installation, minetestmapper is started as follows:</p>
+<p>('\' is a continuation character - the command-line continues
+on the next line. Type return only after the line that does
+not end with the continuation character)</p>
+<pre class="literal-block">
+minetestmapper \
+    --input &lt;world-directory&gt; \
+    --output &lt;image-file-name.png&gt;
+</pre>
+<p>If the world is not too large, and if minetestmapper is installed in
+a  system directory, it will most likely work as expected.</p>
+<p>Possibly, minetestmapper will not be able to find a colors.txt file. If that happens,
+the colors.txt file can be specified on the command-line:</p>
+<pre class="literal-block">
+minetestmapper \
+    --input &lt;world-directory&gt; \
+    --output &lt;image-file-name.png&gt; \
+    --colors &lt;filename&gt;
+</pre>
+<p>Or the colors.txt file must be installed in a location where minetestmapper will find it.
+A colors.txt file (named <tt class="docutils literal">colors.txt</tt>, in lowercase) in the world's directory will certainly
+be found. Depending on the system and the configuration, other locations are available. Use the
+following command to find out which:</p>
+<pre class="literal-block">
+minetestmapper \
+    --input &lt;world-directory&gt; \
+    --output &lt;image-file-name.png&gt; \
+    --verbose-search-colors=2
+</pre>
+<p>From the basis above, add any number of other options that are documented below, according
+to to personal needs and taste.</p>
+</div>
+<div class="section" id="command-line-options-summary">
+<h2><a class="toc-backref" href="#id5">Command-line Options Summary</a></h2>
+<blockquote>
+For a more detailed description of the options, see <a class="reference internal" href="#detailed-description-of-options">Detailed Description of Options</a>
+below.</blockquote>
+<div class="section" id="basic-options">
+<h3>Basic options:</h3>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--help</span></tt> :                                      Print an option summary</li>
+<li><tt class="docutils literal"><span class="pre">--version</span></tt> :                                   Print version ID of minetestmapper</li>
+<li><tt class="docutils literal"><span class="pre">--input</span> <span class="pre">&lt;world-dir&gt;</span></tt> :                         Specify the world directory (mandatory)</li>
+<li><tt class="docutils literal"><span class="pre">--output</span> &lt;image filename&gt;</tt> :                   Specify the map file name (mandatory)</li>
+<li><tt class="docutils literal"><span class="pre">--colors</span> &lt;filename&gt;</tt> :                         Specify the colors file name.</li>
+<li><tt class="docutils literal"><span class="pre">--heightmap[=color]&gt;</span></tt> :                        Generate a height map instead of a regular map</li>
+<li><tt class="docutils literal"><span class="pre">--heightmap-nodes</span> &lt;filename&gt;</tt> :                Specify the nodes list for the height map</li>
+<li><tt class="docutils literal"><span class="pre">--heightmap-colors</span> &lt;filename&gt;</tt> :               Specify the color definition file for the height map</li>
+<li><tt class="docutils literal"><span class="pre">--geometry</span> &lt;geometry&gt;</tt> :                       Specify the desired map dimensions</li>
+<li><tt class="docutils literal"><span class="pre">--scalefactor</span> &lt;factor&gt;</tt> :                      Specify the scaling factor for the map</li>
+<li><tt class="docutils literal"><span class="pre">--progress</span></tt> :                                  Print progress information while generating the map</li>
+<li><tt class="docutils literal"><span class="pre">--verbose[=2]</span></tt> :                               Report statistics about the world and the generated map</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="area-options">
+<h3>Area options:</h3>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--scalefactor</span> &lt;factor&gt;</tt> :                      Specify the scaling factor for the map</li>
+<li><tt class="docutils literal"><span class="pre">--geometry</span> &lt;geometry&gt;</tt> :                       Specify the desired map dimensions</li>
+<li><tt class="docutils literal"><span class="pre">--cornergeometry</span> &lt;geometry&gt;</tt> :                 Suggest interpretation as a corner + dimensions</li>
+<li><tt class="docutils literal"><span class="pre">--centergeometry</span> &lt;geometry&gt;</tt> :                 Suggest interpretation as center + dimensions</li>
+<li><tt class="docutils literal"><span class="pre">--min-y</span> &lt;y&gt;</tt> :                                 Specify the minumum depth of nodes to be included</li>
+<li><tt class="docutils literal"><span class="pre">--max-y</span> &lt;y&gt;</tt> :                                 Specify the maximum height of nodes to be included</li>
+<li><tt class="docutils literal"><span class="pre">--geometrymode</span> pixel,block,fixed,shrink</tt> :     Specify granularity and whether to shrink the map if possible</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="height-map-related-options">
+<h3>Height map-related options:</h3>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--heightmap[=color]&gt;</span></tt> :                        Generate a height map instead of a regular map</li>
+<li><tt class="docutils literal"><span class="pre">--heightmap-nodes</span> &lt;filename&gt;</tt> :                Specify the nodes list for the height map</li>
+<li><tt class="docutils literal"><span class="pre">--heightmap-colors</span> &lt;filename&gt;</tt> :               Specify the color definition file for the height map</li>
+<li><tt class="docutils literal"><span class="pre">--heightmap-yscale</span> &lt;factor&gt;</tt> :                 Scale the vertical dimensions by a factor</li>
+<li><tt class="docutils literal"><span class="pre">--height-level-0</span> &lt;height&gt;</tt> :                   Set the '0' level differently for determining height map colors</li>
+<li><tt class="docutils literal"><span class="pre">--drawheightscale</span></tt> :                           Draw a height scale at the bottom of the map</li>
+<li><tt class="docutils literal"><span class="pre">--heightscale-interval</span> <span class="pre">&lt;major&gt;[[,:]&lt;minor&gt;]</span></tt> : Use custom major and minor intervals in the height scale.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="colors-for-specific-areas-or-parts-of-the-map">
+<h3>Colors for specific areas or parts of the map:</h3>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--bgcolor</span> &lt;color&gt;</tt> :                           Specify the background color for the image</li>
+<li><tt class="docutils literal"><span class="pre">--blockcolor</span> &lt;color&gt;</tt> :                        Specify the color for empty mapblocks</li>
+<li><tt class="docutils literal"><span class="pre">--scalecolor</span> &lt;color&gt;</tt> :                        Specify the color for text in the scales on the side</li>
+<li><tt class="docutils literal"><span class="pre">--origincolor</span> &lt;color&gt;</tt> :                       Specify the color for drawing the map origin (0,0)</li>
+<li><tt class="docutils literal"><span class="pre">--playercolor</span> &lt;color&gt;</tt> :                       Specify the color for drawing player locations</li>
+<li><tt class="docutils literal"><span class="pre">--tilebordercolor</span> &lt;color&gt;</tt> :                   Specify the color for drawing tile borders</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="map-features">
+<h3>Map features:</h3>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--drawscale[=top,left]</span></tt> :                      Draw a scale on the left and/or top edge</li>
+<li><tt class="docutils literal"><span class="pre">--drawheightscale</span></tt> :                           Draw a height scale at the bottom of the map</li>
+<li><tt class="docutils literal"><span class="pre">--sidescale-interval</span> <span class="pre">&lt;major&gt;[[,:]&lt;minor&gt;]</span></tt> :   Use custom major and minor intervals in the scale.</li>
+<li><tt class="docutils literal"><span class="pre">--heightscale-interval</span> <span class="pre">&lt;major&gt;[[,:]&lt;minor&gt;]</span></tt> : Use custom major and minor intervals in the height scale.</li>
+<li><tt class="docutils literal"><span class="pre">--draworigin</span></tt> :                                Draw a circle at the origin (0,0) on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawplayers</span></tt> :                               Draw circles at player positions on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawalpha[=cumulative|cumulative-darken|average|none]</span></tt> :     Enable drawing transparency for some nodes (e.g. water)</li>
+<li><tt class="docutils literal"><span class="pre">--drawair</span></tt> :                                   Draw air nodes (read the warnings first!)</li>
+<li><tt class="docutils literal"><span class="pre">--noshading</span></tt> :                                 Disable shading that accentuates height diffences</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="tiles">
+<h3>Tiles:</h3>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--tiles</span> <span class="pre">&lt;tilesize&gt;[+&lt;border&gt;]|block|chunk</span></tt> :   Draw a grid of the specified size on the map</li>
+<li><tt class="docutils literal"><span class="pre">--tileorigin</span> <span class="pre">&lt;x&gt;,&lt;y&gt;|world|map</span></tt> :              Specify the coordinates of one tile's origin (lower-left corner)</li>
+<li><tt class="docutils literal"><span class="pre">--tilecenter</span> <span class="pre">&lt;x&gt;,&lt;y&gt;|world|map</span></tt> :              Specify the coordinates of one tile's center</li>
+<li><tt class="docutils literal"><span class="pre">--tilebordercolor</span> &lt;color&gt;</tt> :                   Specify the color for drawing tile borders</li>
+<li><tt class="docutils literal"><span class="pre">--chunksize</span> &lt;size&gt;</tt> :                          Specify or override the chunk size (usually 5 blocks)</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="drawing-figures-on-the-map">
+<h3>Drawing figures on the map</h3>
+<blockquote>
+<p>Using world coordinates:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--drawpoint</span> <span class="pre">&quot;&lt;x&gt;,&lt;y&gt;</span> color&quot;</tt> :                 Draw a point (single pixel) on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawline</span> &quot;&lt;geometry&gt; color&quot;</tt> :               Draw a line on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawcircle</span> &quot;&lt;geometry&gt; color&quot;</tt> :             Draw a circle on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawellipse</span> &quot;&lt;geometry&gt; color&quot;</tt> :            Draw an ellipse on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawrectangle</span> &quot;&lt;geometry&gt; color&quot;</tt> :          Draw a rectangle on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawtext</span> <span class="pre">&quot;&lt;x&gt;,&lt;y&gt;</span> color text&quot;</tt> :             Write some text on the map</li>
+</ul>
+<p>Same figures using map/image coordinates (0,0 is the top-left corner of the map)</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--drawmappoint</span> <span class="pre">&quot;&lt;x&gt;,&lt;y&gt;</span> color&quot;</tt> :              Draw a point (single pixel) on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawmapline</span> &quot;&lt;geometry&gt; color&quot;</tt> :            Draw a line on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawmapcircle</span> &quot;&lt;geometry&gt; color&quot;</tt> :          Draw a circle on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawmapellipse</span> &quot;&lt;geometry&gt; color&quot;</tt> :         Draw an ellipse on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawmaprectangle</span> &quot;&lt;geometry&gt; color&quot;</tt> :       Draw a rectangle on the map</li>
+<li><tt class="docutils literal"><span class="pre">--drawmaptext</span> <span class="pre">&quot;&lt;x&gt;,&lt;y&gt;</span> color text&quot;</tt> :          Write some text on the map</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="feedback-information-options">
+<h3>Feedback / information options:</h3>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--help</span></tt> :                                      Print an option summary</li>
+<li><tt class="docutils literal"><span class="pre">--version</span></tt> :                                   Print version ID of minetestmapper</li>
+<li><tt class="docutils literal"><span class="pre">--verbose[=n]</span></tt> :                               Report world and map statistics (size, dimensions, number of blocks)</li>
+<li><tt class="docutils literal"><span class="pre">--verbose-search-colors[=n]</span></tt> :                 Report which colors files are used and/or which locations are searched</li>
+<li><tt class="docutils literal"><span class="pre">--progress</span></tt> :                                  Show a progress indicator while generating the map</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="miscellaneous-options">
+<h3>Miscellaneous options</h3>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--backend</span> &lt;auto/sqlite3/leveldb/redis&gt;</tt> :      Specify or override the database backend to use</li>
+<li><tt class="docutils literal"><span class="pre">--sqlite-cacheworldrow</span></tt> :                      Modify how minetestmapper accesses the sqlite3 database. For performance.</li>
+</ul>
+</blockquote>
+</div>
+</div>
+<div class="section" id="detailed-description-of-options">
+<h2><a class="toc-backref" href="#id6">Detailed Description of Options</a></h2>
+<blockquote>
+<p>A number of options have shorthand equivalent options. For instance
+<tt class="docutils literal"><span class="pre">--help</span></tt> and <tt class="docutils literal"><span class="pre">-h</span></tt> are synonyms. The following are notable:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">-h</span></tt> = <tt class="docutils literal"><span class="pre">--help</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">-V</span></tt> = <tt class="docutils literal"><span class="pre">--version</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">-o</span></tt> = <tt class="docutils literal"><span class="pre">--output</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">-i</span></tt> = <tt class="docutils literal"><span class="pre">--input</span></tt></li>
+</ul>
+<p>For the others, please consult the source code. Note that support
+for other short options than mentioned above might be removed in
+the future.</p>
+<p><strong>Available options</strong>:</p>
+</blockquote>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><a class="reference internal" href="#backend-auto-sqlite3-leveldb-redis" id="id24"><tt class="docutils literal"><span class="pre">--backend</span> &lt;auto|sqlite3|leveldb|redis&gt;</tt></a></li>
+<li><a class="reference internal" href="#bgcolor-color" id="id25"><tt class="docutils literal"><span class="pre">--bgcolor</span> &lt;color&gt;</tt></a></li>
+<li><a class="reference internal" href="#blockcolor-color" id="id26"><tt class="docutils literal"><span class="pre">--blockcolor</span> &lt;color&gt;</tt></a></li>
+<li><a class="reference internal" href="#centergeometry-geometry" id="id27"><tt class="docutils literal"><span class="pre">--centergeometry</span> &lt;geometry&gt;</tt></a></li>
+<li><a class="reference internal" href="#chunksize-size" id="id28"><tt class="docutils literal"><span class="pre">--chunksize</span> &lt;size&gt;</tt></a></li>
+<li><a class="reference internal" href="#colors-file" id="id29"><tt class="docutils literal"><span class="pre">--colors</span> &lt;file&gt;</tt></a></li>
+<li><a class="reference internal" href="#cornergeometry-geometry" id="id30"><tt class="docutils literal"><span class="pre">--cornergeometry</span> &lt;geometry&gt;</tt></a></li>
+<li><a class="reference internal" href="#draw-map-figure-geometry-color" id="id31"><tt class="docutils literal"><span class="pre">--draw[map]&lt;figure&gt;</span> &quot;&lt;geometry&gt; color&quot;</tt></a></li>
+<li><a class="reference internal" href="#draw-map-circle-geometry-color" id="id32"><tt class="docutils literal"><span class="pre">--draw[map]circle</span> &quot;&lt;geometry&gt; color&quot;</tt></a></li>
+<li><a class="reference internal" href="#draw-map-ellipse-geometry-color" id="id33"><tt class="docutils literal"><span class="pre">--draw[map]ellipse</span> &quot;&lt;geometry&gt; color&quot;</tt></a></li>
+<li><a class="reference internal" href="#draw-map-line-geometry-color" id="id34"><tt class="docutils literal"><span class="pre">--draw[map]line</span> &quot;&lt;geometry&gt; color&quot;</tt></a></li>
+<li><a class="reference internal" href="#draw-map-point-x-y-color" id="id35"><tt class="docutils literal"><span class="pre">--draw[map]point</span> <span class="pre">&quot;&lt;x&gt;,&lt;y&gt;</span> color&quot;</tt></a></li>
+<li><a class="reference internal" href="#draw-map-rectangle-geometry-color" id="id36"><tt class="docutils literal"><span class="pre">--draw[map]rectangle</span> &quot;&lt;geometry&gt; color&quot;</tt></a></li>
+<li><a class="reference internal" href="#draw-map-text-x-y-color-text" id="id37"><tt class="docutils literal"><span class="pre">--draw[map]text</span> <span class="pre">&quot;&lt;x&gt;,&lt;y&gt;</span> color text&quot;</tt></a></li>
+<li><a class="reference internal" href="#drawair" id="id38"><tt class="docutils literal"><span class="pre">--drawair</span></tt></a></li>
+<li><a class="reference internal" href="#drawalpha-cumulative-cumulative-darken-average-none" id="id39"><tt class="docutils literal"><span class="pre">--drawalpha[=cumulative|cumulative-darken|average|none]</span></tt></a></li>
+<li><a class="reference internal" href="#drawheightscale" id="id40"><tt class="docutils literal"><span class="pre">--drawheightscale</span></tt></a></li>
+<li><a class="reference internal" href="#draworigin" id="id41"><tt class="docutils literal"><span class="pre">--draworigin</span></tt></a></li>
+<li><a class="reference internal" href="#drawplayers" id="id42"><tt class="docutils literal"><span class="pre">--drawplayers</span></tt></a></li>
+<li><a class="reference internal" href="#drawscale-left-top" id="id43"><tt class="docutils literal"><span class="pre">--drawscale[=left,top]</span></tt></a></li>
+<li><a class="reference internal" href="#geometry-geometry" id="id44"><tt class="docutils literal"><span class="pre">--geometry</span> &lt;geometry&gt;</tt></a></li>
+<li><a class="reference internal" href="#geometrymode-pixel-block-fixed-shrink" id="id45"><tt class="docutils literal"><span class="pre">--geometrymode</span> pixel,block,fixed,shrink</tt></a></li>
+<li><a class="reference internal" href="#heightmap-colors-file" id="id46"><tt class="docutils literal"><span class="pre">--heightmap-colors[=&lt;file&gt;]</span></tt></a></li>
+<li><a class="reference internal" href="#heightmap-nodes-file" id="id47"><tt class="docutils literal"><span class="pre">--heightmap-nodes</span> &lt;file&gt;</tt></a></li>
+<li><a class="reference internal" href="#heightmap-yscale-factor" id="id48"><tt class="docutils literal"><span class="pre">--heightmap-yscale</span> &lt;factor&gt;</tt></a></li>
+<li><a class="reference internal" href="#heightmap-color" id="id49"><tt class="docutils literal"><span class="pre">--heightmap[=&lt;color&gt;]</span></tt></a></li>
+<li><a class="reference internal" href="#heightscale-interval-major-minor" id="id50"><tt class="docutils literal"><span class="pre">--heightscale-interval</span> <span class="pre">&lt;major&gt;[[,:]&lt;minor&gt;]</span></tt></a></li>
+<li><a class="reference internal" href="#height-level-0-level" id="id51"><tt class="docutils literal"><span class="pre">--height-level-0</span> &lt;level&gt;</tt></a></li>
+<li><a class="reference internal" href="#help" id="id52"><tt class="docutils literal"><span class="pre">--help</span></tt></a></li>
+<li><a class="reference internal" href="#input-world-path" id="id53"><tt class="docutils literal"><span class="pre">--input</span> &lt;world_path&gt;</tt></a></li>
+<li><a class="reference internal" href="#max-y-y" id="id54"><tt class="docutils literal"><span class="pre">--max-y</span> &lt;y&gt;</tt></a></li>
+<li><a class="reference internal" href="#min-y-y" id="id55"><tt class="docutils literal"><span class="pre">--min-y</span> &lt;y&gt;</tt></a></li>
+<li><a class="reference internal" href="#noshading" id="id56"><tt class="docutils literal"><span class="pre">--noshading</span></tt></a></li>
+<li><a class="reference internal" href="#origincolor-color" id="id57"><tt class="docutils literal"><span class="pre">--origincolor</span> &lt;color&gt;</tt></a></li>
+<li><a class="reference internal" href="#output-output-image-png" id="id58"><tt class="docutils literal"><span class="pre">--output</span> &lt;output_image.png&gt;</tt></a></li>
+<li><a class="reference internal" href="#playercolor-color" id="id59"><tt class="docutils literal"><span class="pre">--playercolor</span> &lt;color&gt;</tt></a></li>
+<li><a class="reference internal" href="#progress" id="id60"><tt class="docutils literal"><span class="pre">--progress</span></tt></a></li>
+<li><a class="reference internal" href="#scalecolor-color" id="id61"><tt class="docutils literal"><span class="pre">--scalecolor</span> &lt;color&gt;</tt></a></li>
+<li><a class="reference internal" href="#scalefactor-1-n" id="id62"><tt class="docutils literal"><span class="pre">--scalefactor</span> <span class="pre">1:&lt;n&gt;</span></tt></a></li>
+<li><a class="reference internal" href="#sidescale-interval-major-minor" id="id63"><tt class="docutils literal"><span class="pre">--sidescale-interval</span> <span class="pre">&lt;major&gt;[[,:]&lt;minor&gt;]</span></tt></a></li>
+<li><a class="reference internal" href="#sqlite-cacheworldrow" id="id64"><tt class="docutils literal"><span class="pre">--sqlite-cacheworldrow</span></tt></a></li>
+<li><a class="reference internal" href="#tilebordercolor-color" id="id65"><tt class="docutils literal"><span class="pre">--tilebordercolor</span> &lt;color&gt;</tt></a></li>
+<li><a class="reference internal" href="#tilecenter-x-y-world-map" id="id66"><tt class="docutils literal"><span class="pre">--tilecenter</span> <span class="pre">&lt;x&gt;,&lt;y&gt;|world|map</span></tt></a></li>
+<li><a class="reference internal" href="#tileorigin-x-y-world-map" id="id67"><tt class="docutils literal"><span class="pre">--tileorigin</span> <span class="pre">&lt;x&gt;,&lt;y&gt;|world|map</span></tt></a></li>
+<li><a class="reference internal" href="#tiles-tilesize-border-block-chunk" id="id68"><tt class="docutils literal"><span class="pre">--tiles</span> <span class="pre">&lt;tilesize&gt;[+&lt;border&gt;]|block|chunk</span></tt></a></li>
+<li><a class="reference internal" href="#verbose-search-colors-n" id="id69"><tt class="docutils literal"><span class="pre">--verbose-search-colors[=n]</span></tt></a></li>
+<li><a class="reference internal" href="#verbose-n" id="id70"><tt class="docutils literal"><span class="pre">--verbose[=n]</span></tt></a></li>
+<li><a class="reference internal" href="#version" id="id71"><tt class="docutils literal"><span class="pre">--version</span></tt></a></li>
+</ul>
+</div>
+<div class="section" id="backend-auto-sqlite3-leveldb-redis">
+<h3><a class="toc-backref" href="#id24"><tt class="docutils literal"><span class="pre">--backend</span> &lt;auto|sqlite3|leveldb|redis&gt;</tt></a></h3>
+<blockquote>
+<p>Set or override the database backend to use.</p>
+<p>By default (<tt class="docutils literal">auto</tt>), the database is obtained from the world configuration,
+and there is no need to set it,</p>
+</blockquote>
+</div>
+<div class="section" id="bgcolor-color">
+<h3><a class="toc-backref" href="#id25"><tt class="docutils literal"><span class="pre">--bgcolor</span> &lt;color&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the background color for the image. See <a class="reference internal" href="#color-syntax">Color Syntax</a> below.</p>
+<p>Two maps with different background:</p>
+<img alt="images/background-white.png" src="images/background-white.png" />
+<img alt="images/background-blueish.png" src="images/background-blueish.png" />
+</blockquote>
+</div>
+<div class="section" id="blockcolor-color">
+<h3><a class="toc-backref" href="#id26"><tt class="docutils literal"><span class="pre">--blockcolor</span> &lt;color&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the color for empty mapblocks. See <a class="reference internal" href="#color-syntax">Color Syntax</a> below.</p>
+<p>An empty mapblock exists in the database, and contains only air or <em>ignore</em>
+nodes. It is normally not visible, even if no other mapblocks exist above
+or below it. This color makes such blocks visible if no nodes other than
+air or ignore are above or below it.</p>
+<p>To see the difference between empty blocks and absent blocks, generate a map
+that is larger than the world size by at least 2 map blocks.</p>
+<p>Two maps, the second with blockcolor enabled:</p>
+<img alt="images/background-white.png" src="images/background-white.png" />
+<img alt="images/blockcolor-yellowish.png" src="images/blockcolor-yellowish.png" />
+</blockquote>
+</div>
+<div class="section" id="centergeometry-geometry">
+<h3><a class="toc-backref" href="#id27"><tt class="docutils literal"><span class="pre">--centergeometry</span> &lt;geometry&gt;</tt></a></h3>
+<blockquote>
+<p>Suggest interpreting a geometry as center coordinates and dimensions. If possible.</p>
+<blockquote>
+See also <a class="reference internal" href="#geometry-geometry">--geometry</a></blockquote>
+</blockquote>
+</div>
+<div class="section" id="chunksize-size">
+<h3><a class="toc-backref" href="#id28"><tt class="docutils literal"><span class="pre">--chunksize</span> &lt;size&gt;</tt></a></h3>
+<blockquote>
+<p>Set or override the chunk size.</p>
+<p>The chunk size is the unit of map generation minetest. Minetest never generates
+a single block at a time, it always generates a chunk at a time.</p>
+<p>The chunk size may be used by the <a class="reference internal" href="#tiles-tilesize-border-block-chunk">--tiles</a> option. It is obtained from
+the world by default. It is usually but not necessarily 5 (i.e. 5x5x5 blocks).</p>
+</blockquote>
+</div>
+<div class="section" id="colors-file">
+<h3><a class="toc-backref" href="#id29"><tt class="docutils literal"><span class="pre">--colors</span> &lt;file&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the name of the 'colors.txt' to use.</p>
+<p>See <a class="reference internal" href="#colors-and-nodes-files">Colors and Nodes Files</a> and <a class="reference internal" href="#colors-txt-syntax">Colors.txt Syntax</a>.</p>
+<p>Minetestmapper will attempt to automatically find a suitable
+colors.txt file. See <a class="reference internal" href="#colors-files-search-locations">Colors Files Search Locations</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="cornergeometry-geometry">
+<h3><a class="toc-backref" href="#id30"><tt class="docutils literal"><span class="pre">--cornergeometry</span> &lt;geometry&gt;</tt></a></h3>
+<blockquote>
+<p>Suggest interpreting a geometry as corner coordinates and dimensions. If
+possible.</p>
+<blockquote>
+See also <a class="reference internal" href="#geometry-geometry">--geometry</a></blockquote>
+</blockquote>
+</div>
+<div class="section" id="draw-map-figure-geometry-color">
+<h3><a class="toc-backref" href="#id31"><tt class="docutils literal"><span class="pre">--draw[map]&lt;figure&gt;</span> &quot;&lt;geometry&gt; color&quot;</tt></a></h3>
+<blockquote>
+<blockquote>
+Draw a figure on the map, with the given geometry and color.</blockquote>
+<p>Possible figures are:</p>
+<ul class="simple">
+<li>circle</li>
+<li>ellipse (which is synonymous for circle)</li>
+<li>line</li>
+<li>point (which uses simple coordinates (x,y) instead of a geometry)</li>
+<li>rectangle</li>
+<li>text (which uses simple coordinates (x,y) instead of a geometry)</li>
+</ul>
+<p>If <tt class="docutils literal"><span class="pre">--draw&lt;figure&gt;</span></tt> is used, the geometry specifies world coordinates;
+If <tt class="docutils literal"><span class="pre">--drawmap&lt;figure&gt;</span></tt> is used, the geometry specifies map (image)
+coordinates, where 0,0 is the top-left corner of the map-part of
+the image, and coordinates increase to the right and down. Any points
+on the left and top scale have negative coordinates.</p>
+<p>Note that the combination of geometry and color should be a single
+argument.  This means that the pair must be enclosed in quotes together
+on the command-line, else they will be misinterpreted as two command-line
+arguments.</p>
+<p>Example:</p>
+<blockquote>
+<tt class="docutils literal">minetestmapper <span class="pre">--drawcircle</span> &quot;10,10:6x6 red&quot;</tt></blockquote>
+<p>For the color of figures, an alpha value can be specified. Note that
+due to a bug in the drawing library, this has not the expected effect
+when drawing circles and ellipses.</p>
+<p>See also <a class="reference internal" href="#geometry-syntax">Geometry Syntax</a> and <a class="reference internal" href="#color-syntax">Color Syntax</a>.</p>
+<p><strong>Interaction of figure geometry and map scaling</strong></p>
+<p>If the map is scaled, figures could either keep the same size in pixels,
+or the same size relative to the world, which would make them appear
+smaller, like the entire map.</p>
+<p>Figures which are drawn using map (image) coordinates are never scaled.
+It is assumed that it was the intention to draw them on the image to
+begin with, and not in the world.</p>
+<p>At the moment, figures which are drawn using world coordinates may or
+may not scale with the world.</p>
+<p>If the geometry of a figure is specified using 2 corners, then these
+coordinates obviously scale with the world, and the resulting figure
+will be visually smaller as well.</p>
+<p>If the geometry of a figure is specified using a corner or the center
+and dimensions, then the corner or center is obviously also interpreted
+as world-coordinates, but the dimensions will be interpreted relative
+to the image.</p>
+<p>In practise this means that two identically-sized figures in a full-scale
+map, may have different sizes after scaling, depending on how their
+geometry was specified. The jury is still out as to whether this is
+a bug or a feature.</p>
+</blockquote>
+</div>
+<div class="section" id="draw-map-circle-geometry-color">
+<h3><a class="toc-backref" href="#id32"><tt class="docutils literal"><span class="pre">--draw[map]circle</span> &quot;&lt;geometry&gt; color&quot;</tt></a></h3>
+<blockquote>
+<p>Draw a circle on the map, with the given geometry and color.</p>
+<p>See <a class="reference internal" href="#draw-map-figure-geometry-color">--draw[map]&lt;figure&gt;</a> for details.</p>
+<p>An example circle:</p>
+<img alt="images/drawcircle.png" src="images/drawcircle.png" />
+</blockquote>
+</div>
+<div class="section" id="draw-map-ellipse-geometry-color">
+<h3><a class="toc-backref" href="#id33"><tt class="docutils literal"><span class="pre">--draw[map]ellipse</span> &quot;&lt;geometry&gt; color&quot;</tt></a></h3>
+<blockquote>
+<p>Draw an ellipse on the map. This is a synonym for <tt class="docutils literal"><span class="pre">--draw[map]circle</span></tt>.</p>
+<p>See <a class="reference internal" href="#draw-map-figure-geometry-color">--draw[map]&lt;figure&gt;</a> for details.</p>
+</blockquote>
+</div>
+<div class="section" id="draw-map-line-geometry-color">
+<h3><a class="toc-backref" href="#id34"><tt class="docutils literal"><span class="pre">--draw[map]line</span> &quot;&lt;geometry&gt; color&quot;</tt></a></h3>
+<blockquote>
+<p>Draw a line on the map, with the given geometry and color.</p>
+<p>See <a class="reference internal" href="#draw-map-figure-geometry-color">--draw[map]&lt;figure&gt;</a> for details.</p>
+<p>An example line:</p>
+<img alt="images/drawline.png" src="images/drawline.png" />
+</blockquote>
+</div>
+<div class="section" id="draw-map-point-x-y-color">
+<h3><a class="toc-backref" href="#id35"><tt class="docutils literal"><span class="pre">--draw[map]point</span> <span class="pre">&quot;&lt;x&gt;,&lt;y&gt;</span> color&quot;</tt></a></h3>
+<blockquote>
+<p>Draw a point on the map, at the given location, using the given color.</p>
+<p>See <a class="reference internal" href="#draw-map-figure-geometry-color">--draw[map]&lt;figure&gt;</a> for details.</p>
+<p>An example point (red, in te white area):</p>
+<img alt="images/drawpoint.png" src="images/drawpoint.png" />
+</blockquote>
+</div>
+<div class="section" id="draw-map-rectangle-geometry-color">
+<h3><a class="toc-backref" href="#id36"><tt class="docutils literal"><span class="pre">--draw[map]rectangle</span> &quot;&lt;geometry&gt; color&quot;</tt></a></h3>
+<blockquote>
+<p>Draw a reactangle on the map, with the given geometry and color.</p>
+<p>See <a class="reference internal" href="#draw-map-figure-geometry-color">--draw[map]&lt;figure&gt;</a> for details.</p>
+<p>An example rectangle:</p>
+<img alt="images/drawrectangle.png" src="images/drawrectangle.png" />
+</blockquote>
+</div>
+<div class="section" id="draw-map-text-x-y-color-text">
+<h3><a class="toc-backref" href="#id37"><tt class="docutils literal"><span class="pre">--draw[map]text</span> <span class="pre">&quot;&lt;x&gt;,&lt;y&gt;</span> color text&quot;</tt></a></h3>
+<blockquote>
+<p>Write text on the map, at the specified location, using the given color.</p>
+<p>The text can consist of</p>
+<p>Note that the combination of geometry, color and text should be a
+single argument.  This means that they must be enclosed in quotes
+together on the command-line, else they will be misinterpreted as three
+command-line arguments.</p>
+<p>Example:</p>
+<blockquote>
+<tt class="docutils literal">minetestmapper <span class="pre">--drawtext</span> <span class="pre">&quot;20,-10</span> red This text will be on the map&quot;</tt></blockquote>
+<p>See also <a class="reference internal" href="#draw-map-figure-geometry-color">--draw[map]&lt;figure&gt;</a> for more details.</p>
+<p>Example text:</p>
+<img alt="images/drawtext.png" src="images/drawtext.png" />
+</blockquote>
+</div>
+<div class="section" id="drawair">
+<h3><a class="toc-backref" href="#id38"><tt class="docutils literal"><span class="pre">--drawair</span></tt></a></h3>
+<blockquote>
+<p>Draw air nodes, as if they were regular nodes.</p>
+<p>The color of air will be obtained from the colors file.</p>
+<dl class="docutils">
+<dt>WARNING 1:</dt>
+<dd><p class="first">the color of air nodes should most probably have an alpha value of
+0, so that it is fully transparent. The effect will be, that
+air nodes are only visible if nothing else is below them.</p>
+<p class="last">Setting alpha to anything other than 0, will most probably cause
+all non-air nodes to be obscured by all of the air that is
+above them.</p>
+</dd>
+<dt>WARNING 2:</dt>
+<dd>Drawing air nodes instead of ignoring them will have a significant
+performance impact (unless they happen to be defined as opaque).
+Use this with consideration.</dd>
+</dl>
+<p>Two images, one with air, the other without. Look inside the rectangle:</p>
+<img alt="images/background-white.png" src="images/background-white.png" />
+<img alt="images/drawair.png" src="images/drawair.png" />
+<img alt="images/drawair-detail-0.png" src="images/drawair-detail-0.png" />
+<img alt="images/drawair-detail.png" src="images/drawair-detail.png" />
+</blockquote>
+</div>
+<div class="section" id="drawalpha-cumulative-cumulative-darken-average-none">
+<h3><a class="toc-backref" href="#id39"><tt class="docutils literal"><span class="pre">--drawalpha[=cumulative|cumulative-darken|average|none]</span></tt></a></h3>
+<blockquote>
+<p>Specify how to render the alpha (transparency) value of nodes.</p>
+<ul class="simple">
+<li><strong>none</strong>: don't render transparency. This is the same as
+omitting this option.</li>
+<li><strong>average</strong>: average the entire stack of transparent nodes
+before combining the resulting color with the color of the
+first opaque node below the stack. Water will remain transparent
+indefinitely.</li>
+<li><strong>cumulative</strong>: make lower nodes progressively more opaque.
+The effect is for instance, that water becomes opaque below
+a certain depth - only height differences will 'shine' through,
+if shading is not disabled (<a class="reference internal" href="#noshading">--noshading</a>)</li>
+<li><strong>cumulative-darken</strong>: Same as <em>cumulative</em>, except that
+after the color has become opaque, it is progressively
+darkened to visually simulate greater depth. This is looks great
+for deeper waters that are not too deep.
+The downside is that very deep water will eventually become black
+when using this option.</li>
+</ul>
+<p>If this option is used without a method argument, the
+default is 'average'.</p>
+<p>For backward compatibility, 'nodarken' is still recognised as alias
+for 'cumulative'; 'darken' is still recognised as alias for
+'cumulative-darken'. They are otherwise undocumented. Please don't
+use them, they may disappear in the future.</p>
+<p>Note that each of the different modes has a different color definition
+for transparent blocks that looks best. For instance, for water, the following
+are suggested:</p>
+<p>(disabled): 39 66 106 [192 224 - optional: alpha configuration will be ignored]</p>
+<p>cumulative: 78 132 255 64 224</p>
+<p>cumulative-darken: 78 132 255 64 224 (same as cumulative)</p>
+<p>average: 49 82 132 192 224 (look also good with alpha disabled)</p>
+<p>Custom colors files are provided for these alternatives: colors-average-alpha.txt
+and colors-cumulative-alpha.txt. If desired, these must be manually selected.</p>
+<p>The following images show average alpha mode, cumulative mode and cumulative-darken
+mode. In each case, the matching custom color file was selected:</p>
+<img alt="images/alpha-average.png" src="images/alpha-average.png" />
+<img alt="images/alpha-cumulative.png" src="images/alpha-cumulative.png" />
+<img alt="images/alpha-cumulative-darken.png" src="images/alpha-cumulative-darken.png" />
+</blockquote>
+</div>
+<div class="section" id="drawheightscale">
+<h3><a class="toc-backref" href="#id40"><tt class="docutils literal"><span class="pre">--drawheightscale</span></tt></a></h3>
+<blockquote>
+<p>If drawing a height map (<a class="reference internal" href="#heightmap-color">--heightmap</a>), draw a height scale below the image.</p>
+<p>A height map with scale:</p>
+<img alt="images/heightmap-scale.png" src="images/heightmap-scale.png" />
+</blockquote>
+</div>
+<div class="section" id="draworigin">
+<h3><a class="toc-backref" href="#id41"><tt class="docutils literal"><span class="pre">--draworigin</span></tt></a></h3>
+<blockquote>
+<p>Draw a circle at the world origin (coordinates 0,0)</p>
+<p>The color can be set with <a class="reference internal" href="#origincolor-color">--origincolor</a>.</p>
+<p>An image with world origin drawn:</p>
+<img alt="images/draworigin.png" src="images/draworigin.png" />
+</blockquote>
+</div>
+<div class="section" id="drawplayers">
+<h3><a class="toc-backref" href="#id42"><tt class="docutils literal"><span class="pre">--drawplayers</span></tt></a></h3>
+<blockquote>
+<p>Draw circles at the positions of players</p>
+<p>The color can be set with <a class="reference internal" href="#origincolor-color">--origincolor</a>.</p>
+<p>An image with a few players:</p>
+<img alt="images/players.png" src="images/players.png" />
+</blockquote>
+</div>
+<div class="section" id="drawscale-left-top">
+<h3><a class="toc-backref" href="#id43"><tt class="docutils literal"><span class="pre">--drawscale[=left,top]</span></tt></a></h3>
+<blockquote>
+<p>Draw scales at the left and.or top of the map.</p>
+<p>If neither 'left' nor 'top' is specified, draw them on both sides.</p>
+<p>The color of the lines and numbers can be set with <a class="reference internal" href="#scalecolor-color">--scalecolor</a>.</p>
+<p>The major and minor interval can be configured using
+<a class="reference internal" href="#sidescale-interval-major-minor">--sidescale-interval</a>.</p>
+<p>Images of scales on the top, left and on both sides</p>
+<img alt="images/drawscale-left.png" src="images/drawscale-left.png" />
+<img alt="images/drawscale-top.png" src="images/drawscale-top.png" />
+<img alt="images/drawscale-both.png" src="images/drawscale-both.png" />
+</blockquote>
+</div>
+<div class="section" id="geometry-geometry">
+<h3><a class="toc-backref" href="#id44"><tt class="docutils literal"><span class="pre">--geometry</span> &lt;geometry&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the map geometry (i.e. which part of the world to draw).</p>
+<p>See <a class="reference internal" href="#geometry-syntax">Geometry Syntax</a> for how the geometry can be specified.</p>
+<p>By default, the entire visible world is drawn.</p>
+</blockquote>
+</div>
+<div class="section" id="geometrymode-pixel-block-fixed-shrink">
+<h3><a class="toc-backref" href="#id45"><tt class="docutils literal"><span class="pre">--geometrymode</span> pixel,block,fixed,shrink</tt></a></h3>
+<blockquote>
+<p>Specify explicitly how the geometry should be interpreted.</p>
+<p>One or more of the flags may be used, separated by commas or
+spaces. In case of conflicts, the last flag takes precedence.</p>
+<p>See also <a class="reference internal" href="#geometry-syntax">Geometry Syntax</a></p>
+<p>The geometry can have pixel or block granularity:</p>
+<ul>
+<li><p class="first"><strong>pixel</strong>: interpret the coordinates with pixel granularity.</p>
+<p>A map of exactly the requested size is generated (after
+adjustments due to the 'shrink' flag, or possible adjustments
+required by the scale factor).</p>
+</li>
+<li><p class="first"><strong>block</strong>: round the coodinates to a multiple of 16.</p>
+<p>The requested geometry will be extended so that the map does
+not contain partial map blocks (of 16x16 nodes each).
+At <em>least</em> all pixels covered by the geometry will be in the
+map, but there may be up to 15 more in every direction.</p>
+</li>
+</ul>
+<p>The geometry can be fixed as requested, or the map can be shrunk:</p>
+<ul>
+<li><p class="first"><strong>shrink</strong>: Generate a map of at most the requested geometry.
+Shrink it to the smallest possible size that still includes the
+same information.</p>
+<p>Currently, shrinking is done with block granularity, and
+based on which blocks are in the database. As the database
+always contains a row or and column of empty, or partially
+empty blocks at the map edges, there will still be empty
+pixels at the edges of the map. Use <a class="reference internal" href="#blockcolor-color">--blockcolor</a> to visualize
+these empty blocks.</p>
+</li>
+<li><p class="first"><strong>fixed</strong>: don't reduce the map size. What ever is specified
+using a geometry option, is what will be draw, even if partly
+or fully empty.</p>
+<p><strong>NOTE</strong>: If this flag is used, and no actual geometry is
+specified, this would result in a maximum-size map (65536
+x 65536), which is currently not possible, and will fail,
+due to a bug in the drawing library.</p>
+</li>
+</ul>
+<p>The default is normally 'pixel' and 'fixed', if a geometry
+option was specified. See <a class="reference internal" href="#legacy-geometry-format">Legacy Geometry Format</a> for one
+exception.</p>
+<p>Default image in the center, block mode enabled to the left and
+shrink mode enabled to the right:</p>
+<img alt="images/geometrymode-block.png" src="images/geometrymode-block.png" />
+<img alt="images/geometrymode.png" src="images/geometrymode.png" />
+<img alt="images/geometrymode-shrink.png" src="images/geometrymode-shrink.png" />
+</blockquote>
+</div>
+<div class="section" id="heightmap-colors-file">
+<h3><a class="toc-backref" href="#id46"><tt class="docutils literal"><span class="pre">--heightmap-colors[=&lt;file&gt;]</span></tt></a></h3>
+<blockquote>
+<p>Use the specified file as the heightmap colors file.</p>
+<p>See <a class="reference internal" href="#colors-and-nodes-files">Colors and Nodes Files</a> and <a class="reference internal" href="#heightmap-colors-txt-syntax">Heightmap-colors.txt Syntax</a>.</p>
+<p>Minetestmapper will attempt to automatically find a suitable
+heightmap-colors.txt file. See <a class="reference internal" href="#colors-files-search-locations">Colors Files Search Locations</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="heightmap-nodes-file">
+<h3><a class="toc-backref" href="#id47"><tt class="docutils literal"><span class="pre">--heightmap-nodes</span> &lt;file&gt;</tt></a></h3>
+<blockquote>
+<p>Use the specified file as the heightmap nodes file.</p>
+<p>See <a class="reference internal" href="#colors-and-nodes-files">Colors and Nodes Files</a> and <a class="reference internal" href="#heightmap-nodes-txt-syntax">Heightmap-nodes.txt Syntax</a>.</p>
+<p>Minetestmapper will attempt to automatically find a suitable
+heightmap-nodes.txt file. See <a class="reference internal" href="#colors-files-search-locations">Colors Files Search Locations</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="heightmap-yscale-factor">
+<h3><a class="toc-backref" href="#id48"><tt class="docutils literal"><span class="pre">--heightmap-yscale</span> &lt;factor&gt;</tt></a></h3>
+<blockquote>
+<p>Scale the heights of the map before computing the height map colors.</p>
+<p>This is useful when there are very large, or only very small, height
+differences in the world, and too much of the map is drawn in a
+single, or similar, colors.</p>
+<p>Using this option improves the spread of colors in the height map.
+The option <a class="reference internal" href="#height-level-0-level">--height-level-0</a> may also be of use.</p>
+<p>'Factor' is a decimal number. A value of 1 means no change; a larger
+value stretches the color range, a smaller value (but larger than 0)
+condenses the color range.</p>
+<p>Note that the water level will probably not be rendered correctly for
+scale factors smaller than 1, nor for small non-integer scale factors.
+A suitable choice of <tt class="docutils literal"><span class="pre">--height-level-0</span></tt> may lessen this effect somewhat.</p>
+<p>For the same effect, a modified colors file could be used.
+<tt class="docutils literal"><span class="pre">--heightmap-yscale</span></tt> is easier and quicker.</p>
+<p>Two images with a different y scale:</p>
+<img alt="images/heightmap-scale.png" src="images/heightmap-scale.png" />
+<img alt="images/heightmap-yscale.png" src="images/heightmap-yscale.png" />
+</blockquote>
+</div>
+<div class="section" id="heightmap-color">
+<h3><a class="toc-backref" href="#id49"><tt class="docutils literal"><span class="pre">--heightmap[=&lt;color&gt;]</span></tt></a></h3>
+<blockquote>
+<p>Generate a height map instead of a regular map.</p>
+<p>If a color is given, a monochrome map is generated in shades of that
+color, ranging from black at depth -128 to the given color at height 127.</p>
+<p>See also <a class="reference internal" href="#color-syntax">Color Syntax</a>.</p>
+<p>Three colors are treated specially:</p>
+<ul class="simple">
+<li><strong>white</strong>: The entire map will be white. Any visible structure will
+result of the rendering of height differences.</li>
+<li><strong>black</strong>: The entire map will be black. Any visible structure will
+result of the rendering of height differences. This actually looks
+pretty good</li>
+<li><strong>grey</strong>: The map will be drawn in shades of grey, ranging from black
+at level -128 to white at level 127</li>
+</ul>
+<p>If no color is specified, minetestmapper will use a colors file to
+determine which colors to use at which height level. See
+<a class="reference internal" href="#colors-and-nodes-files">Colors and Nodes Files</a> and <a class="reference internal" href="#heightmap-colors-txt-syntax">Heightmap-colors.txt Syntax</a>.</p>
+<p>In any case, minetestmapper also needs a nodes file. See
+<a class="reference internal" href="#heightmap-nodes-txt-syntax">Heightmap-nodes.txt Syntax</a> for details.</p>
+<p>A regular map, a greyscale height map and a colored height map:</p>
+<img alt="images/scalefactor-2.png" src="images/scalefactor-2.png" />
+<img alt="images/heightmap-grey.png" src="images/heightmap-grey.png" />
+<img alt="images/heightmap-color.png" src="images/heightmap-color.png" />
+</blockquote>
+</div>
+<div class="section" id="heightscale-interval-major-minor">
+<h3><a class="toc-backref" href="#id50"><tt class="docutils literal"><span class="pre">--heightscale-interval</span> <span class="pre">&lt;major&gt;[[,:]&lt;minor&gt;]</span></tt></a></h3>
+<blockquote>
+<p>When drawing a height scale at the bottom of the map, use the specified
+subdivisions.</p>
+<p>'major' specifies the interval for major marks, which are accompanied
+by a number indicating the height.</p>
+<p>When specified as 'major,minor', 'minor' specifies the interval for
+minor tick marks</p>
+<p>When specified as 'major:minor', 'minor' specifies the number of subdivisions
+of the major interval. In that case, major should be divisible by minor.
+E.g.: <tt class="docutils literal">10:2</tt> is OK (equivalent to 10,5), <tt class="docutils literal">10:3</tt> is not.</p>
+<p>By default, the major interval is calculated based on the available space
+and the range of heights in the map.
+The default minor interval is 0 (i.e. no minor ticks)</p>
+<p>A custom height scale interval:</p>
+<img alt="images/heightmap-scale.png" src="images/heightmap-scale.png" />
+<img alt="images/heightmap-scale-interval.png" src="images/heightmap-scale-interval.png" />
+</blockquote>
+</div>
+<div class="section" id="height-level-0-level">
+<h3><a class="toc-backref" href="#id51"><tt class="docutils literal"><span class="pre">--height-level-0</span> &lt;level&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the zero height level of the map to use for height maps.</p>
+<p>This is the world height that will be drawn using the color that the
+colors file specifies for level 0.
+This is useful when the average level of the world is lower
+or higher than the colors file caters for. It may also be of some use
+for height maps when the world has a non-standard sea level.</p>
+<p>The option <a class="reference internal" href="#heightmap-yscale-factor">--heightmap-yscale</a> may also be of use if this option
+is used.</p>
+<p>For the same effect, a modified colors file could be used.
+<tt class="docutils literal"><span class="pre">--height-level-0</span></tt> is easier and quicker.</p>
+</blockquote>
+</div>
+<div class="section" id="help">
+<h3><a class="toc-backref" href="#id52"><tt class="docutils literal"><span class="pre">--help</span></tt></a></h3>
+<blockquote>
+Print the option summary.</blockquote>
+</div>
+<div class="section" id="input-world-path">
+<h3><a class="toc-backref" href="#id53"><tt class="docutils literal"><span class="pre">--input</span> &lt;world_path&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the world to map.</p>
+<p>This option is mandatory.</p>
+</blockquote>
+</div>
+<div class="section" id="max-y-y">
+<h3><a class="toc-backref" href="#id54"><tt class="docutils literal"><span class="pre">--max-y</span> &lt;y&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the upper height limit for the map</p>
+<p>Nodes higher than this level will not be drawn. This can be used
+to avoid floating islands or floating artefacts from abscuring the
+world below.</p>
+</blockquote>
+</div>
+<div class="section" id="min-y-y">
+<h3><a class="toc-backref" href="#id55"><tt class="docutils literal"><span class="pre">--min-y</span> &lt;y&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the lower height limit for the map</p>
+<p>Any nodes below this level will not be drawn.</p>
+</blockquote>
+</div>
+<div class="section" id="noshading">
+<h3><a class="toc-backref" href="#id56"><tt class="docutils literal"><span class="pre">--noshading</span></tt></a></h3>
+<blockquote>
+<p>Disable shading.</p>
+<p>Shading accentuates height differences by drawing artifical shade
+(i.e. making nodes lighter or darker depending on the height difference
+with adjacent nodes).</p>
+<p>A map with and without shading:</p>
+<img alt="images/default-0.0.png" src="images/default-0.0.png" />
+<img alt="images/noshading.png" src="images/noshading.png" />
+</blockquote>
+</div>
+<div class="section" id="origincolor-color">
+<h3><a class="toc-backref" href="#id57"><tt class="docutils literal"><span class="pre">--origincolor</span> &lt;color&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the color to use for drawing the origin.</p>
+<p>An alpha value can be specified, but due to a bug in the
+drawing library, it will not have the desired effect.</p>
+<p>Use <a class="reference internal" href="#draworigin">--draworigin</a> to enable drawing the origin.</p>
+<p>See also <a class="reference internal" href="#color-syntax">Color Syntax</a></p>
+</blockquote>
+</div>
+<div class="section" id="output-output-image-png">
+<h3><a class="toc-backref" href="#id58"><tt class="docutils literal"><span class="pre">--output</span> &lt;output_image.png&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the name of the image to be generated.</p>
+<p>This parameter is mandatory.</p>
+<p>Note that minetestmapper generates images in png format, regardless of
+the extension of this file.</p>
+</blockquote>
+</div>
+<div class="section" id="playercolor-color">
+<h3><a class="toc-backref" href="#id59"><tt class="docutils literal"><span class="pre">--playercolor</span> &lt;color&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the color to use for drawing player locations</p>
+<p>An alpha value can be specified, but due to a bug in the
+drawing library, it will not have the desired effect.</p>
+<p>Use <a class="reference internal" href="#drawplayers">--drawplayers</a> to enable drawing players.</p>
+<p>See also <a class="reference internal" href="#color-syntax">Color Syntax</a></p>
+</blockquote>
+</div>
+<div class="section" id="progress">
+<h3><a class="toc-backref" href="#id60"><tt class="docutils literal"><span class="pre">--progress</span></tt></a></h3>
+<blockquote>
+Show a progress indicator while generating the map.</blockquote>
+</div>
+<div class="section" id="scalecolor-color">
+<h3><a class="toc-backref" href="#id61"><tt class="docutils literal"><span class="pre">--scalecolor</span> &lt;color&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the color to use for drawing the text and lines of the scales
+(both the side scales and the height map scale).</p>
+<p>Use <a class="reference internal" href="#drawscale-left-top">--drawscale</a> to enable drawing side scales.</p>
+<p>Use <a class="reference internal" href="#drawheightscale">--drawheightscale</a> to enable drawing the height scale.</p>
+<p>See also <a class="reference internal" href="#color-syntax">Color Syntax</a></p>
+</blockquote>
+</div>
+<div class="section" id="scalefactor-1-n">
+<h3><a class="toc-backref" href="#id62"><tt class="docutils literal"><span class="pre">--scalefactor</span> <span class="pre">1:&lt;n&gt;</span></tt></a></h3>
+<blockquote>
+<p>Generate the map in a reduced size.</p>
+<p>Basically, the image is be reduced in size while it is generated,
+by averaging a square region of pixels into one new pixel.</p>
+<p>This has several uses:</p>
+<ul class="simple">
+<li>to generate overview maps of large worlds</li>
+<li>if the image is otherwise too large to be practical</li>
+<li>if the map image would be too large to be generated
+(see <a class="reference external" href="features.rst#known-problems">Known Problems</a>).</li>
+</ul>
+<p>An other advantage of generating scaled maps directly, is that
+minetestmapper does not scale all parts of the map, like for instance
+the scales on the side.</p>
+<p>The following scale factors are supported:</p>
+<ul class="simple">
+<li><strong>1:1</strong>: no scaling. This value has no effect.</li>
+<li><strong>1:2</strong>: reduce the map size by a factor 2</li>
+<li><strong>1:4</strong>: reduce the map size by a factor 4</li>
+<li><strong>1:8</strong>: reduce the map size by a factor 8</li>
+<li><strong>1:16</strong>: reduce the map size by a factor 16</li>
+</ul>
+<p>In addition, scaling needs to follow map block boundaries. That
+means that when scaling the map, regardless of the geometry,
+the same pixels will be averaged. E.g. if the scale factor is 1:16,
+then entire map blocks will be averaged, so therefore the map
+geometry can only include full map-blocks.</p>
+<p>If the requested geometry of the map is not suited to the
+requested scale factor, the map will be enlarged by as many nodes as
+needed.  The number of added nodes depends on the scale factor. E.g.
+if the scale factor is 1:8, then at most 7 nodes may be added to on
+each of the four sides of the map.</p>
+<p>Original map, and the same map, scaled to 1:2 and 1:4. The geometry is
+increased to keep the images the same size:</p>
+<img alt="images/default-0.0.png" src="images/default-0.0.png" />
+<img alt="images/scalefactor-2.png" src="images/scalefactor-2.png" />
+<img alt="images/scalefactor-4.png" src="images/scalefactor-4.png" />
+</blockquote>
+</div>
+<div class="section" id="sidescale-interval-major-minor">
+<h3><a class="toc-backref" href="#id63"><tt class="docutils literal"><span class="pre">--sidescale-interval</span> <span class="pre">&lt;major&gt;[[,:]&lt;minor&gt;]</span></tt></a></h3>
+<blockquote>
+<p>When drawing a side scale at the top or left of the map, use the specified
+subdivisions.</p>
+<p>'major' specifies the interval for major marks, which are accompanied
+by a number indicating the coordinate.</p>
+<p>When specified as 'major,minor', 'minor' specifies the interval for
+minor tick marks</p>
+<p>When specified as 'major:minor', 'minor' specifies the number of subdivisions
+of the major interval. In that case, major should be divisible by minor.
+E.g.: <tt class="docutils literal">100:20</tt> is OK (equivalent to 100,5), <tt class="docutils literal">100:33</tt> is not.</p>
+<p>By default, the major interval is 64 for a 1:1 map, 128 for a 1:2 map etc.
+The default minor interval is 0 (i.e. no minor ticks)</p>
+<p>Default side scale, and custom version:</p>
+<img alt="images/drawscale-both.png" src="images/drawscale-both.png" />
+<img alt="images/sidescale-interval.png" src="images/sidescale-interval.png" />
+</blockquote>
+</div>
+<div class="section" id="sqlite-cacheworldrow">
+<h3><a class="toc-backref" href="#id64"><tt class="docutils literal"><span class="pre">--sqlite-cacheworldrow</span></tt></a></h3>
+<blockquote>
+<p>Modify the way minetestmapper accesses the sqlite3 database.</p>
+<p>When using sqlite3, read an entire world row at one, instead of reading
+one block at a time.</p>
+<p>This option was added to possibly achieve better performance
+in some cases where a complete map is drawn of a very large world.</p>
+<p>It may or may not have the desired effect. Any feedback is welcome.</p>
+</blockquote>
+</div>
+<div class="section" id="tilebordercolor-color">
+<h3><a class="toc-backref" href="#id65"><tt class="docutils literal"><span class="pre">--tilebordercolor</span> &lt;color&gt;</tt></a></h3>
+<blockquote>
+<p>Specify the color to use for drawing tile borders.</p>
+<p>Use <a class="reference internal" href="#tiles-tilesize-border-block-chunk">--tiles</a> to enable drawing tiles.</p>
+<p>See also <a class="reference internal" href="#color-syntax">Color Syntax</a></p>
+</blockquote>
+</div>
+<div class="section" id="tilecenter-x-y-world-map">
+<h3><a class="toc-backref" href="#id66"><tt class="docutils literal"><span class="pre">--tilecenter</span> <span class="pre">&lt;x&gt;,&lt;y&gt;|world|map</span></tt></a></h3>
+<blockquote>
+<p>Arrange the tiles so that one tile has, or would have, its center
+at map coordinates x,y.</p>
+<p>If the value 'world' is used, arrange for one tile to have its center
+at the center of the world instead. This is the default.</p>
+<p>If the value 'map' is used, arrange for one tile to have its center
+at the center of the map instead.</p>
+<p>(see also <a class="reference internal" href="#tileorigin-x-y-world-map">--tileorigin</a>)</p>
+</blockquote>
+</div>
+<div class="section" id="tileorigin-x-y-world-map">
+<h3><a class="toc-backref" href="#id67"><tt class="docutils literal"><span class="pre">--tileorigin</span> <span class="pre">&lt;x&gt;,&lt;y&gt;|world|map</span></tt></a></h3>
+<blockquote>
+<p>Arrange the tiles so that one tile has, or would have, its bottom-left
+(i.e. south-west) corner at map coordinates x,y.</p>
+<p>If the value 'world' is used, arrange for one tile to have its lower-left
+corner the origin of the world (0,0) instead.</p>
+<p>If the value 'map' is used, arrange for one tile to have its upper-left
+corner at map coordinate 0,0 (which is the upper-left pixel of the
+map-part of the image)</p>
+<p>(see also <a class="reference internal" href="#tilecenter-x-y-world-map">--tilecenter</a>)</p>
+</blockquote>
+</div>
+<div class="section" id="tiles-tilesize-border-block-chunk">
+<h3><a class="toc-backref" href="#id68"><tt class="docutils literal"><span class="pre">--tiles</span> <span class="pre">&lt;tilesize&gt;[+&lt;border&gt;]|block|chunk</span></tt></a></h3>
+<blockquote>
+<p>Divide the map in square tiles of the requested size. A border of the
+requested width (or width 1, of not specfied) is drawn between the tiles.
+In order to preserve all map pixels (and to prevent overwriting them with
+borders), extra pixel rows and columns for the borders are inserted into
+the map.</p>
+<p>The special values 'block' and 'chunk' draw tiles that correspond to map
+blocks (16x16 nodes) or to chunks (the unit of map generation: 5x5 blocks
+for a world with default settings).</p>
+<p>In order to allow partial world maps to be combined into larger maps, edge
+borders of the map are always drawn on the same side (left or top). Other
+edges are always border-less.</p>
+<p>NOTE: As a consequence of preserving all map pixels:</p>
+<ul class="simple">
+<li>tiled maps (in particular slanted straight lines) may look slightly
+skewed, due to the inserted borders.</li>
+<li>scale markers never align with tile borders, as the borders are
+logically <em>between</em> pixels, so they have no actual coordinates.</li>
+<li>On scaled maps, only tile sizes and tile offsets that are a multiple
+of the inverse scale (e.g. '8' for scale 1:8) are supported.</li>
+</ul>
+<p>See the options <a class="reference internal" href="#tileorigin-x-y-world-map">--tileorigin</a> and <a class="reference internal" href="#tilecenter-x-y-world-map">--tilecenter</a> for specifying the
+positioning of tiles. By default, tiles are arranged so that one tile
+has, or would have, its center at the world origin (0,0).</p>
+<p>Tiled map. On the left, 16x16 tiles with corner at the world origin. In
+the middle, 16x16 tiles with center at the world origin. To the right,
+20x20 tiles with center at the world origin:</p>
+<img alt="images/tiles-16.png" src="images/tiles-16.png" />
+<img alt="images/tiles-16-centered.png" src="images/tiles-16-centered.png" />
+<img alt="images/tiles-20-centered.png" src="images/tiles-20-centered.png" />
+</blockquote>
+</div>
+<div class="section" id="verbose-search-colors-n">
+<h3><a class="toc-backref" href="#id69"><tt class="docutils literal"><span class="pre">--verbose-search-colors[=n]</span></tt></a></h3>
+<blockquote>
+<p>report the location of the colors file(s) that are being used.</p>
+<p>With <tt class="docutils literal"><span class="pre">--verbose-search-colors=2</span></tt>, report all search locations
+that are being considered as well.</p>
+</blockquote>
+</div>
+<div class="section" id="verbose-n">
+<h3><a class="toc-backref" href="#id70"><tt class="docutils literal"><span class="pre">--verbose[=n]</span></tt></a></h3>
+<blockquote>
+<p>report some useful / interesting information:</p>
+<ul class="simple">
+<li>maximum coordinates of the world</li>
+<li>world coordinates included the map being generated</li>
+<li>number of blocks: in the world, and in the map area.</li>
+</ul>
+<p>Using <cite>--verbose=2</cite>, report some more statistics, including:</p>
+<ul class="simple">
+<li>database access statistics.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="version">
+<h3><a class="toc-backref" href="#id71"><tt class="docutils literal"><span class="pre">--version</span></tt></a></h3>
+<blockquote>
+<p>Report the version of this instance of minetestmapper.</p>
+<p>This is great information to include in a bug report.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="color-syntax">
+<h1><a class="toc-backref" href="#id7">Color Syntax</a></h1>
+<blockquote>
+For a number of command-line parameters, a color argument it needed. Such
+colors are specified as follows:</blockquote>
+<div class="section" id="color-codes">
+<h2><a class="toc-backref" href="#id8">Color Codes</a></h2>
+<blockquote>
+<p>Colors can be specified using color codes:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">#[&lt;alpha&gt;]&lt;red&gt;&lt;green&gt;&lt;blue&gt;</span></tt></blockquote>
+<p>E.g.: <tt class="docutils literal">#ff34c1</tt></p>
+<p>The alpha component is optional in some cases, and not allowed in others. It
+defaults to opaque (ff).</p>
+<p>The color components can also be specified using a single digit per color,
+which are duplicated to obtain the full value. E.g.</p>
+<blockquote>
+<tt class="docutils literal">#4c2 <span class="pre">--&gt;</span> #44cc22</tt></blockquote>
+</blockquote>
+</div>
+<div class="section" id="symbolic-colors">
+<h2><a class="toc-backref" href="#id9">Symbolic Colors</a></h2>
+<blockquote>
+<p>In addition to the color codes, a few named colors are also available:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">white:</th><td class="field-body"><tt class="docutils literal">#ffffff</tt></td>
+</tr>
+<tr class="field"><th class="field-name">black:</th><td class="field-body"><tt class="docutils literal">#000000</tt></td>
+</tr>
+<tr class="field"><th class="field-name">gray:</th><td class="field-body"><tt class="docutils literal">#7f7f7f</tt> - (same as grey)</td>
+</tr>
+<tr class="field"><th class="field-name">grey:</th><td class="field-body"><tt class="docutils literal">#7f7f7f</tt> - (same as gray)</td>
+</tr>
+<tr class="field"><th class="field-name">red:</th><td class="field-body"><tt class="docutils literal">#ff0000</tt></td>
+</tr>
+<tr class="field"><th class="field-name">green:</th><td class="field-body"><tt class="docutils literal">#00ff00</tt></td>
+</tr>
+<tr class="field"><th class="field-name">blue:</th><td class="field-body"><tt class="docutils literal">#0000ff</tt></td>
+</tr>
+<tr class="field"><th class="field-name">yellow:</th><td class="field-body"><tt class="docutils literal">#ffff00</tt></td>
+</tr>
+<tr class="field"><th class="field-name">magenta:</th><td class="field-body"><tt class="docutils literal">#ff00ff</tt> - (same as fuchsia)</td>
+</tr>
+<tr class="field"><th class="field-name">fuchsia:</th><td class="field-body"><tt class="docutils literal">#ff00ff</tt> - (same as magenta)</td>
+</tr>
+<tr class="field"><th class="field-name">cyan:</th><td class="field-body"><tt class="docutils literal">#00ffff</tt> - (sama as aqua)</td>
+</tr>
+<tr class="field"><th class="field-name">aqua:</th><td class="field-body"><tt class="docutils literal">#00ffff</tt> - (sama as cyan)</td>
+</tr>
+<tr class="field"><th class="field-name">orange:</th><td class="field-body"><tt class="docutils literal">#ff7f00</tt></td>
+</tr>
+<tr class="field"><th class="field-name">chartreuse:</th><td class="field-body"><tt class="docutils literal">#7fff00</tt></td>
+</tr>
+<tr class="field"><th class="field-name">pink:</th><td class="field-body"><tt class="docutils literal">#ff007f</tt></td>
+</tr>
+<tr class="field"><th class="field-name">violet:</th><td class="field-body"><tt class="docutils literal">#7f00ff</tt></td>
+</tr>
+<tr class="field"><th class="field-name">springgreen:</th><td class="field-body"><tt class="docutils literal">#00ff7f</tt></td>
+</tr>
+<tr class="field"><th class="field-name">azure:</th><td class="field-body"><tt class="docutils literal">#007fff</tt></td>
+</tr>
+<tr class="field"><th class="field-name">brown:</th><td class="field-body"><tt class="docutils literal">#7f3f00</tt></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="lighter-or-darker-colors">
+<h2><a class="toc-backref" href="#id10">Lighter or Darker Colors</a></h2>
+<blockquote>
+<p>As an additional feature, any color can lightened or darkened, or in general,
+be mixed with a basic color using the following syntax:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">&lt;color&gt;[+-][wkrgbcmy]&lt;value&gt;</span></tt></blockquote>
+<p>Where '+' mixes in, and '-' mixes out. one of the colors white (w), black (k), red (r), green (g), blue (b),
+cyan (c), magenta (m), yellow (y). The value specifies the amount, ranging from 0 (mix in/out no color) to
+1 (mix in/out as much of the color as possible). E.g.:</p>
+<blockquote>
+<p>red+w0.25: add 25% white: light red (#ff3f3f)</p>
+<p>red+k0.50: add 50% black: dark red (#7f0000)</p>
+<p>red-w0.50: remove 50% white: dark red as well (#7f0000)</p>
+<p>white-b1: remove 100% blue: yellow (#ffff00)</p>
+</blockquote>
+</blockquote>
+</div>
+</div>
+<div class="section" id="geometry-syntax">
+<h1><a class="toc-backref" href="#id11">Geometry Syntax</a></h1>
+<blockquote>
+<p>For a number of options, like the 'geometry' options, but also
+the drawing options for instance, a geometry parameter must
+be specified. It can specify the dimensions in a few different
+ways:</p>
+<ul class="simple">
+<li>As the corners of the area</li>
+<li>As the lower-left corner, and the area's dimensions</li>
+<li>As the center of the are, and the area's dimensions</li>
+<li>Legacy format (compatible with stock minetestmapper)</li>
+</ul>
+<p><strong>Granularity</strong></p>
+<p>By default, the specified geometry has node granularity, in contrast
+with block (16x16) granularity.</p>
+<p>Using block granularity, all coordinates are rounded to the
+next multiple of 16. Node granularity keeps the sub-block
+coordinates as they are.</p>
+<p>Use <a class="reference internal" href="#geometrymode-pixel-block-fixed-shrink">--geometrymode</a> if non-default behavior is desired.</p>
+<p><strong>Map Shrinking</strong></p>
+<p>By default, a map of exactly the requested size is generated
+(after any granularity adjustment, or adjustments that are
+required by scaling).</p>
+<p>Alternatively, the map size can be automatically reduced to
+remove empty blocks at its edges. This is the behavior of
+the stock minetestmapper.</p>
+<p>Use <a class="reference internal" href="#geometrymode-pixel-block-fixed-shrink">--geometrymode</a> if non-default behavior is desired.</p>
+<p><strong>Coordinate Direction</strong></p>
+<p>The world coordinates 0,0 are the very center of the world. Coordinates
+decrease towards the lower-left (south-west) corner of the map,
+and they increase towards the upper-right (north-east) corner of the map.</p>
+<p>Note that this differs from the image coordinates, which are 0,0
+in the top-left corner of the map-part of the image, and increase towards
+the bottom-right.  Coordinates in the left and top scale areas of
+the image are negative.</p>
+</blockquote>
+<div class="section" id="geometry-using-two-corners">
+<h2><a class="toc-backref" href="#id12">Geometry Using Two Corners</a></h2>
+<blockquote>
+<p>A geometry using two corners of the area is specified as follows:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">&lt;xcorner1&gt;,&lt;ycorner1&gt;:&lt;xcorner2&gt;,&lt;ycorner2&gt;</span></tt></blockquote>
+<p>where <tt class="docutils literal">xcorner1,ycorner1</tt> are the coordinates of
+one corner, and <tt class="docutils literal">xcorner2,ycorner2</tt> are the coordinates
+of the opposite corner of the area.</p>
+<p>The coordinates are interpreted as inclusive: both
+the first and the second coordinate will be in the map.</p>
+<p>Example:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">--geometry</span> <span class="pre">-200,-100:200,200</span></tt></blockquote>
+</blockquote>
+</div>
+<div class="section" id="geometry-using-corner-and-dimensions">
+<h2><a class="toc-backref" href="#id13">Geometry Using Corner and Dimensions</a></h2>
+<blockquote>
+<p>A geometry using a corner of the area and its dimensions is
+specified as follows:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">&lt;xoffset&gt;,&lt;yoffset&gt;+width+height</span></tt></blockquote>
+<p>where <tt class="docutils literal">xoffset,yoffset</tt> are the coordinates of the
+lower-left corner of the area, and <tt class="docutils literal">width</tt> and <tt class="docutils literal">height</tt>
+are the dimensions of the map.</p>
+<p>Note that <tt class="docutils literal">width</tt> and/or <tt class="docutils literal">height</tt> can be negative, making
+<tt class="docutils literal">xoffset,yoffset</tt> another corner of the image. For ease
+of using in scripting, the sign of a dimension does not need
+to replace the '+'. E.g. the following are valid and equivalent:</p>
+<blockquote>
+<p><tt class="docutils literal"><span class="pre">--geometry</span> <span class="pre">-10,-10+11+11</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">--geometry</span> <span class="pre">-10,10+11-11</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">--geometry</span> <span class="pre">-10,10+11+-11</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">--geometry</span> <span class="pre">10,10-11+-11</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">--geometry</span> <span class="pre">-10,-10:10,10</span></tt></p>
+</blockquote>
+<p>The following alternate syntax is also supported:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">&lt;width&gt;x&lt;height&gt;[&lt;+|-xoffset&gt;&lt;+|-yoffset&gt;]</span></tt></blockquote>
+<p>where <tt class="docutils literal">xoffset,yoffset</tt> are the coordinates of the lower-left
+corner of the area. In this case, the offsets can be omitted,
+resulting in a map of the requested dimensions, centered at 0,0.</p>
+<p>Examples:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">--geometry</span> 1000x1200</tt>
+<tt class="docutils literal"><span class="pre">--geometry</span> <span class="pre">1000x1200-500+500</span></tt></blockquote>
+<p><strong>Compatibility</strong></p>
+<p>For backward compatibility, if the <tt class="docutils literal"><span class="pre">--centergeometry</span></tt>
+option is used with a corner-style geometry, then that geometry is
+interpreted as a center geometry instead.</p>
+</blockquote>
+</div>
+<div class="section" id="geometry-using-center-and-dimensions">
+<h2><a class="toc-backref" href="#id14">Geometry Using Center and Dimensions</a></h2>
+<blockquote>
+<p>A geometry using the center of the area and its dimensions
+is specified as follows</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">&lt;xcenter&gt;,&lt;ycenter&gt;:widthxheight</span></tt></blockquote>
+<p>where <tt class="docutils literal">xcenter,ycenter</tt> are the coordinates of the center
+of the area, and <tt class="docutils literal">width</tt> and <tt class="docutils literal">height</tt> are its dimensions.</p>
+<p>Example:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">--geometry</span> 100,100:300x150</tt></blockquote>
+<p><strong>Compatibility</strong></p>
+<p>For backward compatibility, if the <tt class="docutils literal"><span class="pre">--cornergeometry</span></tt>
+option is used with a center-style geometry, then that geometry is
+interpreted as a corner geometry instead.</p>
+</blockquote>
+</div>
+<div class="section" id="legacy-geometry-format">
+<h2><a class="toc-backref" href="#id15">Legacy Geometry Format</a></h2>
+<blockquote>
+<p>The legacy format, compatible with stock minetestmapper is
+also still supported:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">&lt;xoffset&gt;:&lt;yoffset&gt;+&lt;width&gt;+&lt;height&gt;</span></tt></blockquote>
+<p>where <tt class="docutils literal">xoffset,yoffset</tt> are the coordinates of the lower-left
+corner of the area, and <tt class="docutils literal">width</tt> and <tt class="docutils literal">height</tt> specify its
+dimensions.</p>
+<p><strong>Compatibility mode</strong></p>
+<p>This format has a compatibility mode with stick minetestmapper.</p>
+<p>If the very first geometry option on the command-line is <tt class="docutils literal"><span class="pre">--geometry</span></tt>,
+<em>and</em> uses this syntax, then block granularity and map shrinking
+are enabled, just like stock minetest would. If this is not desired,
+then use a different geometry format, or use the option
+<tt class="docutils literal"><span class="pre">--geometrymode</span></tt> to change the behavior.</p>
+<p>Block granularity is also enabled when the obsolete (and otherwise
+undocumented) option <tt class="docutils literal"><span class="pre">--forcegeometry</span></tt> is found first on the command-line.</p>
+</blockquote>
+</div>
+<div class="section" id="advanced-coordinate-specification">
+<h2><a class="toc-backref" href="#id16">Advanced coordinate specification</a></h2>
+<blockquote>
+<p>Coordinates are normally specified as node coordinates. E.g.:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">--geometry</span> <span class="pre">-100,-100:100,100</span></tt></blockquote>
+<p>Minetestmapper also supports another way to specify coordinate values:
+specifying the minetest block number, and a node. Blocks are 16x16 nodes.
+There are two variants:</p>
+<p>The first variant specifies the block number, and a node within that block.
+The node must be a value between 0 and 15:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">&lt;block&gt;#&lt;node&gt;</span></tt></blockquote>
+<p>E.g.:</p>
+<blockquote>
+<p><tt class="docutils literal">0#2</tt>: node 2 in block 0, i.e. coordinate 2</p>
+<p><tt class="docutils literal">1#2</tt>: node 2 in block 1, i.e. coordinate 16+2 = 18</p>
+<p><tt class="docutils literal"><span class="pre">-10#6</span></tt>: node 6 in block -10, i.e. coordinate -160+2 = -158</p>
+<p><tt class="docutils literal"><span class="pre">-3#11</span></tt>: node 11 in block -3, i.e. coordinate -48+11 = -37</p>
+</blockquote>
+<p>The second variant specifies a block and a node offset in the
+same direction. I.e. for negative block numbers, the offset is
+in the negative direction as well.</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">&lt;block&gt;.&lt;offset&gt;</span></tt></blockquote>
+<p>E.g.:</p>
+<blockquote>
+<p><tt class="docutils literal">0.5</tt>: the 5th node from block 0, i.e. coordinate 5</p>
+<p><tt class="docutils literal">4.11</tt>: the 11th node from block 4, i.e. coordinate 64+11 = 75</p>
+<p><tt class="docutils literal"><span class="pre">-0.1</span></tt>: the 1st node in negative direction from block 0, i.e. coordinate -1</p>
+<p><tt class="docutils literal">1.9</tt>: the 9th node in positive direction from block 1, i.e. coordinate 16+9 = 25</p>
+<p><tt class="docutils literal"><span class="pre">-1.9</span></tt>: the 9th node in negative direction from block -1, i.e. coordinate -16-9 = -25</p>
+<p><tt class="docutils literal"><span class="pre">-5.0</span></tt>: the 0th node in negative direction from block -5, i.e. coordinate -80-0 = -80</p>
+</blockquote>
+</blockquote>
+</div>
+</div>
+<div class="section" id="colors-and-nodes-files">
+<h1><a class="toc-backref" href="#id17">Colors and Nodes Files</a></h1>
+<blockquote>
+<p>In order to know how to render a map, minetestmapper needs a colors and/or
+a nodes file. This section documents their format.</p>
+<ul class="simple">
+<li>If a regular map is generated, a 'colors.txt' file is required.</li>
+<li>If a height map is generated, a 'heightmap-nodes.txt' file is required, and
+optionally, a 'heightmap-colors.txt' file.</li>
+</ul>
+<p>All three types of files have some commonalities with respect to where minetest
+looks form them by default, and with respect to comments and file inclusion. These are
+documented in separate paragraphs below (<a class="reference internal" href="#colors-files-common-syntax">Colors Files Common Syntax</a>,
+<a class="reference internal" href="#colors-files-search-locations">Colors Files Search Locations</a>)</p>
+</blockquote>
+<div class="section" id="colors-txt-syntax">
+<h2><a class="toc-backref" href="#id18">Colors.txt Syntax</a></h2>
+<blockquote>
+<p>The colors.txt file contains a list of minetest node names and associated
+colors. A minetest world node is converted to at most one pixel on the map.</p>
+<p>Lines in the colors.txt file have toe following syntax:</p>
+<blockquote>
+<tt class="docutils literal"><span class="pre">&lt;node-name&gt;</span> &lt;red&gt; &lt;green&gt; &lt;blue&gt; [&lt;alpha&gt; <span class="pre">[&lt;t&gt;]]</span></tt></blockquote>
+<p>Examples:</p>
+<blockquote>
+<p><tt class="docutils literal">default:apple 50 0 0</tt></p>
+<p><tt class="docutils literal">default:sandstonebrick 160 144 108</tt></p>
+<p><tt class="docutils literal">default:copperblock 110 86 60</tt></p>
+<p><tt class="docutils literal">default:water_flowing 49 82 132 192 224</tt></p>
+</blockquote>
+<p><strong>Alpha</strong></p>
+<p>If a node has an alpha (transparency) value <em>and</em> if the value is not 255,
+then it will be drawn transparently if <a class="reference internal" href="#drawalpha-cumulative-cumulative-darken-average-none">--drawalpha</a> is enabled. The effect
+is that the colors of nodes below it shine through.</p>
+<p>Water for instance, is defined as transparent. With transparency enabled,
+nodes under water will be visible, but they will acquire a more or
+less blueish color from the water. See <a class="reference internal" href="#drawalpha-cumulative-cumulative-darken-average-none">--drawalpha</a> for details about
+the different ways of computing transparency.</p>
+<p>if a node has an alpha of 0 (fully transparent), then it should normally
+never be visible on the map, regardless of its specified color. If there
+are any other (types of) nodes below it, then that is what will happen.
+If there are not, then that node <em>will</em> however be made visible. See
+the option <a class="reference internal" href="#drawair">--drawair</a> for a use for this feature.</p>
+<p><strong>Duplicate Entries</strong></p>
+<p>If the colors file contains duplicate entries for the same node, in general
+the later entry overrides the former.</p>
+<p>There is one exception to this rule: if one color is opaque (no alpha, or
+alpha = 255), and one is transparent (alpha &lt; 255), the former will be selected when
+<tt class="docutils literal"><span class="pre">--drawalpha</span></tt> is diabled, and the latter will be selected when <tt class="docutils literal">drawalpha</tt>
+is enabled:</p>
+<blockquote>
+<p><tt class="docutils literal"># Entry that will be used without 'drawalpha':</tt></p>
+<p><tt class="docutils literal">default:water_source&nbsp; 39 66 106</tt></p>
+<p><tt class="docutils literal"># Entry that will be used with 'drawalpha':</tt></p>
+<p><tt class="docutils literal">default:water_source&nbsp; 78 132 212 64 224</tt></p>
+</blockquote>
+<p>This is useful, as colors that look nice in a map without transparency
+don't always look nice in a map with transparency.</p>
+<p><strong>Default</strong></p>
+<p>A default colors.txt is included with minetestmapper, which includes
+the default nodes from minetest_game, as well as nodes from several
+popular mods.</p>
+<p>Two variants of the colors.txt are also included:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">colors-average-alpha.txt</span></tt>:</dt>
+<dd>This version is recommended to be used in combination with
+<tt class="docutils literal"><span class="pre">--drawalpha=average</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">colors-cumulative-alpha.txt</span></tt>:</dt>
+<dd>This version is recommended to be used in combination with
+<tt class="docutils literal"><span class="pre">--drawalpha=cumulative</span></tt> or <tt class="docutils literal"><span class="pre">--drawalpha=cumulative-darken</span></tt></dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="heightmap-nodes-txt-syntax">
+<h2><a class="toc-backref" href="#id19">Heightmap-nodes.txt Syntax</a></h2>
+<blockquote>
+<p>The heightmap-nodes.txt file contains a list of minetest node names that
+determine the ground height for a height map.</p>
+<p>The highest node of any of the types in this file determines the height at
+that point. Any nodes that should be ignored, like obviously air, but
+probably also default:water_source, and default:grass_1, or default:torch,
+should not be in this file.</p>
+<p>As a general directive, plants, trees and any special nodes should not
+be included in the file. Stone, sand, gravel, minerals, etc. are the
+kinds of nodes that should be included. Normally, water nodes should
+probably not be included either.</p>
+<p>This file <em>can</em> have the same syntax as the colors.txt file, but the
+actual colors will be ignored. Alternatively, a simple list of node
+names also suffices:</p>
+<blockquote>
+<p><tt class="docutils literal"><span class="pre">&lt;node-name</span> 1&gt;</tt></p>
+<p><tt class="docutils literal"><span class="pre">&lt;node-name</span> 2&gt;</tt></p>
+<p><tt class="docutils literal"><span class="pre">[...]</span></tt></p>
+</blockquote>
+<p>Examples:</p>
+<blockquote>
+<p><tt class="docutils literal">default:sandstonebrick</tt></p>
+<p><tt class="docutils literal">default:copperblock</tt></p>
+</blockquote>
+<p><strong>Default</strong></p>
+<p>A default heightmap-nodes.txt is included with minetestmapper, and
+is searched for in the default locations. Alternatively, the file to use
+can be specified on the command line with <tt class="docutils literal"><span class="pre">--heightmap-nodes</span> &lt;file&gt;</tt></p>
+</blockquote>
+</div>
+<div class="section" id="heightmap-colors-txt-syntax">
+<h2><a class="toc-backref" href="#id20">Heightmap-colors.txt Syntax</a></h2>
+<blockquote>
+<p>When generating a height map, either a single-color map can be
+generated, with colors ranging from black to one specific color,
+or a multi-color map can be generated.</p>
+<p>For a multi-color map, a heightmap-colors.txt is needed, which
+describes which colors to use. It has lines with the following syntax:</p>
+<blockquote>
+<tt class="docutils literal">&lt;height 1&gt;&nbsp;&nbsp;&nbsp; &lt;height 2&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;color 1&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;color 2&gt;</tt></blockquote>
+<p>Where the heights are a number, or the special values <tt class="docutils literal"><span class="pre">-oo</span></tt> or <tt class="docutils literal">oo</tt> (for
+negative and positive infinity).</p>
+<p>For example:</p>
+<blockquote>
+<p><tt class="docutils literal"><span class="pre">-50</span>&nbsp;&nbsp; 50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 255 0 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 255 0</tt></p>
+<p><tt class="docutils literal">50&nbsp;&nbsp;&nbsp; 100&nbsp;&nbsp;&nbsp;&nbsp; 0 255 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 0 255</tt></p>
+</blockquote>
+<p>While signifies that between height -50 to 50, the color of the nodes will
+slowly change from red to green, and between 50 and 100, the color will slowly
+change from green to blue.</p>
+<p>It is possible to specify overlapping ranges. The colors they specify will
+be averaged:</p>
+<blockquote>
+<p><tt class="docutils literal"><span class="pre">-50</span>&nbsp;&nbsp; 50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 255 0 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 255 0</tt></p>
+<p><tt class="docutils literal"><span class="pre">-50</span>&nbsp;&nbsp; 50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 255 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 0 255</tt></p>
+</blockquote>
+<p>Between the heights -50 and 50, the colors will change from <tt class="docutils literal">#7f7f00</tt> to <tt class="docutils literal">#007f7f</tt>.
+(because the colors are <em>averaged</em>)</p>
+<p><strong>Default</strong></p>
+<p>A default heightmap-colors.txt is included with minetestmapper, and
+is searched for in the default locations. An attempt was made to make
+a standard minetest world look reasonably good, while at the same time
+providing colors for a large height range.</p>
+<p>A second file that is included, called heightmap-colors-rainbow.txt, defines rainbow
+colors instead.</p>
+<p>The file to use can also be specified on the command line with
+<tt class="docutils literal"><span class="pre">--heightmap-colors</span> &lt;file&gt;</tt></p>
+</blockquote>
+</div>
+<div class="section" id="colors-files-common-syntax">
+<h2><a class="toc-backref" href="#id21">Colors Files Common Syntax</a></h2>
+<blockquote>
+<p>All three types of colors files (colors.txt, heightmap-nodes.txt and heightmap-colors.txt)
+have some syntax elements in common:</p>
+<ul class="simple">
+<li>Any text after the first '#' on a line are comments, and is ignored.</li>
+<li>Any empty lines (afer ignoring comments), or lines containing only whitespace are ignored.</li>
+</ul>
+<p>In addition, a colors file may include another colors file using <tt class="docutils literal">&#64;include</tt> on a line. Any
+color definitions after the inclusion point override the colors from the included file. For
+example in the following colors.txt file:</p>
+</blockquote>
+<pre class="literal-block">
+# Defining default:stone here is useless, as the color from the system
+# colors file will override this.
+default:stone           71 68 67
+
+# Get all colors from the system colors file
+# (your system colors file may be located elsewhere!)
+&#64;include /usr/share/minetestmapper/colors.txt
+
+# Use own color for default:dirt_with_grass, overriding the
+# one from the system file
+default:dirt_with_grass 82 117 54
+</pre>
+<!--  -->
+<blockquote>
+The colors.txt file also supports undefining colors (so that minetestmapper will complain
+about unknown nodes). This is achieved by specifying '-' instead of a color:</blockquote>
+<pre class="literal-block">
+# Get all colors from the system colors file
+# (your system colors file may be located elsewhere!)
+&#64;include /usr/share/minetestmapper/colors.txt
+
+# Water is undefined. Minetestmapper will complain
+# about it and not draw water nodes.
+default:water_source    -
+default:water_flowing   -
+
+# The same effect might be achieved by defining water
+# to have an alpha of 0. Minetest will not complain.
+#default:water_source   78 132 212 0
+#default:water_flowing  78 132 212 0
+</pre>
+<!--  -->
+</div>
+<div class="section" id="colors-files-search-locations">
+<h2><a class="toc-backref" href="#id22">Colors Files Search Locations</a></h2>
+<blockquote>
+<p>When minetestmapper needs a colors file (colors.txt, heightmap-nodes.txt and
+heightmap-colors.txt), it will search for in a few predefined locations, which
+depend on your system and the way minetestmapper was built. In general, the
+following locations can be searched:</p>
+<ul class="simple">
+<li>The directory of the world being mapped</li>
+<li>The directory two levels up from the directory of the world being mapped,
+(i.e. the global minetest configuration directory) provided that that directory
+contains a file 'minetest.conf'</li>
+<li>The user's private minetest directory (<tt class="docutils literal"><span class="pre">$HOME/.minetest</span></tt>) - if the environment
+variable <tt class="docutils literal">$HOME</tt> exists.</li>
+<li>The system directory corresponding to the location where minetestmapper
+is installed. Usually, this would be <tt class="docutils literal">/usr/share/games/minetestmapper/</tt>
+or <tt class="docutils literal">/usr/local/share/games/minetestmapper/</tt>.</li>
+<li>For compatibility, in the current directory as a last resort.
+This causes a warning message to be printed.</li>
+</ul>
+<p>If the location of a colors file was specified using the appropriate option
+on the command-line, no further locations are searched for that type of
+colors file.</p>
+<p>In order to find out exactly where a specific copy of minetestmapper searched
+its files, use the option <tt class="docutils literal"><span class="pre">--verbose-search-colors=2</span></tt>,</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="more-information">
+<h1><a class="toc-backref" href="#id23">More Information</a></h1>
+<p>More information is available:</p>
+<ul class="simple">
+<li>A feature summary: <a class="reference external" href="features.rst">features.rst</a> (HTML version, if available: <a class="reference external" href="features.html">features.html</a>)</li>
+<li>Building instructions: <a class="reference external" href="build-instructions.rst">build-instructions.rst</a> (HTML version, if available: <a class="reference external" href="build-instructions.html">build-instructions.html</a>)</li>
+<li>Github repository: <a class="reference external" href="https://github.com/Rogier-5/minetest-mapper-cpp">https://github.com/Rogier-5/minetest-mapper-cpp</a></li>
+<li>Reporting bugs: <a class="reference external" href="https://github.com/Rogier-5/minetest-mapper-cpp/issues">https://github.com/Rogier-5/minetest-mapper-cpp/issues</a></li>
+</ul>
+<!-- - - - - - - - - - - - - - - - - - END OF MANUAL - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Shorthands for some links -->
+</div>
+</div>
+</body>
+</html>

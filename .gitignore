@@ -1,0 +1,19 @@
+#Visual Studio files
+*.sln
+*.vcproj
+*.suo
+*.ncb
+*.user
+ 
+#QtCreator project files
+*.pro.user
+=======
+*.pro.user*
+*~
+ 
+# Failed patch
+*.orig
+*.rej
+
+#Qt Translator Files
+*.qm
