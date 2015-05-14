@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QRegExp>
 #include <QTranslator>
+#include <QColorDialog>
 
 namespace Ui {
 class MainWindow;
@@ -46,6 +47,18 @@ private slots:
     void about();
 
     void on_tabWidget_currentChanged(int index);
+
+    void on_selectBgColor_clicked();
+
+    void on_selectBlockColor_clicked();
+
+    void on_selectScaleColor_clicked();
+
+    void on_selectOriginColor_clicked();
+
+    void on_selectPlayerColor_clicked();
+
+    void on_selectTileBorderColor_clicked();
 
 private:
     Ui::MainWindow *ui;

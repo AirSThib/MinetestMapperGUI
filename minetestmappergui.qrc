@@ -6,5 +6,6 @@
         <file>doc/intro.html</file>
         <file>doc/manual.html</file>
         <file>images/help.svg</file>
+        <file alias="color">images/color.svg</file>
     </qresource>
 </RCC>

@@ -146,7 +146,13 @@ void MainWindow::on_button_generate_clicked()
                         <<"--output" << ui->path_OutputImage->text()//"D:\\Users\\Adrian\\Desktop\\test2.png"
                         <<"--colors" << appDir+"\\colors\\colors.txt"
                         <<"--progress" << "--verbose-search-colors=2" //<<"--verbose"
-                        <<"--drawalpha="+ui->drawAlpha->currentText();
+                        <<"--drawalpha="+ui->drawAlpha->currentText()
+                        <<"--bgcolor" << ui->bgcolor->text()
+                        <<"--blockcolor" << ui->blockcolor->text()
+                        <<"--scalecolor" << ui->scalecolor->text()
+                        <<"--origincolor" << ui->origincolor->text()
+                        <<"--playercolor" << ui->playercolor->text()
+                        <<"--tilebordercolor" << ui->tilebordercolor->text();
 
     if(ui->drawScaleLeft->isChecked() && ui->drawScaleTop->isChecked()){
         arguments <<"--drawscale=left,top";
@@ -327,4 +333,77 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 {
     qDebug()<<index;
 
+}
+
+void MainWindow::on_selectBgColor_clicked()
+{
+    const QColorDialog::ColorDialogOptions options = QFlag(QColorDialog::DontUseNativeDialog);
+    const QColor color = QColorDialog::getColor(ui->bgcolor->text(), this, "Select Color",options);
+
+        if (color.isValid()) {
+            ui->bgcolor->setText(color.name());
+            ui->bgcolor->setPalette(QPalette(color));
+            //ui->lineEdit_bgcolor->setAutoFillBackground(true);
+        }
+}
+
+void MainWindow::on_selectBlockColor_clicked()
+{
+    const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
+    const QColor color = QColorDialog::getColor(ui->blockcolor->text(), this, "Select Color",options);
+
+    if (color.isValid()) {
+        ui->blockcolor->setText(color.name());
+        ui->blockcolor->setPalette(QPalette(color));
+        //ui->lineEdit_bgcolor->setAutoFillBackground(true);
+    }
+}
+
+void MainWindow::on_selectScaleColor_clicked()
+{
+    const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
+    const QColor color = QColorDialog::getColor(ui->scalecolor->text(), this, "Select Color",options);
+
+    if (color.isValid()) {
+        ui->scalecolor->setText(color.name());
+        ui->scalecolor->setPalette(QPalette(color));
+        //ui->lineEdit_bgcolor->setAutoFillBackground(true);
+    }
+}
+
+void MainWindow::on_selectOriginColor_clicked()
+{
+    const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
+    const QColor color = QColorDialog::getColor(ui->origincolor->text(), this, "Select Color",options);
+
+    if (color.isValid()) {
+        ui->origincolor->setText(color.name());
+        ui->origincolor->setPalette(QPalette(color));
+        //ui->lineEdit_bgcolor->setAutoFillBackground(true);
+    }
+}
+
+
+void MainWindow::on_selectPlayerColor_clicked()
+{
+    const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
+    const QColor color = QColorDialog::getColor(ui->playercolor->text(), this, "Select Color",options);
+
+    if (color.isValid()) {
+        ui->playercolor->setText(color.name());
+        ui->playercolor->setPalette(QPalette(color));
+        //ui->lineEdit_bgcolor->setAutoFillBackground(true);
+    }
+}
+
+void MainWindow::on_selectTileBorderColor_clicked()
+{
+    const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
+    const QColor color = QColorDialog::getColor(ui->tilebordercolor->text(), this, "Select Color",options);
+
+    if (color.isValid()) {
+        ui->tilebordercolor->setText(color.name());
+        ui->tilebordercolor->setPalette(QPalette(color));
+        //ui->lineEdit_bgcolor->setAutoFillBackground(true);
+    }
 }
