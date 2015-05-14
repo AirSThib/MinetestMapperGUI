@@ -168,27 +168,27 @@
           </property>
           <item>
            <property name="text">
-            <string>1:1</string>
+            <string notr="true">1:1</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>1:2</string>
+            <string notr="true">1:2</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>1:4</string>
+            <string notr="true">1:4</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>1:8</string>
+            <string notr="true">1:8</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>1:16</string>
+            <string notr="true">1:16</string>
            </property>
           </item>
          </widget>
@@ -1102,7 +1102,7 @@
         <item row="0" column="0">
          <widget class="QLabel" name="label_13">
           <property name="text">
-           <string>Colors.txt:</string>
+           <string>colors.txt file</string>
           </property>
          </widget>
         </item>
