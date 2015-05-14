@@ -46,8 +46,6 @@ private slots:
 
     void about();
 
-    void on_tabWidget_currentChanged(int index);
-
     void on_selectBgColor_clicked();
 
     void on_selectBlockColor_clicked();
@@ -59,6 +57,8 @@ private slots:
     void on_selectPlayerColor_clicked();
 
     void on_selectTileBorderColor_clicked();
+
+    void on_browseColorsTxt_clicked();
 
 private:
     Ui::MainWindow *ui;

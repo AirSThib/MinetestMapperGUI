@@ -144,7 +144,7 @@ void MainWindow::on_button_generate_clicked()
     QStringList arguments;
     arguments           <<"-i" << ui->path_World->text()//"D:\\Programme\\minetest\\worlds\\server_minetest.king-arthur.eu_30000"
                         <<"--output" << ui->path_OutputImage->text()//"D:\\Users\\Adrian\\Desktop\\test2.png"
-                        <<"--colors" << appDir+"\\colors\\colors.txt"
+                        <<"--colors" << ui->path_ColorsTxt->text() //appDir+"\\colors\\colors.txt"
                         <<"--progress" << "--verbose-search-colors=2" //<<"--verbose"
                         <<"--drawalpha="+ui->drawAlpha->currentText()
                         <<"--bgcolor" << ui->bgcolor->text()
@@ -251,6 +251,7 @@ void MainWindow::writeSettings()
         settings.setValue("path_World", ui->path_World->text());
         settings.setValue("path_HeightmapNodes", ui->path_HeightmapNodes->text());
         settings.setValue("path_HeightmapColors", ui->path_HeightmapColors->text());
+        settings.setValue("path_ColorsTxt",ui->path_ColorsTxt->text());
     settings.endGroup();
 }
 
@@ -275,6 +276,7 @@ void MainWindow::readSettings()
         ui->path_World->setText(settings.value("path_World","/").toString());
         ui->path_HeightmapNodes->setText(settings.value("path_HeightmapNodes","./colors/heightmap-nodes.txt").toString());
         ui->path_HeightmapColors->setText(settings.value("path_HeightmapColors","./colors/heightmap-colors.txt").toString());
+        ui->path_ColorsTxt->setText(settings.value("path_ColorsTxt","./colors/colors.txt").toString());
     settings.endGroup();
 }
 
@@ -329,10 +331,12 @@ void MainWindow::on_browse_HeightmapColors_clicked()
     ui->path_HeightmapColors->setText(fileName);
 }
 
-void MainWindow::on_tabWidget_currentChanged(int index)
+void MainWindow::on_browseColorsTxt_clicked()
 {
-    qDebug()<<index;
-
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open colors.txt File"),
+                                                    ui->path_HeightmapColors->text(),
+                                                    tr("TXT File (*.txt)"));
+    ui->path_ColorsTxt->setText(fileName);
 }
 
 void MainWindow::on_selectBgColor_clicked()

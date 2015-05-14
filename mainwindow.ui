@@ -763,7 +763,7 @@
              <x>0</x>
              <y>0</y>
              <width>502</width>
-             <height>368</height>
+             <height>370</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -787,6 +787,10 @@
                 <widget class="QPushButton" name="browseHeightmapNodes">
                  <property name="text">
                   <string>browse</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="minetestmappergui.qrc">
+                   <normaloff>:/open</normaloff>:/open</iconset>
                  </property>
                 </widget>
                </item>
@@ -868,6 +872,10 @@
                  </property>
                  <property name="text">
                   <string>browse</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="minetestmappergui.qrc">
+                   <normaloff>:/open</normaloff>:/open</iconset>
                  </property>
                 </widget>
                </item>
@@ -1052,10 +1060,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_4">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
+         <widget class="QLineEdit" name="path_ColorsTxt">
           <property name="text">
            <string notr="true">./colors/colors.txt</string>
           </property>
@@ -1186,12 +1191,13 @@
          </widget>
         </item>
         <item row="0" column="2">
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
+         <widget class="QPushButton" name="browseColorsTxt">
           <property name="text">
            <string>browse</string>
+          </property>
+          <property name="icon">
+           <iconset resource="minetestmappergui.qrc">
+            <normaloff>:/open</normaloff>:/open</iconset>
           </property>
          </widget>
         </item>
