@@ -33,7 +33,7 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="tab_genaral">
        <attribute name="title">
         <string>General</string>
        </attribute>
@@ -117,6 +117,15 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;you can use placeholders in the filename:&lt;/p&gt;
+&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;isodate&amp;gt;&lt;/span&gt; is replaced with the current date&lt;br&gt;
+&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;world&amp;gt;&lt;/span&gt; is replaced with the worldname&lt;br&gt;
+&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;date&amp;gt;&lt;/span&gt; is replaced with local date format&lt;br&gt;
+&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;longdate&amp;gt;&lt;/span&gt; is replaced with the local spoken date format&lt;br&gt;
+&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;time&amp;gt;&lt;/span&gt; is replaced with current time&lt;br&gt;also something like D:/&amp;lt;world&amp;gt;/&amp;lt;isodate&amp;gt;.png is possible.&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="statusTip">
               <string>Specify the map file name (mandatory)</string>
              </property>
@@ -125,6 +134,26 @@
              </property>
              <property name="placeholderText">
               <string>map.png</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QLabel" name="label_preview">
+             <property name="text">
+              <string>Preview: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;you can use placeholders in the filename:&lt;/p&gt;
+&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;isodate&amp;gt;&lt;/span&gt; is replaced with the current date&lt;br&gt;
+&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;world&amp;gt;&lt;/span&gt; is replaced with the worldname&lt;br&gt;
+&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;date&amp;gt;&lt;/span&gt; is replaced with local date format&lt;br&gt;
+&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;longdate&amp;gt;&lt;/span&gt; is replaced with the local spoken date format&lt;br&gt;
+&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;time&amp;gt;&lt;/span&gt; is replaced with current time&lt;br&gt;also something like D:/&amp;lt;world&amp;gt;/&amp;lt;isodate&amp;gt;.png is possible.&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -150,19 +179,107 @@
        <attribute name="title">
         <string>Map-Limit</string>
        </attribute>
-       <layout class="QFormLayout" name="formLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label">
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="6" column="2">
+         <widget class="QCheckBox" name="geometrymode_block">
+          <property name="toolTip">
+           <string>The requested geometry will be extended so that the map does not contain partial map blocks (of 16x16 nodes each). At least all pixels covered by the geometry will be in the map, but there may be up to 15 more in every direction.</string>
+          </property>
+          <property name="statusTip">
+           <string>round the coodinates to a multiple of 16.</string>
+          </property>
           <property name="text">
-           <string>scalefactor</string>
+           <string>block</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="comboBox">
+        <item row="3" column="0">
+         <widget class="QCheckBox" name="checkBox_minY">
+          <property name="text">
+           <string>min-Y</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QCheckBox" name="geometrymode_pixel">
+          <property name="toolTip">
+           <string>A map of exactly the requested size is generated (after adjustments due to the 'shrink' flag, or possible adjustments required by the scale factor).</string>
+          </property>
+          <property name="statusTip">
+           <string>interpret the coordinates with pixel granularity.</string>
+          </property>
+          <property name="text">
+           <string>pixel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QCheckBox" name="checkBox_maxY">
+          <property name="statusTip">
+           <string>Specify the upper height limit for the map</string>
+          </property>
+          <property name="text">
+           <string>max-Y</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="2">
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="7" column="2">
+         <widget class="QCheckBox" name="geometrymode_shrink">
+          <property name="toolTip">
+           <string>Currently, shrinking is done with block granularity, and based on which blocks are in the database. As the database always contains a row or and column of empty, or partially empty blocks at the map edges, there will still be empty pixels at the edges of the map. Use --blockcolor to visualize these empty blocks.</string>
+          </property>
+          <property name="statusTip">
+           <string>Generate a map of at most the requested geometry. Shrink it to the smallest possible size that still includes the same information.</string>
+          </property>
+          <property name="text">
+           <string>shrink</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QSpinBox" name="minY">
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="toolTip">
+           <string>Any nodes below this level will not be drawn.</string>
+          </property>
+          <property name="statusTip">
+           <string>Specify the lower height limit for the map</string>
+          </property>
+          <property name="minimum">
+           <number>-127</number>
+          </property>
+          <property name="maximum">
+           <number>127</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLineEdit" name="geometry">
+          <property name="text">
+           <string notr="true"/>
+          </property>
+          <property name="placeholderText">
+           <string>e.g. -200,-100:200,200</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QComboBox" name="scalefactor">
           <property name="currentText">
            <string notr="true">1:1</string>
           </property>
@@ -193,6 +310,26 @@
           </item>
          </widget>
         </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>scalefactor</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="2">
+         <widget class="QCheckBox" name="geometrymode_fixed">
+          <property name="toolTip">
+           <string>NOTE: If this flag is used, and no actual geometry is specified, this would result in a maximum-size map (65536 x 65536), which is currently not possible, and will fail, due to a bug in the drawing library.</string>
+          </property>
+          <property name="statusTip">
+           <string>don't reduce the map size. What ever is specified using a geometry option, is what will be draw, even if partly or fully empty.</string>
+          </property>
+          <property name="text">
+           <string>fixed</string>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_2">
           <property name="text">
@@ -200,109 +337,30 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>cornergeometry</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEdit_2">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>centergeometry</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="lineEdit_3">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>min-y</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QSpinBox" name="minY">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="statusTip">
-           <string> Specify the minumum depth of nodes to be included</string>
-          </property>
-         </widget>
-        </item>
         <item row="5" column="0">
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>max-y</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QSpinBox" name="maxY">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
            <string>geometrymode</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
-         <widget class="QComboBox" name="comboBox_2">
+        <item row="4" column="2">
+         <widget class="QSpinBox" name="maxY">
           <property name="enabled">
            <bool>false</bool>
           </property>
-          <item>
-           <property name="text">
-            <string>none</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>pixel</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>block</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>fixed</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>shrink</string>
-           </property>
-          </item>
+          <property name="toolTip">
+           <string>Nodes higher than this level will not be drawn. This can be used to avoid floating islands or floating artefacts from abscuring the world below.</string>
+          </property>
+          <property name="statusTip">
+           <string>Specify the upper height limit for the map</string>
+          </property>
+          <property name="minimum">
+           <number>-127</number>
+          </property>
+          <property name="maximum">
+           <number>127</number>
+          </property>
          </widget>
         </item>
        </layout>
@@ -804,7 +862,7 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_3">
                <item row="2" column="0">
-                <widget class="QRadioButton" name="radioButton_heightmapColor">
+                <widget class="QRadioButton" name="heightmapColor">
                  <property name="statusTip">
                   <string>If a color is given, a monochrome map is generated in shades of that color, ranging from black at depth -128 to the given color at height 127.</string>
                  </property>
@@ -814,7 +872,7 @@
                 </widget>
                </item>
                <item row="3" column="0">
-                <widget class="QRadioButton" name="radioButton_heightmapFile">
+                <widget class="QRadioButton" name="heightmapFile">
                  <property name="statusTip">
                   <string>If no color is specified, minetestmapper will use a colors file to determine which colors to use at which height level.</string>
                  </property>
@@ -843,10 +901,7 @@
                 </widget>
                </item>
                <item row="2" column="2">
-                <widget class="QPushButton" name="pushButton">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
+                <widget class="QPushButton" name="selectHeightmapColor">
                  <property name="text">
                   <string>select color</string>
                  </property>
@@ -894,11 +949,11 @@
                   <string notr="true">./colors/heightmap-colors.txt</string>
                  </property>
                  <property name="placeholderText">
-                  <string>heightmap-colors.txt</string>
+                  <string notr="true">heightmap-colors.txt</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
+               <item row="1" column="1" colspan="2">
                 <widget class="QLabel" name="label_4">
                  <property name="text">
                   <string>use color or select a heightmap-colors.txt file</string>
@@ -1248,6 +1303,60 @@
         <string>Map features</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
+        <item row="2" column="0">
+         <widget class="QCheckBox" name="drawOrigin">
+          <property name="statusTip">
+           <string> Draw a circle at the origin (0,0) on the map</string>
+          </property>
+          <property name="text">
+           <string>Draw origin</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QCheckBox" name="drawPlayers">
+          <property name="statusTip">
+           <string>Draw circles at player positions on the map</string>
+          </property>
+          <property name="text">
+           <string>Draw Players</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QCheckBox" name="drawScaleTop">
+          <property name="text">
+           <string>top</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QCheckBox" name="drawAir">
+          <property name="statusTip">
+           <string>Draw air nodes (read the warnings first!)</string>
+          </property>
+          <property name="text">
+           <string>Draw Air</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QCheckBox" name="noShading">
+          <property name="statusTip">
+           <string>Disable shading that accentuates height diffences</string>
+          </property>
+          <property name="text">
+           <string>No Shading</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Draw Alpha</string>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="2">
          <widget class="QGroupBox" name="groupBox_3">
           <property name="title">
@@ -1280,26 +1389,6 @@
           </layout>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_9">
-          <property name="statusTip">
-           <string>Draw a scale on the left and/or top edge</string>
-          </property>
-          <property name="text">
-           <string>drawscale</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QCheckBox" name="drawOrigin">
-          <property name="statusTip">
-           <string> Draw a circle at the origin (0,0) on the map</string>
-          </property>
-          <property name="text">
-           <string>Draw orign</string>
-          </property>
-         </widget>
-        </item>
         <item row="4" column="1">
          <widget class="QComboBox" name="drawAlpha">
           <property name="statusTip">
@@ -1330,49 +1419,6 @@
           </item>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QCheckBox" name="drawPlayers">
-          <property name="statusTip">
-           <string>Draw circles at player positions on the map</string>
-          </property>
-          <property name="text">
-           <string>Draw Players</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>Draw Alpha</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QCheckBox" name="checkBox_4">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="statusTip">
-           <string>Draw air nodes (read the warnings first!)</string>
-          </property>
-          <property name="text">
-           <string>Draw Air</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QCheckBox" name="checkBox_5">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="statusTip">
-           <string>Disable shading that accentuates height diffences</string>
-          </property>
-          <property name="text">
-           <string>No Shading</string>
-          </property>
-         </widget>
-        </item>
         <item row="7" column="0">
          <spacer name="verticalSpacer">
           <property name="orientation">
@@ -1386,6 +1432,16 @@
           </property>
          </spacer>
         </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="statusTip">
+           <string>Draw a scale on the left and/or top edge</string>
+          </property>
+          <property name="text">
+           <string>drawscale</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="1">
          <widget class="QCheckBox" name="drawScaleLeft">
           <property name="text">
@@ -1393,11 +1449,630 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="2">
-         <widget class="QCheckBox" name="drawScaleTop">
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_tiles">
+       <attribute name="title">
+        <string>Tiles</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="QCheckBox" name="tiles">
           <property name="text">
-           <string>top</string>
+           <string>Draw tiles</string>
           </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="scrollArea_2">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="palette">
+           <palette>
+            <active>
+             <colorrole role="WindowText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Button">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Light">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Midlight">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Dark">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>127</red>
+                <green>127</green>
+                <blue>127</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Mid">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>170</red>
+                <green>170</green>
+                <blue>170</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Text">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="BrightText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="ButtonText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Base">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Window">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Shadow">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="AlternateBase">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="ToolTipBase">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>220</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="ToolTipText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+            </active>
+            <inactive>
+             <colorrole role="WindowText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Button">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Light">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Midlight">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Dark">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>127</red>
+                <green>127</green>
+                <blue>127</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Mid">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>170</red>
+                <green>170</green>
+                <blue>170</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Text">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="BrightText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="ButtonText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Base">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Window">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Shadow">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="AlternateBase">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="ToolTipBase">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>220</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="ToolTipText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+            </inactive>
+            <disabled>
+             <colorrole role="WindowText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>127</red>
+                <green>127</green>
+                <blue>127</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Button">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Light">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Midlight">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Dark">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>127</red>
+                <green>127</green>
+                <blue>127</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Mid">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>170</red>
+                <green>170</green>
+                <blue>170</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Text">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>127</red>
+                <green>127</green>
+                <blue>127</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="BrightText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="ButtonText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>127</red>
+                <green>127</green>
+                <blue>127</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Base">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Window">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="Shadow">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="AlternateBase">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="ToolTipBase">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>220</blue>
+               </color>
+              </brush>
+             </colorrole>
+             <colorrole role="ToolTipText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+               </color>
+              </brush>
+             </colorrole>
+            </disabled>
+           </palette>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_4">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>517</width>
+             <height>261</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QGroupBox" name="groupBox_11">
+              <property name="title">
+               <string>tiles</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_11">
+               <item row="0" column="1">
+                <widget class="QSpinBox" name="tilesize">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="prefix">
+                  <string>size: </string>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
+                 <property name="singleStep">
+                  <number>5</number>
+                 </property>
+                 <property name="value">
+                  <number>20</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QRadioButton" name="tile_chunk">
+                 <property name="text">
+                  <string>chunk</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QRadioButton" name="tiles_sizeAndBorder">
+                 <property name="text">
+                  <string>tilesize+border</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QRadioButton" name="tile_block">
+                 <property name="text">
+                  <string>block</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QSpinBox" name="tileborder">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="prefix">
+                  <string>border: </string>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>10</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_12">
+              <property name="title">
+               <string>arrange</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_12">
+               <item row="0" column="0">
+                <widget class="QRadioButton" name="tilecenter">
+                 <property name="text">
+                  <string>tilecenter</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QRadioButton" name="tileorigin">
+                 <property name="text">
+                  <string>tileorigin</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1" rowspan="2">
+                <widget class="QGroupBox" name="groupBox_13">
+                 <property name="title">
+                  <string>arrange at</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_13">
+                  <item row="0" column="0">
+                   <widget class="QRadioButton" name="tiles_coordinates">
+                    <property name="text">
+                     <string>coordinates</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QRadioButton" name="tiles_world">
+                    <property name="text">
+                     <string>world</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QRadioButton" name="tiles_map">
+                    <property name="text">
+                     <string>map</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="tiles_coordinateX">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="prefix">
+                     <string notr="true">X: </string>
+                    </property>
+                    <property name="minimum">
+                     <number>-100</number>
+                    </property>
+                    <property name="maximum">
+                     <number>100</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QSpinBox" name="tiles_coordinateY">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="prefix">
+                     <string notr="true">Y: </string>
+                    </property>
+                    <property name="minimum">
+                     <number>-100</number>
+                    </property>
+                    <property name="maximum">
+                     <number>100</number>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
        </layout>
@@ -1454,8 +2129,12 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
+    <addaction name="actionEdit_colors_txt"/>
+    <addaction name="separator"/>
+    <addaction name="actionEdit_heightmap_nodes_txt"/>
+    <addaction name="actionEdit_heightmap_colors_txt"/>
    </widget>
-   <widget class="QMenu" name="menuHelp_2">
+   <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
@@ -1463,7 +2142,7 @@
     <addaction name="separator"/>
     <addaction name="actionAbout_MinetestMapper"/>
     <addaction name="actionAbout_QT"/>
-    <addaction name="actionAbout_MinetestMapper_GUI"/>
+    <addaction name="actionAbout_MinetestMapperGUI"/>
    </widget>
    <widget class="QMenu" name="menuLanguage">
     <property name="title">
@@ -1472,7 +2151,7 @@
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
-   <addaction name="menuHelp_2"/>
+   <addaction name="menuHelp"/>
    <addaction name="menuLanguage"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -1546,10 +2225,22 @@ p, li { white-space: pre-wrap; }
    <property name="text">
     <string>About MinetestMapper</string>
    </property>
+   <property name="shortcut">
+    <string notr="true"/>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutRole</enum>
+   </property>
   </action>
   <action name="actionAbout_QT">
    <property name="text">
     <string>About QT</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true"/>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutQtRole</enum>
    </property>
   </action>
   <action name="actionGenerateMap">
@@ -1566,13 +2257,16 @@ p, li { white-space: pre-wrap; }
    <property name="statusTip">
     <string>generate the Map</string>
    </property>
+   <property name="shortcut">
+    <string notr="true"/>
+   </property>
   </action>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
    </property>
    <property name="shortcut">
-    <string>Esc</string>
+    <string notr="true">Esc</string>
    </property>
   </action>
   <action name="actionHelp">
@@ -1587,12 +2281,15 @@ p, li { white-space: pre-wrap; }
     <string>Help</string>
    </property>
    <property name="shortcut">
-    <string>F1</string>
+    <string notr="true">F1</string>
    </property>
   </action>
   <action name="actionWhats_this">
    <property name="text">
     <string>Whats this?</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true"/>
    </property>
   </action>
   <action name="actionOpen_World">
@@ -1604,7 +2301,7 @@ p, li { white-space: pre-wrap; }
     <string>Open World</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+O</string>
+    <string notr="true">Ctrl+O</string>
    </property>
   </action>
   <action name="actionSave_map_as">
@@ -1616,12 +2313,39 @@ p, li { white-space: pre-wrap; }
     <string>Save map as</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+S</string>
+    <string notr="true">Ctrl+S</string>
    </property>
   </action>
-  <action name="actionAbout_MinetestMapper_GUI">
+  <action name="actionAbout_MinetestMapperGUI">
    <property name="text">
     <string>About MinetestMapper GUI</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true"/>
+   </property>
+  </action>
+  <action name="actionEdit_colors_txt">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>edit colors.txt</string>
+   </property>
+  </action>
+  <action name="actionEdit_heightmap_nodes_txt">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>edit heightmap-nodes.txt</string>
+   </property>
+  </action>
+  <action name="actionEdit_heightmap_colors_txt">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>edit heightmap-colors.txt</string>
    </property>
   </action>
  </widget>
@@ -1663,7 +2387,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>radioButton_heightmapColor</sender>
+   <sender>heightmapColor</sender>
    <signal>toggled(bool)</signal>
    <receiver>colorHeightmap</receiver>
    <slot>setEnabled(bool)</slot>
@@ -1679,7 +2403,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>radioButton_heightmapFile</sender>
+   <sender>heightmapFile</sender>
    <signal>toggled(bool)</signal>
    <receiver>path_HeightmapColors</receiver>
    <slot>setEnabled(bool)</slot>
@@ -1771,6 +2495,118 @@ p, li { white-space: pre-wrap; }
     <hint type="destinationlabel">
      <x>264</x>
      <y>118</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_minY</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>minY</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>52</x>
+     <y>206</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>121</x>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_maxY</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>maxY</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>62</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>122</x>
+     <y>237</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tiles_sizeAndBorder</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>tilesize</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>142</x>
+     <y>157</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>237</x>
+     <y>166</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tiles_sizeAndBorder</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>tileborder</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>160</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>161</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tiles</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>scrollArea_2</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>75</x>
+     <y>105</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>75</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tiles_coordinates</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>tiles_coordinateX</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>360</x>
+     <y>278</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>400</x>
+     <y>280</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tiles_coordinates</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>tiles_coordinateY</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>364</x>
+     <y>271</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>469</x>
+     <y>278</y>
     </hint>
    </hints>
   </connection>

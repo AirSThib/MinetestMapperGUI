@@ -7,6 +7,7 @@
 #include <QRegExp>
 #include <QTranslator>
 #include <QColorDialog>
+#include <QDate>
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +31,7 @@ protected slots:
     void slotLanguageChanged(QAction* action);
 
 private slots:
+    QString getOutputFileName();
     void on_button_generate_clicked();
     void readOutput();
     void mapperFinisched(int exit);
@@ -44,8 +46,6 @@ private slots:
 
     void on_browse_HeightmapColors_clicked();
 
-    void about();
-
     void on_selectBgColor_clicked();
 
     void on_selectBlockColor_clicked();
@@ -59,6 +59,14 @@ private slots:
     void on_selectTileBorderColor_clicked();
 
     void on_browseColorsTxt_clicked();
+
+    void on_actionAbout_MinetestMapperGUI_triggered();
+
+    void on_actionAbout_MinetestMapper_triggered();
+
+    void on_path_OutputImage_textChanged();
+
+    void on_selectHeightmapColor_clicked();
 
 private:
     Ui::MainWindow *ui;

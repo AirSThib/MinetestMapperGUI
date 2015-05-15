@@ -21,7 +21,6 @@ MainWindow::MainWindow(QWidget *parent) :
     progressBar->setMaximum(0);
     progressBar->setMinimum(0);
     progressBar->hide();
-    connect(ui->actionAbout_MinetestMapper, SIGNAL(triggered()), this, SLOT(about()));
     connect(ui->actionAbout_QT, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     createLanguageMenu();
 }
@@ -135,15 +134,40 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_button_generate_clicked()
 {
-    // QObject *parent;
+    QString imgName = getOutputFileName();
+    if(QFile::exists(imgName)){
+        qDebug()<<"datei und ordner existiert";
+        int ret = QMessageBox::question(this, tr("the Image File does already exist"),
+                 tr("The File <i>%1</i> does already exist. <br><br>"
+                    "Do you want to overwrite?")
+                              .arg(imgName));
+        if(ret != QMessageBox::Yes) return;
+    }
+    QDir imgPath = QFileInfo(imgName).absoluteDir();
+    if(!imgPath.exists())
+    {
+        qDebug()<<"Ordner Existiert nicht";
+        int ret = QMessageBox::question(this, tr("the directory does not exist"),
+                 tr("The directory <i>%1</i> does not exist. <br><br>"
+                    "Should it be created?")
+                              .arg(imgPath.absolutePath()));
+        if(ret == QMessageBox::Yes)
+        {
+            imgPath.mkpath(imgPath.absolutePath());
+        }
+        else return;
+
+    }
     ui->button_generate->setDisabled(true);
     myProcess = new QProcess(this);
     QString appDir =QCoreApplication::applicationDirPath();
     qDebug()<<appDir;
     QString program = QCoreApplication::applicationDirPath()+"\\mapper\\minetestmapper.exe";
+
+    qDebug()<<imgName;
     QStringList arguments;
     arguments           <<"-i" << ui->path_World->text()//"D:\\Programme\\minetest\\worlds\\server_minetest.king-arthur.eu_30000"
-                        <<"--output" << ui->path_OutputImage->text()//"D:\\Users\\Adrian\\Desktop\\test2.png"
+                        <<"--output" << imgName//"D:\\Users\\Adrian\\Desktop\\test2.png"
                         <<"--colors" << ui->path_ColorsTxt->text() //appDir+"\\colors\\colors.txt"
                         <<"--progress" << "--verbose-search-colors=2" //<<"--verbose"
                         <<"--drawalpha="+ui->drawAlpha->currentText()
@@ -153,6 +177,37 @@ void MainWindow::on_button_generate_clicked()
                         <<"--origincolor" << ui->origincolor->text()
                         <<"--playercolor" << ui->playercolor->text()
                         <<"--tilebordercolor" << ui->tilebordercolor->text();
+
+    if(ui->geometry->text() !=""){
+        arguments <<"--geometry" << ui->geometry->text().trimmed();
+    }
+
+    if(ui->scalefactor->currentIndex() !=0){
+        arguments <<"--scalefactor" << ui->scalefactor->currentText();
+    }
+    if(ui->checkBox_maxY->isChecked()){
+        arguments <<"--max-y" << ui->maxY->cleanText();
+    }
+    if(ui->checkBox_minY->isChecked()){
+        arguments <<"--min-y" << ui->minY->cleanText();
+    }
+
+    if(ui->geometrymode_pixel->isChecked()||ui->geometrymode_block->isChecked()||ui->geometrymode_shrink->isChecked()||ui->geometrymode_fixed->isChecked()){
+        arguments <<"--geometrymode";
+    if(ui->geometrymode_pixel->isChecked()){
+        arguments <<"pixel";
+    }
+    if(ui->geometrymode_block->isChecked()){
+        arguments <<"block";
+    }
+    if(ui->geometrymode_shrink->isChecked()){
+        arguments <<"shrink";
+    }
+    if(ui->geometrymode_fixed->isChecked()){
+        arguments <<"fixed";
+    }
+
+    }
 
     if(ui->drawScaleLeft->isChecked() && ui->drawScaleTop->isChecked()){
         arguments <<"--drawscale=left,top";
@@ -170,14 +225,57 @@ void MainWindow::on_button_generate_clicked()
     if(ui->drawPlayers->isChecked()){
         arguments <<"--drawplayers";
     }
+    if(ui->drawAir->isChecked()){
+        arguments <<"--drawair";
+    }
+    if(ui->noShading->isChecked()){
+        arguments <<"--noshading";
+    }
+
+    //Heightmap Tab
     if(ui->generateHeightmap->isChecked()){
-        arguments <<"--heightmap="+ui->colorHeightmap->text()
-                  <<"--heightmap-nodes" << ui->path_HeightmapNodes->text()
+        if(ui->heightmapColor->isChecked()){
+            arguments <<"--heightmap="+ui->colorHeightmap->text();
+        }
+        else{
+            arguments <<"--heightmap";
+        }
+
+
+        arguments <<"--heightmap-nodes" << ui->path_HeightmapNodes->text()
                   <<"--heightmap-colors" << ui->path_HeightmapColors->text()
                   <<"--heightmap-yscale" << ui->heightmapYscale->cleanText().replace(',','.')
                   <<"--height-level-0" << ui->heightLevel0->text();
         if(ui->drawHeightscale->isChecked()){
             arguments <<"--drawheightscale";
+        }
+    }
+
+    //Tiles Tab
+    if(ui->tiles->isChecked()){
+        arguments <<"--tiles";
+        if(ui->tiles_sizeAndBorder->isChecked()){
+            arguments <<ui->tilesize->cleanText()+"+"+ui->tileborder->cleanText();
+        }
+        else if(ui->tile_block->isChecked()){
+            arguments <<"block";
+        }
+        else if(ui->tile_chunk->isChecked()){
+            arguments <<"chunk";
+        }
+
+        if(ui->tileorigin->isChecked()){
+            arguments <<"--tileorigin";
+        }
+        else{
+            arguments <<"--tilecenter";
+        }
+        if(ui->tiles_coordinates->isChecked()){
+            arguments << ui->tiles_coordinateX->cleanText() +","+ ui->tiles_coordinateY->cleanText();
+        }
+        else if(ui->tiles_world) arguments<<"world";
+        else {
+            arguments<<"map";
         }
     }
     myProcess->setProcessChannelMode(QProcess::MergedChannels);
@@ -207,6 +305,25 @@ void MainWindow::readOutput()
         ui->plainTextEdit_output->appendPlainText(out);
     }
 }
+
+QString MainWindow::getOutputFileName()
+{
+    QString worldPath = ui->path_World->text();
+    QString worldName = QDir(worldPath).dirName();
+    QString imgName = ui->path_OutputImage->text()
+            .replace("<date>",
+                     QDate::currentDate().toString(Qt::SystemLocaleShortDate))
+            .replace("<longdate>",
+                     QDate::currentDate().toString(Qt::SystemLocaleLongDate))
+            .replace("<isodate>",
+                     QDate::currentDate().toString(Qt::ISODate))
+            .replace("<world>",
+                     worldName)
+            .replace("<time>",
+                     QTime::currentTime().toString("hh.mm.ss"));
+    return imgName;
+}
+
 void MainWindow::mapperFinisched(int exit)
 {
     qDebug()<< "Exit code: " <<exit;
@@ -215,14 +332,15 @@ void MainWindow::mapperFinisched(int exit)
     progressBar->hide();
     //ui->statusBar->showMessage("Ready");
     if(exit ==0){
-    ui->statusBar->showMessage("Finisched :)",1000);
-    QDesktopServices::openUrl(QUrl(ui->path_OutputImage->text()));
+    ui->statusBar->showMessage(tr("Finisched :)"),3000);
+    QString imgName = getOutputFileName();
+    QDesktopServices::openUrl(QUrl(imgName));
     }
     else{
-        QMessageBox::critical(this, tr("About MinetestMapper GUI"),
+        QMessageBox::critical(this, tr("Minetest Mapper failed"),
                  tr("<h1>ERROR</h1> <h2>minetestmapper failed</h2>"
                     "Exit code: <i>%1</i> <br>"
-                    "Status of MinetestMapper: <i>%2</i><br>"
+                    "Status of MinetestMapper: <pre>%2</pre><br>"
                     "<br>"
                     "Please fix the error and try again ")
                               .arg(exit)
@@ -245,13 +363,47 @@ void MainWindow::writeSettings()
         settings.setValue("size", size());
         settings.setValue("pos", pos());
     }
+    settings.setValue("help", ui->actionHelp->isChecked());
     settings.endGroup();
     settings.beginGroup("Mapper");
         settings.setValue("path_OutputImage", ui->path_OutputImage->text());
         settings.setValue("path_World", ui->path_World->text());
+
+        //tab2 area
+        settings.setValue("scalefactor",ui->scalefactor->currentIndex());
+        settings.setValue("geometry",ui->geometry->text());
+        settings.setValue("minY",ui->minY->value());
+        settings.setValue("maxY",ui->maxY->value());
+        //todo checkboxes
+
+        //tab3 heightmap
+        settings.setValue("generateHeightmap",ui->generateHeightmap->isChecked());
         settings.setValue("path_HeightmapNodes", ui->path_HeightmapNodes->text());
+        settings.setValue("colorHeightmap", ui->colorHeightmap->text());
         settings.setValue("path_HeightmapColors", ui->path_HeightmapColors->text());
+        settings.setValue("drawHeightscale", ui->drawHeightscale->isChecked());
+
+        //tab4 Colors
         settings.setValue("path_ColorsTxt",ui->path_ColorsTxt->text());
+        settings.setValue("bgcolor",ui->bgcolor->text());
+        settings.setValue("blockcolor",ui->blockcolor->text());
+        settings.setValue("scalecolor",ui->scalecolor->text());
+        settings.setValue("origincolor",ui->origincolor->text());
+        settings.setValue("playercolor",ui->playercolor->text());
+        settings.setValue("tileborderrcolor",ui->tilebordercolor->text());
+
+        //tab5 Featurs
+        settings.setValue("drawScaleLeft",ui->drawScaleLeft->isChecked());
+        settings.setValue("drawScaleTop",ui->drawScaleTop->isChecked());
+        settings.setValue("drawOrigin",ui->drawOrigin->isChecked());
+        settings.setValue("drawPlayers",ui->drawPlayers->isChecked());
+        settings.setValue("drawAlpha",ui->drawAlpha->currentIndex());
+        settings.setValue("drawAir",ui->drawAir->isChecked());
+        settings.setValue("noShading",ui->noShading->isChecked());
+
+        //tab6 Tiles
+        settings.setValue("drawTiles",ui->tiles->isChecked());
+
     settings.endGroup();
 }
 
@@ -269,14 +421,57 @@ void MainWindow::readSettings()
         move(settings.value("pos", QPoint(200, 200)).toPoint());
 
     }
+    if(settings.value("help",false).toBool()==false){
+        ui->dockHelp->close();
+    }
 
     settings.endGroup();
     settings.beginGroup("Mapper");
-        ui->path_OutputImage->setText(settings.value("path_OutputImage","map.png").toString());
+        //tab1 Genral
         ui->path_World->setText(settings.value("path_World","/").toString());
+        ui->path_OutputImage->setText(settings.value("path_OutputImage","").toString());
+        on_path_OutputImage_textChanged();
+        //tab2 Area
+        ui->scalefactor->setCurrentIndex(settings.value("scalefactor",0).toInt());
+        ui->geometry->setText(settings.value("geometry").toString());
+        ui->checkBox_maxY->setChecked(settings.value("checkBox_maxY",false).toBool());
+        ui->checkBox_minY->setChecked(settings.value("checkBox_minY",false).toBool());
+        ui->maxY->setValue(settings.value("maxY",0).toInt());
+        ui->minY->setValue(settings.value("minY",0).toInt());
+        //todo geometriemode
+
+        //tab3 Heightmap
+        ui->generateHeightmap->setChecked(settings.value("generateHeightmap",false).toBool());
         ui->path_HeightmapNodes->setText(settings.value("path_HeightmapNodes","./colors/heightmap-nodes.txt").toString());
         ui->path_HeightmapColors->setText(settings.value("path_HeightmapColors","./colors/heightmap-colors.txt").toString());
+        ui->colorHeightmap->setText(settings.value("colorHeightmap","").toString());
+        ui->drawHeightscale->setChecked(settings.value("drawHeightscale",false).toBool());
+
+
+        //tab4 Colors
         ui->path_ColorsTxt->setText(settings.value("path_ColorsTxt","./colors/colors.txt").toString());
+        ui->bgcolor->setText(settings.value("bgcolor","white").toString());
+        ui->blockcolor->setText(settings.value("blockcolor","#ffffcc").toString());
+        ui->scalecolor->setText(settings.value("scalecolor","black").toString());
+        ui->origincolor->setText(settings.value("origincolor","red").toString());
+        ui->playercolor->setText(settings.value("playercolor","yellow").toString());
+        ui->tilebordercolor->setText(settings.value("tilebordercolor","black").toString());
+
+        //tab5 Featurs
+        ui->drawScaleLeft->setChecked(settings.value("drawScaleLeft",false).toBool());
+        ui->drawScaleTop->setChecked(settings.value("drawScaleTop",false).toBool());
+        ui->drawOrigin->setChecked(settings.value("drawOrigin",false).toBool());
+        ui->drawPlayers->setChecked(settings.value("drawPlayers",false).toBool());
+        ui->drawAlpha->setCurrentIndex(settings.value("drawAlpha",0).toInt());
+        ui->drawAir->setChecked(settings.value("drawAir",false).toBool());
+        ui->noShading->setChecked(settings.value("noShading",false).toBool());
+
+        //tab6 Tiles
+        ui->tiles->setChecked(settings.value("drawTiles",false).toBool());
+        ui->tilesize->setValue(settings.value("tilesize",20).toInt());
+        ui->tileborder->setValue(settings.value("tileborder",1).toInt());
+        ui->tiles_coordinateX->setValue(settings.value("tiles_coordinateX",0).toInt());
+        ui->tiles_coordinateY->setValue(settings.value("tiles_coordinateY",0).toInt());
     settings.endGroup();
 }
 
@@ -285,18 +480,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
         writeSettings();
         event->accept();
 }
-
-
-void MainWindow::about()
-{
-    QMessageBox::about(this, tr("About MinetestMapper GUI"),
-             tr("<h1>About MinetestMapperGUI</h1>"
-                "The <b>MinetestMapper Gui</b> is written "
-                "by addi <br>"
-                "version 0.1"));
-}
-
-
 
 void MainWindow::on_browseWorld_clicked()
 {
@@ -342,7 +525,7 @@ void MainWindow::on_browseColorsTxt_clicked()
 void MainWindow::on_selectBgColor_clicked()
 {
     const QColorDialog::ColorDialogOptions options = QFlag(QColorDialog::DontUseNativeDialog);
-    const QColor color = QColorDialog::getColor(ui->bgcolor->text(), this, "Select Color",options);
+    const QColor color = QColorDialog::getColor(ui->bgcolor->text(), this, tr("select color"),options);
 
         if (color.isValid()) {
             ui->bgcolor->setText(color.name());
@@ -354,7 +537,7 @@ void MainWindow::on_selectBgColor_clicked()
 void MainWindow::on_selectBlockColor_clicked()
 {
     const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
-    const QColor color = QColorDialog::getColor(ui->blockcolor->text(), this, "Select Color",options);
+    const QColor color = QColorDialog::getColor(ui->blockcolor->text(), this, tr("select color"),options);
 
     if (color.isValid()) {
         ui->blockcolor->setText(color.name());
@@ -366,7 +549,7 @@ void MainWindow::on_selectBlockColor_clicked()
 void MainWindow::on_selectScaleColor_clicked()
 {
     const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
-    const QColor color = QColorDialog::getColor(ui->scalecolor->text(), this, "Select Color",options);
+    const QColor color = QColorDialog::getColor(ui->scalecolor->text(), this, tr("select color"),options);
 
     if (color.isValid()) {
         ui->scalecolor->setText(color.name());
@@ -378,7 +561,7 @@ void MainWindow::on_selectScaleColor_clicked()
 void MainWindow::on_selectOriginColor_clicked()
 {
     const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
-    const QColor color = QColorDialog::getColor(ui->origincolor->text(), this, "Select Color",options);
+    const QColor color = QColorDialog::getColor(ui->origincolor->text(), this, tr("select color"),options);
 
     if (color.isValid()) {
         ui->origincolor->setText(color.name());
@@ -391,7 +574,7 @@ void MainWindow::on_selectOriginColor_clicked()
 void MainWindow::on_selectPlayerColor_clicked()
 {
     const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
-    const QColor color = QColorDialog::getColor(ui->playercolor->text(), this, "Select Color",options);
+    const QColor color = QColorDialog::getColor(ui->playercolor->text(), this, tr("select color"),options);
 
     if (color.isValid()) {
         ui->playercolor->setText(color.name());
@@ -403,11 +586,51 @@ void MainWindow::on_selectPlayerColor_clicked()
 void MainWindow::on_selectTileBorderColor_clicked()
 {
     const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
-    const QColor color = QColorDialog::getColor(ui->tilebordercolor->text(), this, "Select Color",options);
+    const QColor color = QColorDialog::getColor(ui->tilebordercolor->text(), this, tr("select color"),options);
 
     if (color.isValid()) {
         ui->tilebordercolor->setText(color.name());
         ui->tilebordercolor->setPalette(QPalette(color));
+        //ui->lineEdit_bgcolor->setAutoFillBackground(true);
+    }
+}
+
+void MainWindow::on_actionAbout_MinetestMapperGUI_triggered()
+{
+    QMessageBox::about(this, tr("About MinetestMapper GUI"),
+             tr("<h1>About MinetestMapperGUI</h1>"
+                "The <b>MinetestMapper Gui</b> is written "
+                "by addi <br>"
+                "version %1.%2.%3").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_BUILD));
+}
+
+
+void MainWindow::on_actionAbout_MinetestMapper_triggered()
+{
+        QMessageBox::about(this, tr("About MinetestMapper"),
+                 tr("<h1>About MinetestMapper</h1>"
+                    "The <b>MinetestMapper</b> is written by:<br>"
+                    "Miroslav Bendík <miroslav.bendik@gmail.com><br>"
+                    "ShadowNinja <shadowninja@minetest.net><br>"
+                    "sfan5 <sfan5@live.de><br>"
+                    "Rogier <rogier777@gmail.com><br><br>"
+                    "<u>License:</u>LGPLv2.1+ and BSD 2-clause.<br>"
+                    "Source Code: <a href='https://github.com/Rogier-5/minetest-mapper-cpp'>Github</a><br>"));
+}
+
+void MainWindow::on_path_OutputImage_textChanged()
+{
+    ui->label_preview->setText(tr("preview: %1").arg(getOutputFileName()));
+}
+
+void MainWindow::on_selectHeightmapColor_clicked()
+{
+    const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
+    const QColor color = QColorDialog::getColor(ui->colorHeightmap->text(), this, tr("select color"),options);
+
+    if (color.isValid()) {
+        ui->colorHeightmap->setText(color.name());
+        ui->colorHeightmap->setPalette(QPalette(color));
         //ui->lineEdit_bgcolor->setAutoFillBackground(true);
     }
 }

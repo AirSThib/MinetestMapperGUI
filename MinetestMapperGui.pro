@@ -25,4 +25,16 @@ RESOURCES += \
 TRANSLATIONS = languages/gui_de.ts\
                languages/gui_en.ts
 
-DISTFILES +=
+#Application version
+VERSION_MAJOR = 0
+VERSION_MINOR = 3
+VERSION_BUILD = 0
+
+DEFINES += "VERSION_MAJOR=$$VERSION_MAJOR"\
+       "VERSION_MINOR=$$VERSION_MINOR"\
+       "VERSION_BUILD=$$VERSION_BUILD"
+
+#Target version
+VERSION = $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_BUILD}
+
+RC_ICONS = minetest.ico
