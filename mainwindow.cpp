@@ -100,7 +100,7 @@ void MainWindow::loadLanguage(const QString& rLanguage)
         QLocale::setDefault(locale);
         QString languageName = QLocale::languageToString(locale.language());
         switchTranslator(m_translator, QString("gui_%1.qm").arg(rLanguage));
-        //switchTranslator(m_translatorQt, QString("qt_%1.qm").arg(rLanguage));
+        switchTranslator(m_translatorQt, QString("qtbase_%1.qm").arg(rLanguage));
         ui->statusBar->showMessage(tr("Current Language changed to %1").arg(languageName),3000);
     }
 }
