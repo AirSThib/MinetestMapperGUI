@@ -517,7 +517,7 @@ void MainWindow::on_browse_HeightmapColors_clicked()
 void MainWindow::on_browseColorsTxt_clicked()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open colors.txt File"),
-                                                    ui->path_HeightmapColors->text(),
+                                                    ui->path_ColorsTxt->text(),
                                                     tr("TXT File (*.txt)"));
     ui->path_ColorsTxt->setText(fileName);
 }
