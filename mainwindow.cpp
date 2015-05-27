@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QDesktopServices>
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -18,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     progressBar->setMaximumSize(180, 19);
     ui->statusBar->addPermanentWidget(progressBar);
     //progressBar->setValue(0);
-    progressBar->setMaximum(0);
+    progressBar->setMaximum(100);
     progressBar->setMinimum(0);
     progressBar->hide();
     connect(ui->actionAbout_QT, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -126,7 +127,6 @@ void MainWindow::changeEvent(QEvent* event)
  QMainWindow::changeEvent(event);
 }
 
-QProcess *myProcess;
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -134,9 +134,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_button_generate_clicked()
 {
+    QDir worldPath = QDir(ui->path_World->text());
+    if(!worldPath.exists()||worldPath.path()=="."||worldPath.path()=="/"){
+        QMessageBox::critical(this, tr("no input world selected"),
+                 tr("ERROR: No MinetestWorld selected<br><br>"
+                    "please select a world"));
+        return;
+    }
     QString imgName = getOutputFileName();
     if(QFile::exists(imgName)){
-        qDebug()<<"datei und ordner existiert";
         int ret = QMessageBox::question(this, tr("the Image File does already exist"),
                  tr("The File <i>%1</i> does already exist. <br><br>"
                     "Do you want to overwrite?")
@@ -162,14 +168,16 @@ void MainWindow::on_button_generate_clicked()
     myProcess = new QProcess(this);
     QString appDir =QCoreApplication::applicationDirPath();
     qDebug()<<appDir;
-    QString program = QCoreApplication::applicationDirPath()+"\\mapper\\minetestmapper.exe";
-
+    QDir dir = QDir(appDir);
+    myProcess->setWorkingDirectory(appDir);
+    QString program = appDir+"/mapper/minetestmapper";
+    myProcess->setProgram(program);
     qDebug()<<imgName;
     QStringList arguments;
     arguments           <<"-i" << ui->path_World->text()//"D:\\Programme\\minetest\\worlds\\server_minetest.king-arthur.eu_30000"
-                        <<"--output" << imgName//"D:\\Users\\Adrian\\Desktop\\test2.png"
-                        <<"--colors" << ui->path_ColorsTxt->text() //appDir+"\\colors\\colors.txt"
-                        <<"--progress" << "--verbose-search-colors=2" //<<"--verbose"
+                        <<"--output" << imgName //"D:\\Users\\Adrian\\Desktop\\test2.png"
+                        <<"--colors" <<  dir.absoluteFilePath(ui->path_ColorsTxt->text()) //appDir+"\\colors\\colors.txt"
+                        <<"--progress" //<< "--verbose-search-colors=2" //<<"--verbose"
                         <<"--drawalpha="+ui->drawAlpha->currentText()
                         <<"--bgcolor" << ui->bgcolor->text()
                         <<"--blockcolor" << ui->blockcolor->text()
@@ -245,7 +253,8 @@ void MainWindow::on_button_generate_clicked()
         arguments <<"--heightmap-nodes" << ui->path_HeightmapNodes->text()
                   <<"--heightmap-colors" << ui->path_HeightmapColors->text()
                   <<"--heightmap-yscale" << ui->heightmapYscale->cleanText().replace(',','.')
-                  <<"--height-level-0" << ui->heightLevel0->text();
+                  <<"--height-level-0" << ui->heightLevelNull->cleanText();
+        qDebug() << ui->heightLevelNull->cleanText();
         if(ui->drawHeightscale->isChecked()){
             arguments <<"--drawheightscale";
         }
@@ -278,17 +287,39 @@ void MainWindow::on_button_generate_clicked()
             arguments<<"map";
         }
     }
-    myProcess->setProcessChannelMode(QProcess::MergedChannels);
-    myProcess->start(program, arguments);
-    myProcess->setReadChannel(QProcess::StandardOutput);
+    //myProcess->setProcessChannelMode(QProcess::MergedChannels);
+
+    //myProcess->setReadChannel(QProcess::StandardOutput);
+    //myProcess->setReadChannel(QProcess::StandardError);
+    myProcess->setArguments(arguments);
+    qDebug()<<myProcess->arguments();
     progressBar->show();
     progressBar->setMaximum(100);
+    ui->button_cancel->setDisabled(false);
     connect(myProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readOutput()));
+    connect(myProcess, SIGNAL(readyReadStandardError()), this, SLOT(readError()));//error stream contains unknown nodes
     connect(myProcess, SIGNAL(finished(int)), this, SLOT(mapperFinisched(int)));
+    connect(myProcess, SIGNAL(error(QProcess::ProcessError)), this, SLOT(error(QProcess::ProcessError)));
+    ui->standardOutput->append("Starting "+myProcess->program()+" "+arguments.join(" "));
+    myProcess->start();
+    #ifdef Q_OS_WIN
+    taskbarButton = new QWinTaskbarButton(this);
+    taskbarButton->setWindow(this->windowHandle());
+    taskbarButton->setOverlayIcon(QIcon(":/save"));
 
-
-
+    taskbarProgress = taskbarButton->progress();
+    taskbarProgress->show();
+    #endif
 }
+
+void MainWindow::on_button_cancel_clicked()
+{
+    myProcess->kill();
+    #ifdef Q_OS_WIN
+    taskbarProgress->stop();
+    #endif
+}
+
 void MainWindow::readOutput()
 {
     QByteArray outData = myProcess->readAllStandardOutput();
@@ -298,11 +329,23 @@ void MainWindow::readOutput()
         if(rx.indexIn(out)!=-1){
             QString percent = rx.cap(1); // percent == number
             progressBar->setValue(percent.toInt());
+            #ifdef Q_OS_WIN
+            taskbarProgress->setValue(percent.toInt());
+            #endif
         }
 
 
         ui->statusBar->showMessage(out);
-        ui->plainTextEdit_output->appendPlainText(out);
+        ui->standardOutput->append(out);
+    }
+}
+void MainWindow::readError()
+{
+    QByteArray outData = myProcess->readAllStandardError();
+    QString out = QString(outData).trimmed();
+    if(out != "") {
+        ui->statusBar->showMessage(out);
+        ui->standardOutput->append("<span style='color:red; white-space: pre;'>"+out.toHtmlEscaped()+"</span>");
     }
 }
 
@@ -326,17 +369,22 @@ QString MainWindow::getOutputFileName()
 
 void MainWindow::mapperFinisched(int exit)
 {
-    qDebug()<< "Exit code: " <<exit;
-    ui->button_generate->setDisabled(false);   
+    ui->button_generate->setDisabled(false);
+    ui->button_cancel->setDisabled(true);
     progressBar->setValue(0);
     progressBar->hide();
+    taskbarButton->clearOverlayIcon();
+    taskbarProgress->hide();
     //ui->statusBar->showMessage("Ready");
-    if(exit ==0){
-    ui->statusBar->showMessage(tr("Finisched :)"),3000);
-    QString imgName = getOutputFileName();
-    QDesktopServices::openUrl(QUrl(imgName));
+    if(exit ==0){//mapper finished successfull
+        ui->statusBar->showMessage(tr("Finisched :)"),3000);
+        QString imgName = getOutputFileName();
+        QDesktopServices::openUrl(QUrl(imgName));
     }
-    else{
+    else if(exit==62097){
+        ui->statusBar->showMessage(tr("minetestmapper terminated"));
+    }
+    else{//something was wrong
         QMessageBox::critical(this, tr("Minetest Mapper failed"),
                  tr("<h1>ERROR</h1> <h2>minetestmapper failed</h2>"
                     "Exit code: <i>%1</i> <br>"
@@ -346,9 +394,20 @@ void MainWindow::mapperFinisched(int exit)
                               .arg(exit)
                               .arg(ui->statusBar->currentMessage()));
     }
-
-
 }
+void MainWindow::error(QProcess::ProcessError error)
+{
+    qDebug() <<"Error starting MinetestMapper:"<<error
+            <<"Error code: "<<myProcess->error()
+           <<"Error string: "<<myProcess->errorString();
+    QMessageBox::critical(this, tr("Minetest Mapper failed"),
+             tr("<h1>ERROR</h1> <h2>minetestmapper failed</h2>"
+                "Error code: <i>%1</i> <br>"
+                "Error Message: <pre>%2</pre><br>")
+                          .arg(error)
+                          .arg(myProcess->errorString()));
+}
+
 
 void MainWindow::writeSettings()
 {
@@ -382,6 +441,7 @@ void MainWindow::writeSettings()
         settings.setValue("colorHeightmap", ui->colorHeightmap->text());
         settings.setValue("path_HeightmapColors", ui->path_HeightmapColors->text());
         settings.setValue("drawHeightscale", ui->drawHeightscale->isChecked());
+        settings.setValue("heightLevelNull", ui->heightLevelNull->value());
 
         //tab4 Colors
         settings.setValue("path_ColorsTxt",ui->path_ColorsTxt->text());
@@ -446,7 +506,7 @@ void MainWindow::readSettings()
         ui->path_HeightmapColors->setText(settings.value("path_HeightmapColors","./colors/heightmap-colors.txt").toString());
         ui->colorHeightmap->setText(settings.value("colorHeightmap","").toString());
         ui->drawHeightscale->setChecked(settings.value("drawHeightscale",false).toBool());
-
+        ui->heightLevelNull->setValue(settings.value("heightLevelNull",0).toInt());
 
         //tab4 Colors
         ui->path_ColorsTxt->setText(settings.value("path_ColorsTxt","./colors/colors.txt").toString());
@@ -487,14 +547,14 @@ void MainWindow::on_browseWorld_clicked()
                                                     ui->path_World->text(),
                                                     QFileDialog::ShowDirsOnly
                                                     | QFileDialog::DontResolveSymlinks);
-    ui->path_World->setText(dir);
+    if(dir!="") ui->path_World->setText(dir);
 }
 
 void MainWindow::on_saveImage_clicked()
 {
     QString fileName = QFileDialog::getSaveFileName(this,
          tr("Save generated map to..."), "/", tr("png image (*.png)"));
-    ui->path_OutputImage->setText(fileName);
+    if(fileName!="") ui->path_OutputImage->setText(fileName);
 }
 
 
@@ -503,7 +563,7 @@ void MainWindow::on_browseHeightmapNodes_clicked()
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open HeightmapNodes File"),
                                                     ui->path_HeightmapNodes->text(),
                                                     tr("TXT File (*.txt)"));
-    ui->path_HeightmapNodes->setText(fileName);
+    if(fileName!="") ui->path_HeightmapNodes->setText(fileName);
 }
 
 void MainWindow::on_browse_HeightmapColors_clicked()
@@ -511,7 +571,7 @@ void MainWindow::on_browse_HeightmapColors_clicked()
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open HeightmapColors File"),
                                                     ui->path_HeightmapColors->text(),
                                                     tr("TXT File (*.txt)"));
-    ui->path_HeightmapColors->setText(fileName);
+    if(fileName!="") ui->path_HeightmapColors->setText(fileName);
 }
 
 void MainWindow::on_browseColorsTxt_clicked()
@@ -519,7 +579,7 @@ void MainWindow::on_browseColorsTxt_clicked()
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open colors.txt File"),
                                                     ui->path_ColorsTxt->text(),
                                                     tr("TXT File (*.txt)"));
-    ui->path_ColorsTxt->setText(fileName);
+    if(fileName!="") ui->path_ColorsTxt->setText(fileName);
 }
 
 void MainWindow::on_selectBgColor_clicked()
@@ -599,9 +659,13 @@ void MainWindow::on_actionAbout_MinetestMapperGUI_triggered()
 {
     QMessageBox::about(this, tr("About MinetestMapper GUI"),
              tr("<h1>About MinetestMapperGUI</h1>"
-                "The <b>MinetestMapper Gui</b> is written "
-                "by addi <br>"
-                "version %1.%2.%3").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_BUILD));
+                "The <b>MinetestMapper Gui</b> is written by addi.<br />"
+                "It is licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution 3.0 Unported License</a>.<br>"
+                "The current version is %1.%2.%3. <br>"
+                "The sourcecode is aviable on <a href='https://bitbucket.org/adrido/minetestmappergui/'>Bitbucket</a>.<br>"
+                "You may also want to read the <a href='https://forum.minetest.net/viewtopic.php?f=14&t=12139'>Minetest forum thread</a>.<br><br>"
+                "<b>Thanks to:</b><br>"
+                "McKrustenkaese for his great icon").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_BUILD));
 }
 
 
@@ -615,7 +679,7 @@ void MainWindow::on_actionAbout_MinetestMapper_triggered()
                     "sfan5 <sfan5@live.de><br>"
                     "Rogier <rogier777@gmail.com><br><br>"
                     "<u>License:</u>LGPLv2.1+ and BSD 2-clause.<br>"
-                    "Source Code: <a href='https://github.com/Rogier-5/minetest-mapper-cpp'>Github</a><br>"));
+                    "<u>Source Code:</u> <a href='https://github.com/Rogier-5/minetest-mapper-cpp'>Github</a><br>"));
 }
 
 void MainWindow::on_path_OutputImage_textChanged()

@@ -2,12 +2,19 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QProcess>
 #include <QProgressBar>
 #include <QMessageBox>
 #include <QRegExp>
 #include <QTranslator>
 #include <QColorDialog>
 #include <QDate>
+#include <QCloseEvent>
+#ifdef Q_OS_WIN
+#include <QWinTaskbarProgress>
+#include <QWinTaskbarButton>
+#endif
+
 
 namespace Ui {
 class MainWindow;
@@ -22,7 +29,7 @@ public:
     ~MainWindow();
 
 protected:
-    void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent* event);
     // this event is called, when a new translator is loaded or the system language is changed
     void changeEvent(QEvent*);
 
@@ -34,7 +41,9 @@ private slots:
     QString getOutputFileName();
     void on_button_generate_clicked();
     void readOutput();
+    void readError();
     void mapperFinisched(int exit);
+    void error(QProcess::ProcessError error);
     void writeSettings();
     void readSettings();
 
@@ -68,9 +77,16 @@ private slots:
 
     void on_selectHeightmapColor_clicked();
 
+    void on_button_cancel_clicked();
+
 private:
     Ui::MainWindow *ui;
     QProgressBar *progressBar;
+    QProcess *myProcess;
+    #ifdef Q_OS_WIN
+    QWinTaskbarButton *taskbarButton;
+    QWinTaskbarProgress *taskbarProgress;
+    #endif
 
     // loads a language by the given language shortcur (e.g. de, en)
     void loadLanguage(const QString& rLanguage);
