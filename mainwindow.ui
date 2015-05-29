@@ -2230,8 +2230,8 @@ p, li { white-space: pre-wrap; }
   </widget>
   <action name="actionAbout_MinetestMapper">
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/map.ico</normaloff>:/images/map.ico</iconset>
+    <iconset resource="minetestmappergui.qrc">
+     <normaloff>:/images/minetest.svg</normaloff>:/images/minetest.svg</iconset>
    </property>
    <property name="text">
     <string>About MinetestMapper</string>

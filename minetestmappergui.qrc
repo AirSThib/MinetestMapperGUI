@@ -7,5 +7,6 @@
         <file alias="save">images/save.svg</file>
         <file alias="open">images/open.svg</file>
         <file>images/icon.svg</file>
+        <file>images/minetest.svg</file>
     </qresource>
 </RCC>
