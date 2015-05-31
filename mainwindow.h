@@ -10,6 +10,8 @@
 #include <QColorDialog>
 #include <QDate>
 #include <QCloseEvent>
+#include <QInputDialog>
+#include <QActionGroup>
 #ifdef Q_OS_WIN
 #include <QWinTaskbarProgress>
 #include <QWinTaskbarButton>
@@ -36,6 +38,7 @@ protected:
 protected slots:
     // this slot is called by the language menu actions
     void slotLanguageChanged(QAction* action);
+    void slotProfileChanged(QAction* action);
 
 private slots:
     QString getOutputFileName();
@@ -44,8 +47,11 @@ private slots:
     void readError();
     void mapperFinisched(int exit);
     void error(QProcess::ProcessError error);
+    void createProfilesMenu();
     void writeSettings();
+    void writeProfile(QString profile);
     void readSettings();
+    void readProfile(QString profile);
 
     void on_browseWorld_clicked();
 
@@ -79,10 +85,14 @@ private slots:
 
     void on_button_cancel_clicked();
 
+    void on_actionNew_Profile_triggered();
+
 private:
     Ui::MainWindow *ui;
     QProgressBar *progressBar;
     QProcess *myProcess;
+    QString currentProfile;
+    QActionGroup *profileGroup;
     #ifdef Q_OS_WIN
     QWinTaskbarButton *taskbarButton;
     QWinTaskbarProgress *taskbarProgress;

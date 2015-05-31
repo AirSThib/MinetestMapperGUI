@@ -2129,9 +2129,17 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <widget class="QMenu" name="menuChoose_profile">
+     <property name="title">
+      <string>Choose profile:</string>
+     </property>
+    </widget>
     <addaction name="actionOpen_World"/>
     <addaction name="actionSave_map_as"/>
     <addaction name="actionGenerateMap"/>
+    <addaction name="separator"/>
+    <addaction name="menuChoose_profile"/>
+    <addaction name="actionNew_Profile"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -2361,6 +2369,11 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>edit heightmap-colors.txt</string>
+   </property>
+  </action>
+  <action name="actionNew_Profile">
+   <property name="text">
+    <string>New Profile</string>
    </property>
   </action>
  </widget>

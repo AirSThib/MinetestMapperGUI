@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     readSettings();
+    readProfile(currentProfile);
     progressBar = new QProgressBar(ui->statusBar);
     progressBar->setAlignment(Qt::AlignRight);
     progressBar->setMaximumSize(180, 19);
@@ -24,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     progressBar->hide();
     connect(ui->actionAbout_QT, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     createLanguageMenu();
+    createProfilesMenu();
 }
 
 // we create the language menu entries dynamically, dependent on the existing translations.
@@ -408,6 +410,57 @@ void MainWindow::error(QProcess::ProcessError error)
                           .arg(myProcess->errorString()));
 }
 
+void MainWindow::createProfilesMenu(){
+    profileGroup = new QActionGroup(ui->menuChoose_profile);
+    profileGroup->setExclusive(true);
+
+    connect(profileGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotProfileChanged(QAction *)));
+
+    QSettings settings(QSettings::IniFormat,QSettings::UserScope,"addi", "Minetestmapper_profile_default");
+    QString profilePath = settings.fileName();
+    qDebug()<<"Profile path "<< profilePath;
+    QDir dir(profilePath);
+    dir.cdUp();
+    QStringList fileNames = dir.entryList(QStringList("Minetestmapper_profile_*.ini"));
+    qDebug()<<fileNames;
+    if(fileNames.size()==0)fileNames.append("Minetestmapper_profile_default.ini");
+    for (int i = 0; i < fileNames.size(); ++i) {
+        // get locale extracted by filename
+        QString profile;
+        profile = fileNames[i]; // "gui_de.qm"
+        profile.truncate(profile.lastIndexOf('.')); // "gui_de"
+        profile.remove(0, profile.lastIndexOf('_') + 1); // "de"
+
+       // QString lang = QLocale::languageToString(QLocale(locale).language());
+       // QIcon ico(QString("%1/%2.png").arg(m_langPath).arg(locale));
+
+        QAction *action = new QAction(profile, this);
+        action->setCheckable(true);
+        action->setData(profile);
+
+        ui->menuChoose_profile->addAction(action);
+        profileGroup->addAction(action);
+
+        // set default translators and language checked
+        if (currentProfile == profile)
+        {
+            action->setChecked(true);
+        }
+    }
+
+}
+
+// Called every time, when a menu entry of the profile menu is called
+void MainWindow::slotProfileChanged(QAction* action)
+{
+    if(action != 0) {
+        //writeProfile(currentProfile);
+        currentProfile = action->data().toString();
+        readProfile(currentProfile);
+        // load the language dependant on the action content
+        //ui->menuLanguage->setIcon(action->icon());
+    }
+}
 
 void MainWindow::writeSettings()
 {
@@ -423,7 +476,15 @@ void MainWindow::writeSettings()
         settings.setValue("pos", pos());
     }
     settings.setValue("help", ui->actionHelp->isChecked());
+    settings.setValue("profile", currentProfile);
     settings.endGroup();
+}
+
+void MainWindow::writeProfile(QString profile)
+{
+    QSettings settings(QSettings::IniFormat,QSettings::UserScope,"addi", "Minetestmapper_profile_"+profile);
+    //todo: check the current profile
+
     settings.beginGroup("Mapper");
         settings.setValue("path_OutputImage", ui->path_OutputImage->text());
         settings.setValue("path_World", ui->path_World->text());
@@ -484,8 +545,14 @@ void MainWindow::readSettings()
     if(settings.value("help",false).toBool()==false){
         ui->dockHelp->close();
     }
+    currentProfile = settings.value("profile","default").toString();
 
     settings.endGroup();
+}
+
+void MainWindow::readProfile(QString profile)
+{
+    QSettings settings(QSettings::IniFormat,QSettings::UserScope,"addi", "Minetestmapper_profile_"+profile);
     settings.beginGroup("Mapper");
         //tab1 Genral
         ui->path_World->setText(settings.value("path_World","/").toString());
@@ -538,6 +605,7 @@ void MainWindow::readSettings()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
         writeSettings();
+        writeProfile(currentProfile);
         event->accept();
 }
 
@@ -696,5 +764,26 @@ void MainWindow::on_selectHeightmapColor_clicked()
         ui->colorHeightmap->setText(color.name());
         ui->colorHeightmap->setPalette(QPalette(color));
         //ui->lineEdit_bgcolor->setAutoFillBackground(true);
+    }
+}
+
+void MainWindow::on_actionNew_Profile_triggered()
+{
+    bool ok;
+    QString profile = QInputDialog::getText(this,
+                                            tr("New Profile"),//title
+                                            tr("Name of the new Profile:"),//label
+                                            QLineEdit::Normal,
+                                            "",//text
+                                            &ok,0);
+    if(ok && !profile.isEmpty()) {
+        currentProfile = profile;
+        QAction *action = new QAction(profile, this);
+        action->setCheckable(true);
+        action->setData(profile);
+
+        ui->menuChoose_profile->addAction(action);
+        profileGroup->addAction(action);
+        action->setChecked(true);
     }
 }
