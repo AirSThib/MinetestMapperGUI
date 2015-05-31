@@ -144,6 +144,12 @@ void MainWindow::on_button_generate_clicked()
         return;
     }
     QString imgName = getOutputFileName();
+    if(imgName.isEmpty()){
+        QMessageBox::critical(this, tr("no output image selected"),
+                 tr("ERROR: No output image selected<br><br>"
+                    "please select a output image"));
+        return;
+    }
     if(QFile::exists(imgName)){
         int ret = QMessageBox::question(this, tr("the Image File does already exist"),
                  tr("The File <i>%1</i> does already exist. <br><br>"
