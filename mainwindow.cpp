@@ -713,7 +713,7 @@ void MainWindow::readProfile(QString profile)
         //tab4 Colors
         ui->path_ColorsTxt->setText(settings.value("path_ColorsTxt","./colors/colors.txt").toString());
         ui->bgcolor->setText(settings.value("bgcolor","white").toString());
-        ui->blockcolor->setText(settings.value("blockcolor","#ffffcc").toString());
+        ui->blockcolor->setText(settings.value("blockcolor","white").toString());
         ui->scalecolor->setText(settings.value("scalecolor","black").toString());
         ui->origincolor->setText(settings.value("origincolor","red").toString());
         ui->playercolor->setText(settings.value("playercolor","yellow").toString());
