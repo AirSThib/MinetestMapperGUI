@@ -300,7 +300,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1335"/>
         <source>Draw origin</source>
-        <translation>zeichne Ursprung</translation>
+        <translation>Zeichne Ursprung</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1278"/>
@@ -345,7 +345,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1345"/>
         <source>Draw Players</source>
-        <translation>Zeichne Spielerpossitionen</translation>
+        <translation>Zeichne Spielerpositionen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1389"/>
@@ -851,7 +851,7 @@ Die einzelnen Parameter können entfernt, verändert, oder neue hinzugefügt wer
     <message>
         <location filename="../mainwindow.cpp" line="791"/>
         <source>Name of the new Profile:</source>
-        <translation type="unfinished">Name des Neuen Profils:</translation>
+        <translation>Name des Neuen Profils:</translation>
     </message>
 </context>
 </TS>
