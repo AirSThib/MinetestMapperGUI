@@ -289,11 +289,20 @@ void MainWindow::on_button_generate_clicked()
             arguments<<"map";
         }
     }
-    //myProcess->setProcessChannelMode(QProcess::MergedChannels);
-
-    //myProcess->setReadChannel(QProcess::StandardOutput);
-    //myProcess->setReadChannel(QProcess::StandardError);
     myProcess->setArguments(arguments);
+
+    if(ui->actionExpert_Mode->isChecked()){
+        bool ok;
+        QString parameters = QInputDialog::getMultiLineText(this,
+                                                            tr("Expert Mode"),//title
+                                                            tr("MinetestMapper will be executed using this arguments. \n"
+                                                               "The arguments can be removed, modified, or new arguments can be added."),//label
+                                                            arguments.join("\n"),//text
+                                                            &ok,0);
+        if(ok) myProcess->setArguments(parameters.split("\n"));
+    }
+
+
     qDebug()<<myProcess->arguments();
     progressBar->show();
     progressBar->setMaximum(100);
@@ -477,6 +486,7 @@ void MainWindow::writeSettings()
     }
     settings.setValue("help", ui->actionHelp->isChecked());
     settings.setValue("profile", currentProfile);
+    settings.setValue("expertMode",ui->actionExpert_Mode->isChecked());
     settings.endGroup();
 }
 
@@ -546,7 +556,7 @@ void MainWindow::readSettings()
         ui->dockHelp->close();
     }
     currentProfile = settings.value("profile","default").toString();
-
+    ui->actionExpert_Mode->setChecked(settings.value("expertMode",false).toBool());
     settings.endGroup();
 }
 

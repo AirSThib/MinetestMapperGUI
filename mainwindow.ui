@@ -2167,8 +2167,15 @@
      <string>Language</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuExtras">
+    <property name="title">
+     <string>Extras</string>
+    </property>
+    <addaction name="actionExpert_Mode"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
+   <addaction name="menuExtras"/>
    <addaction name="menuHelp"/>
    <addaction name="menuLanguage"/>
   </widget>
@@ -2374,6 +2381,20 @@ p, li { white-space: pre-wrap; }
   <action name="actionNew_Profile">
    <property name="text">
     <string>New Profile</string>
+   </property>
+  </action>
+  <action name="actionExpert_Mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Expert Mode</string>
+   </property>
+   <property name="toolTip">
+    <string>In the Expert Mode it shows you the parameters, that you can modify it.</string>
+   </property>
+   <property name="statusTip">
+    <string>Expert Mode shows the parameters, that you can modify it.</string>
    </property>
   </action>
  </widget>
