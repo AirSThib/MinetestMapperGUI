@@ -565,8 +565,8 @@ void MainWindow::readProfile(QString profile)
     QSettings settings(QSettings::IniFormat,QSettings::UserScope,"addi", "Minetestmapper_profile_"+profile);
     settings.beginGroup("Mapper");
         //tab1 Genral
-        ui->path_World->setText(settings.value("path_World","/").toString());
-        ui->path_OutputImage->setText(settings.value("path_OutputImage","").toString());
+        ui->path_World->setText(settings.value("path_World",QDir::homePath()).toString());
+        ui->path_OutputImage->setText(settings.value("path_OutputImage",QDir::homePath().append("/map.png")).toString());
         on_path_OutputImage_textChanged();
         //tab2 Area
         ui->scalefactor->setCurrentIndex(settings.value("scalefactor",0).toInt());
