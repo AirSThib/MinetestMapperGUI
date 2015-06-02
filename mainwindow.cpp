@@ -6,6 +6,8 @@
 #include <QFileDialog>
 #include <QSettings>
 #include <QDesktopServices>
+#include <QCompleter>
+#include <QDirModel>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -26,6 +28,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionAbout_QT, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     createLanguageMenu();
     createProfilesMenu();
+
+    QCompleter *completer = new QCompleter(this);
+    QDirModel *model =new QDirModel(completer);
+    model->setFilter(QDir::Dirs|QDir::NoDotAndDotDot|QDir::Drives);
+    completer->setModel(model);
+    ui->path_World->setCompleter(completer);
 }
 
 // we create the language menu entries dynamically, dependent on the existing translations.
