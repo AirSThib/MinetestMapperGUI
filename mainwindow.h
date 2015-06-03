@@ -61,18 +61,6 @@ private slots:
 
     void on_browse_HeightmapColors_clicked();
 
-    void on_selectBgColor_clicked();
-
-    void on_selectBlockColor_clicked();
-
-    void on_selectScaleColor_clicked();
-
-    void on_selectOriginColor_clicked();
-
-    void on_selectPlayerColor_clicked();
-
-    void on_selectTileBorderColor_clicked();
-
     void on_browseColorsTxt_clicked();
 
     void on_actionAbout_MinetestMapperGUI_triggered();
