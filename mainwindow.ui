@@ -797,7 +797,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>346</width>
+             <width>500</width>
              <height>360</height>
             </rect>
            </property>
@@ -1064,7 +1064,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="bgcolor">
+         <widget class="ColorLineEdit" name="bgcolor">
           <property name="statusTip">
            <string>Specify the background color for the image</string>
           </property>
@@ -1098,7 +1098,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="blockcolor">
+         <widget class="ColorLineEdit" name="blockcolor">
           <property name="statusTip">
            <string>Specify the color for empty mapblocks</string>
           </property>
@@ -1226,7 +1226,7 @@
          </widget>
         </item>
         <item row="6" column="1">
-         <widget class="QLineEdit" name="tilebordercolor">
+         <widget class="ColorLineEdit" name="tilebordercolor">
           <property name="statusTip">
            <string>Specify the color for drawing tile borders</string>
           </property>
@@ -1236,7 +1236,7 @@
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QLineEdit" name="playercolor">
+         <widget class="ColorLineEdit" name="playercolor">
           <property name="statusTip">
            <string>Specify the color for drawing player locations</string>
           </property>
@@ -1246,7 +1246,7 @@
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QLineEdit" name="origincolor">
+         <widget class="ColorLineEdit" name="origincolor">
           <property name="statusTip">
            <string> Specify the color for drawing the map origin (0,0)</string>
           </property>
@@ -1256,7 +1256,7 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="scalecolor">
+         <widget class="ColorLineEdit" name="scalecolor">
           <property name="statusTip">
            <string> Specify the color for text in the scales on the side</string>
           </property>
@@ -1848,7 +1848,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>343</width>
+             <width>500</width>
              <height>261</height>
             </rect>
            </property>
@@ -2399,6 +2399,16 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ColorLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>colorlineedit.h</header>
+   <slots>
+    <slot>selectColor()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="minetestmappergui.qrc"/>
  </resources>
@@ -2414,8 +2424,8 @@ p, li { white-space: pre-wrap; }
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>207</x>
-     <y>530</y>
+     <x>217</x>
+     <y>393</y>
     </hint>
    </hints>
   </connection>
@@ -2650,8 +2660,8 @@ p, li { white-space: pre-wrap; }
    <slot>selectAll()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>485</y>
+     <x>147</x>
+     <y>348</y>
     </hint>
     <hint type="destinationlabel">
      <x>121</x>
@@ -2699,7 +2709,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>363</x>
-     <y>485</y>
+     <y>348</y>
     </hint>
     <hint type="destinationlabel">
      <x>332</x>
@@ -2715,11 +2725,107 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>537</x>
-     <y>485</y>
+     <y>348</y>
     </hint>
     <hint type="destinationlabel">
      <x>424</x>
      <y>268</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>selectBgColor</sender>
+   <signal>clicked()</signal>
+   <receiver>bgcolor</receiver>
+   <slot>selectColor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>484</x>
+     <y>135</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>430</x>
+     <y>138</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>selectBlockColor</sender>
+   <signal>clicked()</signal>
+   <receiver>blockcolor</receiver>
+   <slot>selectColor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>169</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>441</x>
+     <y>169</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>selectScaleColor</sender>
+   <signal>clicked()</signal>
+   <receiver>scalecolor</receiver>
+   <slot>selectColor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>473</x>
+     <y>196</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>431</x>
+     <y>197</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>selectOriginColor</sender>
+   <signal>clicked()</signal>
+   <receiver>origincolor</receiver>
+   <slot>selectAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>463</x>
+     <y>227</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>441</x>
+     <y>227</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>selectPlayerColor</sender>
+   <signal>clicked()</signal>
+   <receiver>playercolor</receiver>
+   <slot>selectColor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>475</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>439</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>selectTileBorderColor</sender>
+   <signal>clicked()</signal>
+   <receiver>tilebordercolor</receiver>
+   <slot>selectColor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>464</x>
+     <y>283</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>431</x>
+     <y>285</y>
     </hint>
    </hints>
   </connection>
