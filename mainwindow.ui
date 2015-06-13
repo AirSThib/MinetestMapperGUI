@@ -359,6 +359,12 @@
         <string>Heightmap</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
         <item>
          <widget class="QCheckBox" name="generateHeightmap">
           <property name="toolTip">
@@ -2039,6 +2045,18 @@
         <string>MinetestMapper Output</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_4">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
         <item>
          <widget class="QTextEdit" name="standardOutput">
           <property name="font">
@@ -2213,6 +2231,21 @@
    </attribute>
    <widget class="QWidget" name="dockWidgetContents">
     <layout class="QVBoxLayout" name="verticalLayout_5">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
      <item>
       <widget class="QTextBrowser" name="helpBrowser">
        <property name="minimumSize">
@@ -2785,7 +2818,7 @@ p, li { white-space: pre-wrap; }
    <sender>selectOriginColor</sender>
    <signal>clicked()</signal>
    <receiver>origincolor</receiver>
-   <slot>selectAll()</slot>
+   <slot>selectColor()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>463</x>
