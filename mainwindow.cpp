@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    #if not defined(Q_OS_WIN)
+    #ifndef Q_OS_WIN
     if (!migrateSettingsProfiles())
         exit(EXIT_FAILURE);
     #endif
@@ -212,7 +212,9 @@ void MainWindow::on_button_generate_clicked()
                         <<"--origincolor" << ui->origincolor->text()
                         <<"--playercolor" << ui->playercolor->text()
                         <<"--tilebordercolor" << ui->tilebordercolor->text();
-
+    if(ui->backend->currentIndex() !=0){
+        arguments <<"--backend" << ui->backend->currentText();
+    }
     if(ui->geometry->text() !=""){
         arguments <<"--geometry" << ui->geometry->text().trimmed();
     }
@@ -419,8 +421,11 @@ void MainWindow::mapperFinisched(int exit)
     //ui->statusBar->showMessage("Ready");
     if(exit ==0){//mapper finished successfull
         ui->statusBar->showMessage(tr("Finisched :)"),3000);
-        QString imgName = getOutputFileName();
-        QDesktopServices::openUrl(QUrl(imgName));
+        if(ui->actionOpen_map_after_creation->isChecked()){
+            QString imgName = getOutputFileName();
+            QDesktopServices::openUrl(QUrl(imgName));
+        }
+
     }
     else if(exit==62097){
         ui->statusBar->showMessage(tr("minetestmapper terminated"));
@@ -620,6 +625,7 @@ void MainWindow::writeSettings()
     settings.setValue("help", ui->actionHelp->isChecked());
     settings.setValue("profile", currentProfile);
     settings.setValue("expertMode",ui->actionExpert_Mode->isChecked());
+    settings.setValue("openMap",ui->actionOpen_map_after_creation->isChecked());
     settings.endGroup();
 }
 
@@ -631,6 +637,7 @@ void MainWindow::writeProfile(QString profile)
     settings.beginGroup("Mapper");
         settings.setValue("path_OutputImage", ui->path_OutputImage->text());
         settings.setValue("path_World", ui->path_World->text());
+        settings.setValue("backend",ui->backend->currentIndex());
 
         //tab2 area
         settings.setValue("scalefactor",ui->scalefactor->currentIndex());
@@ -690,6 +697,7 @@ void MainWindow::readSettings()
     }
     currentProfile = settings.value("profile","default").toString();
     ui->actionExpert_Mode->setChecked(settings.value("expertMode",false).toBool());
+    ui->actionOpen_map_after_creation->setChecked(settings.value("openMap",true).toBool());
     settings.endGroup();
 }
 
@@ -700,7 +708,8 @@ void MainWindow::readProfile(QString profile)
         //tab1 Genral
         ui->path_World->setText(settings.value("path_World",QDir::homePath()).toString());
         ui->path_OutputImage->setText(settings.value("path_OutputImage",QDir::homePath().append("/map.png")).toString());
-        on_path_OutputImage_textChanged();
+        ui->backend->setCurrentIndex(settings.value("backend",0).toInt());
+        //on_path_OutputImage_textChanged();
         //tab2 Area
         ui->scalefactor->setCurrentIndex(settings.value("scalefactor",0).toInt());
         ui->geometry->setText(settings.value("geometry").toString());
@@ -857,4 +866,19 @@ void MainWindow::on_actionNew_Profile_triggered()
         profileGroup->addAction(action);
         action->setChecked(true);
     }
+}
+
+void MainWindow::on_actionEdit_colors_txt_triggered()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(ui->path_ColorsTxt->text()).absoluteFilePath()));
+}
+
+void MainWindow::on_actionEdit_heightmap_nodes_txt_triggered()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(ui->path_HeightmapNodes->text()).absoluteFilePath()));
+}
+
+void MainWindow::on_actionEdit_heightmap_colors_txt_triggered()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(ui->path_HeightmapColors->text()).absoluteFilePath()));
 }
