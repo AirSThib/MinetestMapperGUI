@@ -307,13 +307,14 @@ void MainWindow::on_button_generate_clicked()
 
     if(ui->actionExpert_Mode->isChecked()){
         bool ok;
+        arguments.replaceInStrings("--","\n--");
         QString parameters = QInputDialog::getMultiLineText(this,
                                                             tr("Expert Mode"),//title
                                                             tr("MinetestMapper will be executed using this arguments. \n"
                                                                "The arguments can be removed, modified, or new arguments can be added."),//label
-                                                            arguments.join("\n"),//text
+                                                            arguments.join(" "),//text
                                                             &ok,0);
-        if(ok) myProcess->setArguments(parameters.split("\n"));
+        if(ok) myProcess->setArguments(parameters.replace(' ',"\n").split("\n"));
     }
 
 
