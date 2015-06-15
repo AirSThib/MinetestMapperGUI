@@ -75,6 +75,12 @@ private slots:
 
     void on_actionNew_Profile_triggered();
 
+    void on_actionEdit_colors_txt_triggered();
+
+    void on_actionEdit_heightmap_nodes_txt_triggered();
+
+    void on_actionEdit_heightmap_colors_txt_triggered();
+
 private:
     Ui::MainWindow *ui;
     QProgressBar *progressBar;

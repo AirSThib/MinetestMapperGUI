@@ -34,8 +34,21 @@
        <attribute name="title">
         <string>General</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="3" column="0">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="0">
          <widget class="QGroupBox" name="groupBox_2">
           <property name="title">
            <string>Select World dir</string>
@@ -71,7 +84,46 @@
           </layout>
          </widget>
         </item>
-        <item>
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Database backend</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QComboBox" name="backend">
+             <property name="statusTip">
+              <string>Set or override the database backend to use. If you are not shure, select 'auto'</string>
+             </property>
+             <property name="currentText">
+              <string notr="true">auto</string>
+             </property>
+             <item>
+              <property name="text">
+               <string notr="true">auto</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string notr="true">sqlite3</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string notr="true">leveldb</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>redis</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="2">
          <widget class="QGroupBox" name="groupBox_4">
           <property name="title">
            <string>Output Image</string>
@@ -138,19 +190,6 @@
            </item>
           </layout>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </widget>
@@ -803,7 +842,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>500</width>
+             <width>509</width>
              <height>360</height>
             </rect>
            </property>
@@ -2389,27 +2428,36 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="actionEdit_colors_txt">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>edit colors.txt</string>
    </property>
+   <property name="toolTip">
+    <string>edit colors.txt with default program</string>
+   </property>
+   <property name="statusTip">
+    <string>edit colors.txt with default program</string>
+   </property>
   </action>
   <action name="actionEdit_heightmap_nodes_txt">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>edit heightmap-nodes.txt</string>
    </property>
+   <property name="toolTip">
+    <string>edit heightmap-nodes.txt with default txt editor</string>
+   </property>
+   <property name="statusTip">
+    <string>edit heightmap-nodes.txt with default txt editor</string>
+   </property>
   </action>
   <action name="actionEdit_heightmap_colors_txt">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>edit heightmap-colors.txt</string>
+   </property>
+   <property name="toolTip">
+    <string>edit heightmap-colors.txt with default txt editor</string>
+   </property>
+   <property name="statusTip">
+    <string>edit heightmap-colors.txt with default txt editor</string>
    </property>
   </action>
   <action name="actionNew_Profile">

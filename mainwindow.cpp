@@ -201,7 +201,9 @@ void MainWindow::on_button_generate_clicked()
                         <<"--origincolor" << ui->origincolor->text()
                         <<"--playercolor" << ui->playercolor->text()
                         <<"--tilebordercolor" << ui->tilebordercolor->text();
-
+    if(ui->backend->currentIndex() !=0){
+        arguments <<"--backend" << ui->backend->currentText();
+    }
     if(ui->geometry->text() !=""){
         arguments <<"--geometry" << ui->geometry->text().trimmed();
     }
@@ -517,6 +519,7 @@ void MainWindow::writeProfile(QString profile)
     settings.beginGroup("Mapper");
         settings.setValue("path_OutputImage", ui->path_OutputImage->text());
         settings.setValue("path_World", ui->path_World->text());
+        settings.setValue("backend",ui->backend->currentIndex());
 
         //tab2 area
         settings.setValue("scalefactor",ui->scalefactor->currentIndex());
@@ -587,7 +590,8 @@ void MainWindow::readProfile(QString profile)
         //tab1 Genral
         ui->path_World->setText(settings.value("path_World",QDir::homePath()).toString());
         ui->path_OutputImage->setText(settings.value("path_OutputImage",QDir::homePath().append("/map.png")).toString());
-        on_path_OutputImage_textChanged();
+        ui->backend->setCurrentIndex(settings.value("backend",0).toInt());
+        //on_path_OutputImage_textChanged();
         //tab2 Area
         ui->scalefactor->setCurrentIndex(settings.value("scalefactor",0).toInt());
         ui->geometry->setText(settings.value("geometry").toString());
@@ -744,4 +748,19 @@ void MainWindow::on_actionNew_Profile_triggered()
         profileGroup->addAction(action);
         action->setChecked(true);
     }
+}
+
+void MainWindow::on_actionEdit_colors_txt_triggered()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(ui->path_ColorsTxt->text()).absoluteFilePath()));
+}
+
+void MainWindow::on_actionEdit_heightmap_nodes_txt_triggered()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(ui->path_HeightmapNodes->text()).absoluteFilePath()));
+}
+
+void MainWindow::on_actionEdit_heightmap_colors_txt_triggered()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(ui->path_HeightmapColors->text()).absoluteFilePath()));
 }
