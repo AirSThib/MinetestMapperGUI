@@ -404,8 +404,11 @@ void MainWindow::mapperFinisched(int exit)
     //ui->statusBar->showMessage("Ready");
     if(exit ==0){//mapper finished successfull
         ui->statusBar->showMessage(tr("Finisched :)"),3000);
-        QString imgName = getOutputFileName();
-        QDesktopServices::openUrl(QUrl(imgName));
+        if(ui->actionOpen_map_after_creation->isChecked()){
+            QString imgName = getOutputFileName();
+            QDesktopServices::openUrl(QUrl(imgName));
+        }
+
     }
     else if(exit==62097){
         ui->statusBar->showMessage(tr("minetestmapper terminated"));
@@ -502,6 +505,7 @@ void MainWindow::writeSettings()
     settings.setValue("help", ui->actionHelp->isChecked());
     settings.setValue("profile", currentProfile);
     settings.setValue("expertMode",ui->actionExpert_Mode->isChecked());
+    settings.setValue("openMap",ui->actionOpen_map_after_creation->isChecked());
     settings.endGroup();
 }
 
@@ -572,6 +576,7 @@ void MainWindow::readSettings()
     }
     currentProfile = settings.value("profile","default").toString();
     ui->actionExpert_Mode->setChecked(settings.value("expertMode",false).toBool());
+    ui->actionOpen_map_after_creation->setChecked(settings.value("openMap",true).toBool());
     settings.endGroup();
 }
 
