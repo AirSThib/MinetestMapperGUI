@@ -2190,6 +2190,7 @@
      <string>Extras</string>
     </property>
     <addaction name="actionExpert_Mode"/>
+    <addaction name="actionOpen_map_after_creation"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -2428,6 +2429,20 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="statusTip">
     <string>Expert Mode shows the parameters, that you can modify it.</string>
+   </property>
+  </action>
+  <action name="actionOpen_map_after_creation">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Open map after creation</string>
+   </property>
+   <property name="toolTip">
+    <string>Open map after creation with the default png viewer</string>
    </property>
   </action>
  </widget>
