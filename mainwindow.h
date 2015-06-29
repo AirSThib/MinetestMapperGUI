@@ -52,6 +52,7 @@ private slots:
     void writeProfile(QString profile);
     void readSettings();
     void readProfile(QString profile);
+    bool migrateSettingsProfiles();
 
     void on_browseWorld_clicked();
 

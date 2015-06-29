@@ -7,11 +7,22 @@
 #include <QSettings>
 #include <QDesktopServices>
 
+#if defined(Q_OS_WIN)
+static const QString qSettingsOrganisation("addi");
+static const QString qSettingsApplicationPrefix("Minetestmapper_");
+#else
+static const QString qSettingsOrganisation("minetestmapper");
+static const QString qSettingsApplicationPrefix("");
+#endif
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    #if not defined(Q_OS_WIN)
+    if (!migrateSettingsProfiles())
+        exit(EXIT_FAILURE);
+    #endif
     ui->setupUi(this);
     readSettings();
     readProfile(currentProfile);
@@ -431,20 +442,108 @@ void MainWindow::error(QProcess::ProcessError error)
                           .arg(myProcess->errorString()));
 }
 
+bool MainWindow::migrateSettingsProfiles()
+{
+    QSettings oldSettings("addi", "Minetestmapper");
+    QFile oldSettingsFile(oldSettings.fileName());
+    if (!oldSettingsFile.exists()) return true;
+    QSettings newSettings(qSettingsOrganisation, "Minetestmapper");
+    QFile newSettingsFile(newSettings.fileName());
+
+    QDir oldDir(oldSettings.fileName().section('/', 0, -2));
+    qDebug()<<"Old settings / profile directory "<< oldDir.absolutePath();
+    QDir newDir(newSettings.fileName().section('/', 0, -2));
+    qDebug()<<"New settings / profile directory "<< newDir.absolutePath();
+
+    if (newSettingsFile.exists()) {
+        int ret = QMessageBox::question(this, tr("Migrating settings"),
+                tr("<h1>WARNING</h1> <h2>Migrating settings: both old and new settings found</h2>"
+                        "old settings directory: <i>%1</i><br>"
+                        "new settings directory: <i>%2</i><br>"
+                        "<h2>Migrate old settings anyway ?</h2>This overwrites the new settings, and some or all new profiles<br><br>"
+                        "Delete the old settings files (<i>%1/Minetestmapper*</i>) to avoid this message.")
+                        .arg(oldSettingsFile.fileName()).arg(newSettingsFile.fileName()));
+        if(ret != QMessageBox::Yes) return true;
+    }
+
+
+    QString failureCause;
+    if (!newDir.exists()) {
+        qDebug()<<"Create new settings directory " << newDir.absolutePath();
+        if (!QDir().mkpath(newDir.absolutePath())) {
+            QMessageBox::critical(this, tr("Failed to migrate settings"),
+                     tr("<h1>ERROR</h1> <h2>Failed to migrate settings</h2>"
+                        "Reason: failed to create new settings directory <i>%1</i>")
+                                  .arg(newDir.absolutePath()));
+            return false;
+        }
+    }
+
+    QStringList oldFileNames = oldDir.entryList(QStringList("Minetestmapper_*"));
+    // make sure main config file is last.
+    oldFileNames.append(oldSettingsFile.fileName().section('/', -1, -1));
+    qDebug() << "Migrate settings files: " << oldFileNames;
+    for (int i = 0; i < oldFileNames.size(); ++i) {
+        QString newFileName = oldFileNames[i];
+        newFileName.replace("Minetestmapper_","");
+        QFile oldFile(oldDir.absoluteFilePath(oldFileNames[i]));
+        QFile newFile(newDir.absoluteFilePath(newFileName));
+        if (newFile.exists()) {
+            qDebug()<<"Remove existing settings file " << newFile.fileName();
+            if (!newFile.remove()) {
+                QMessageBox::critical(this, tr("Failed to migrate settings"),
+                         tr("<h1>ERROR</h1> <h2>Failed to migrate settings</h2>"
+                            "Reason: failed to remove existing file <i>%1</i>")
+                                      .arg(newFile.fileName()));
+                return false;
+            }
+        }
+        qDebug()<<"Rename settings file " << oldFile.fileName() << " to " << newFile.fileName();
+        if (!QDir().rename(oldFile.fileName(), newFile.fileName())) {
+            QMessageBox::critical(this, tr("Failed to migrate settings"),
+                     tr("<h1>ERROR</h1> <h2>Failed to migrate settings</h2>"
+                        "Reason: failed to move file <i>%1</i> to <i>%2</i>")
+                                  .arg(oldFile.fileName())
+                                  .arg(newFile.fileName()));
+            return false;
+        }
+        if (oldFile.exists()) {
+            qDebug()<<"Remove old settings file " << oldFile.fileName();
+            if (!oldFile.remove()) {
+                QMessageBox::warning(this, tr("Failed to remove old settings"),
+                         tr("<h1>WARNING</h1> <h2>Failed to remove old settings</h2>"
+                            "Reason: failed to remove file <i>%1</i>")
+                                      .arg(oldFile.fileName()));
+            }
+        }
+    }
+
+    if (oldDir.count() == 2) {
+        qDebug()<<"Remove old directory" << oldDir.absolutePath();
+        if (!oldDir.removeRecursively()) {
+            QMessageBox::warning(this, tr("Failed to remove old settings directory"),
+                     tr("<h1>WARNING</h1> <h2>Failed to remove old settings directory</h2>"
+                        "Reason: failed to remove directory <i>%1</i>")
+                                  .arg(oldDir.absolutePath()));
+        }
+    }
+    return true;
+}
+
 void MainWindow::createProfilesMenu(){
     profileGroup = new QActionGroup(ui->menuChoose_profile);
     profileGroup->setExclusive(true);
 
     connect(profileGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotProfileChanged(QAction *)));
 
-    QSettings settings(QSettings::IniFormat,QSettings::UserScope,"addi", "Minetestmapper_profile_default");
+    QSettings settings(QSettings::IniFormat,QSettings::UserScope,qSettingsOrganisation, qSettingsApplicationPrefix+"profile_default");
     QString profilePath = settings.fileName();
     qDebug()<<"Profile path "<< profilePath;
     QDir dir(profilePath);
     dir.cdUp();
-    QStringList fileNames = dir.entryList(QStringList("Minetestmapper_profile_*.ini"));
+    QStringList fileNames = dir.entryList(QStringList("profile_*.ini"));
     qDebug()<<fileNames;
-    if(fileNames.size()==0)fileNames.append("Minetestmapper_profile_default.ini");
+    if(fileNames.size()==0)fileNames.append("profile_default.ini");
     for (int i = 0; i < fileNames.size(); ++i) {
         // get locale extracted by filename
         QString profile;
@@ -485,7 +584,7 @@ void MainWindow::slotProfileChanged(QAction* action)
 
 void MainWindow::writeSettings()
 {
-    QSettings settings("addi", "Minetestmapper");
+    QSettings settings(qSettingsOrganisation, "Minetestmapper");
 
     settings.beginGroup("MainWindow");
     if(isMaximized()){
@@ -504,7 +603,7 @@ void MainWindow::writeSettings()
 
 void MainWindow::writeProfile(QString profile)
 {
-    QSettings settings(QSettings::IniFormat,QSettings::UserScope,"addi", "Minetestmapper_profile_"+profile);
+    QSettings settings(QSettings::IniFormat,QSettings::UserScope,qSettingsOrganisation, qSettingsApplicationPrefix+"profile_"+profile);
     //todo: check the current profile
 
     settings.beginGroup("Mapper");
@@ -552,7 +651,7 @@ void MainWindow::writeProfile(QString profile)
 
 void MainWindow::readSettings()
 {
-    QSettings settings("addi", "Minetestmapper");
+    QSettings settings(qSettingsOrganisation, "Minetestmapper");
 
     settings.beginGroup("MainWindow");
     if (settings.value("maximized",false).toBool()) {
@@ -574,7 +673,7 @@ void MainWindow::readSettings()
 
 void MainWindow::readProfile(QString profile)
 {
-    QSettings settings(QSettings::IniFormat,QSettings::UserScope,"addi", "Minetestmapper_profile_"+profile);
+    QSettings settings(QSettings::IniFormat,QSettings::UserScope,qSettingsOrganisation, qSettingsApplicationPrefix+"profile_"+profile);
     settings.beginGroup("Mapper");
         //tab1 Genral
         ui->path_World->setText(settings.value("path_World",QDir::homePath()).toString());
