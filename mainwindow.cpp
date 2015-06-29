@@ -390,8 +390,10 @@ void MainWindow::mapperFinisched(int exit)
     ui->button_cancel->setDisabled(true);
     progressBar->setValue(0);
     progressBar->hide();
+    #ifdef Q_OS_WIN
     taskbarButton->clearOverlayIcon();
     taskbarProgress->hide();
+    #endif
     //ui->statusBar->showMessage("Ready");
     if(exit ==0){//mapper finished successfull
         ui->statusBar->showMessage(tr("Finisched :)"),3000);
