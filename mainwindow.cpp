@@ -124,6 +124,10 @@ void MainWindow::changeEvent(QEvent* event)
     loadLanguage(locale);
    }
    break;
+
+   // Ignore other events
+   default:
+     break;
   }
  }
  QMainWindow::changeEvent(event);
