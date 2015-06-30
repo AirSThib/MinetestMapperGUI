@@ -47,6 +47,7 @@ private slots:
     void readError();
     void mapperFinisched(int exit);
     void error(QProcess::ProcessError error);
+    void wrapupMapper();
     void createProfilesMenu();
     void writeSettings();
     void writeProfile(QString profile);

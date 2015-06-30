@@ -408,14 +408,6 @@ QString MainWindow::getOutputFileName()
 
 void MainWindow::mapperFinisched(int exit)
 {
-    ui->button_generate->setDisabled(false);
-    ui->button_cancel->setDisabled(true);
-    progressBar->setValue(0);
-    progressBar->hide();
-    #ifdef Q_OS_WIN
-    taskbarButton->clearOverlayIcon();
-    taskbarProgress->hide();
-    #endif
     //ui->statusBar->showMessage("Ready");
     if(exit ==0){//mapper finished successfull
         ui->statusBar->showMessage(tr("Finisched :)"),3000);
@@ -435,7 +427,9 @@ void MainWindow::mapperFinisched(int exit)
                               .arg(exit)
                               .arg(ui->statusBar->currentMessage()));
     }
+    wrapupMapper();
 }
+
 void MainWindow::error(QProcess::ProcessError error)
 {
     qDebug() <<"Error starting MinetestMapper:"<<error
@@ -447,6 +441,19 @@ void MainWindow::error(QProcess::ProcessError error)
                 "Error Message: <pre>%2</pre><br>")
                           .arg(error)
                           .arg(myProcess->errorString()));
+    wrapupMapper();
+}
+
+void MainWindow::wrapupMapper()
+{
+    ui->button_generate->setDisabled(false);
+    ui->button_cancel->setDisabled(true);
+    progressBar->setValue(0);
+    progressBar->hide();
+    #ifdef Q_OS_WIN
+    taskbarButton->clearOverlayIcon();
+    taskbarProgress->hide();
+    #endif
 }
 
 bool MainWindow::migrateSettingsProfiles()
