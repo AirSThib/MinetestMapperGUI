@@ -187,15 +187,11 @@ void MainWindow::on_button_generate_clicked()
         else return;
 
     }
-    ui->button_generate->setDisabled(true);
-    myProcess = new QProcess(this);
+
     QString appDir =QCoreApplication::applicationDirPath();
     qDebug()<<appDir;
     QDir dir = QDir(appDir);
-    myProcess->setWorkingDirectory(appDir);
-    QString program = appDir+"/mapper/minetestmapper";
-    myProcess->setProgram(program);
-    qDebug()<<imgName;
+
     QStringList arguments;
     arguments           <<"-i" << ui->path_World->text()//"D:\\Programme\\minetest\\worlds\\server_minetest.king-arthur.eu_30000"
                         <<"--output" << imgName //"D:\\Users\\Adrian\\Desktop\\test2.png"
@@ -310,7 +306,8 @@ void MainWindow::on_button_generate_clicked()
             arguments<<"map";
         }
     }
-    myProcess->setArguments(arguments);
+
+    ui->button_generate->setDisabled(true);
 
     if(ui->actionExpert_Mode->isChecked()){
         bool ok;
@@ -320,9 +317,19 @@ void MainWindow::on_button_generate_clicked()
                                                                "The arguments can be removed, modified, or new arguments can be added."),//label
                                                             arguments.join("\n"),//text
                                                             &ok,0);
-        if(ok) myProcess->setArguments(parameters.split("\n"));
+        if (ok) arguments = parameters.split("\n");
+        else {
+            ui->button_generate->setDisabled(false);
+            return;
+        }
     }
 
+    myProcess = new QProcess(this);
+    myProcess->setWorkingDirectory(appDir);
+    QString program = appDir+"/mapper/minetestmapper";
+    myProcess->setProgram(program);
+    qDebug()<<imgName;
+    myProcess->setArguments(arguments);
 
     qDebug()<<myProcess->arguments();
     progressBar->show();
