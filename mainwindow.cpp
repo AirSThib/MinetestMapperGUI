@@ -745,10 +745,11 @@ void MainWindow::readProfile(QString profile)
         ui->path_World->setText(settings.value("path_World",QDir::homePath()).toString());
         ui->path_OutputImage->setText(settings.value("path_OutputImage",QDir::homePath().append("/map.png")).toString());
         ui->backend->setCurrentIndex(settings.value("backend",0).toInt());
-        //on_path_OutputImage_textChanged();
+
         //tab2 Area
         ui->scalefactor->setCurrentIndex(settings.value("scalefactor",0).toInt());
         ui->geometry->setText(settings.value("geometry").toString());
+        ui->geometryWidget->set(settings.value("geometry","").toString());
         ui->checkBox_maxY->setChecked(settings.value("checkBox_maxY",false).toBool());
         ui->checkBox_minY->setChecked(settings.value("checkBox_minY",false).toBool());
         ui->maxY->setValue(settings.value("maxY",0).toInt());
