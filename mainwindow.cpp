@@ -51,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
         exit(EXIT_FAILURE);
     #endif
     ui->setupUi(this);
+    finishUiInitialisation();
     readSettings();
     readProfile(currentProfile);
     progressBar = new QProgressBar(ui->statusBar);
