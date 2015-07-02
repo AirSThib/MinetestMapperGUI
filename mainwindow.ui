@@ -1966,8 +1966,11 @@
                </item>
                <item row="2" column="0">
                 <widget class="QRadioButton" name="tile_chunk">
+                   <property name="toolTip">
+                    <string>A chunk is the unit of map generation. Usually 5x5x5 blocks.</string>
+                   </property>
                  <property name="text">
-                  <string>chunk</string>
+                    <string>chunk-aligned</string>
                  </property>
                 </widget>
                </item>
@@ -1980,8 +1983,11 @@
                </item>
                <item row="1" column="0">
                 <widget class="QRadioButton" name="tile_block">
+                   <property name="toolTip">
+                    <string>A block is 16x16x16 nodes</string>
+                   </property>
                  <property name="text">
-                  <string>block</string>
+                    <string>block-aligned</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -2012,16 +2018,28 @@
               <property name="title">
                <string>arrange</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout_12">
-               <item row="0" column="0">
+                <layout class="QGridLayout" name="gridLayout_12" columnstretch="1,2">
+                 <item row="1" column="0">
                 <widget class="QRadioButton" name="tilecenter">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                  <property name="text">
                   <string>tilecenter</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
+                 <item row="2" column="0">
                 <widget class="QRadioButton" name="tileorigin">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                  <property name="text">
                   <string>tileorigin</string>
                  </property>
@@ -2030,10 +2048,29 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="1" rowspan="2">
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_3">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>Arrange:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1" rowspan="3">
                 <widget class="QGroupBox" name="groupBox_13">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                  <property name="title">
-                  <string>arrange at</string>
+                    <string>at:</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_13">
                   <item row="0" column="0">
@@ -2046,7 +2083,7 @@
                   <item row="1" column="0">
                    <widget class="QRadioButton" name="tiles_world">
                     <property name="text">
-                     <string>world</string>
+                       <string>world center (0,0)</string>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
@@ -2056,7 +2093,7 @@
                   <item row="2" column="0">
                    <widget class="QRadioButton" name="tiles_map">
                     <property name="text">
-                     <string>map</string>
+                       <string>map origin (top-left)</string>
                     </property>
                    </widget>
                   </item>
@@ -2944,6 +2981,70 @@ p, li { white-space: pre-wrap; }
     <hint type="destinationlabel">
      <x>431</x>
      <y>285</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>heightscaleInterval</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>heightscaleIntervalMajor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>124</x>
+     <y>368</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>369</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>heightscaleInterval</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>heightscaleIntervalMinor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>124</x>
+     <y>368</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>369</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sidescaleInterval</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sidescaleIntervalMajor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>95</x>
+     <y>138</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>142</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sidescaleInterval</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sidescaleIntervalMinor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>95</x>
+     <y>138</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>171</y>
     </hint>
    </hints>
   </connection>
