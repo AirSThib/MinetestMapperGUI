@@ -83,6 +83,12 @@ private slots:
 
     void on_actionEdit_heightmap_colors_txt_triggered();
 
+    void on_drawScaleLeft_toggled(bool checked);
+
+    void on_drawScaleTop_toggled(bool checked);
+
+    void on_drawHeightscale_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
     QProgressBar *progressBar;

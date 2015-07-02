@@ -42,6 +42,7 @@ InitStatics::InitStatics(void)
 }
 
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -925,4 +926,30 @@ void MainWindow::on_actionEdit_heightmap_nodes_txt_triggered()
 void MainWindow::on_actionEdit_heightmap_colors_txt_triggered()
 {
     QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(ui->path_HeightmapColors->text()).absoluteFilePath()));
+}
+
+void MainWindow::on_drawScaleLeft_toggled(bool checked)
+{
+    bool state = checked || ui->drawScaleTop->isChecked();
+    ui->sidescaleInterval->setEnabled(state);
+    state = state && ui->sidescaleInterval->isChecked();
+    ui->sidescaleIntervalMajor->setEnabled(state);
+    ui->sidescaleIntervalMinor->setEnabled(state);
+}
+
+void MainWindow::on_drawScaleTop_toggled(bool checked)
+{
+    bool state = checked || ui->drawScaleLeft->isChecked();
+    ui->sidescaleInterval->setEnabled(state);
+    state = state && ui->sidescaleInterval->isChecked();
+    ui->sidescaleIntervalMajor->setEnabled(state);
+    ui->sidescaleIntervalMinor->setEnabled(state);
+}
+
+void MainWindow::on_drawHeightscale_toggled(bool checked)
+{
+    ui->heightscaleInterval->setEnabled(checked);
+    bool state = checked && ui->heightscaleInterval->isChecked();
+    ui->heightscaleIntervalMajor->setEnabled(state);
+    ui->heightscaleIntervalMinor->setEnabled(state);
 }

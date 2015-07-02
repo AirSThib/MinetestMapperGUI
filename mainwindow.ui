@@ -2947,6 +2947,70 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>heightscaleInterval</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>heightscaleIntervalMajor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>124</x>
+     <y>368</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>369</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>heightscaleInterval</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>heightscaleIntervalMinor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>124</x>
+     <y>368</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>369</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sidescaleInterval</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sidescaleIntervalMajor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>95</x>
+     <y>138</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>142</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sidescaleInterval</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sidescaleIntervalMinor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>95</x>
+     <y>138</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>171</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <buttongroups>
   <buttongroup name="geometrymode_size_group"/>
