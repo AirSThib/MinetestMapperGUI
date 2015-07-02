@@ -1,5 +1,6 @@
 #include "geometrywidget.h"
 #include "ui_geometrywidget.h"
+#include "porting.h"
 
 
 QMap<Geometry::Format, QString> Geometry::geometryIdNameMap;
@@ -8,7 +9,7 @@ QMap<QString, Geometry::Format> Geometry::geometryNameIdMap;
 bool Geometry::set(const char *s)
 {
     char sign[2];
-    if (4 == sscanf_s(s," %d , %d : %d , %d", corner[0]+0, corner[0]+1, corner[1]+0, corner[1]+1)) {
+    if (4 == sscanf(s," %d , %d : %d , %d", corner[0]+0, corner[0]+1, corner[1]+0, corner[1]+1)) {
         adjustCorners();
         // Order is important here!
         computeDimensions();
@@ -17,7 +18,7 @@ bool Geometry::set(const char *s)
         //GeometryWidget::setFormat(Corners);
         //todo select correct dropdown entry in widget
     }
-    else if (4 == sscanf_s(s," %d , %d : %d x %d", center+0, center+1, dimension+0, dimension+1)) {
+    else if (4 == sscanf(s," %d , %d : %d x %d", center+0, center+1, dimension+0, dimension+1)) {
         computeCorner0();
         computeCorner1();
         if (adjustCorners()) {
@@ -29,7 +30,7 @@ bool Geometry::set(const char *s)
         //GeometryWidget::setFormat(CornerDimensions);
         //todo select correct dropdown entry in widget
     }
-    else if (4 == sscanf_s(s," %d , %d %c %d %c %d", corner[0]+0, corner[0]+1, sign+0, dimension+0, sign+1, dimension+1)) {
+    else if (4 == sscanf(s," %d , %d %c %d %c %d", corner[0]+0, corner[0]+1, sign+0, dimension+0, sign+1, dimension+1)) {
         for (int i = 0; i < 2; i++)
             if (sign[i] == '-') dimension[i] = -dimension[i];
         computeCenter();
@@ -42,7 +43,7 @@ bool Geometry::set(const char *s)
         //GeometryWidget::setFormat(CornerDimensions);
         //todo select correct dropdown entry in widget
     }
-    else if (4 == sscanf_s(s," %d x %d %c %d %c %d", dimension+0, dimension+1, sign+0, corner[0]+0, sign+1, corner[0]+1)) {
+    else if (4 == sscanf(s," %d x %d %c %d %c %d", dimension+0, dimension+1, sign+0, corner[0]+0, sign+1, corner[0]+1)) {
         for (int i = 0; i < 2; i++)
             if (sign[i] == '-') corner[0][i] = -corner[0][i];
         computeCenter();
@@ -55,7 +56,7 @@ bool Geometry::set(const char *s)
         //GeometryWidget::setFormat(CornerDimensions);
         //todo select correct dropdown entry in widget
     }
-    else if (2 == sscanf_s(s," %d x %d", dimension+0, dimension+1)) {
+    else if (2 == sscanf(s," %d x %d", dimension+0, dimension+1)) {
         center[0] = 0;
         center[1] = 0;
         computeCorner0();
@@ -143,16 +144,16 @@ QString Geometry::getString(Geometry::Format format)
     int n = -1;
     switch (format) {
         case CenterDimensions:
-            n = _snprintf_s(buffer, BUFSIZE, "%d,%d:%dx%d", center[0], center[1], dimension[0], dimension[1]);
+            n = snprintf(buffer, BUFSIZE, "%d,%d:%dx%d", center[0], center[1], dimension[0], dimension[1]);
             //search alternative for snptintf
             break;
         case CornerDimensions:
-            n = _snprintf_s(buffer, BUFSIZE, "%d,%d+%d+%d", corner[0][0], corner[0][1], dimension[0], dimension[1]);
+            n = snprintf(buffer, BUFSIZE, "%d,%d+%d+%d", corner[0][0], corner[0][1], dimension[0], dimension[1]);
             //search alternative for snptintf
             break;
         case Corners:
         default:
-            n = _snprintf_s(buffer, BUFSIZE, "%d,%d:%d,%d", corner[0][0], corner[0][1], corner[1][0], corner[1][1]);
+            n = snprintf(buffer, BUFSIZE, "%d,%d:%d,%d", corner[0][0], corner[0][1], corner[1][0], corner[1][1]);
             //search alternative for snptintf
             break;
     }
