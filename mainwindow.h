@@ -88,6 +88,10 @@ private slots:
     void on_drawScaleTop_toggled(bool checked);
 
     void on_drawHeightscale_toggled(bool checked);
+    
+    void on_tilecenter_clicked();
+
+    void on_tileorigin_clicked();
 
 private:
     Ui::MainWindow *ui;

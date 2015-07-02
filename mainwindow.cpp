@@ -953,3 +953,13 @@ void MainWindow::on_drawHeightscale_toggled(bool checked)
     ui->heightscaleIntervalMajor->setEnabled(state);
     ui->heightscaleIntervalMinor->setEnabled(state);
 }
+
+void MainWindow::on_tilecenter_clicked()
+{
+    ui->tiles_map->setText(tr("map center"));
+}
+
+void MainWindow::on_tileorigin_clicked()
+{
+    ui->tiles_map->setText(tr("map origin (top left)"));
+}
