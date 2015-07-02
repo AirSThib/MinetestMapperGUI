@@ -16,6 +16,31 @@ static const QString qSettingsApplicationPrefix("Minetestmapper_");
 static const QString qSettingsOrganisation("minetestmapper");
 static const QString qSettingsApplicationPrefix("");
 #endif
+static QMap<int, QString> geometryGranularitySymbolic;
+static QMap<QString, int> geometryGranularityNumeric;
+static QMap<int, QString> geometrySizeModeSymbolic;
+static QMap<QString, int> geometrySizeModeNumeric;
+struct InitStatics { InitStatics(void); };
+static const InitStatics initStatics;
+
+InitStatics::InitStatics(void)
+{
+    int n = -1;
+    geometryGranularitySymbolic[n++] = "unspecified";
+    geometryGranularitySymbolic[n++] = "pixel";
+    geometryGranularitySymbolic[n++] = "block";
+    for (int i = -1; i < n; i++)
+        geometryGranularityNumeric[geometryGranularitySymbolic[i]] = i;
+
+    n = -1;
+    geometrySizeModeSymbolic[n++] = "auto";
+    geometrySizeModeSymbolic[n++] = "auto";
+    geometrySizeModeSymbolic[n++] = "fixed";
+    geometrySizeModeSymbolic[n++] = "shrink";
+    for (int i = -1; i < n; i++)
+        geometrySizeModeNumeric[geometrySizeModeSymbolic[i]] = i;
+}
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -45,6 +70,16 @@ MainWindow::MainWindow(QWidget *parent) :
     model->setFilter(QDir::Dirs|QDir::NoDotAndDotDot|QDir::Drives);
     completer->setModel(model);
     ui->path_World->setCompleter(completer);
+}
+
+void MainWindow::finishUiInitialisation(void)
+{
+    ui->geometrymode_granularity_group->setId(ui->geometrymode_pixel, geometryGranularityNumeric["pixel"]);
+    ui->geometrymode_granularity_group->setId(ui->geometrymode_block, geometryGranularityNumeric["block"]);
+
+    ui->geometrymode_size_group->setId(ui->geometrymode_auto, geometrySizeModeNumeric["auto"]);
+    ui->geometrymode_size_group->setId(ui->geometrymode_fixed, geometrySizeModeNumeric["fixed"]);
+    ui->geometrymode_size_group->setId(ui->geometrymode_shrink, geometrySizeModeNumeric["shrink"]);
 }
 
 // we create the language menu entries dynamically, dependent on the existing translations.
@@ -644,7 +679,8 @@ void MainWindow::writeProfile(QString profile)
         settings.setValue("geometry",ui->geometry->text());
         settings.setValue("minY",ui->minY->value());
         settings.setValue("maxY",ui->maxY->value());
-        //todo checkboxes
+        settings.setValue("geometry_granularity",geometryGranularitySymbolic[ui->geometrymode_granularity_group->checkedId()]);
+        settings.setValue("geometry_sizemode",geometrySizeModeSymbolic[ui->geometrymode_size_group->checkedId()]);
 
         //tab3 heightmap
         settings.setValue("generateHeightmap",ui->generateHeightmap->isChecked());
@@ -717,7 +753,14 @@ void MainWindow::readProfile(QString profile)
         ui->checkBox_minY->setChecked(settings.value("checkBox_minY",false).toBool());
         ui->maxY->setValue(settings.value("maxY",0).toInt());
         ui->minY->setValue(settings.value("minY",0).toInt());
-        //todo geometriemode
+        QString granularity = settings.value("geometry_granularity").toString();
+        if (geometryGranularityNumeric.find(granularity) != geometryGranularityNumeric.end())
+            ui->geometrymode_granularity_group->button(geometryGranularityNumeric[granularity])->setChecked(true);
+        // Else post a warning message ??
+        QString sizemode = settings.value("geometry_sizemode").toString();
+        if (geometrySizeModeNumeric.find(sizemode) != geometrySizeModeNumeric.end())
+            ui->geometrymode_size_group->button(geometrySizeModeNumeric[granularity])->setChecked(true);
+        // Else post a warning message ??
 
         //tab3 Heightmap
         ui->generateHeightmap->setChecked(settings.value("generateHeightmap",false).toBool());

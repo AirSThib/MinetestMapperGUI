@@ -93,6 +93,7 @@ private:
     QWinTaskbarButton *taskbarButton;
     QWinTaskbarProgress *taskbarProgress;
     #endif
+    void finishUiInitialisation(void);
 
     // loads a language by the given language shortcur (e.g. de, en)
     void loadLanguage(const QString& rLanguage);

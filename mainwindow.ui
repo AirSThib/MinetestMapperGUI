@@ -198,50 +198,7 @@
         <string>Map-Limit</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
-        <item row="6" column="2">
-         <widget class="QCheckBox" name="geometrymode_block">
-          <property name="toolTip">
-           <string>The requested geometry will be extended so that the map does not contain partial map blocks (of 16x16 nodes each). At least all pixels covered by the geometry will be in the map, but there may be up to 15 more in every direction.</string>
-          </property>
-          <property name="statusTip">
-           <string>round the coodinates to a multiple of 16.</string>
-          </property>
-          <property name="text">
-           <string>block</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QCheckBox" name="checkBox_minY">
-          <property name="text">
-           <string>min-Y</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="2">
-         <widget class="QCheckBox" name="geometrymode_pixel">
-          <property name="toolTip">
-           <string>A map of exactly the requested size is generated (after adjustments due to the 'shrink' flag, or possible adjustments required by the scale factor).</string>
-          </property>
-          <property name="statusTip">
-           <string>interpret the coordinates with pixel granularity.</string>
-          </property>
-          <property name="text">
-           <string>pixel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QCheckBox" name="checkBox_maxY">
-          <property name="statusTip">
-           <string>Specify the upper height limit for the map</string>
-          </property>
-          <property name="text">
-           <string>max-Y</string>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="2">
+        <item row="11" column="4">
          <spacer name="verticalSpacer_5">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -254,20 +211,24 @@
           </property>
          </spacer>
         </item>
-        <item row="7" column="2">
-         <widget class="QCheckBox" name="geometrymode_shrink">
-          <property name="toolTip">
-           <string>Currently, shrinking is done with block granularity, and based on which blocks are in the database. As the database always contains a row or and column of empty, or partially empty blocks at the map edges, there will still be empty pixels at the edges of the map. Use --blockcolor to visualize these empty blocks.</string>
-          </property>
-          <property name="statusTip">
-           <string>Generate a map of at most the requested geometry. Shrink it to the smallest possible size that still includes the same information.</string>
-          </property>
+        <item row="4" column="0">
+         <widget class="QCheckBox" name="checkBox_minY">
           <property name="text">
-           <string>shrink</string>
+           <string>min-Y</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="2">
+        <item row="5" column="0">
+         <widget class="QCheckBox" name="checkBox_maxY">
+          <property name="statusTip">
+           <string>Specify the upper height limit for the map</string>
+          </property>
+          <property name="text">
+           <string>max-Y</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="4">
          <widget class="QSpinBox" name="minY">
           <property name="enabled">
            <bool>false</bool>
@@ -286,17 +247,14 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="2">
-         <widget class="QLineEdit" name="geometry">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
           <property name="text">
-           <string notr="true"/>
-          </property>
-          <property name="placeholderText">
-           <string>e.g. -200,-100:200,200</string>
+           <string>geometry</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="2">
+        <item row="0" column="4">
          <widget class="QComboBox" name="scalefactor">
           <property name="currentText">
            <string notr="true">1:1</string>
@@ -335,34 +293,14 @@
           </property>
          </widget>
         </item>
-        <item row="8" column="2">
-         <widget class="QCheckBox" name="geometrymode_fixed">
-          <property name="toolTip">
-           <string>NOTE: If this flag is used, and no actual geometry is specified, this would result in a maximum-size map (65536 x 65536), which is currently not possible, and will fail, due to a bug in the drawing library.</string>
-          </property>
-          <property name="statusTip">
-           <string>don't reduce the map size. What ever is specified using a geometry option, is what will be draw, even if partly or fully empty.</string>
-          </property>
-          <property name="text">
-           <string>fixed</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>geometry</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
+        <item row="6" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
            <string>geometrymode</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="2">
+        <item row="5" column="4">
          <widget class="QSpinBox" name="maxY">
           <property name="enabled">
            <bool>false</bool>
@@ -381,10 +319,110 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="3">
-         <widget class="QLabel" name="label_3">
+        <item row="6" column="4" rowspan="2">
+         <layout class="QGridLayout" name="gridLayout_10">
+          <item row="1" column="0">
+           <widget class="QRadioButton" name="geometrymode_auto">
+            <property name="text">
+             <string>auto</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">geometrymode_size_group</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QRadioButton" name="geometrymode_block">
+            <property name="toolTip">
+             <string>The requested geometry will be extended so that the map does not contain partial map blocks (of 16x16 nodes each). At least all pixels covered by the geometry will be in the map, but there may be up to 15 more in every direction.</string>
+            </property>
+            <property name="statusTip">
+             <string>round the coodinates to a multiple of 16.</string>
+            </property>
+            <property name="text">
+             <string>block</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">geometrymode_granularity_group</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QRadioButton" name="geometrymode_shrink">
+            <property name="toolTip">
+             <string>Currently, shrinking is done with block granularity, and based on which blocks are in the database. As the database always contains a row or and column of empty, or partially empty blocks at the map edges, there will still be empty pixels at the edges of the map. Use --blockcolor to visualize these empty blocks.</string>
+            </property>
+            <property name="statusTip">
+             <string>Generate a map of at most the requested geometry. Shrink it to the smallest possible size that still includes the same information.</string>
+            </property>
+            <property name="text">
+             <string>shrink</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">geometrymode_size_group</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QRadioButton" name="geometrymode_fixed">
+            <property name="toolTip">
+             <string>NOTE: If this flag is used, and no actual geometry is specified, this would result in a maximum-size map (65536 x 65536), which is currently not possible, and will fail, due to a bug in the drawing library.</string>
+            </property>
+            <property name="statusTip">
+             <string>don't reduce the map size. What ever is specified using a geometry option, is what will be draw, even if partly or fully empty.</string>
+            </property>
+            <property name="text">
+             <string>fixed</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">geometrymode_size_group</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QRadioButton" name="geometrymode_pixel">
+            <property name="toolTip">
+             <string>A map of exactly the requested size is generated (after adjustments due to the 'shrink' flag, or possible adjustments required by the scale factor).</string>
+            </property>
+            <property name="statusTip">
+             <string>interpret the coordinates with pixel granularity.</string>
+            </property>
+            <property name="text">
+             <string>pixel</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">geometrymode_granularity_group</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="4">
+         <widget class="QLineEdit" name="geometry">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;geometry-syntax&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;help&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string notr="true"/>
+          </property>
+          <property name="placeholderText">
+           <string>e.g. -200,-100:200,200</string>
           </property>
          </widget>
         </item>
@@ -2616,7 +2654,7 @@ p, li { white-space: pre-wrap; }
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>528</x>
+     <x>414</x>
      <y>141</y>
     </hint>
    </hints>
@@ -2660,12 +2698,12 @@ p, li { white-space: pre-wrap; }
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>164</y>
+     <x>74</x>
+     <y>206</y>
     </hint>
     <hint type="destinationlabel">
-     <x>166</x>
-     <y>166</y>
+     <x>224</x>
+     <y>208</y>
     </hint>
    </hints>
   </connection>
@@ -2676,12 +2714,12 @@ p, li { white-space: pre-wrap; }
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>73</x>
-     <y>190</y>
+     <x>84</x>
+     <y>232</y>
     </hint>
     <hint type="destinationlabel">
-     <x>167</x>
-     <y>192</y>
+     <x>225</x>
+     <y>234</y>
     </hint>
    </hints>
   </connection>
@@ -2778,22 +2816,6 @@ p, li { white-space: pre-wrap; }
     <hint type="destinationlabel">
      <x>491</x>
      <y>298</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>label_3</sender>
-   <signal>linkActivated(QString)</signal>
-   <receiver>helpBrowser</receiver>
-   <slot>scrollToAnchor(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>533</x>
-     <y>131</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>603</x>
-     <y>136</y>
     </hint>
    </hints>
   </connection>
@@ -2926,4 +2948,8 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
  </connections>
+ <buttongroups>
+  <buttongroup name="geometrymode_size_group"/>
+  <buttongroup name="geometrymode_granularity_group"/>
+ </buttongroups>
 </ui>
