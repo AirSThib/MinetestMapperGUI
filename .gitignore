@@ -17,3 +17,12 @@
 
 #Qt Translator Files
 *.qm
+
+# Other
+Makefile
+MinetestMapperGui
+*.o
+moc_mainwindow.cpp
+qrc_minetestmappergui.cpp
+ui_mainwindow.h
+
