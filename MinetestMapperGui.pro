@@ -19,6 +19,7 @@ SOURCES += main.cpp\
     geometrywidget.cpp
 
 HEADERS  += mainwindow.h \
+    porting.h \
     colorlineedit.h \
     geometrywidget.h
 
