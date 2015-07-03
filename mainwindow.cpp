@@ -761,7 +761,7 @@ void MainWindow::readProfile(QString profile)
         // Else post a warning message ??
         QString sizemode = settings.value("geometry_sizemode").toString();
         if (geometrySizeModeNumeric.find(sizemode) != geometrySizeModeNumeric.end())
-            ui->geometrymode_size_group->button(geometrySizeModeNumeric[granularity])->setChecked(true);
+            ui->geometrymode_size_group->button(geometrySizeModeNumeric[sizemode])->setChecked(true);
         // Else post a warning message ??
 
         //tab3 Heightmap
