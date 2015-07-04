@@ -13,12 +13,13 @@ class Geometry
 {
 public:
     enum Format {
+        FormatKeep = -2,        // Special value used when setting geometry: don't change current format.
         FormatUnknown = -1,
         FormatNone = 0,
         CenterDimensions = 1,
         CornerDimensions = 2,
         Corners = 3,
-	FormatCustom,
+        FormatCustom,
         FormatMax
     };
     static QMap<Geometry::Format, QString> geometryIdNameMap;
@@ -62,12 +63,12 @@ public:
     explicit GeometryWidget(QWidget *parent = 0);
     ~GeometryWidget();
 
-    bool set(const chat *gstr) { return _set(gstr); }
-    bool set(const QString gstr) { return _set(gstr.toStdString().c_str()); }
-    bool setDefault(void) { return _set(""); }
-    void setFormat(int i) { setFormat(static_cast<Geometry::Format>(i)); }
-    void setFormat(Geometry::Format t);
-    void setFormat(QString s) { setFormat(Geometry::formatId(s)); }
+    bool set(const char *geomStr, Geometry::Format format = Geometry::FormatUnknown);
+    bool set(const QString geomStr, Geometry::Format format = Geometry::FormatUnknown) { return set(geomStr.toStdString().c_str(), format); }
+    bool setDefault(void) { return set(""); }
+    bool setFormat(int i) { setFormat(static_cast<Geometry::Format>(i)); }
+    bool setFormat(Geometry::Format format);
+    bool setFormat(QString formatStr) { setFormat(Geometry::formatId(formatStr)); }
     Geometry::Format getFormat(void);
     QString getFormatStr(void) { return Geometry::formatName(getFormat()); }
     QString getGeometry();
@@ -95,7 +96,6 @@ private:
     QSpinBox *m_ui_C0D_dimension[2];
     QSpinBox *m_ui_C01_corner[2][2];
 
-    bool _set(const char *gstr);
 };
 
 #endif // GEOMETRYWIDGET_H
