@@ -13,10 +13,13 @@ struct ConfigSettings
 {
     QString mapperPath;
 
+    static QString versionUnknown;
+    static QString versionError;
     static QStringList getMapperExecutables(void);
     static QString getDefaultMapperExecutable(void);
     static const QString defaultMapperExecutableName;
     static QStringList predefinedMapperLocations;
+    static QString getMapperVersion(const QString &mapperBinary, QWidget *parent = NULL);
 
 private:
     struct InitStatics { InitStatics(void); };

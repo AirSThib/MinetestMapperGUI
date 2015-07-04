@@ -12,6 +12,9 @@
 const QString ConfigSettings::defaultMapperExecutableName("minetestmapper");
 QStringList ConfigSettings::predefinedMapperLocations;
 
+QString ConfigSettings::versionUnknown("(unknown)");
+QString ConfigSettings::versionError("(error)");
+
 ConfigSettings::InitStatics::InitStatics()
 {
     #ifndef Q_OS_WIN
@@ -104,6 +107,39 @@ void ConfigDialog::on_browseMapper_clicked()
             ui->path_Minetestmapper->setCurrentText(fileName);
         }
     }
+}
+
+QString ConfigSettings::getMapperVersion(const QString &mapperBinary, QWidget *parent)
+{
+    QProcess mapperProcess(parent);
+    mapperProcess.setProgram(mapperBinary);
+    mapperProcess.setArguments(QStringList("--version"));
+    mapperProcess.start();
+    if (!mapperProcess.waitForStarted(1000)) {
+        mapperProcess.terminate();
+        return ConfigSettings::versionError;
+    }
+    if (!mapperProcess.waitForFinished(1000)) {
+        mapperProcess.terminate();
+        if (!mapperProcess.waitForFinished(1000)) {
+            mapperProcess.kill();
+        }
+        return ConfigSettings::versionError;
+    }
+
+    QByteArray dataRaw;
+    QString data;
+    dataRaw = mapperProcess.readAllStandardError();
+    data = QString(dataRaw).trimmed();
+    if (data.contains("unrecognized option")) {
+        return ConfigSettings::versionUnknown;
+    }
+    dataRaw = mapperProcess.readAllStandardOutput();
+    data = QString(dataRaw).trimmed();
+    if (!data.contains("Version-ID:")) {
+        return ConfigSettings::versionUnknown;
+    }
+    return data.replace(QRegularExpression(".*Version-ID: *"),"");
 }
 
 QString ConfigSettings::getDefaultMapperExecutable(void)

@@ -227,6 +227,8 @@ void MainWindow::on_button_generate_clicked()
         return;
     }
 
+    qDebug() << QString("Minetestmapper version: ") + ConfigSettings::getMapperVersion(mapperBinary.fileName(), this);
+
     QDir worldPath = QDir(ui->path_World->text());
     if(!worldPath.exists()||worldPath.path()=="."||worldPath.path()=="/"){
         QMessageBox::critical(this, tr("no input world selected"),
