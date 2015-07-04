@@ -769,22 +769,5 @@
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>geometryFormat</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>geometryStackedWidget</receiver>
-   <slot>setCurrentIndex(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>159</x>
-     <y>14</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>155</x>
-     <y>38</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

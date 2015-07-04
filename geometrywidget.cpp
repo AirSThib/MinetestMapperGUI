@@ -5,6 +5,7 @@
 
 QMap<Geometry::Format, QString> Geometry::geometryIdNameMap;
 QMap<QString, Geometry::Format> Geometry::geometryNameIdMap;
+const Geometry::InitStatics initStatics;
 
 Geometry::InitStatics::InitStatics()
 {
@@ -13,17 +14,32 @@ Geometry::InitStatics::InitStatics()
     Geometry::geometryIdNameMap[Geometry::CenterDimensions] = "center-dimensions";
     Geometry::geometryIdNameMap[Geometry::CornerDimensions] = "corner-dimensions";
     Geometry::geometryIdNameMap[Geometry::Corners] = "corners";
-    Geometry::geometryIdNameMap[Geometry::Custom] = "custom";
+    Geometry::geometryIdNameMap[Geometry::FormatCustom] = "custom";
 
     for (int i = Geometry::FormatNone; i < Geometry::FormatMax; i++)
         Geometry::geometryNameIdMap[Geometry::geometryIdNameMap[static_cast<Format>(i)]] = static_cast<Format>(i);
 
 }
 
+const QString &Geometry::formatName(Geometry::Format id)
+{
+    if (id < Geometry::FormatNone || id >= Geometry::FormatMax)
+        id = Geometry::FormatUnknown;
+    return geometryIdNameMap[id];
+}
+
+Geometry::Format Geometry::formatId(const QString &name)
+{
+    if (geometryNameIdMap.find(name) == geometryNameIdMap.end())
+        return Geometry::FormatUnknown;
+    else
+        return geometryNameIdMap[name];
+}
+
 Geometry::Format Geometry::set(const char *s)
 {
     char sign[2];
-    Geometry::Format result
+    Geometry::Format result;
     if (4 == sscanf(s," %d , %d : %d , %d", corner[0]+0, corner[0]+1, corner[1]+0, corner[1]+1)) {
         adjustCorners();
         // Order is important here!
@@ -41,7 +57,7 @@ Geometry::Format Geometry::set(const char *s)
         }
         result = CenterDimensions;
     }
-    else if (4 == sscanf(s," %d , %d %c %d %c %d", corner[0]+0, corner[0]+1, sign+0, dimension+0, sign+1, dimension+1)) {
+    else if (6 == sscanf(s," %d , %d %c %d %c %d", corner[0]+0, corner[0]+1, sign+0, dimension+0, sign+1, dimension+1)) {
         for (int i = 0; i < 2; i++)
             if (sign[i] == '-') dimension[i] = -dimension[i];
         computeCenter();
@@ -53,7 +69,7 @@ Geometry::Format Geometry::set(const char *s)
         }
         result = CornerDimensions;
     }
-    else if (4 == sscanf(s," %d x %d %c %d %c %d", dimension+0, dimension+1, sign+0, corner[0]+0, sign+1, corner[0]+1)) {
+    else if (6 == sscanf(s," %d x %d %c %d %c %d", dimension+0, dimension+1, sign+0, corner[0]+0, sign+1, corner[0]+1)) {
         for (int i = 0; i < 2; i++)
             if (sign[i] == '-') corner[0][i] = -corner[0][i];
         computeCenter();
@@ -78,7 +94,6 @@ Geometry::Format Geometry::set(const char *s)
         result = CenterDimensions;
     }
     else {
-        ui->geometry_FormatCustom->setText(s);
         result = FormatCustom;
     }
     return result;
@@ -217,10 +232,10 @@ static void setQWidgetValue(Q *object, V value)
 
 // Is it possible to parameterize the method ??
 template<class Q, class I>
-static void setQWidgetIndex(Q *object, I index)
+static void setQWidgetCurrentIndex(Q *object, I index)
 {
     object->blockSignals(true);
-    object->setIndex(index);
+    object->setCurrentIndex(index);
     object->blockSignals(false);
 }
 
@@ -230,6 +245,11 @@ GeometryWidget::GeometryWidget(QWidget *parent) :
     ui(new Ui::GeometryWidget)
 {
     ui->setupUi(this);
+
+    // Make sure the following two correspond:
+    setQWidgetCurrentIndex(ui->geometryFormat, 0);
+    ui->geometryStackedWidget->setCurrentIndex(0);
+
     m_ui_CD_center[0] = ui->geometry_CD_CenterX;
     m_ui_CD_center[1] = ui->geometry_CD_CenterY;
     m_ui_CD_dimension[0] = ui->geometry_CD_DimensionX;
@@ -254,19 +274,23 @@ GeometryWidget::~GeometryWidget()
 bool GeometryWidget::set(const char *geomStr, Geometry::Format requestedFormat)
 {
     Geometry geometry;
-    Geometry:Format parsedFormat;
+    Geometry::Format parsedFormat;
     if (!geomStr || !*geomStr) {
         geometry.setMax();
-        setQWidgetIndex(ui->geometryStackedWidget, Geometry::FormatNone);
+        setQWidgetCurrentIndex(ui->geometryFormat, Geometry::FormatNone);
+        ui->geometryStackedWidget->setCurrentIndex(Geometry::FormatNone);
+        parsedFormat = Geometry::FormatNone;
     }
     else if (Geometry::FormatCustom == (parsedFormat = geometry.set(geomStr))) {
         // TODO (??): verify if string contains '#' or '.' - if not, the problem is serious...
         if (requestedFormat != Geometry::FormatKeep) {
-            ui->geometry_FormatCustom->setText(geomStr);
-            setQWidgetIndex(ui->geometryStackedWidget, parsedFormat);
+            ui->geometry_custom->setText(geomStr);
+            setQWidgetCurrentIndex(ui->geometryFormat, parsedFormat);
+            ui->geometryStackedWidget->setCurrentIndex(parsedFormat);
         }
         return false;
     }
+    ui->geometry_custom->setText(geomStr);
     for (int i=0; i<2; i++) {
         setQWidgetValue(m_ui_CD_center[i], geometry.center[i]);
         setQWidgetValue(m_ui_CD_dimension[i], geometry.dimension[i]);
@@ -277,17 +301,21 @@ bool GeometryWidget::set(const char *geomStr, Geometry::Format requestedFormat)
     }
     if (requestedFormat == Geometry::FormatKeep)
         {} // Don't change anything
-    if (requestedFormat == Geometry::FormatUnknown)
-        setQWidgetIndex(ui->geometryStackedWidget, parsedFormat);
-    else
-        setQWidgetIndex(ui->geometryStackedWidget, requestedFormat);
+    if (requestedFormat == Geometry::FormatUnknown) {
+        setQWidgetCurrentIndex(ui->geometryFormat, parsedFormat);
+        ui->geometryStackedWidget->setCurrentIndex(parsedFormat);
+    }
+    else {
+        setQWidgetCurrentIndex(ui->geometryFormat, requestedFormat);
+        ui->geometryStackedWidget->setCurrentIndex(requestedFormat);
+    }
     return true;
 }
 
 QString GeometryWidget::getGeometry()
 {
     Geometry geometry;
-    int format = ui->geometryStackedWidget->currentIndex();
+    Geometry::Format format = getFormat();
     switch (format) {
         case Geometry::FormatNone:
         case Geometry::CenterDimensions:
@@ -312,22 +340,22 @@ QString GeometryWidget::getGeometry()
                 m_ui_C01_corner[1][1]->value());
             break;
         case Geometry::FormatCustom:
-            return ui->geometry_FormatCustom->text();
+            return ui->geometry_custom->text();
         default:
             return "";
             break;
     }
-    return geometry.getString();
+    return geometry.getString(format);
 }
 
 bool GeometryWidget::setFormat(Geometry::Format format)
 {
     if (format < Geometry::FormatNone || format >= Geometry::FormatMax)
         return false;
-    Geometry::Format prevFormat = static_cast<Geometry::Format>(ui->geometryStackedWidget->currentIndex());
+    Geometry::Format prevFormat = getFormat();
     if (format != prevFormat)
         // Update all invisible widgets
-        return set(getGeometry(), format));
+        return set(getGeometry(), format);
     else
         return true;
 }
@@ -343,7 +371,11 @@ Geometry::Format GeometryWidget::getFormat(void)
 
 void GeometryWidget::on_geometryFormat_currentIndexChanged(int index)
 {
-    setFormat(index);
+    if (!setFormat(index)) {
+        QMessageBox::warning(this, tr("Invalid or unrecognised geometry"),
+                 tr("<h1>WARNING</h1> <h2>Geometry string was not recognised</h2>"
+                    "The given geometry is either invalid, or only supported in <i>custom</i> mode."));
+    }
 }
 
 void GeometryWidget::on_geometry_CD_CenterX_editingFinished()
@@ -428,5 +460,9 @@ void GeometryWidget::on_geometry_C0D_DimensionY_editingFinished()
 
 void GeometryWidget::on_geometry_parse_clicked()
 {
-    set(ui->geometry_custom->text());
+    if (!set(ui->geometry_custom->text())) {
+        QMessageBox::warning(this, tr("Invalid or unrecognised geometry"),
+                 tr("<h1>WARNING</h1> <h2>Geometry string was not recognised</h2>"
+                    "The given geometry is either invalid, or only supported in <i>custom</i> mode."));
+    }
 }

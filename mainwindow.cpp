@@ -251,7 +251,7 @@ void MainWindow::on_button_generate_clicked()
     if(ui->backend->currentIndex() !=0){
         arguments <<"--backend" << ui->backend->currentText();
     }
-    if(ui->geometry->getGeometry() !=""){
+    if(ui->geometry->getFormat() != Geometry::FormatNone && ui->geometry->getGeometry() !=""){
         arguments <<"--geometry" << ui->geometry->getGeometry().trimmed();
     }
 
@@ -678,6 +678,7 @@ void MainWindow::writeProfile(QString profile)
         //tab2 area
         settings.setValue("scalefactor",ui->scalefactor->currentIndex());
         settings.setValue("geometry",ui->geometry->getGeometry());
+        settings.setValue("geometry_format",ui->geometry->getFormatStr());
         settings.setValue("minY",ui->minY->value());
         settings.setValue("maxY",ui->maxY->value());
         settings.setValue("geometry_granularity",geometryGranularitySymbolic[ui->geometrymode_granularity_group->checkedId()]);
@@ -750,6 +751,7 @@ void MainWindow::readProfile(QString profile)
         //tab2 Area
         ui->scalefactor->setCurrentIndex(settings.value("scalefactor",0).toInt());
         ui->geometry->set(settings.value("geometry").toString());
+        ui->geometry->setFormat(settings.value("geometry_format").toString());
         ui->checkBox_maxY->setChecked(settings.value("checkBox_maxY",false).toBool());
         ui->checkBox_minY->setChecked(settings.value("checkBox_minY",false).toBool());
         ui->maxY->setValue(settings.value("maxY",0).toInt());

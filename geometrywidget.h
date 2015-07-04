@@ -40,8 +40,8 @@ public:
     Geometry(const QString &s) { set(s); }
     Geometry(const Geometry &g);
 
-    bool set(const char *s);
-    bool set(const QString &s) { return set(s.toStdString().c_str()); }
+    Geometry::Format set(const char *s);
+    Geometry::Format set(const QString &s) { return set(s.toStdString().c_str()); }
     void setMax(void);
     void setCenterDimensions(int cx, int cy, int dx, int dy);
     void setCornerDimensions(int cx, int cy, int dx, int dy);
@@ -66,9 +66,9 @@ public:
     bool set(const char *geomStr, Geometry::Format format = Geometry::FormatUnknown);
     bool set(const QString geomStr, Geometry::Format format = Geometry::FormatUnknown) { return set(geomStr.toStdString().c_str(), format); }
     bool setDefault(void) { return set(""); }
-    bool setFormat(int i) { setFormat(static_cast<Geometry::Format>(i)); }
+    bool setFormat(int i) { return setFormat(static_cast<Geometry::Format>(i)); }
     bool setFormat(Geometry::Format format);
-    bool setFormat(QString formatStr) { setFormat(Geometry::formatId(formatStr)); }
+    bool setFormat(QString formatStr) { return setFormat(Geometry::formatId(formatStr)); }
     Geometry::Format getFormat(void);
     QString getFormatStr(void) { return Geometry::formatName(getFormat()); }
     QString getGeometry();
