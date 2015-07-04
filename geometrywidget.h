@@ -29,7 +29,7 @@ public:
     static Geometry::Format formatId(const QString &name);
     struct InitStatics { InitStatics(void); };
     static const InitStatics initStatics;
-    friend class InitStatics;
+    friend struct InitStatics;
 
     int center[2];
     int dimension[2];
