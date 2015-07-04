@@ -15,12 +15,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    colorlineedit.cpp
+    colorlineedit.cpp \
+    configdialog.cpp
 
 HEADERS  += mainwindow.h \
-    colorlineedit.h
+    colorlineedit.h \
+    configdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    configdialog.ui
 
 RESOURCES += \
     minetestmappergui.qrc
