@@ -2,6 +2,8 @@
 #define CONFIGDIALOG_H
 
 #include <QDialog>
+#include <QMap>
+#include <QString>
 
 
 namespace Ui {
@@ -15,11 +17,17 @@ struct ConfigSettings
 
     static QString versionUnknown;
     static QString versionError;
+    static QString optionsVersionKey;
+    static QString optionsTreeKey;
+    static QString optionsTreeMinetest;
+    static QString optionsTreeRogier5;
+
     static QStringList getMapperExecutables(void);
     static QString getDefaultMapperExecutable(void);
     static const QString defaultMapperExecutableName;
     static QStringList predefinedMapperLocations;
     static QString getMapperVersion(const QString &mapperBinary, QWidget *parent = NULL);
+    static QMap<QString, QString> getMapperOptions(const QString &mapperBinary, QWidget *parent = NULL);
 
 private:
     struct InitStatics { InitStatics(void); };

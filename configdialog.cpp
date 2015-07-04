@@ -14,6 +14,10 @@ QStringList ConfigSettings::predefinedMapperLocations;
 
 QString ConfigSettings::versionUnknown("(unknown)");
 QString ConfigSettings::versionError("(error)");
+QString ConfigSettings::optionsVersionKey("(version)");
+QString ConfigSettings::optionsTreeKey("(github-tree)");
+QString ConfigSettings::optionsTreeMinetest("minetest");
+QString ConfigSettings::optionsTreeRogier5("Rogier5");
 
 ConfigSettings::InitStatics::InitStatics()
 {
@@ -140,6 +144,50 @@ QString ConfigSettings::getMapperVersion(const QString &mapperBinary, QWidget *p
         return ConfigSettings::versionUnknown;
     }
     return data.replace(QRegularExpression(".*Version-ID: *"),"");
+}
+
+
+// Also store the deduced github source tree and the version in the list
+QMap<QString, QString> ConfigSettings::getMapperOptions(const QString &mapperBinary, QWidget *parent)
+{
+    QRegularExpression optionRegex("^(|-[a-zA-Z].*)(--[a-zA-Z0-9][a-zA-Z0-9-_]+)( *(.*[^ \t\r\n]))?[ \t\r\n]*$");
+    QMap<QString, QString> options;
+    QProcess mapperProcess(parent);
+    mapperProcess.setProgram(mapperBinary);
+    mapperProcess.setArguments(QStringList("--help"));
+    mapperProcess.start();
+    if (!mapperProcess.waitForStarted(1000)) {
+        mapperProcess.terminate();
+        return options;
+    }
+    if (!mapperProcess.waitForFinished(1000)) {
+        mapperProcess.terminate();
+        if (!mapperProcess.waitForFinished(1000)) {
+            mapperProcess.kill();
+        }
+        return options;
+    }
+
+    QByteArray helpTextRaw = mapperProcess.readAllStandardOutput();
+    QStringList helpText = QString(helpTextRaw).trimmed().split("\n");
+    for (int i = 0; i < helpText.count(); i++) {
+        QString helpLine = helpText[i].trimmed();
+        if (helpLine.contains("Color format: '#000000'")) {
+            options[ConfigSettings::optionsTreeKey] = ConfigSettings::optionsTreeMinetest;
+        }
+        else if (helpLine.contains("X and Y coordinate formats:")) {
+            options[ConfigSettings::optionsTreeKey] = ConfigSettings::optionsTreeRogier5;
+        }
+        QString option = helpLine;
+        option.replace(optionRegex, "\\2");
+        if (option[1] != '-' || option.contains(' ')) continue;
+        QString arguments = helpLine;
+        arguments.replace(optionRegex, "\\4");
+        if (arguments == helpLine) arguments = "";
+        options[option] = arguments;
+    }
+    options[ConfigSettings::optionsVersionKey] = getMapperVersion(mapperBinary, parent);
+    return options;
 }
 
 QString ConfigSettings::getDefaultMapperExecutable(void)
