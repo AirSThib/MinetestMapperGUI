@@ -18,6 +18,7 @@ public:
         CenterDimensions = 1,
         CornerDimensions = 2,
         Corners = 3,
+	FormatCustom,
         FormatMax
     };
     static QMap<Geometry::Format, QString> geometryIdNameMap;
@@ -25,6 +26,9 @@ public:
 
     static const QString &formatName(Geometry::Format id);
     static Geometry::Format formatId(const QString &name);
+    struct InitStatics { InitStatics(void); };
+    static const InitStatics initStatics;
+    friend class InitStatics;
 
     int center[2];
     int dimension[2];
@@ -58,7 +62,9 @@ public:
     explicit GeometryWidget(QWidget *parent = 0);
     ~GeometryWidget();
 
-    void set(const QString gstr);
+    bool set(const chat *gstr) { return _set(gstr); }
+    bool set(const QString gstr) { return _set(gstr.toStdString().c_str()); }
+    bool setDefault(void) { return _set(""); }
     void setFormat(int i) { setFormat(static_cast<Geometry::Format>(i)); }
     void setFormat(Geometry::Format t);
     void setFormat(QString s) { setFormat(Geometry::formatId(s)); }
@@ -77,6 +83,8 @@ private slots:
     void on_geometry_CD_DimensionX_editingFinished();
     void on_geometry_CD_DimensionY_editingFinished();
 
+    void on_geometry_parse_clicked();
+
 private:
     Ui::GeometryWidget *ui;
 
@@ -86,6 +94,8 @@ private:
     QSpinBox *m_ui_C0D_corner[2];
     QSpinBox *m_ui_C0D_dimension[2];
     QSpinBox *m_ui_C01_corner[2][2];
+
+    bool _set(const char *gstr);
 };
 
 #endif // GEOMETRYWIDGET_H

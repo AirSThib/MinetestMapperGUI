@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>412</width>
-    <height>58</height>
+    <height>68</height>
    </rect>
   </property>
   <layout class="QVBoxLayout">
@@ -28,6 +28,9 @@
    </property>
    <item>
     <widget class="QComboBox" name="geometryFormat">
+     <property name="toolTip">
+      <string>Try to convert to a non-custom format</string>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -51,10 +54,18 @@
        <string>Two Corners</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Custom</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item>
     <widget class="QStackedWidget" name="geometryStackedWidget">
+     <property name="currentIndex">
+      <number>4</number>
+     </property>
      <widget class="QWidget" name="page_0"/>
      <widget class="QWidget" name="page_1">
       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,4,0,4,1,0,0,4,0,4">
@@ -597,6 +608,54 @@
          </property>
          <property name="maximum">
           <number>32767</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_4">
+      <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,0">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLineEdit" name="geometry_custom">
+         <property name="text">
+          <string notr="true"/>
+         </property>
+         <property name="placeholderText">
+          <string>e.g. -200,-100:200,200</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="geometry_parse">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Try to convert to another</string>
+         </property>
+         <property name="statusTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>Parse</string>
          </property>
         </widget>
        </item>

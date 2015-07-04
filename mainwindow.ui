@@ -198,39 +198,7 @@
         <string>Map-Limit</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
-        <item row="13" column="4">
-         <spacer name="verticalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="7" column="4">
-         <widget class="QSpinBox" name="maxY">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="toolTip">
-           <string>Nodes higher than this level will not be drawn. This can be used to avoid floating islands or floating artefacts from abscuring the world below.</string>
-          </property>
-          <property name="statusTip">
-           <string>Specify the upper height limit for the map</string>
-          </property>
-          <property name="minimum">
-           <number>-30000</number>
-          </property>
-          <property name="maximum">
-           <number>30000</number>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="4">
+        <item row="5" column="4">
          <widget class="QSpinBox" name="minY">
           <property name="enabled">
            <bool>false</bool>
@@ -249,7 +217,7 @@
           </property>
          </widget>
         </item>
-        <item row="8" column="4" rowspan="2">
+        <item row="7" column="4" rowspan="2">
          <layout class="QGridLayout" name="gridLayout_10">
           <item row="1" column="0">
            <widget class="QRadioButton" name="geometrymode_auto">
@@ -356,24 +324,14 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="4">
-         <widget class="QLineEdit" name="geometry">
-          <property name="text">
-           <string notr="true"/>
-          </property>
-          <property name="placeholderText">
-           <string>e.g. -200,-100:200,200</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
+        <item row="5" column="0">
          <widget class="QCheckBox" name="checkBox_minY">
           <property name="text">
            <string>min-Y</string>
           </property>
          </widget>
         </item>
-        <item row="7" column="0">
+        <item row="6" column="0">
          <widget class="QCheckBox" name="checkBox_maxY">
           <property name="statusTip">
            <string>Specify the upper height limit for the map</string>
@@ -422,7 +380,7 @@
           </property>
          </widget>
         </item>
-        <item row="8" column="0">
+        <item row="7" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
            <string>geometrymode</string>
@@ -430,7 +388,39 @@
          </widget>
         </item>
         <item row="1" column="4" rowspan="2">
-         <widget class="GeometryWidget" name="geometryWidget" native="true"/>
+         <widget class="GeometryWidget" name="geometry" native="true"/>
+        </item>
+        <item row="12" column="4">
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="6" column="4">
+         <widget class="QSpinBox" name="maxY">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="toolTip">
+           <string>Nodes higher than this level will not be drawn. This can be used to avoid floating islands or floating artefacts from abscuring the world below.</string>
+          </property>
+          <property name="statusTip">
+           <string>Specify the upper height limit for the map</string>
+          </property>
+          <property name="minimum">
+           <number>-30000</number>
+          </property>
+          <property name="maximum">
+           <number>30000</number>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

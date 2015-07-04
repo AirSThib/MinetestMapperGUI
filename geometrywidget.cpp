@@ -6,6 +6,11 @@
 QMap<Geometry::Format, QString> Geometry::geometryIdNameMap;
 QMap<QString, Geometry::Format> Geometry::geometryNameIdMap;
 
+Geometry::InitStatics::InitStatics()
+{
+    ### Complete
+}
+
 bool Geometry::set(const char *s)
 {
     char sign[2];
@@ -70,7 +75,8 @@ bool Geometry::set(const char *s)
         //todo select correct dropdown entry in widget
     }
     else {
-        //GeometryWidget::setFormat(FormatNone);
+	ui->geometry_FormatCustom->setText(s);
+        //GeometryWidget::setFormat(FormatCustom);
         //todo
         return false;
 
@@ -145,16 +151,15 @@ QString Geometry::getString(Geometry::Format format)
     switch (format) {
         case CenterDimensions:
             n = snprintf(buffer, BUFSIZE, "%d,%d:%dx%d", center[0], center[1], dimension[0], dimension[1]);
-            //search alternative for snptintf
             break;
         case CornerDimensions:
             n = snprintf(buffer, BUFSIZE, "%d,%d+%d+%d", corner[0][0], corner[0][1], dimension[0], dimension[1]);
-            //search alternative for snptintf
             break;
+	case FormatCustom:
+	    return ui->geometry_FormatCustom->text();
         case Corners:
         default:
             n = snprintf(buffer, BUFSIZE, "%d,%d:%d,%d", corner[0][0], corner[0][1], corner[1][0], corner[1][1]);
-            //search alternative for snptintf
             break;
     }
     if (n > 0 && n < BUFSIZE)
@@ -238,17 +243,22 @@ GeometryWidget::~GeometryWidget()
     delete ui;
 }
 
-void GeometryWidget::set(const QString gstr)
+// Return true when parsing succeeded
+//        false when not (string was still accepted, mode was set to custom)
+bool GeometryWidget::_set(const char *gstr)
 {
     Geometry g;
-    if (gstr=="") {
+    bool result = true;
+    if (!gstr || !*gstr) {
         g.setMax();
     }
     else if (!g.set(gstr)) {
+	result = false;
+	// TODO (??): verify if string contains '#' or '.' - if not, the problem is serious...
+	####### Move this to mainwindow...
         QMessageBox::warning(this, tr("Failure Loading Settings"),
                              tr("WARNING: Failed to parse the geometry string<br>"
                                 "geometry string: <i>%1</i>").arg(gstr));
-        g.setMax();
     }
     for (int i=0; i<2; i++) {
         setQWidgetValue(m_ui_CD_center[i], g.center[i]);
@@ -258,6 +268,7 @@ void GeometryWidget::set(const QString gstr)
         setQWidgetValue(m_ui_C01_corner[0][i], g.corner[0][i]);
         setQWidgetValue(m_ui_C01_corner[1][i], g.corner[1][i]);
     }
+    return result;
 }
 
 QString GeometryWidget::getGeometry()
@@ -297,11 +308,16 @@ QString GeometryWidget::getGeometry()
 void GeometryWidget::setFormat(Geometry::Format format)
 {
     if (format < Geometry::FormatNone || format >= Geometry::FormatMax)
-        {} //Exception ???
+        { return; } //Exception ???
     Geometry::Format prevFormat = static_cast<Geometry::Format>(m_ui_stack->currentIndex());
     if (format != prevFormat) {
-        set(getGeometry());
-    m_ui_stack->setCurrentIndex(format);
+        if (!set(getGeometry())) {
+	    ####### Print a dialog & revert to FormatCustom...
+	    m_ui_stack->setCurrentIndex(Geoemtry::FormatCustom);
+	}
+	else {
+	    m_ui_stack->setCurrentIndex(format);
+	}
     }
 }
 
@@ -396,4 +412,9 @@ void GeometryWidget::on_geometry_C0D_DimensionY_editingFinished()
         ui->geometry_C0D_DimensionY->setValue(32767 + 1 - corner);
     else if (corner + dimension - 1 < -32768)
         ui->geometry_C0D_DimensionY->setValue(-32768 + 1 - corner);
+}
+
+void GeometryWidget::on_geometry_parse_clicked()
+{
+    set(ui->geometry_custom->text());
 }
