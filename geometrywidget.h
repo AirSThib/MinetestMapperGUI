@@ -49,10 +49,10 @@ public:
     void setCorners(int c0x, int c0y, int c1x, int c1y);
     QString getString(Geometry::Format format = Geometry::FormatNone);
 private:
-    QRegularExpression corners = QRegularExpression("^(-?\\d*),(-?\\d*):(-?\\d*),(-?\\d*)$");
-    QRegularExpression centerDimension = QRegularExpression("^(-?\\d*),(-?\\d*):-?(\\d*)x-?(\\d*)$");
-    QRegularExpression cornerDimension = QRegularExpression("^(-?\\d*)[,x](-?\\d*)[+-](-?\\d*)[+-](-?\\d*)$");
-    QRegularExpression centerDimensionSimple = QRegularExpression("^(\\d*)x(\\d*)$");
+    QRegularExpression corners = QRegularExpression("(-?\\d*),(-?\\d*):(-?\\d*),(-?\\d*)");
+    QRegularExpression centerDimension = QRegularExpression("(-?\\d*),(-?\\d*):-?(\\d*)x-?(\\d*)");
+    QRegularExpression cornerDimension = QRegularExpression("(-?\\d*)[,x](-?\\d*)[+-](-?\\d*)[+-](-?\\d*)");
+    QRegularExpression centerDimensionSimple = QRegularExpression("(\\d*)x(\\d*)");
     bool adjustCorners(void);
     void computeCorner0(void);
     void computeCorner1(void);

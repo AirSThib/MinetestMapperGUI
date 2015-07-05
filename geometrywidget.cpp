@@ -72,8 +72,8 @@ Geometry::Format Geometry::set(QString str)
     }
     else if((match = cornerDimension.match(str)).hasMatch()){
         qDebug()<<"format is CornerDimensions";
-        corner[0][0]    = match.captured(1).toInt();
-        corner[0][1]    = match.captured(2).toInt();
+        corner[0][0] = match.captured(1).toInt();
+        corner[0][1] = match.captured(2).toInt();
         dimension[0] = match.captured(3).toInt();
         dimension[1] = match.captured(4).toInt();
         computeCenter();
