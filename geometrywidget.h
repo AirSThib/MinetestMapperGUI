@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QtWidgets>
+#include <QRegularExpression>
+
 class Geometry;
 class GeometryWidget;
 namespace Ui {
@@ -40,14 +42,17 @@ public:
     Geometry(const QString &s) { set(s); }
     Geometry(const Geometry &g);
 
-    Geometry::Format set(const char *s);
-    Geometry::Format set(const QString &s) { return set(s.toStdString().c_str()); }
+    Geometry::Format set(QString str);
     void setMax(void);
     void setCenterDimensions(int cx, int cy, int dx, int dy);
     void setCornerDimensions(int cx, int cy, int dx, int dy);
     void setCorners(int c0x, int c0y, int c1x, int c1y);
     QString getString(Geometry::Format format = Geometry::FormatNone);
 private:
+    QRegularExpression corners = QRegularExpression("^(-?\\d*),(-?\\d*):(-?\\d*),(-?\\d*)$");
+    QRegularExpression centerDimension = QRegularExpression("^(-?\\d*),(-?\\d*):-?(\\d*)x-?(\\d*)$");
+    QRegularExpression cornerDimension = QRegularExpression("^(-?\\d*)[,x](-?\\d*)[+-](-?\\d*)[+-](-?\\d*)$");
+    QRegularExpression centerDimensionSimple = QRegularExpression("^(\\d*)x(\\d*)$");
     bool adjustCorners(void);
     void computeCorner0(void);
     void computeCorner1(void);
@@ -63,8 +68,7 @@ public:
     explicit GeometryWidget(QWidget *parent = 0);
     ~GeometryWidget();
 
-    bool set(const char *geomStr, Geometry::Format format = Geometry::FormatUnknown);
-    bool set(const QString geomStr, Geometry::Format format = Geometry::FormatUnknown) { return set(geomStr.toStdString().c_str(), format); }
+    bool set(const QString geomStr, Geometry::Format format = Geometry::FormatUnknown); //{ return set(geomStr.toStdString().c_str(), format); }
     bool setDefault(void) { return set(""); }
     bool setFormat(int i) { return setFormat(static_cast<Geometry::Format>(i)); }
     bool setFormat(Geometry::Format format);

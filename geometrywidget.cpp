@@ -36,18 +36,32 @@ Geometry::Format Geometry::formatId(const QString &name)
         return geometryNameIdMap[name];
 }
 
-Geometry::Format Geometry::set(const char *s)
+Geometry::Format Geometry::set(QString str)
 {
-    char sign[2];
-    Geometry::Format result;
-    if (4 == sscanf(s," %d , %d : %d , %d", corner[0]+0, corner[0]+1, corner[1]+0, corner[1]+1)) {
+    qDebug()<<"Trying to detect format of "<<str;
+    QRegularExpressionMatch match;
+    if(str.isEmpty()){
+        qDebug()<<"format is FormatNone";
+        return FormatNone;
+    }
+    else if((match =corners.match(str)).hasMatch()) {
+        qDebug()<<"format is Corners";
+        corner[0][0] = match.captured(1).toInt();
+        corner[0][1] = match.captured(2).toInt();
+        corner[1][0] = match.captured(3).toInt();
+        corner[1][1] = match.captured(4).toInt();
         adjustCorners();
         // Order is important here!
         computeDimensions();
         computeCenter();
-        result = Corners;
+        return Geometry::Corners;
     }
-    else if (4 == sscanf(s," %d , %d : %d x %d", center+0, center+1, dimension+0, dimension+1)) {
+    else if((match =centerDimension.match(str)).hasMatch()){
+        qDebug()<<"format is CenterDimensions";
+        center[0]    = match.captured(1).toInt();
+        center[1]    = match.captured(2).toInt();
+        dimension[0] = match.captured(3).toInt();
+        dimension[1] = match.captured(4).toInt();
         computeCorner0();
         computeCorner1();
         if (adjustCorners()) {
@@ -55,11 +69,14 @@ Geometry::Format Geometry::set(const char *s)
             computeDimensions();
             computeCenter();
         }
-        result = CenterDimensions;
+        return Geometry::CenterDimensions;
     }
-    else if (6 == sscanf(s," %d , %d %c %d %c %d", corner[0]+0, corner[0]+1, sign+0, dimension+0, sign+1, dimension+1)) {
-        for (int i = 0; i < 2; i++)
-            if (sign[i] == '-') dimension[i] = -dimension[i];
+    else if((match = cornerDimension.match(str)).hasMatch()){
+        qDebug()<<"format is CornerDimensions";
+        corner[0][0]    = match.captured(1).toInt();
+        corner[0][1]    = match.captured(2).toInt();
+        dimension[0] = match.captured(3).toInt();
+        dimension[1] = match.captured(4).toInt();
         computeCenter();
         computeCorner1();
         if (adjustCorners()) {
@@ -67,23 +84,14 @@ Geometry::Format Geometry::set(const char *s)
             computeDimensions();
             computeCenter();
         }
-        result = CornerDimensions;
+        return Geometry::CornerDimensions;
     }
-    else if (6 == sscanf(s," %d x %d %c %d %c %d", dimension+0, dimension+1, sign+0, corner[0]+0, sign+1, corner[0]+1)) {
-        for (int i = 0; i < 2; i++)
-            if (sign[i] == '-') corner[0][i] = -corner[0][i];
-        computeCenter();
-        computeCorner1();
-        if (adjustCorners()) {
-            // Order is important here!
-            computeDimensions();
-            computeCenter();
-        }
-        result = CornerDimensions;
-    }
-    else if (2 == sscanf(s," %d x %d", dimension+0, dimension+1)) {
+    else if((match = centerDimensionSimple.match(str)).hasMatch()){
+        qDebug()<<"format is CenterDimensions with center =0,0";
         center[0] = 0;
         center[1] = 0;
+        dimension[0] = match.captured(1).toInt();
+        dimension[1] = match.captured(2).toInt();
         computeCorner0();
         computeCorner1();
         if (adjustCorners()) {
@@ -91,14 +99,14 @@ Geometry::Format Geometry::set(const char *s)
             computeDimensions();
             computeCenter();
         }
-        result = CenterDimensions;
+        return Geometry::CenterDimensions;
     }
     else {
-        result = FormatCustom;
+        qDebug()<<"Warning: Could not parse format of string: "<<str;
+        return Geometry::FormatCustom;
     }
-    return result;
-}
 
+}
 void Geometry::setMax(void)
 {
     for (int i=0; i<2; i++) {
@@ -159,27 +167,35 @@ void Geometry::setCorners(int c0x, int c0y, int c1x, int c1y)
 
 QString Geometry::getString(Geometry::Format format)
 {
-    #define BUFSIZE 1024
-    char buffer[BUFSIZE];
-    buffer[0] = '\0';
-    int n = -1;
     switch (format) {
         case CenterDimensions:
-            n = snprintf(buffer, BUFSIZE, "%d,%d:%dx%d", center[0], center[1], dimension[0], dimension[1]);
+            if(center[0]==0 && center[1] ==0)
+                return QString("%1x%2")
+                        .arg(dimension[0])
+                        .arg(dimension[1]);
+            return QString("%1,%2:%3x%4")
+                    .arg(center[0])
+                    .arg(center[1])
+                    .arg(dimension[0])
+                    .arg(dimension[1]);
             break;
         case CornerDimensions:
-            n = snprintf(buffer, BUFSIZE, "%d,%d+%d+%d", corner[0][0], corner[0][1], dimension[0], dimension[1]);
+            return QString("%1,%2+%3+%4")
+                    .arg(corner[0][0])
+                    .arg(corner[0][1])
+                    .arg(dimension[0])
+                    .arg(dimension[1]);
             break;
         case Corners:
         default:
-            n = snprintf(buffer, BUFSIZE, "%d,%d:%d,%d", corner[0][0], corner[0][1], corner[1][0], corner[1][1]);
+            return QString("%1,%2+%3+%4")
+                    .arg(corner[0][0])
+                    .arg(corner[0][1])
+                    .arg(corner[1][0])
+                    .arg(corner[1][1]);
             break;
     }
-    if (n > 0 && n < BUFSIZE)
-        return QString(buffer);
-    else
-        return QString();
-    #undef BUFSIZE
+
 }
 
 void Geometry::computeCorner0(void)
@@ -268,14 +284,13 @@ GeometryWidget::~GeometryWidget()
 {
     delete ui;
 }
-
 // Return true when parsing succeeded
 //        false when not (string was still accepted, mode was set to custom)
-bool GeometryWidget::set(const char *geomStr, Geometry::Format requestedFormat)
+bool GeometryWidget::set(const QString geomStr, Geometry::Format requestedFormat)
 {
     Geometry geometry;
     Geometry::Format parsedFormat;
-    if (!geomStr || !*geomStr) {
+    if (geomStr.isEmpty()) {
         geometry.setMax();
         setQWidgetCurrentIndex(ui->geometryFormat, Geometry::FormatNone);
         ui->geometryStackedWidget->setCurrentIndex(Geometry::FormatNone);
