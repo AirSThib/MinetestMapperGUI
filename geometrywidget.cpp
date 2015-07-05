@@ -1,6 +1,5 @@
 #include "geometrywidget.h"
 #include "ui_geometrywidget.h"
-#include "porting.h"
 
 
 QMap<Geometry::Format, QString> Geometry::geometryIdNameMap;
