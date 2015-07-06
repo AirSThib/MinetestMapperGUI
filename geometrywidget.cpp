@@ -187,7 +187,7 @@ QString Geometry::getString(Geometry::Format format)
             break;
         case Corners:
         default:
-            return QString("%1,%2+%3+%4")
+            return QString("%1,%2:%3,%4")
                     .arg(corner[0][0])
                     .arg(corner[0][1])
                     .arg(corner[1][0])
