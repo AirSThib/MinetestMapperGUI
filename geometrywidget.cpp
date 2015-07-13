@@ -85,20 +85,39 @@ Geometry::Format Geometry::set(QString str)
         }
         return Geometry::CornerDimensions;
     }
-    else if((match = centerDimensionSimple.match(str)).hasMatch()){
-        qDebug()<<"format is CenterDimensions with center =0,0";
-        center[0] = 0;
-        center[1] = 0;
-        dimension[0] = match.captured(1).toInt();
-        dimension[1] = match.captured(2).toInt();
-        computeCorner0();
-        computeCorner1();
-        if (adjustCorners()) {
-            // Order is important here!
-            computeDimensions();
-            computeCenter();
+    else if((match = cornerDimensionAlternate.match(str)).hasMatch()){
+        qDebug() << "format is <width>x<height>[<+|-xoffset><+|-yoffset>]";
+        if(match.lastCapturedIndex() ==2){
+            qDebug() << "format is CenterDimensions with center =0,0";
+            center[0] = 0;
+            center[1] = 0;
+            dimension[0] = match.captured(1).toInt();
+            dimension[1] = match.captured(2).toInt();
+            computeCorner0();
+            computeCorner1();
+            if (adjustCorners()) {
+                // Order is important here!
+                computeDimensions();
+                computeCenter();
+            }
+            return Geometry::CenterDimensions;
         }
-        return Geometry::CenterDimensions;
+        else if(match.lastCapturedIndex() ==4){
+            qDebug() << "format is CornerDimensions";
+            corner[0][0] = match.captured(3).toInt();
+            corner[0][1] = match.captured(4).toInt();
+            dimension[0] = match.captured(1).toInt();
+            dimension[1] = match.captured(2).toInt();
+            computeCenter();
+            computeCorner1();
+            if (adjustCorners()) {
+                // Order is important here!
+                computeDimensions();
+                computeCenter();
+            }
+            return Geometry::CornerDimensions;
+        }
+        else return Geometry::FormatCustom;
     }
     else {
         qDebug()<<"Warning: Could not parse format of string: "<<str;
