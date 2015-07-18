@@ -198,37 +198,7 @@
         <string>Map-Limit</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
-        <item row="11" column="4">
-         <spacer name="verticalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="4" column="0">
-         <widget class="QCheckBox" name="checkBox_minY">
-          <property name="text">
-           <string>min-Y</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QCheckBox" name="checkBox_maxY">
-          <property name="statusTip">
-           <string>Specify the upper height limit for the map</string>
-          </property>
-          <property name="text">
-           <string>max-Y</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="4">
+        <item row="5" column="4">
          <widget class="QSpinBox" name="minY">
           <property name="enabled">
            <bool>false</bool>
@@ -247,79 +217,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>geometry</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="4">
-         <widget class="QComboBox" name="scalefactor">
-          <property name="currentText">
-           <string notr="true">1:1</string>
-          </property>
-          <item>
-           <property name="text">
-            <string notr="true">1:1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string notr="true">1:2</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string notr="true">1:4</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string notr="true">1:8</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string notr="true">1:16</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>scalefactor</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_8">
-          <property name="text">
-           <string>geometrymode</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="4">
-         <widget class="QSpinBox" name="maxY">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="toolTip">
-           <string>Nodes higher than this level will not be drawn. This can be used to avoid floating islands or floating artefacts from abscuring the world below.</string>
-          </property>
-          <property name="statusTip">
-           <string>Specify the upper height limit for the map</string>
-          </property>
-          <property name="minimum">
-           <number>-30000</number>
-          </property>
-          <property name="maximum">
-           <number>30000</number>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="4" rowspan="2">
+        <item row="7" column="4" rowspan="2">
          <layout class="QGridLayout" name="gridLayout_10">
           <item row="1" column="0">
            <widget class="QRadioButton" name="geometrymode_auto">
@@ -416,13 +314,111 @@
           </item>
          </layout>
         </item>
-        <item row="1" column="4">
-         <widget class="QLineEdit" name="geometry">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
           <property name="text">
-           <string notr="true"/>
+           <string>geometry</string>
           </property>
-          <property name="placeholderText">
-           <string>e.g. -200,-100:200,200</string>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QCheckBox" name="checkBox_minY">
+          <property name="text">
+           <string>min-Y</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QCheckBox" name="checkBox_maxY">
+          <property name="statusTip">
+           <string>Specify the upper height limit for the map</string>
+          </property>
+          <property name="text">
+           <string>max-Y</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QComboBox" name="scalefactor">
+          <property name="currentText">
+           <string notr="true">1:1</string>
+          </property>
+          <item>
+           <property name="text">
+            <string notr="true">1:1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string notr="true">1:2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string notr="true">1:4</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string notr="true">1:8</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string notr="true">1:16</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>scalefactor</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>geometrymode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4" rowspan="2">
+         <widget class="GeometryWidget" name="geometry" native="true"/>
+        </item>
+        <item row="12" column="4">
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="6" column="4">
+         <widget class="QSpinBox" name="maxY">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="toolTip">
+           <string>Nodes higher than this level will not be drawn. This can be used to avoid floating islands or floating artefacts from abscuring the world below.</string>
+          </property>
+          <property name="statusTip">
+           <string>Specify the upper height limit for the map</string>
+          </property>
+          <property name="minimum">
+           <number>-30000</number>
+          </property>
+          <property name="maximum">
+           <number>30000</number>
           </property>
          </widget>
         </item>
@@ -2578,6 +2574,12 @@ p, li { white-space: pre-wrap; }
    <slots>
     <slot>selectColor()</slot>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>GeometryWidget</class>
+   <extends>QWidget</extends>
+   <header>geometrywidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
