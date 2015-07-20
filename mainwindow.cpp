@@ -856,11 +856,11 @@ void MainWindow::on_actionAbout_MinetestMapperGUI_triggered()
              tr("<h1>About MinetestMapperGUI</h1>"
                 "The <b>MinetestMapper Gui</b> is written by addi.<br />"
                 "It is licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution 3.0 Unported License</a>.<br>"
-                "The current version is %1.%2.%3. <br>"
+                "The current version is %1. <br>"
                 "The sourcecode is aviable on <a href='https://bitbucket.org/adrido/minetestmappergui/'>Bitbucket</a>.<br>"
                 "You may also want to read the <a href='https://forum.minetest.net/viewtopic.php?f=14&t=12139'>Minetest forum thread</a>.<br><br>"
                 "<b>Thanks to:</b><br>"
-                "McKrustenkaese for his great icon").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_BUILD));
+                "McKrustenkaese for his great icon").arg(GIT_VERSION));
 }
 
 

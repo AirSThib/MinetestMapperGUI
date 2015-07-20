@@ -31,20 +31,26 @@ RESOURCES += \
 TRANSLATIONS = languages/gui_de.ts\
                languages/gui_en.ts
 
-#Application version
-VERSION_MAJOR = 0
-VERSION_MINOR = 4
-VERSION_BUILD = 3
 
-DEFINES += "VERSION_MAJOR=$$VERSION_MAJOR"\
-       "VERSION_MINOR=$$VERSION_MINOR"\
-       "VERSION_BUILD=$$VERSION_BUILD"
+GIT_VERSION = $$system(git --git-dir $$PWD/.git --work-tree $$PWD describe --always --tags)
+#something like 0.4.2-55-g123c456
+isEmpty(GIT_VERSION) {
+    GIT_VERSION = 0.5.0
+}
+# Turns describe output like 0.4.2-55-g652c397 into "0.4.2.55.123c456"
+GIT_VERSION ~= s/-/"."
+GIT_VERSION ~= s/g/""
 
-#Target version
-VERSION = $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_BUILD}
+DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
+
+VERSION = $$GIT_VERSION
+win32 {
+    VERSION ~= s/\.[a-f0-9]{6,}//
+    #something like 0.4.2.55
+}
 
 RC_ICONS = images/icon.ico
-RC_LANG = 0x0407
+RC_LANG = 0x04b0
 
 QMAKE_TARGET_PRODUCT = "Minetest Mappger GUI"
 QMAKE_TARGET_DESCRIPTION = "Graphical user interface for MinetestMapper"
