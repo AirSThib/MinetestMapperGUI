@@ -17,6 +17,7 @@
 #include <QWinTaskbarButton>
 #endif
 
+#include "configdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    // Interaction with config dialog
+    void closeConfigDialog(void);
+    void updateConfigSettings(const ConfigSettings &newSettings);
 
 protected:
     void closeEvent(QCloseEvent* event);
@@ -93,6 +98,8 @@ private slots:
 
     void on_tileorigin_clicked();
 
+    void on_actionPreferences_triggered();
+
 private:
     Ui::MainWindow *ui;
     QProgressBar *progressBar;
@@ -103,6 +110,9 @@ private:
     QWinTaskbarButton *taskbarButton;
     QWinTaskbarProgress *taskbarProgress;
     #endif
+    ConfigSettings currentSettings;
+    ConfigDialog *configDialog;
+
     void finishUiInitialisation(void);
 
     // loads a language by the given language shortcur (e.g. de, en)

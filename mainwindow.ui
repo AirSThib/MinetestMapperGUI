@@ -2279,6 +2279,7 @@
     <addaction name="separator"/>
     <addaction name="actionEdit_heightmap_nodes_txt"/>
     <addaction name="actionEdit_heightmap_colors_txt"/>
+    <addaction name="actionPreferences"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -2562,6 +2563,11 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="toolTip">
     <string>Open map after creation with the default png viewer</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>&amp;Preferences</string>
    </property>
   </action>
  </widget>

@@ -22,7 +22,7 @@
 Makefile
 MinetestMapperGui
 *.o
-moc_mainwindow.cpp
-qrc_minetestmappergui.cpp
-ui_mainwindow.h
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
 

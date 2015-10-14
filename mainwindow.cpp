@@ -9,6 +9,8 @@
 #include <QCompleter>
 #include <QDirModel>
 
+#include "configdialog.h"
+
 #if defined(Q_OS_WIN)
 static const QString qSettingsOrganisation("addi");
 static const QString qSettingsApplicationPrefix("Minetestmapper_");
@@ -45,7 +47,8 @@ InitStatics::InitStatics(void)
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    configDialog(NULL)
 {
     #ifndef Q_OS_WIN
     if (!migrateSettingsProfiles())
@@ -191,11 +194,41 @@ void MainWindow::changeEvent(QEvent* event)
 
 MainWindow::~MainWindow()
 {
+    if (configDialog) {
+        delete configDialog;
+        configDialog = NULL;
+    }
     delete ui;
 }
 
 void MainWindow::on_button_generate_clicked()
 {
+
+    QFile mapperBinary;
+    if (currentSettings.mapperPath == "")
+        mapperBinary.setFileName(ConfigSettings::getDefaultMapperExecutable());
+    else
+        mapperBinary.setFileName(currentSettings.mapperPath);
+    if (!mapperBinary.exists()) {
+        if (currentSettings.mapperPath == "")
+            QMessageBox::critical(this, tr("Minetestmapper not found"),
+                     tr("ERROR: No minetestmapper executable could not be found<br><br>"
+                        "Please configure one (Edit->Preferences)"));
+        else
+            QMessageBox::critical(this, tr("Minetestmapper not found"),
+                     tr("ERROR: Configured minetestmapper executable (%1) could not be found<br><br>"
+                        "Please configure one (Edit->Preferences)").arg(currentSettings.mapperPath));
+        return;
+    } else if (!(mapperBinary.permissions() & QFileDevice::ExeUser)) {
+        QMessageBox::critical(this, tr("Minetestmapper not executable"),
+                 tr("ERROR: The configured minetestmapper (%1) is not executable"
+                    "Please configure a valid minetestmapper executable (Edit->Preferences)")
+                    .arg(mapperBinary.fileName()));
+        return;
+    }
+
+    qDebug() << QString("Minetestmapper version: ") + ConfigSettings::getMapperVersion(mapperBinary.fileName(), this);
+
     QDir worldPath = QDir(ui->path_World->text());
     if(!worldPath.exists()||worldPath.path()=="."||worldPath.path()=="/"){
         QMessageBox::critical(this, tr("no input world selected"),
@@ -372,9 +405,10 @@ void MainWindow::on_button_generate_clicked()
     }
 
     myProcess = new QProcess(this);
+    #ifdef Q_OS_WIN
     myProcess->setWorkingDirectory(appDir);
-    QString program = appDir+"/mapper/minetestmapper";
-    myProcess->setProgram(program);
+    #endif
+    myProcess->setProgram(mapperBinary.fileName());
     qDebug()<<imgName;
     myProcess->setArguments(arguments);
 
@@ -672,6 +706,10 @@ void MainWindow::writeProfile(QString profile)
     //todo: check the current profile
 
     settings.beginGroup("Mapper");
+        //'currentSettings'
+        settings.setValue("path_minetestmapper", currentSettings.mapperPath);
+
+        //tab1 General
         settings.setValue("path_OutputImage", ui->path_OutputImage->text());
         settings.setValue("path_World", ui->path_World->text());
         settings.setValue("backend",ui->backend->currentIndex());
@@ -744,6 +782,9 @@ void MainWindow::readProfile(QString profile)
 {
     QSettings settings(QSettings::IniFormat,QSettings::UserScope,qSettingsOrganisation, qSettingsApplicationPrefix+"profile_"+profile);
     settings.beginGroup("Mapper");
+        //'currentSettings'
+        currentSettings.mapperPath = settings.value("path_minetestmapper").toString();
+
         //tab1 Genral
         ui->path_World->setText(settings.value("path_World",QDir::homePath()).toString());
         ui->path_OutputImage->setText(settings.value("path_OutputImage",QDir::homePath().append("/map.png")).toString());
@@ -965,3 +1006,35 @@ void MainWindow::on_tileorigin_clicked()
 {
     ui->tiles_map->setText(tr("map origin (top left)"));
 }
+
+void MainWindow::on_actionPreferences_triggered()
+{
+    if (!configDialog) {
+        configDialog = new ConfigDialog(currentSettings, this, this);
+        configDialog->show();
+    } else {
+        configDialog->show();
+        configDialog->activateWindow();
+    }
+}
+
+void MainWindow::closeConfigDialog(void)
+{
+    if (configDialog) {
+        delete configDialog;
+        configDialog = NULL;
+    }
+}
+
+void MainWindow::updateConfigSettings(const ConfigSettings &newSettings)
+{
+    if (newSettings.mapperPath != currentSettings.mapperPath) {
+        // Update all 'auto' paths (colors files, ...) ???
+        // (currently there are none, but in the future,
+        //  colors files could be searched for relative to the minetestmapper path.
+        //  If the mapper path changes, the paths of the possible colors files
+        //  may change as well
+    }
+    currentSettings = newSettings;
+}
+
