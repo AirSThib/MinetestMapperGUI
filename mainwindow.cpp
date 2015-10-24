@@ -4,20 +4,12 @@
 #include <qstringlist.h>
 #include <QDebug>
 #include <QFileDialog>
-#include <QSettings>
 #include <QDesktopServices>
 #include <QCompleter>
 #include <QDirModel>
 
 #include "configdialog.h"
 
-#if defined(Q_OS_WIN)
-static const QString qSettingsOrganisation("addi");
-static const QString qSettingsApplicationPrefix("Minetestmapper_");
-#else
-static const QString qSettingsOrganisation("minetestmapper");
-static const QString qSettingsApplicationPrefix("");
-#endif
 static QMap<int, QString> geometryGranularitySymbolic;
 static QMap<QString, int> geometryGranularityNumeric;
 static QMap<int, QString> geometrySizeModeSymbolic;
@@ -43,8 +35,6 @@ InitStatics::InitStatics(void)
         geometrySizeModeNumeric[geometrySizeModeSymbolic[i]] = i;
 }
 
-
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -54,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     if (!migrateSettingsProfiles())
         exit(EXIT_FAILURE);
     #endif
+
     ui->setupUi(this);
     finishUiInitialisation();
     readSettings();
@@ -253,7 +244,6 @@ void MainWindow::on_button_generate_clicked()
     QDir imgPath = QFileInfo(imgName).absoluteDir();
     if(!imgPath.exists())
     {
-        qDebug()<<"Ordner Existiert nicht";
         int ret = QMessageBox::question(this, tr("the directory does not exist"),
                  tr("The directory <i>%1</i> does not exist. <br><br>"
                     "Should it be created?")
@@ -540,12 +530,17 @@ void MainWindow::wrapupMapper()
     #endif
 }
 
+
+/*
+Todo: Move migrateSettingsProfiles into an other program/script,
+      because it needs only to run once (eg. after installation); not every startup.
+*/
 bool MainWindow::migrateSettingsProfiles()
 {
     QSettings oldSettings("addi", "Minetestmapper");
     QFile oldSettingsFile(oldSettings.fileName());
     if (!oldSettingsFile.exists()) return true;
-    QSettings newSettings(qSettingsOrganisation, "Minetestmapper");
+    QSettings newSettings;
     QFile newSettingsFile(newSettings.fileName());
 
     QDir oldDir(oldSettings.fileName().section('/', 0, -2));
@@ -634,38 +629,40 @@ void MainWindow::createProfilesMenu(){
 
     connect(profileGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotProfileChanged(QAction *)));
 
-    QSettings settings(QSettings::IniFormat,QSettings::UserScope,qSettingsOrganisation, qSettingsApplicationPrefix+"profile_default");
-    QString profilePath = settings.fileName();
-    qDebug()<<"Profile path "<< profilePath;
-    QDir dir(profilePath);
-    dir.cdUp();
-    QStringList fileNames = dir.entryList(QStringList("profile_*.ini"));
-    qDebug()<<fileNames;
-    if(fileNames.size()==0)fileNames.append("profile_default.ini");
-    for (int i = 0; i < fileNames.size(); ++i) {
-        // get locale extracted by filename
-        QString profile;
-        profile = fileNames[i]; // "gui_de.qm"
-        profile.truncate(profile.lastIndexOf('.')); // "gui_de"
-        profile.remove(0, profile.lastIndexOf('_') + 1); // "de"
+    #if QT_VERSION >=0x050500
+        //if using Qt version >= 5.5.0;
+        QDir dir = QDir(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation).append("/profiles/"));
 
-       // QString lang = QLocale::languageToString(QLocale(locale).language());
-       // QIcon ico(QString("%1/%2.png").arg(m_langPath).arg(locale));
+    #else
+        //Qt 5.4 or less
+        QSettings dummySettings(QSettings::IniFormat, QSettings::UserScope,QCoreApplication::organizationName(),"/profiles/default");
 
-        QAction *action = new QAction(profile, this);
+        QDir dir = QFileInfo(dummySettings.fileName()).absoluteDir();
+    #endif
+    QStringList fileNames = dir.entryList(QStringList("*.ini"));
+
+    qDebug()<<"found the Profiles"<< fileNames<< "in"<<dir.absolutePath();
+
+    if(fileNames.size()==0){
+        fileNames.append("default");//if nothing found create default profile
+    }
+    foreach (QString file, fileNames) {
+        QFileInfo fi(file);
+        QString name = fi.completeBaseName();
+
+        QAction *action = new QAction(name, this);
         action->setCheckable(true);
-        action->setData(profile);
+        action->setData(name);
 
         ui->menuChoose_profile->addAction(action);
         profileGroup->addAction(action);
 
-        // set default translators and language checked
-        if (currentProfile == profile)
+        // check if this profile the selected profile
+        if (currentProfile == name)
         {
             action->setChecked(true);
         }
     }
-
 }
 
 // Called every time, when a menu entry of the profile menu is called
@@ -675,15 +672,11 @@ void MainWindow::slotProfileChanged(QAction* action)
         //writeProfile(currentProfile);
         currentProfile = action->data().toString();
         readProfile(currentProfile);
-        // load the language dependant on the action content
-        //ui->menuLanguage->setIcon(action->icon());
     }
 }
 
 void MainWindow::writeSettings()
 {
-    QSettings settings(qSettingsOrganisation, "Minetestmapper");
-
     settings.beginGroup("MainWindow");
     if(isMaximized()){
         settings.setValue("maximized", isMaximized());
@@ -700,64 +693,77 @@ void MainWindow::writeSettings()
     settings.endGroup();
 }
 
-void MainWindow::writeProfile(QString profile)
+void MainWindow::writeProfile(QString strProfile)
 {
-    QSettings settings(QSettings::IniFormat,QSettings::UserScope,qSettingsOrganisation, qSettingsApplicationPrefix+"profile_"+profile);
-    //todo: check the current profile
+    //QSettings::setDefaultFormat(QSettings::IniFormat);
+    //QSettings profile;
 
-    settings.beginGroup("Mapper");
+    //looks odd, but it constructs the correct settingsfile
+    QSettings profile(QSettings::IniFormat, QSettings::UserScope,QCoreApplication::organizationName(),"/profiles/"+strProfile);
+    qDebug()<<"Write profile"<< strProfile<<"to:"<<profile.fileName();
+
+    profile.beginGroup("Mapper");
         //'currentSettings'
-        settings.setValue("path_minetestmapper", currentSettings.mapperPath);
+        profile.setValue("path_minetestmapper", currentSettings.mapperPath);
+    profile.endGroup();
 
-        //tab1 General
-        settings.setValue("path_OutputImage", ui->path_OutputImage->text());
-        settings.setValue("path_World", ui->path_World->text());
-        settings.setValue("backend",ui->backend->currentIndex());
+    profile.beginGroup("general");//tab1 General
+        profile.setValue("path_OutputImage", ui->path_OutputImage->text());
+        profile.setValue("path_World", ui->path_World->text());
+        profile.setValue("backend",ui->backend->currentIndex());
+    profile.endGroup();
 
-        //tab2 area
-        settings.setValue("scalefactor",ui->scalefactor->currentIndex());
-        settings.setValue("geometry",ui->geometry->getGeometry());
-        settings.setValue("geometry_format",ui->geometry->getFormatStr());
-        settings.setValue("minY",ui->minY->value());
-        settings.setValue("maxY",ui->maxY->value());
-        settings.setValue("geometry_granularity",geometryGranularitySymbolic[ui->geometrymode_granularity_group->checkedId()]);
-        settings.setValue("geometry_sizemode",geometrySizeModeSymbolic[ui->geometrymode_size_group->checkedId()]);
+    profile.beginGroup("area");    //tab2 area
+        profile.setValue("scalefactor",ui->scalefactor->currentIndex());
+        profile.setValue("geometry",ui->geometry->getGeometry());
+        profile.setValue("geometry_format",ui->geometry->getFormatStr());
+        profile.setValue("minY",ui->minY->value());
+        profile.setValue("maxY",ui->maxY->value());
+        profile.setValue("geometry_granularity",geometryGranularitySymbolic[ui->geometrymode_granularity_group->checkedId()]);
+        profile.setValue("geometry_sizemode",geometrySizeModeSymbolic[ui->geometrymode_size_group->checkedId()]);
+    profile.endGroup();
 
-        //tab3 heightmap
-        settings.setValue("generateHeightmap",ui->generateHeightmap->isChecked());
-        settings.setValue("path_HeightmapNodes", ui->path_HeightmapNodes->text());
-        settings.setValue("colorHeightmap", ui->colorHeightmap->text());
-        settings.setValue("path_HeightmapColors", ui->path_HeightmapColors->text());
-        settings.setValue("drawHeightscale", ui->drawHeightscale->isChecked());
-        settings.setValue("heightLevelNull", ui->heightLevelNull->value());
+    profile.beginGroup("heightmap");    //tab3 heightmap
+        profile.setValue("generateHeightmap",ui->generateHeightmap->isChecked());
+        profile.setValue("path_HeightmapNodes", ui->path_HeightmapNodes->text());
+        profile.setValue("colorHeightmap", ui->colorHeightmap->text());
+        profile.setValue("path_HeightmapColors", ui->path_HeightmapColors->text());
+        profile.setValue("drawHeightscale", ui->drawHeightscale->isChecked());
+        profile.setValue("heightLevelNull", ui->heightLevelNull->value());
+    profile.endGroup();
 
-        //tab4 Colors
-        settings.setValue("path_ColorsTxt",ui->path_ColorsTxt->text());
-        settings.setValue("bgcolor",ui->bgcolor->text());
-        settings.setValue("blockcolor",ui->blockcolor->text());
-        settings.setValue("scalecolor",ui->scalecolor->text());
-        settings.setValue("origincolor",ui->origincolor->text());
-        settings.setValue("playercolor",ui->playercolor->text());
-        settings.setValue("tileborderrcolor",ui->tilebordercolor->text());
+    profile.beginGroup("colors");    //tab4 Colors
+        profile.setValue("path_ColorsTxt",ui->path_ColorsTxt->text());
+        profile.setValue("bgcolor",ui->bgcolor->text());
+        profile.setValue("blockcolor",ui->blockcolor->text());
+        profile.setValue("scalecolor",ui->scalecolor->text());
+        profile.setValue("origincolor",ui->origincolor->text());
+        profile.setValue("playercolor",ui->playercolor->text());
+        profile.setValue("tileborderrcolor",ui->tilebordercolor->text());
+    profile.endGroup();
 
-        //tab5 Featurs
-        settings.setValue("drawScaleLeft",ui->drawScaleLeft->isChecked());
-        settings.setValue("drawScaleTop",ui->drawScaleTop->isChecked());
-        settings.setValue("drawOrigin",ui->drawOrigin->isChecked());
-        settings.setValue("drawPlayers",ui->drawPlayers->isChecked());
-        settings.setValue("drawAlpha",ui->drawAlpha->currentIndex());
-        settings.setValue("drawAir",ui->drawAir->isChecked());
-        settings.setValue("noShading",ui->noShading->isChecked());
+    profile.beginGroup("features");    //tab5 Featurs
+        profile.setValue("drawScaleLeft",ui->drawScaleLeft->isChecked());
+        profile.setValue("drawScaleTop",ui->drawScaleTop->isChecked());
+        profile.setValue("drawOrigin",ui->drawOrigin->isChecked());
+        profile.setValue("drawPlayers",ui->drawPlayers->isChecked());
+        profile.setValue("drawAlpha",ui->drawAlpha->currentIndex());
+        profile.setValue("drawAir",ui->drawAir->isChecked());
+        profile.setValue("noShading",ui->noShading->isChecked());
+    profile.endGroup();
 
-        //tab6 Tiles
-        settings.setValue("drawTiles",ui->tiles->isChecked());
+    profile.beginGroup("tiles");   //tab6 Tiles
+        profile.setValue("drawTiles",ui->tiles->isChecked());
+        /*
+         * Todo: also save and restore other tiles
+        */
 
-    settings.endGroup();
+    profile.endGroup();
 }
 
 void MainWindow::readSettings()
 {
-    QSettings settings(qSettingsOrganisation, "Minetestmapper");
+    qDebug()<<"Read settings from"<<settings.fileName();
 
     settings.beginGroup("MainWindow");
     if (settings.value("maximized",false).toBool()) {
@@ -778,68 +784,79 @@ void MainWindow::readSettings()
     settings.endGroup();
 }
 
-void MainWindow::readProfile(QString profile)
+void MainWindow::readProfile(QString strProfile)
 {
-    QSettings settings(QSettings::IniFormat,QSettings::UserScope,qSettingsOrganisation, qSettingsApplicationPrefix+"profile_"+profile);
-    settings.beginGroup("Mapper");
+    QSettings profile(QSettings::IniFormat,
+                      QSettings::UserScope,
+                      QCoreApplication::organizationName(),
+                      "/profiles/"+strProfile);
+    qDebug()<< "Reading profile"<< profile.fileName();
+
+    profile.beginGroup("Mapper");
         //'currentSettings'
-        currentSettings.mapperPath = settings.value("path_minetestmapper").toString();
+        currentSettings.mapperPath = profile.value("path_minetestmapper").toString();
+    profile.endGroup();
 
-        //tab1 Genral
-        ui->path_World->setText(settings.value("path_World",QDir::homePath()).toString());
-        ui->path_OutputImage->setText(settings.value("path_OutputImage",QDir::homePath().append("/map.png")).toString());
-        ui->backend->setCurrentIndex(settings.value("backend",0).toInt());
+    profile.beginGroup("general");    //tab1 Genral
+        ui->path_World->setText(profile.value("path_World",QDir::homePath()).toString());
+        ui->path_OutputImage->setText(profile.value("path_OutputImage",QDir::homePath().append("/map.png")).toString());
+        ui->backend->setCurrentIndex(profile.value("backend",0).toInt());
+    profile.endGroup();
 
-        //tab2 Area
-        ui->scalefactor->setCurrentIndex(settings.value("scalefactor",0).toInt());
-        ui->geometry->set(settings.value("geometry").toString());
-        ui->geometry->setFormat(settings.value("geometry_format").toString());
-        ui->checkBox_maxY->setChecked(settings.value("checkBox_maxY",false).toBool());
-        ui->checkBox_minY->setChecked(settings.value("checkBox_minY",false).toBool());
-        ui->maxY->setValue(settings.value("maxY",0).toInt());
-        ui->minY->setValue(settings.value("minY",0).toInt());
-        QString granularity = settings.value("geometry_granularity").toString();
+    profile.beginGroup("area");    //tab2 Area
+        ui->scalefactor->setCurrentIndex(profile.value("scalefactor",0).toInt());
+        ui->geometry->set(profile.value("geometry").toString());
+        ui->geometry->setFormat(profile.value("geometry_format").toString());
+        ui->checkBox_maxY->setChecked(profile.value("checkBox_maxY",false).toBool());
+        ui->checkBox_minY->setChecked(profile.value("checkBox_minY",false).toBool());
+        ui->maxY->setValue(profile.value("maxY",0).toInt());
+        ui->minY->setValue(profile.value("minY",0).toInt());
+        QString granularity = profile.value("geometry_granularity").toString();
         if (geometryGranularityNumeric.find(granularity) != geometryGranularityNumeric.end())
             ui->geometrymode_granularity_group->button(geometryGranularityNumeric[granularity])->setChecked(true);
         // Else post a warning message ??
-        QString sizemode = settings.value("geometry_sizemode").toString();
+        QString sizemode = profile.value("geometry_sizemode").toString();
         if (geometrySizeModeNumeric.find(sizemode) != geometrySizeModeNumeric.end())
             ui->geometrymode_size_group->button(geometrySizeModeNumeric[sizemode])->setChecked(true);
         // Else post a warning message ??
+    profile.endGroup();
 
-        //tab3 Heightmap
-        ui->generateHeightmap->setChecked(settings.value("generateHeightmap",false).toBool());
-        ui->path_HeightmapNodes->setText(settings.value("path_HeightmapNodes","./colors/heightmap-nodes.txt").toString());
-        ui->path_HeightmapColors->setText(settings.value("path_HeightmapColors","./colors/heightmap-colors.txt").toString());
-        ui->colorHeightmap->setText(settings.value("colorHeightmap","").toString());
-        ui->drawHeightscale->setChecked(settings.value("drawHeightscale",false).toBool());
-        ui->heightLevelNull->setValue(settings.value("heightLevelNull",0).toInt());
+    profile.beginGroup("heightmap");    //tab3 Heightmap
+        ui->generateHeightmap->setChecked(profile.value("generateHeightmap",false).toBool());
+        ui->path_HeightmapNodes->setText(profile.value("path_HeightmapNodes","./colors/heightmap-nodes.txt").toString());
+        ui->path_HeightmapColors->setText(profile.value("path_HeightmapColors","./colors/heightmap-colors.txt").toString());
+        ui->colorHeightmap->setText(profile.value("colorHeightmap","").toString());
+        ui->drawHeightscale->setChecked(profile.value("drawHeightscale",false).toBool());
+        ui->heightLevelNull->setValue(profile.value("heightLevelNull",0).toInt());
+    profile.endGroup();
 
-        //tab4 Colors
-        ui->path_ColorsTxt->setText(settings.value("path_ColorsTxt","./colors/colors.txt").toString());
-        ui->bgcolor->setText(settings.value("bgcolor","white").toString());
-        ui->blockcolor->setText(settings.value("blockcolor","white").toString());
-        ui->scalecolor->setText(settings.value("scalecolor","black").toString());
-        ui->origincolor->setText(settings.value("origincolor","red").toString());
-        ui->playercolor->setText(settings.value("playercolor","yellow").toString());
-        ui->tilebordercolor->setText(settings.value("tilebordercolor","black").toString());
+    profile.beginGroup("colors");    //tab4 Colors
+        ui->path_ColorsTxt->setText(profile.value("path_ColorsTxt","./colors/colors.txt").toString());
+        ui->bgcolor->setText(profile.value("bgcolor","white").toString());
+        ui->blockcolor->setText(profile.value("blockcolor","white").toString());
+        ui->scalecolor->setText(profile.value("scalecolor","black").toString());
+        ui->origincolor->setText(profile.value("origincolor","red").toString());
+        ui->playercolor->setText(profile.value("playercolor","yellow").toString());
+        ui->tilebordercolor->setText(profile.value("tilebordercolor","black").toString());
+    profile.endGroup();
 
-        //tab5 Featurs
-        ui->drawScaleLeft->setChecked(settings.value("drawScaleLeft",false).toBool());
-        ui->drawScaleTop->setChecked(settings.value("drawScaleTop",false).toBool());
-        ui->drawOrigin->setChecked(settings.value("drawOrigin",false).toBool());
-        ui->drawPlayers->setChecked(settings.value("drawPlayers",false).toBool());
-        ui->drawAlpha->setCurrentIndex(settings.value("drawAlpha",0).toInt());
-        ui->drawAir->setChecked(settings.value("drawAir",false).toBool());
-        ui->noShading->setChecked(settings.value("noShading",false).toBool());
+    profile.beginGroup("features");    //tab5 Featurs
+        ui->drawScaleLeft->setChecked(profile.value("drawScaleLeft",false).toBool());
+        ui->drawScaleTop->setChecked(profile.value("drawScaleTop",false).toBool());
+        ui->drawOrigin->setChecked(profile.value("drawOrigin",false).toBool());
+        ui->drawPlayers->setChecked(profile.value("drawPlayers",false).toBool());
+        ui->drawAlpha->setCurrentIndex(profile.value("drawAlpha",0).toInt());
+        ui->drawAir->setChecked(profile.value("drawAir",false).toBool());
+        ui->noShading->setChecked(profile.value("noShading",false).toBool());
+    profile.endGroup();
 
-        //tab6 Tiles
-        ui->tiles->setChecked(settings.value("drawTiles",false).toBool());
-        ui->tilesize->setValue(settings.value("tilesize",20).toInt());
-        ui->tileborder->setValue(settings.value("tileborder",1).toInt());
-        ui->tiles_coordinateX->setValue(settings.value("tiles_coordinateX",0).toInt());
-        ui->tiles_coordinateY->setValue(settings.value("tiles_coordinateY",0).toInt());
-    settings.endGroup();
+    profile.beginGroup("tiles");    //tab6 Tiles
+        ui->tiles->setChecked(profile.value("drawTiles",false).toBool());
+        ui->tilesize->setValue(profile.value("tilesize",20).toInt());
+        ui->tileborder->setValue(profile.value("tileborder",1).toInt());
+        ui->tiles_coordinateX->setValue(profile.value("tiles_coordinateX",0).toInt());
+        ui->tiles_coordinateY->setValue(profile.value("tiles_coordinateY",0).toInt());
+    profile.endGroup();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

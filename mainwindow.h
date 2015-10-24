@@ -12,6 +12,7 @@
 #include <QCloseEvent>
 #include <QInputDialog>
 #include <QActionGroup>
+#include <QSettings>
 #ifdef Q_OS_WIN
 #include <QWinTaskbarProgress>
 #include <QWinTaskbarButton>
@@ -55,9 +56,9 @@ private slots:
     void wrapupMapper();
     void createProfilesMenu();
     void writeSettings();
-    void writeProfile(QString profile);
+    void writeProfile(QString strProfile);
     void readSettings();
-    void readProfile(QString profile);
+    void readProfile(QString strProfile);
     bool migrateSettingsProfiles();
 
     void on_browseWorld_clicked();
@@ -104,7 +105,6 @@ private:
     Ui::MainWindow *ui;
     QProgressBar *progressBar;
     QProcess *myProcess;
-    QString currentProfile;
     QActionGroup *profileGroup;
     #ifdef Q_OS_WIN
     QWinTaskbarButton *taskbarButton;
@@ -125,6 +125,8 @@ private:
     QTranslator m_translatorQt; // contains the translations for qt
     QString m_currLang; // contains the currently loaded language
     QString m_langPath; // Path of language files. This is always fixed to /languages.
+    QString currentProfile; //contains the name of current loaded profile
+    QSettings settings;
 };
 
 #endif // MAINWINDOW_H
