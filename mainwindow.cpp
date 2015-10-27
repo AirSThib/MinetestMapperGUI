@@ -679,10 +679,10 @@ void MainWindow::writeSettings()
 {
     settings.beginGroup("MainWindow");
     if(isMaximized()){
-        settings.setValue("maximized", isMaximized());
+        settings.setValue("maximized", true);
     }
     else{
-        settings.setValue("maximized", isMaximized());
+        settings.setValue("maximized", false);
         settings.setValue("size", size());
         settings.setValue("pos", pos());
     }
@@ -767,7 +767,7 @@ void MainWindow::readSettings()
 
     settings.beginGroup("MainWindow");
     if (settings.value("maximized",false).toBool()) {
-        showMaximized();
+        setWindowState(Qt::WindowMaximized);
 
     }
     else {
