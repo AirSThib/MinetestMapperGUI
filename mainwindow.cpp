@@ -629,16 +629,12 @@ void MainWindow::createProfilesMenu(){
 
     connect(profileGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotProfileChanged(QAction *)));
 
-    #if QT_VERSION >=0x050500
-        //if using Qt version >= 5.5.0;
-        QDir dir = QDir(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation).append("/profiles/"));
 
-    #else
-        //Qt 5.4 or less
-        QSettings dummySettings(QSettings::IniFormat, QSettings::UserScope,QCoreApplication::organizationName(),"/profiles/default");
+    //Qt 5.4 or less
+    QSettings dummySettings(QSettings::IniFormat, QSettings::UserScope,QCoreApplication::organizationName(),"/profiles/default");
 
-        QDir dir = QFileInfo(dummySettings.fileName()).absoluteDir();
-    #endif
+    QDir dir = QFileInfo(dummySettings.fileName()).absoluteDir();
+
     QStringList fileNames = dir.entryList(QStringList("*.ini"));
 
     qDebug()<<"found the Profiles"<< fileNames<< "in"<<dir.absolutePath();
@@ -669,7 +665,7 @@ void MainWindow::createProfilesMenu(){
 void MainWindow::slotProfileChanged(QAction* action)
 {
     if(action != 0) {
-        //writeProfile(currentProfile);
+        writeProfile(currentProfile);
         currentProfile = action->data().toString();
         readProfile(currentProfile);
     }
