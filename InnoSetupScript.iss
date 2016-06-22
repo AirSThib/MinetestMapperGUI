@@ -2,9 +2,9 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 ;change this folder to use a diffrent qt-version
-#define QtSourceDir = "C:\Qt\5.4\msvc2013"
-#define QtBuildDir = "D:\Projekte\Qt_Projekte\build-MinetestMapperGui-Desktop_Qt_5_4_1_MSVC2013_32bit-Release\release"
-#define MtMapperDir = "D:\Programme\minetestmapper-20150301-win32"
+#define QtSourceDir = "C:\Qt\5.6\msvc2015"
+#define QtBuildDir = "E:\Projekte\build-MinetestMapperGui-Desktop_Qt_5_6_1_MSVC2015_32bit-Release\release"
+#define MtMapperDir = "C:\Users\Adrian\Documents\minetest-mapper-cpp"
 
 #define MyAppName "Minetest Mapper Gui"
 #define MyAppVersion GetFileVersion(QtBuildDir +'\MinetestMapperGui.exe')
@@ -53,7 +53,8 @@ Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\MinetestMapperGui.exe"; IconIndex: 0; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
+Filename: "{tmp}\vc_redist.x86.exe"; Parameters: "/install /passive /norestart"; Flags: 32bit; Description: "Microsoft Visual C++ 2015 Redistributable Update 2"; StatusMsg: "Installing Microsoft Visual C++ 2015 Redistributable Update 2"
 
 [Components]
 Name: "minetestmappergui"; Description: "Minetest Mapper GUI (required)"; Types: full compact custom; Flags: fixed
@@ -62,23 +63,23 @@ Name: "minetestmapper_cmd"; Description: "Minetestmapper by Rogier 5 (Recommende
 Name: "color_txt_files"; Description: "colors.txt files (Recommended)"; Types: full; Flags: checkablealone
 
 [Files]
-Source: "{#MtMapperDir}\bin\leveldb.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
-Source: "{#MtMapperDir}\bin\libfreetype-6.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
-Source: "{#MtMapperDir}\bin\libgcc_s_sjlj-1.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
-Source: "{#MtMapperDir}\bin\libgd.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
-Source: "{#MtMapperDir}\bin\libpng16.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
-Source: "{#MtMapperDir}\bin\libsqlite3.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
-Source: "{#MtMapperDir}\bin\libstdc++-6.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
-Source: "{#MtMapperDir}\bin\minetestmapper.exe"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
-Source: "{#MtMapperDir}\bin\zlib1.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
+;Source: "{#MtMapperDir}\bin\leveldb.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
+;Source: "{#MtMapperDir}\bin\libfreetype-6.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
+;Source: "{#MtMapperDir}\bin\libgcc_s_sjlj-1.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
+Source: "{#MtMapperDir}\Release\libgd.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: minetestmapper_cmd
+Source: "{#MtMapperDir}\Release\libpng16.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: minetestmapper_cmd
+Source: "{#MtMapperDir}\Release\sqlite3.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: minetestmapper_cmd
+;Source: "{#MtMapperDir}\bin\libstdc++-6.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
+Source: "{#MtMapperDir}\Release\minetestmapper.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: minetestmapper_cmd
+Source: "{#MtMapperDir}\Release\zlib.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: minetestmapper_cmd
 
-Source: "{#QtSourceDir}\bin\icudt53.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
-Source: "{#QtSourceDir}\bin\icuin53.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
-Source: "{#QtSourceDir}\bin\icuuc53.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
+Source: "{#QtSourceDir}\bin\icudt54.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
+Source: "{#QtSourceDir}\bin\icuin54.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
+Source: "{#QtSourceDir}\bin\icuuc54.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
 Source: "{#QtSourceDir}\bin\libEGL.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
 Source: "{#QtBuildDir}\MinetestMapperGui.exe"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
-Source: "C:\Windows\System32\msvcp120.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: msvcr2013
-Source: "C:\Windows\System32\msvcr120.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: msvcr2013
+;Source: "C:\Windows\System32\msvcp140.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: msvcr2013
+;Source: "C:\Windows\System32\msvcr140.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: msvcr2013
 
 Source: "{#QtSourceDir}\bin\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
 Source: "{#QtSourceDir}\bin\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
@@ -86,12 +87,12 @@ Source: "{#QtSourceDir}\bin\Qt5Svg.dll"; DestDir: "{app}"; Flags: ignoreversion 
 Source: "{#QtSourceDir}\bin\Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
 Source: "{#QtSourceDir}\bin\Qt5WinExtras.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
 
-Source: "{#MtMapperDir}\colors\colors-average-alpha.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
-Source: "{#MtMapperDir}\colors\colors-cumulative-alpha.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
-Source: "{#MtMapperDir}\colors\colors.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
-Source: "{#MtMapperDir}\colors\heightmap-colors-rainbow.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
-Source: "{#MtMapperDir}\colors\heightmap-colors.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
-Source: "{#MtMapperDir}\colors\heightmap-nodes.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
+Source: "{#MtMapperDir}\colors-average-alpha.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
+Source: "{#MtMapperDir}\colors-cumulative-alpha.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
+Source: "{#MtMapperDir}\colors.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
+Source: "{#MtMapperDir}\heightmap-colors-rainbow.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
+Source: "{#MtMapperDir}\heightmap-colors.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
+Source: "{#MtMapperDir}\heightmap-nodes.txt"; DestDir: "{app}\colors\"; Flags: ignoreversion; Components: color_txt_files; Permissions: everyone-full
 
 Source: ".\languages\de.png"; DestDir: "{app}\languages\"; Flags: ignoreversion
 Source: ".\languages\en.png"; DestDir: "{app}\languages\"; Flags: ignoreversion
@@ -102,6 +103,7 @@ Source: "{#QtSourceDir}\translations\qtbase_de.qm"; DestDir: "{app}\languages\";
 Source: "{#QtSourceDir}\plugins\iconengines\qsvgicon.dll"; DestDir: "{app}\plugins\iconengines\"; Flags: ignoreversion; Components: minetestmappergui
 Source: "{#QtSourceDir}\plugins\imageformats\qsvg.dll"; DestDir: "{app}\plugins\imageformats\"; Flags: ignoreversion; Components: minetestmappergui
 Source: "{#QtSourceDir}\plugins\platforms\qwindows.dll"; DestDir: "{app}\plugins\platforms\"; Flags: ignoreversion; Components: minetestmappergui
+Source: "..\..\vc_redist.x86.exe"; DestDir: "{tmp}"; Flags: 32bit deleteafterinstall
 
 [Dirs]
 Name: "{app}\colors\colors"; Components: color_txt_files
