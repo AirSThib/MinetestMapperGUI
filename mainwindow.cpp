@@ -201,20 +201,36 @@ void MainWindow::on_button_generate_clicked()
     else
         mapperBinary.setFileName(currentSettings.mapperPath);
     if (!mapperBinary.exists()) {
+        QMessageBox::StandardButton ret;
         if (currentSettings.mapperPath == "")
-            QMessageBox::critical(this, tr("Minetestmapper not found"),
-                     tr("ERROR: No minetestmapper executable could not be found<br><br>"
-                        "Please configure one (Edit->Preferences)"));
+        {
+            ret = QMessageBox::critical(this, tr("Minetestmapper not found"),
+                                        tr("ERROR: No minetestmapper executable could not be found.\n"
+                                           "Please configure one. (Edit->Preferences)\n\n"
+                                           "Do you want to open Preferences now?"),
+                                        QMessageBox::Yes|QMessageBox::No,
+                                        QMessageBox::Yes);
+
+        }
         else
-            QMessageBox::critical(this, tr("Minetestmapper not found"),
-                     tr("ERROR: Configured minetestmapper executable (%1) could not be found<br><br>"
-                        "Please configure one (Edit->Preferences)").arg(currentSettings.mapperPath));
+            ret = QMessageBox::critical(this, tr("Minetestmapper not found"),
+                                        tr("ERROR: Configured minetestmapper executable (%1) could not be found\n"
+                                           "Please configure one. (Edit->Preferences)\n\n"
+                                           "Do you want to open Preferences now?").arg(currentSettings.mapperPath),
+                                        QMessageBox::Yes|QMessageBox::No,
+                                        QMessageBox::Yes);
+
+        if(ret == QMessageBox::Yes) on_actionPreferences_triggered();
         return;
     } else if (!(mapperBinary.permissions() & QFileDevice::ExeUser)) {
-        QMessageBox::critical(this, tr("Minetestmapper not executable"),
-                 tr("ERROR: The configured minetestmapper (%1) is not executable"
-                    "Please configure a valid minetestmapper executable (Edit->Preferences)")
-                    .arg(mapperBinary.fileName()));
+        QMessageBox::StandardButton ret = QMessageBox::critical(this, tr("Minetestmapper not executable"),
+                                                                tr("ERROR: The configured minetestmapper (%1) is not executable.\n"
+                                                                   "Please configure a valid minetestmapper executable. (Edit->Preferences)\n\n"
+                                                                   "Do you want to open Preferences now?")
+                                                                .arg(mapperBinary.fileName()),
+                                                                QMessageBox::Yes|QMessageBox::No,
+                                                                QMessageBox::Yes);
+        if(ret == QMessageBox::Yes) on_actionPreferences_triggered();
         return;
     }
 
