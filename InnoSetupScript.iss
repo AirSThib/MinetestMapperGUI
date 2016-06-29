@@ -12,8 +12,6 @@
 #define MyAppURL "https://bitbucket.org/adrido/minetestmappergui"
 #define MyAppExeName "MinetestMapperGui.exe"
 
-
-
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
@@ -39,7 +37,9 @@ VersionInfoVersion={#MyAppVersion}
 VersionInfoTextVersion={#MyAppVersion}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
-VersionInfoCopyright=2015 adrido; CC BY 3.0
+VersionInfoCopyright=2016 adrido; CC BY 3.0
+AllowNoIcons=True
+Compression=lzma2/ultra64
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -58,18 +58,13 @@ Filename: "{tmp}\vc_redist.x86.exe"; Parameters: "/install /passive /norestart";
 
 [Components]
 Name: "minetestmappergui"; Description: "Minetest Mapper GUI (required)"; Types: full compact custom; Flags: fixed
-Name: "msvcr2013"; Description: "Microsoft Visual C++ 2013 Redistributable (required)"; Types: full compact custom; Flags: fixed; Check: VCRedistNeedsInstall
 Name: "minetestmapper_cmd"; Description: "Minetestmapper by Rogier 5 (Recommended)"; Types: full compact custom; Flags: checkablealone
 Name: "color_txt_files"; Description: "colors.txt files (Recommended)"; Types: full; Flags: checkablealone
 
 [Files]
-;Source: "{#MtMapperDir}\bin\leveldb.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
-;Source: "{#MtMapperDir}\bin\libfreetype-6.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
-;Source: "{#MtMapperDir}\bin\libgcc_s_sjlj-1.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
 Source: "{#MtMapperDir}\Release\libgd.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: minetestmapper_cmd
 Source: "{#MtMapperDir}\Release\libpng16.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: minetestmapper_cmd
 Source: "{#MtMapperDir}\Release\sqlite3.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: minetestmapper_cmd
-;Source: "{#MtMapperDir}\bin\libstdc++-6.dll"; DestDir: "{app}\mapper\"; Flags: ignoreversion; Components: minetestmapper_cmd
 Source: "{#MtMapperDir}\Release\minetestmapper.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: minetestmapper_cmd
 Source: "{#MtMapperDir}\Release\zlib.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: minetestmapper_cmd
 
@@ -78,8 +73,6 @@ Source: "{#QtSourceDir}\bin\icuin54.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#QtSourceDir}\bin\icuuc54.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
 Source: "{#QtSourceDir}\bin\libEGL.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
 Source: "{#QtBuildDir}\MinetestMapperGui.exe"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
-;Source: "C:\Windows\System32\msvcp140.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: msvcr2013
-;Source: "C:\Windows\System32\msvcr140.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: msvcr2013
 
 Source: "{#QtSourceDir}\bin\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
 Source: "{#QtSourceDir}\bin\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion 32bit; Components: minetestmappergui
@@ -119,44 +112,3 @@ Filename: "{app}\qt.conf"; Section: "Paths"; Key: "Plugins"; String: "plugins";
 Type: files; Name: "{app}\qt.conf"
 Type: dirifempty; Name: "{app}"
 
-[Code]
-#IFDEF UNICODE
-  #DEFINE AW "W"
-#ELSE
-  #DEFINE AW "A"
-#ENDIF
-type
-  INSTALLSTATE = Longint;
-const
-  INSTALLSTATE_INVALIDARG = -2;  // An invalid parameter was passed to the function.
-  INSTALLSTATE_UNKNOWN = -1;     // The product is neither advertised or installed.
-  INSTALLSTATE_ADVERTISED = 1;   // The product is advertised but not installed.
-  INSTALLSTATE_ABSENT = 2;       // The product is installed for a different user.
-  INSTALLSTATE_DEFAULT = 5;      // The product is installed for the current user.
-
-  vcredist2013_url = 'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x86.exe';
-  vcredist2013_url_x64 = 'http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe';
-
-
-  VC_2013_REDIST = '{13A4EE12-23EA-3371-91EE-EFB36DDFFF3E}'; //Microsoft.VS.VC_RuntimeMinimumVSU_x86,v12
-  VC_2013_REDIST_x64 = '{A749D8E6-B613-3BE3-8F5F-045C84EBA29B}'; //Microsoft.VS.VC_RuntimeMinimumVSU_amd64,v12
-
-
-function MsiQueryProductState(szProduct: string): INSTALLSTATE; 
-  external 'MsiQueryProductState{#AW}@msi.dll stdcall';
-
-function VCVersionInstalled(const ProductID: string): Boolean;
-begin
-  Result := MsiQueryProductState(ProductID) = INSTALLSTATE_DEFAULT;
-end;
-
-function VCRedistNeedsInstall: Boolean;
-begin
-  // here the Result must be True when you need to install your VCRedist
-  // or False when you don't need to, so now it's upon you how you build
-  // this statement, the following won't install your VC redist only when
-  // the Visual C++ 2010 Redist (x86) and Visual C++ 2010 SP1 Redist(x86)
-  // are installed for the current user
-  Result := not (VCVersionInstalled(VC_2013_REDIST) and 
-    VCVersionInstalled(VC_2013_REDIST));
-end;
