@@ -102,6 +102,7 @@ private slots:
     void on_actionPreferences_triggered();
 
 private:
+    bool portable;
     Ui::MainWindow *ui;
     QProgressBar *progressBar;
     QProcess *myProcess;
@@ -126,7 +127,10 @@ private:
     QString m_currLang; // contains the currently loaded language
     QString m_langPath; // Path of language files. This is always fixed to /languages.
     QString currentProfile; //contains the name of current loaded profile
-    QSettings settings;
+    QString pathAppData; // Path where the settings should be stored.
+    QString pathProfiles; // path where the profiles should be stored.
+    //QSettings profile;
+    QSettings *settings;
 };
 
 #endif // MAINWINDOW_H

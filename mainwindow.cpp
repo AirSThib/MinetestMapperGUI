@@ -45,6 +45,36 @@ MainWindow::MainWindow(QWidget *parent) :
         exit(EXIT_FAILURE);
     #endif
 
+    QCommandLineParser parser;
+    parser.setApplicationDescription("This program provides a graphical user interface for minetestmapper. \n"
+                                     "If you are looking for the command line interface of minetesmapper please execute minetestmapper directly.");
+    parser.addHelpOption();
+    parser.addVersionOption();
+    QCommandLineOption startPortableOption(QStringList() << "p" << "portable",
+                                           "Starts in portable mode which reads and writes settings and profiles relative to current directory");
+    parser.addOption(startPortableOption);
+
+    parser.process(qApp->arguments());
+
+    portable = parser.isSet(startPortableOption);
+
+    if(portable){
+        //Attention: This paths could be non writable locations!
+        pathAppData = qApp->applicationDirPath(); //use the Applications directory
+        pathProfiles = pathAppData + "/profiles/";
+
+        //manipulate settingsfile on portable mode
+        settings = new QSettings(pathAppData+"/MinetestMapperGui.ini",QSettings::IniFormat);
+    }
+    else{
+        QSettings dummySettings(QSettings::IniFormat, QSettings::UserScope,qApp->organizationName(),"dummy");
+        pathAppData = QFileInfo(dummySettings.fileName()).path();
+        pathProfiles = pathAppData + "/profiles/";
+        dummySettings.deleteLater();
+
+        //non portable use OS defaults
+        settings = new QSettings();
+    }
     ui->setupUi(this);
     finishUiInitialisation();
     readSettings();
@@ -645,12 +675,8 @@ void MainWindow::createProfilesMenu(){
 
     connect(profileGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotProfileChanged(QAction *)));
 
-
-    //Qt 5.4 or less
-    QSettings dummySettings(QSettings::IniFormat, QSettings::UserScope,QCoreApplication::organizationName(),"/profiles/default");
-
-    QDir dir = QFileInfo(dummySettings.fileName()).absoluteDir();
-
+    QDir dir(pathProfiles);
+    qDebug()<<pathProfiles;
     QStringList fileNames = dir.entryList(QStringList("*.ini"));
 
     qDebug()<<"found the Profiles"<< fileNames<< "in"<<dir.absolutePath();
@@ -689,30 +715,40 @@ void MainWindow::slotProfileChanged(QAction* action)
 
 void MainWindow::writeSettings()
 {
-    settings.beginGroup("MainWindow");
+    if(portable && !settings->isWritable()){
+        QMessageBox::warning(this, tr("Can not save settings"),
+                              tr("Minetest Mapper GUI could not save the settings to %1.\n"
+                              "Please make shure Minetest Mapper Gui can access to the file/directory").arg(settings->fileName()));
+
+    }
+    settings->beginGroup("MainWindow");
     if(isMaximized()){
-        settings.setValue("maximized", true);
+        settings->setValue("maximized", true);
     }
     else{
-        settings.setValue("maximized", false);
-        settings.setValue("size", size());
-        settings.setValue("pos", pos());
+        settings->setValue("maximized", false);
+        settings->setValue("size", size());
+        settings->setValue("pos", pos());
     }
-    settings.setValue("help", ui->actionHelp->isChecked());
-    settings.setValue("profile", currentProfile);
-    settings.setValue("expertMode",ui->actionExpert_Mode->isChecked());
-    settings.setValue("openMap",ui->actionOpen_map_after_creation->isChecked());
-    settings.endGroup();
+    settings->setValue("help", ui->actionHelp->isChecked());
+    settings->setValue("profile", currentProfile);
+    settings->setValue("expertMode",ui->actionExpert_Mode->isChecked());
+    settings->setValue("openMap",ui->actionOpen_map_after_creation->isChecked());
+    settings->endGroup();
 }
 
 void MainWindow::writeProfile(QString strProfile)
 {
     //QSettings::setDefaultFormat(QSettings::IniFormat);
     //QSettings profile;
-
     //looks odd, but it constructs the correct settingsfile
-    QSettings profile(QSettings::IniFormat, QSettings::UserScope,QCoreApplication::organizationName(),"/profiles/"+strProfile);
-    qDebug()<<"Write profile"<< strProfile<<"to:"<<profile.fileName();
+    QSettings profile(QString("%1/%2.ini").arg(pathProfiles).arg(strProfile), QSettings::IniFormat);
+    if(portable && !profile.isWritable()){
+        QMessageBox::warning(this, tr("Can not save profile"),
+                              tr("Minetest Mapper GUI could not save the current Profile '%1' to %2.\n"
+                              "Please make shure Minetest Mapper Gui can access to the file/directory").arg(strProfile).arg(profile.fileName()));
+    }
+    qDebug()<<"Write profile" << strProfile << "to" << profile.fileName();
 
     profile.beginGroup("Mapper");
         //'currentSettings'
@@ -775,34 +811,33 @@ void MainWindow::writeProfile(QString strProfile)
 
 void MainWindow::readSettings()
 {
-    qDebug()<<"Read settings from"<<settings.fileName();
+    qDebug()<<"Read settings from"<<settings->fileName();
 
-    settings.beginGroup("MainWindow");
-    if (settings.value("maximized",false).toBool()) {
+    settings->beginGroup("MainWindow");
+    if (settings->value("maximized",false).toBool()) {
         setWindowState(Qt::WindowMaximized);
 
     }
     else {
-        resize(settings.value("size", QSize(400, 400)).toSize());
-        move(settings.value("pos", QPoint(200, 200)).toPoint());
+        resize(settings->value("size", QSize(400, 400)).toSize());
+        move(settings->value("pos", QPoint(200, 200)).toPoint());
 
     }
-    if(settings.value("help",false).toBool()==false){
+    if(settings->value("help",false).toBool()==false){
         ui->dockHelp->close();
     }
-    currentProfile = settings.value("profile","default").toString();
-    ui->actionExpert_Mode->setChecked(settings.value("expertMode",false).toBool());
-    ui->actionOpen_map_after_creation->setChecked(settings.value("openMap",true).toBool());
-    settings.endGroup();
+    currentProfile = settings->value("profile","default").toString();
+    ui->actionExpert_Mode->setChecked(settings->value("expertMode",false).toBool());
+    ui->actionOpen_map_after_creation->setChecked(settings->value("openMap",true).toBool());
+    settings->endGroup();
 }
 
 void MainWindow::readProfile(QString strProfile)
 {
-    QSettings profile(QSettings::IniFormat,
-                      QSettings::UserScope,
-                      QCoreApplication::organizationName(),
-                      "/profiles/"+strProfile);
-    qDebug()<< "Reading profile"<< profile.fileName();
+
+    QSettings profile(QString("%1/%2.ini").arg(pathProfiles).arg(strProfile),QSettings::IniFormat);
+
+    qDebug()<< "Reading profile" << strProfile << "from" << profile.fileName();
 
     profile.beginGroup("Mapper");
         //'currentSettings'
