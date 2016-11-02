@@ -205,17 +205,14 @@ void MakeColors::run(void)
     emit progressChanged(0);
     output(QString("Found %1 nodes").arg(nodeList.size()), INFO);
     output(QString("Searching and parsing %1 texture files").arg(requiredColors.size()), INFO);
-    msleep(1000);
     for(int i = 0; i < textureSearchDirectorys.size(); i++)
     {
         //emit stateChanged("search and process textures "+ i +" of "+textureSearchDirectorys.size());
         searchAndProgressTextures(textureSearchDirectorys.at(i));
 
     }
-    msleep(500);
     writeColorsTxt(fileColorsTxt);
     output("Done! :)",INFO);
-    //msleep(10);
 }
 
 void MakeColors::startProcess(void)
@@ -225,7 +222,6 @@ void MakeColors::startProcess(void)
     // Set this to 0 and -1 makes the progressbar shows busy
     emit maxProgressChanged(0);
     emit progressChanged(-1);
-    msleep(500);
     start();
 }
 

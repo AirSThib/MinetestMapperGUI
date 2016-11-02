@@ -9,7 +9,6 @@ ColorsTxtAssistant::ColorsTxtAssistant(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
     ui->buttonPrevious->setVisible(false);
     ui->buttonFinished->setVisible(false);
-    parent->
 }
 
 ColorsTxtAssistant::~ColorsTxtAssistant()
