@@ -19,6 +19,7 @@
 #endif
 
 #include "configdialog.h"
+#include "colorstxtassistant.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,6 +37,8 @@ public:
     void closeConfigDialog(void);
     void updateConfigSettings(const ConfigSettings &newSettings);
 
+public slots:
+    void startColorsTxtAssistant();
 protected:
     void closeEvent(QCloseEvent* event);
     // this event is called, when a new translator is loaded or the system language is changed

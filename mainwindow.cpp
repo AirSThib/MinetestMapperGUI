@@ -88,6 +88,7 @@ MainWindow::MainWindow(QWidget *parent) :
     progressBar->setMinimum(0);
     progressBar->hide();
     connect(ui->actionAbout_QT, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+    connect(ui->actionStart_colors_txt_assistant,SIGNAL(triggered()),this,SLOT(startColorsTxtAssistant()));
     createLanguageMenu();
     createProfilesMenu();
 
@@ -1102,3 +1103,8 @@ void MainWindow::updateConfigSettings(const ConfigSettings &newSettings)
     currentSettings = newSettings;
 }
 
+void MainWindow::startColorsTxtAssistant(void)
+{
+    ColorsTxtAssistant *assistant = new ColorsTxtAssistant(this);
+    assistant->exec();
+}

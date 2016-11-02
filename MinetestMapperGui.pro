@@ -17,16 +17,21 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     colorlineedit.cpp \
     geometrywidget.cpp \
-    configdialog.cpp
+    configdialog.cpp \
+    colorstxtassistant.cpp \
+    makecolors.cpp
 
 HEADERS  += mainwindow.h \
     colorlineedit.h \
     geometrywidget.h \
-    configdialog.h
+    configdialog.h \
+    colorstxtassistant.h \
+    makecolors.h
 
 FORMS    += mainwindow.ui \
     geometrywidget.ui \
-    configdialog.ui
+    configdialog.ui \
+    colorstxtassistant.ui
 
 RESOURCES += \
     minetestmappergui.qrc

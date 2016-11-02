@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>760</width>
-    <height>424</height>
+    <height>505</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -876,8 +876,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>509</width>
-             <height>360</height>
+             <width>503</width>
+             <height>427</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1927,8 +1927,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>500</width>
-             <height>261</height>
+             <width>492</width>
+             <height>308</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1962,11 +1962,11 @@
                </item>
                <item row="2" column="0">
                 <widget class="QRadioButton" name="tile_chunk">
-                   <property name="toolTip">
-                    <string>A chunk is the unit of map generation. Usually 5x5x5 blocks.</string>
-                   </property>
+                 <property name="toolTip">
+                  <string>A chunk is the unit of map generation. Usually 5x5x5 blocks.</string>
+                 </property>
                  <property name="text">
-                    <string>chunk-aligned</string>
+                  <string>chunk-aligned</string>
                  </property>
                 </widget>
                </item>
@@ -1979,11 +1979,11 @@
                </item>
                <item row="1" column="0">
                 <widget class="QRadioButton" name="tile_block">
-                   <property name="toolTip">
-                    <string>A block is 16x16x16 nodes</string>
-                   </property>
+                 <property name="toolTip">
+                  <string>A block is 16x16x16 nodes</string>
+                 </property>
                  <property name="text">
-                    <string>block-aligned</string>
+                  <string>block-aligned</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -2014,28 +2014,28 @@
               <property name="title">
                <string>arrange</string>
               </property>
-                <layout class="QGridLayout" name="gridLayout_12" columnstretch="1,2">
-                 <item row="1" column="0">
+              <layout class="QGridLayout" name="gridLayout_12" columnstretch="1,2">
+               <item row="1" column="0">
                 <widget class="QRadioButton" name="tilecenter">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>tilecenter</string>
                  </property>
                 </widget>
                </item>
-                 <item row="2" column="0">
+               <item row="2" column="0">
                 <widget class="QRadioButton" name="tileorigin">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>tileorigin</string>
                  </property>
@@ -2044,29 +2044,29 @@
                  </property>
                 </widget>
                </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_3">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="text">
-                    <string>Arrange:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1" rowspan="3">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_3">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Arrange:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1" rowspan="3">
                 <widget class="QGroupBox" name="groupBox_13">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="title">
-                    <string>at:</string>
+                  <string>at:</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_13">
                   <item row="0" column="0">
@@ -2079,7 +2079,7 @@
                   <item row="1" column="0">
                    <widget class="QRadioButton" name="tiles_world">
                     <property name="text">
-                       <string>world center (0,0)</string>
+                     <string>world center (0,0)</string>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
@@ -2089,7 +2089,7 @@
                   <item row="2" column="0">
                    <widget class="QRadioButton" name="tiles_map">
                     <property name="text">
-                       <string>map origin (top-left)</string>
+                     <string>map origin (top-left)</string>
                     </property>
                    </widget>
                   </item>
@@ -2250,7 +2250,7 @@
      <x>0</x>
      <y>0</y>
      <width>760</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -2302,6 +2302,7 @@
     </property>
     <addaction name="actionExpert_Mode"/>
     <addaction name="actionOpen_map_after_creation"/>
+    <addaction name="actionStart_colors_txt_assistant"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -2370,7 +2371,7 @@
         <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="source">
@@ -2568,6 +2569,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionPreferences">
    <property name="text">
     <string>&amp;Preferences</string>
+   </property>
+  </action>
+  <action name="actionStart_colors_txt_assistant">
+   <property name="text">
+    <string>Start colors.txt assistant</string>
    </property>
   </action>
  </widget>
