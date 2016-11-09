@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>760</width>
-    <height>505</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -235,7 +235,8 @@
           <item row="0" column="1">
            <widget class="QRadioButton" name="geometrymode_block">
             <property name="toolTip">
-             <string>The requested geometry will be extended so that the map does not contain partial map blocks (of 16x16 nodes each). At least all pixels covered by the geometry will be in the map, but there may be up to 15 more in every direction.</string>
+             <string>The requested geometry will be extended so that the map does not contain partial map blocks (of 16x16 nodes each). 
+At least all pixels covered by the geometry will be in the map, but there may be up to 15 more in every direction.</string>
             </property>
             <property name="statusTip">
              <string>round the coodinates to a multiple of 16.</string>
@@ -251,7 +252,8 @@
           <item row="1" column="1">
            <widget class="QRadioButton" name="geometrymode_shrink">
             <property name="toolTip">
-             <string>Currently, shrinking is done with block granularity, and based on which blocks are in the database. As the database always contains a row or and column of empty, or partially empty blocks at the map edges, there will still be empty pixels at the edges of the map. Use --blockcolor to visualize these empty blocks.</string>
+             <string>Currently, shrinking is done with block granularity, and based on which blocks are in the database. 
+As the database always contains a row or and column of empty, or partially empty blocks at the map edges, there will still be empty pixels at the edges of the map. Use --blockcolor to visualize these empty blocks.</string>
             </property>
             <property name="statusTip">
              <string>Generate a map of at most the requested geometry. Shrink it to the smallest possible size that still includes the same information.</string>
@@ -283,7 +285,8 @@
           <item row="0" column="0">
            <widget class="QRadioButton" name="geometrymode_pixel">
             <property name="toolTip">
-             <string>A map of exactly the requested size is generated (after adjustments due to the 'shrink' flag, or possible adjustments required by the scale factor).</string>
+             <string>A map of exactly the requested size is generated 
+(after adjustments due to the 'shrink' flag, or possible adjustments required by the scale factor).</string>
             </property>
             <property name="statusTip">
              <string>interpret the coordinates with pixel granularity.</string>
@@ -326,6 +329,15 @@
         </item>
         <item row="5" column="0">
          <widget class="QCheckBox" name="checkBox_minY">
+          <property name="toolTip">
+           <string>Specify the upper height limit for the map
+
+Nodes higher than this level will not be drawn. This can be used to avoid floating islands or floating artefacts from obscuring the world below.
+</string>
+          </property>
+          <property name="statusTip">
+           <string>Specify the minumum depth of nodes to be included</string>
+          </property>
           <property name="text">
            <string>min-Y</string>
           </property>
@@ -333,8 +345,14 @@
         </item>
         <item row="6" column="0">
          <widget class="QCheckBox" name="checkBox_maxY">
+          <property name="toolTip">
+           <string>Specify the upper height limit for the map
+
+Nodes higher than this level will not be drawn. This can be used to avoid floating islands or floating artefacts from obscuring the world below.
+</string>
+          </property>
           <property name="statusTip">
-           <string>Specify the upper height limit for the map</string>
+           <string>Specify the maximum height of nodes to be included</string>
           </property>
           <property name="text">
            <string>max-Y</string>
@@ -1135,14 +1153,68 @@
         <string>Colors</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_7">
-        <item row="6" column="0">
+        <item row="5" column="1">
+         <widget class="ColorLineEdit" name="origincolor">
+          <property name="statusTip">
+           <string> Specify the color for drawing the map origin (0,0)</string>
+          </property>
+          <property name="text">
+           <string notr="true">red</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="ColorLineEdit" name="scalecolor">
+          <property name="statusTip">
+           <string> Specify the color for text in the scales on the side</string>
+          </property>
+          <property name="text">
+           <string notr="true">black</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="ColorLineEdit" name="playercolor">
+          <property name="statusTip">
+           <string>Specify the color for drawing player locations</string>
+          </property>
+          <property name="text">
+           <string notr="true">yellow</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
          <widget class="QLabel" name="label_19">
           <property name="text">
            <string>tilebordercolor</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="path_ColorsTxt">
+          <property name="text">
+           <string notr="true">./colors/colors.txt</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>playercolor</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="ColorLineEdit" name="blockcolor">
+          <property name="statusTip">
+           <string>Specify the color for empty mapblocks</string>
+          </property>
+          <property name="text">
+           <string notr="true">#ffffcc</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
          <widget class="ColorLineEdit" name="bgcolor">
           <property name="statusTip">
            <string>Specify the background color for the image</string>
@@ -1155,55 +1227,31 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="2" column="0">
          <widget class="QLabel" name="label_14">
           <property name="text">
            <string>bgcolor</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="path_ColorsTxt">
-          <property name="text">
-           <string notr="true">./colors/colors.txt</string>
-          </property>
-         </widget>
-        </item>
         <item row="5" column="0">
-         <widget class="QLabel" name="label_18">
-          <property name="text">
-           <string>playercolor</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="ColorLineEdit" name="blockcolor">
-          <property name="statusTip">
-           <string>Specify the color for empty mapblocks</string>
-          </property>
-          <property name="text">
-           <string notr="true">#ffffcc</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_15">
-          <property name="text">
-           <string>blockcolor</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
          <widget class="QLabel" name="label_17">
           <property name="text">
            <string>origincolor</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="4" column="0">
          <widget class="QLabel" name="label_16">
           <property name="text">
            <string>scalecolor</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>blockcolor</string>
           </property>
          </widget>
         </item>
@@ -1214,7 +1262,7 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="0">
+        <item row="8" column="0">
          <spacer name="verticalSpacer_4">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -1228,17 +1276,6 @@
          </spacer>
         </item>
         <item row="6" column="2">
-         <widget class="QPushButton" name="selectTileBorderColor">
-          <property name="text">
-           <string>select color</string>
-          </property>
-          <property name="icon">
-           <iconset resource="minetestmappergui.qrc">
-            <normaloff>:/color</normaloff>:/color</iconset>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="2">
          <widget class="QPushButton" name="selectPlayerColor">
           <property name="text">
            <string>select color</string>
@@ -1249,7 +1286,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="2">
+        <item row="5" column="2">
          <widget class="QPushButton" name="selectOriginColor">
           <property name="text">
            <string>select color</string>
@@ -1260,7 +1297,18 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="2">
+        <item row="7" column="2">
+         <widget class="QPushButton" name="selectTileBorderColor">
+          <property name="text">
+           <string>select color</string>
+          </property>
+          <property name="icon">
+           <iconset resource="minetestmappergui.qrc">
+            <normaloff>:/color</normaloff>:/color</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
          <widget class="QPushButton" name="selectScaleColor">
           <property name="text">
            <string>select color</string>
@@ -1271,7 +1319,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="2">
+        <item row="3" column="2">
          <widget class="QPushButton" name="selectBlockColor">
           <property name="text">
            <string>select color</string>
@@ -1282,7 +1330,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="2">
+        <item row="2" column="2">
          <widget class="QPushButton" name="selectBgColor">
           <property name="text">
            <string>select color</string>
@@ -1304,7 +1352,7 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
+        <item row="7" column="1">
          <widget class="ColorLineEdit" name="tilebordercolor">
           <property name="statusTip">
            <string>Specify the color for drawing tile borders</string>
@@ -1314,33 +1362,13 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
-         <widget class="ColorLineEdit" name="playercolor">
+        <item row="1" column="1" colspan="2">
+         <widget class="QCheckBox" name="useStaticColorsTxt">
           <property name="statusTip">
-           <string>Specify the color for drawing player locations</string>
+           <string>If enabled MinetestMapperGui always uses this file instead of searching one in the World directory</string>
           </property>
           <property name="text">
-           <string notr="true">yellow</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="ColorLineEdit" name="origincolor">
-          <property name="statusTip">
-           <string> Specify the color for drawing the map origin (0,0)</string>
-          </property>
-          <property name="text">
-           <string notr="true">red</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="ColorLineEdit" name="scalecolor">
-          <property name="statusTip">
-           <string> Specify the color for text in the scales on the side</string>
-          </property>
-          <property name="text">
-           <string notr="true">black</string>
+           <string>Allways use this static colors.txt file</string>
           </property>
          </widget>
         </item>
@@ -1927,8 +1955,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>492</width>
-             <height>308</height>
+             <width>513</width>
+             <height>369</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2249,7 +2277,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>760</width>
+     <width>800</width>
      <height>26</height>
     </rect>
    </property>

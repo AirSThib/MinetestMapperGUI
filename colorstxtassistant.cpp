@@ -120,3 +120,8 @@ void ColorsTxtAssistant::on_browseFileNodesTxt_clicked()
                                                     tr("TXT File (*.txt)"));
     if(fileName!="") ui->fileNodesTxt->setText(fileName);
 }
+
+void ColorsTxtAssistant::setNodesTxtFilePath(const QString &nodesTxtFilePath)
+{
+    ui->fileNodesTxt->setText(nodesTxtFilePath);
+}

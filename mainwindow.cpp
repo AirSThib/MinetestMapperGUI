@@ -267,8 +267,8 @@ void MainWindow::on_button_generate_clicked()
 
     qDebug() << QString("Minetestmapper version: ") + ConfigSettings::getMapperVersion(mapperBinary.fileName(), this);
 
-    QDir worldPath = QDir(ui->path_World->text());
-    if(!worldPath.exists()||worldPath.path()=="."||worldPath.path()=="/"){
+    QDir worldDir = QDir(ui->path_World->text());
+    if(!worldDir.exists()||worldDir.path()=="."||worldDir.path()=="/"){
         QMessageBox::critical(this, tr("no input world selected"),
                  tr("ERROR: No MinetestWorld selected<br><br>"
                     "please select a world"));
@@ -303,14 +303,18 @@ void MainWindow::on_button_generate_clicked()
 
     }
 
-    QString appDir =QCoreApplication::applicationDirPath();
+    QString appDir = qApp->applicationDirPath();
     qDebug()<<appDir;
     QDir dir = QDir(appDir);
+    QString colorsTxtFilePath = getColorsTxtFilePath(&dir, &worldDir);
+    if (colorsTxtFilePath.isEmpty()){
+        return;
+    }
 
     QStringList arguments;
     arguments           <<"-i" << ui->path_World->text()//"D:\\Programme\\minetest\\worlds\\server_minetest.king-arthur.eu_30000"
                         <<"--output" << imgName //"D:\\Users\\Adrian\\Desktop\\test2.png"
-                        <<"--colors" <<  dir.absoluteFilePath(ui->path_ColorsTxt->text()) //appDir+"\\colors\\colors.txt"
+                        <<"--colors" <<  colorsTxtFilePath
                         <<"--progress" //<< "--verbose-search-colors=2" //<<"--verbose"
                         <<"--drawalpha="+ui->drawAlpha->currentText()
                         <<"--bgcolor" << ui->bgcolor->text()
@@ -782,13 +786,14 @@ void MainWindow::writeProfile(QString strProfile)
     profile.endGroup();
 
     profile.beginGroup("colors");    //tab4 Colors
-        profile.setValue("path_ColorsTxt",ui->path_ColorsTxt->text());
-        profile.setValue("bgcolor",ui->bgcolor->text());
-        profile.setValue("blockcolor",ui->blockcolor->text());
-        profile.setValue("scalecolor",ui->scalecolor->text());
-        profile.setValue("origincolor",ui->origincolor->text());
-        profile.setValue("playercolor",ui->playercolor->text());
-        profile.setValue("tileborderrcolor",ui->tilebordercolor->text());
+        profile.setValue("path_ColorsTxt", ui->path_ColorsTxt->text());
+        profile.setValue("useStaticColorsTxt", ui->useStaticColorsTxt->isChecked());
+        profile.setValue("bgcolor", ui->bgcolor->text());
+        profile.setValue("blockcolor", ui->blockcolor->text());
+        profile.setValue("scalecolor", ui->scalecolor->text());
+        profile.setValue("origincolor", ui->origincolor->text());
+        profile.setValue("playercolor", ui->playercolor->text());
+        profile.setValue("tileborderrcolor", ui->tilebordercolor->text());
     profile.endGroup();
 
     profile.beginGroup("features");    //tab5 Featurs
@@ -880,6 +885,7 @@ void MainWindow::readProfile(QString strProfile)
 
     profile.beginGroup("colors");    //tab4 Colors
         ui->path_ColorsTxt->setText(profile.value("path_ColorsTxt","./colors/colors.txt").toString());
+        ui->useStaticColorsTxt->setChecked(profile.value("useStaticColorsTxt",false).toBool());
         ui->bgcolor->setText(profile.value("bgcolor","white").toString());
         ui->blockcolor->setText(profile.value("blockcolor","white").toString());
         ui->scalecolor->setText(profile.value("scalecolor","black").toString());
@@ -1107,4 +1113,77 @@ void MainWindow::startColorsTxtAssistant(void)
 {
     ColorsTxtAssistant *assistant = new ColorsTxtAssistant(this);
     assistant->exec();
+}
+
+/**
+ * @brief MainWindow::getColorsTxtFilePath
+ * @param appDir Current applications working dir
+ * @param worldDir Dir of the selected minetest world
+ * @return Returns a filepath to a colors.txt file or a empty string.
+ */
+QString MainWindow::getColorsTxtFilePath(QDir *appDir, QDir *worldDir)
+{
+    QString retval;
+
+    if(ui->useStaticColorsTxt->isChecked()){
+
+        retval = appDir->absoluteFilePath(ui->path_ColorsTxt->text()); //appDir+"\\colors\\colors.txt"
+    }
+    else{
+        // First check if there is a colors.txt file in world dir
+        if(QFile::exists( worldDir->absoluteFilePath("colors.txt")))
+        {
+            retval = worldDir->absoluteFilePath("colors.txt");
+        }
+        //else check if there is a nodes.txt in worldpath
+        else if(QFile::exists( worldDir->absoluteFilePath("nodes.txt")))
+        {
+            // There is a nodes.txt but no colors.txt; Ask if the user want to create a colors.txt file
+            int ret = QMessageBox::question(this, tr("Create a colors.txt"),
+                     tr("There is a nodes.txt but no colors.txt in the world directory\n"
+                        "Do you want to generate one? \n"
+                        "If you select 'No' the default colors.txt will be used.")
+                                 );
+            if(ret == QMessageBox::Yes)
+            {
+                ColorsTxtAssistant assistant(this);
+                assistant.setNodesTxtFilePath(worldDir->absoluteFilePath("nodes.txt"));
+                assistant.exec();//maybe exec should return if a colors.txt file could successfuly generated.
+
+
+                if(QFile::exists( worldDir->absoluteFilePath("colors.txt"))){
+                    retval = worldDir->absoluteFilePath("colors.txt");
+                }
+                else{
+                    //not shure how to handle this case. We could just return now and do nothing, or we could use the default colors.txt file.
+                    //Let the user decide. even if he have seen way too much messages.
+                    int ret2 = QMessageBox::critical(this, tr("No colors.txt file"),
+                                          tr("ERROR: Still no colors.txt file found inside world directory.\n\n"
+                                             "Do you want to cancel or proceed with default colors.txt file?"),
+                                          tr("Cancel"),
+                                          tr("Proceed with default"));
+                    if(ret2 == 1){
+                        //Proceed button pressed
+                        retval = appDir->absoluteFilePath(ui->path_ColorsTxt->text());
+                    }
+                    else {
+                        //case of cancel
+                        retval = QString();//empty string
+                    }
+
+                }
+
+            }
+            else{
+                // User has choose to use the default one
+                retval = appDir->absoluteFilePath(ui->path_ColorsTxt->text());
+            }
+        }
+        else{
+            // there is neither a colors.txt nor a nodes.txt file in world dir.
+            // Use the colors.txt file from colors tab.
+            retval = appDir->absoluteFilePath(ui->path_ColorsTxt->text());
+        }
+    }
+    return retval;
 }

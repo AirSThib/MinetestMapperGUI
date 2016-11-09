@@ -134,6 +134,7 @@ private:
     QString pathProfiles; // path where the profiles should be stored.
     //QSettings profile;
     QSettings *settings;
+    QString getColorsTxtFilePath(QDir *appDir, QDir *worldDir);
 };
 
 #endif // MAINWINDOW_H

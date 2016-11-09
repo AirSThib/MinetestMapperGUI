@@ -24,6 +24,7 @@ public:
     explicit ColorsTxtAssistant(QWidget *parent = 0);
     ~ColorsTxtAssistant();
 
+    void setNodesTxtFilePath(const QString &nodesTxtFilePath);
 public slots:
 
 private slots:
