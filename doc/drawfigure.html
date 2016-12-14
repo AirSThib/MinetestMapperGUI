@@ -1,0 +1,104 @@
+<h1 id="figure"><code>--draw[map]&lt;figure&gt; &quot;&lt;geometry&gt; &lt;color&gt; [&lt;text&gt;]&quot;</code></h1>
+<blockquote>
+    <p>Draw a figure on the map, with the given geometry and color.</p>
+    <p>Possible figures are:</p>
+    <ul>
+        <li>circle</li>
+        <li>ellipse (which is a synonym for circle)</li>
+        <li>line</li>
+        <li>arrow</li>
+        <li>point (which uses simple coordinates (x,y) instead of a geometry)</li>
+        <li>rectangle</li>
+        <li>text (which uses simple coordinates (x,y) instead of a geometry)</li>
+    </ul>
+    <p>If <code>--draw&lt;figure&gt;</code> is used, the geometry specifies world coordinates; if <code>--drawmap&lt;figure&gt;</code>        is used, the geometry specifies map (i.e. image) coordinates, where 0,0 is the top-left corner of the map-part of
+        the image, and coordinates increase to the right and down. Any points in the left and top scale area (if present)
+        have negative coordinates.</p>
+    <p>Note that the combination of geometry and color (and text if applicable) must be a single argument. This means that they
+        <em>must</em> be enclosed in quotes together on the command-line, else they will be misinterpreted as two or more
+        command-line arguments.</p>
+    <p>Example:</p>
+    <pre><code>minetestmapper --drawcircle &quot;10,10:6x6 red&quot;</code></pre>
+    <p>For the color of figures, an alpha value can be specified. Note that due to a bug in the drawing library, this has not
+        the expected effect when drawing circles and ellipses.</p>
+    <p>See also Geometry Syntax_ and Color Syntax_.</p>
+    <p><strong>Interaction of figure geometry and map scaling</strong></p>
+    <p>If the map is scaled, figures could either keep the same size in pixels, or the same size relative to the world, which
+        would make them appear smaller like the entire map. Whether they scale of not depends on how they are drawn:</p>
+    <blockquote>
+        <ul>
+            <li>Figures which are drawn using map (i.e. image) coordinates are never scaled. It is assumed that it was the intention
+                to draw them on the image to begin with, and not in the world.</li>
+        </ul>
+    </blockquote>
+    <p>At the moment, figures which are drawn using world coordinates may or may not scale with the world.</p>
+    <ul>
+        <li>If the geometry of a figure is specified using 2 corners, then the distance between the coordinates obviously scales
+            with the world, and the resulting figure will be visually smaller as well.</li>
+        <li>If the geometry of a figure is specified using a corner or the center and dimensions, then the corner or center is
+            obviously also interpreted as world-coordinates, but the dimensions will be interpreted relative to the image.
+            I.e. they won't scale with the map.</li>
+        <li>If the geometry is specified using an angle and length, and if the length is specified in nodes (e.g. '20n'), the
+            size will scale. If the length is specified in pixels (e.g. '20p') or if no unit is specified, then the size
+            will not scale.</li>
+    </ul>
+    <p>In practise this means that two identically-sized figures in a full-scale map, may have different sizes after scaling,
+        depending on how their geometry was specified. The jury is still out as to whether this is a bug or a feature.</p>
+</blockquote>
+<h1 id="drawmapcircle"><code>--draw[map]circle &quot;&lt;geometry&gt; &lt;color&gt;&quot;</code></h1>
+<blockquote>
+    <p>Draw a circle on the map, with the given geometry and color.</p>
+    <p>If the geometry does not specify equal horizontal and vertical dimensions, then an ellipse will be drawn.</p>
+    <p>See <a href="#figure">--draw[map]</a> for details.</p>
+    <p>An example circle:</p>
+    <p><img src=":/images/drawcircle.png" alt="image" /></p>
+</blockquote>
+<h1 id="drawmapellipse"><code>--draw[map]ellipse &quot;&lt;geometry&gt; &lt;color&gt;&quot;</code></h1>
+<blockquote>
+    <p>Draw an ellipse on the map. This is a synonym for <code>--draw[map]circle</code>.</p>
+    <p>See <a href="#figure">--draw[map]</a> for details.</p>
+</blockquote>
+<h1 id="drawmapline"><code>--draw[map]line &quot;&lt;geometry&gt; &lt;color&gt;&quot;</code></h1>
+<blockquote>
+    <p>Draw a line on the map, with the given geometry and color.</p>
+    <p>See <a href="#figure">--draw[map]</a> for details.</p>
+    <p>An example line:</p>
+    <p><img src=":/images/drawline.png" alt="image" /></p>
+</blockquote>
+<h1 id="drawmaparrow"><code>--draw[map]arrow &quot;&lt;geometry&gt; &lt;color&gt;&quot;</code></h1>
+<blockquote>
+    <p>Draw an arrow on the map, with the given geometry and color.</p>
+    <p>See <a href="#figure">--draw[map]</a> for details.</p>
+    <p>An example arrow:</p>
+    <p><img src=":/images/drawarrow.png" alt="image" /></p>
+</blockquote>
+<h1 id="drawmappoint"><code>--draw[map]point &quot;&lt;x&gt;,&lt;y&gt; &lt;color&gt;&quot;</code></h1>
+<blockquote>
+    <p>Draw a point on the map, at the given location, using the given color.</p>
+    <p>See <a href="#figure">--draw[map]</a> for details.</p>
+    <p>An example point (red, in te white area):</p>
+    <p><img src=":/images/drawpoint.png" alt="image" /></p>
+</blockquote>
+<h1 id="drawmaprectangle"><code>--draw[map]rectangle &quot;&lt;geometry&gt; &lt;color&gt;&quot;</code></h1>
+<blockquote>
+    <p>Draw a reactangle on the map, with the given geometry and color.</p>
+    <p>See <a href="#figure">--draw[map]</a> for details.</p>
+    <p>An example rectangle:</p>
+    <p><img src=":/images/drawrectangle.png" alt="image" /></p>
+</blockquote>
+<h1 id="drawmaptext"><code>--draw[map]text &quot;&lt;x&gt;,&lt;y&gt; &lt;color&gt; &lt;text&gt;&quot;</code></h1>
+<blockquote>
+    <p>Write text on the map, at the specified location, using the given color.</p>
+    <p>The text can consist of any number of words. Be careful when using characters that the command shell may interpret, like
+        '<code>&quot;</code>', '<code>$</code>', etc. On unix-like systems, use single quotes to avoid interpretation of
+        most characters (except for <code>'</code> itself).</p>
+    <p>Due to a limitation of the drawing library, currently only text that can be represented in (i.e. converted to) the ISO8859-2
+        character set is supported. Text that uses non-compatible characters will not be rendered correctly.</p>
+    <p>Note that the combination of geometry, color and text should be a single argument. This means that they must be enclosed
+        in quotes together on the command-line, else they will be misinterpreted as three command-line arguments.</p>
+    <p>Example:</p>
+    <pre><code>minetestmapper --drawtext &quot;20,-10 red This text will be on the map&quot;</code></pre>
+    <p>See also <a href="#figure">--draw[map]</a> for more details.</p>
+    <p>Example text:</p>
+    <p><img src=":/images/drawtext.png" alt="image" /></p>
+</blockquote>

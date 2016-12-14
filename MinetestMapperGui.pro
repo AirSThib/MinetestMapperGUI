@@ -16,17 +16,26 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     colorlineedit.cpp \
+    geometry.cpp \
     geometrywidget.cpp \
     configdialog.cpp \
     colorstxtassistant.cpp \
-    makecolors.cpp
+    makecolors.cpp \
+    drawmapfigure.cpp \
+    drawmapfiguretablemodel.cpp \
+    figuredelegate.cpp
+
 
 HEADERS  += mainwindow.h \
     colorlineedit.h \
+    geometry.h \
     geometrywidget.h \
     configdialog.h \
     colorstxtassistant.h \
-    makecolors.h
+    makecolors.h \
+    drawmapfigure.h \
+    drawmapfiguretablemodel.h \
+    figuredelegate.h
 
 FORMS    += mainwindow.ui \
     geometrywidget.ui \

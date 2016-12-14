@@ -13,6 +13,8 @@
 #include <QInputDialog>
 #include <QActionGroup>
 #include <QSettings>
+#include <QMessageBox>
+#include <QDataWidgetMapper>
 #ifdef Q_OS_WIN
 #include <QWinTaskbarProgress>
 #include <QWinTaskbarButton>
@@ -20,6 +22,9 @@
 
 #include "configdialog.h"
 #include "colorstxtassistant.h"
+#include "drawmapfigure.h"
+#include "drawmapfiguretablemodel.h"
+#include "figuredelegate.h"
 
 namespace Ui {
 class MainWindow;
@@ -104,6 +109,14 @@ private slots:
 
     void on_actionPreferences_triggered();
 
+    void on_button_addFigure_clicked();
+
+    void on_figure_geometry_apply_clicked();
+
+    void on_button_deleteFigure_clicked();
+
+    void on_figureSelect_currentIndexChanged(int index);
+
 private:
     bool portable;
     Ui::MainWindow *ui;
@@ -135,6 +148,9 @@ private:
     //QSettings profile;
     QSettings *settings;
     QString getColorsTxtFilePath(QDir *appDir, QDir *worldDir);
+
+    DrawMapFigureTableModel *drawMapFigureTable;
+    QDataWidgetMapper *drawMapFigureTableMapper;
 };
 
 #endif // MAINWINDOW_H

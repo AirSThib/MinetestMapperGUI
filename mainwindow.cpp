@@ -78,7 +78,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     finishUiInitialisation();
     readSettings();
-    readProfile(currentProfile);
+
     progressBar = new QProgressBar(ui->statusBar);
     progressBar->setAlignment(Qt::AlignRight);
     progressBar->setMaximumSize(180, 19);
@@ -92,11 +92,34 @@ MainWindow::MainWindow(QWidget *parent) :
     createLanguageMenu();
     createProfilesMenu();
 
+    ui->figureSelect->addItems(DrawMapFigure::getFigureList());
+
+    drawMapFigureTable = new DrawMapFigureTableModel(this);
+
+    ui->figures_list->setModel(drawMapFigureTable);
+
+    ui->figures_list->setItemDelegateForColumn(0, new FigureDelegate(this));
+    drawMapFigureTableMapper = new QDataWidgetMapper(this);
+    readProfile(currentProfile);
+    drawMapFigureTableMapper->setModel(drawMapFigureTable);
+    drawMapFigureTableMapper->addMapping(ui->figureSelect, 0, "currentIndex");
+    drawMapFigureTableMapper->addMapping(ui->figureUseImageCoordinates,1);
+    drawMapFigureTableMapper->addMapping(ui->figure_point,2);
+    drawMapFigureTableMapper->addMapping(ui->figure_geometry, 3, "geometry");
+    drawMapFigureTableMapper->addMapping(ui->figure_color,4);
+    drawMapFigureTableMapper->addMapping(ui->figure_text,5);
+    connect(ui->figures_list->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
+            drawMapFigureTableMapper, SLOT(setCurrentModelIndex(QModelIndex)));
+    ui->figures_list->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->figures_list->resizeColumnsToContents();
     QCompleter *completer = new QCompleter(this);
     QDirModel *model =new QDirModel(completer);
     model->setFilter(QDir::Dirs|QDir::NoDotAndDotDot|QDir::Drives);
     completer->setModel(model);
     ui->path_World->setCompleter(completer);
+
+
+
 }
 
 void MainWindow::finishUiInitialisation(void)
@@ -428,6 +451,9 @@ void MainWindow::on_button_generate_clicked()
         }
     }
 
+    // Draw figures tab
+    arguments << drawMapFigureTable->getArguments();
+
     ui->button_generate->setDisabled(true);
 
     if(ui->actionExpert_Mode->isChecked()){
@@ -543,6 +569,18 @@ void MainWindow::mapperFinisched(int exit)
         ui->statusBar->showMessage(tr("minetestmapper terminated"));
     }
     else{//something was wrong
+        QMessageBox errBox;
+        errBox.setText(tr("<b>Minetest Mapper failed</b>"));
+        errBox.setSizeGripEnabled(true);
+        errBox.setMinimumSize(800,600);
+        errBox.resize(800,600);
+        errBox.setIcon(QMessageBox::Icon::Critical);
+          errBox.setInformativeText(tr("Exit code: %1").arg(exit));
+          errBox.setDetailedText(ui->statusBar->currentMessage());
+          errBox.setStandardButtons(QMessageBox::Close);
+          errBox.setDefaultButton(QMessageBox::Close);
+          errBox.exec();
+
         QMessageBox::critical(this, tr("Minetest Mapper failed"),
                  tr("<h1>ERROR</h1> <h2>minetestmapper failed</h2>"
                     "Exit code: <i>%1</i> <br>"
@@ -811,7 +849,10 @@ void MainWindow::writeProfile(QString strProfile)
         /*
          * Todo: also save and restore other tiles
         */
+    profile.endGroup();
 
+    profile.beginGroup("drawFigures");   //tab7 Draw Figures
+        profile.setValue("drawMapFigures", drawMapFigureTable->getStringList());
     profile.endGroup();
 }
 
@@ -910,6 +951,10 @@ void MainWindow::readProfile(QString strProfile)
         ui->tileborder->setValue(profile.value("tileborder",1).toInt());
         ui->tiles_coordinateX->setValue(profile.value("tiles_coordinateX",0).toInt());
         ui->tiles_coordinateY->setValue(profile.value("tiles_coordinateY",0).toInt());
+    profile.endGroup();
+
+    profile.beginGroup("drawFigures");
+        drawMapFigureTable->insertStringList(profile.value("drawMapFigures",QStringList()).toStringList());
     profile.endGroup();
 }
 
@@ -1186,4 +1231,30 @@ QString MainWindow::getColorsTxtFilePath(QDir *appDir, QDir *worldDir)
         }
     }
     return retval;
+}
+
+void MainWindow::on_button_addFigure_clicked()
+{
+    drawMapFigureTable->insertRow(0);
+}
+
+void MainWindow::on_figure_geometry_apply_clicked()
+{
+    drawMapFigureTableMapper->submit();
+}
+
+void MainWindow::on_button_deleteFigure_clicked()
+{
+    QModelIndexList indexes;
+    while((indexes = ui->figures_list->selectionModel()->selectedIndexes()).size()) {
+        drawMapFigureTable->removeRow(indexes.first().row());
+    }
+}
+
+void MainWindow::on_figureSelect_currentIndexChanged(int index)
+{
+    QStringList lookup = QStringList()<<"figure"
+                       << "drawmaparrow" << "drawmapcircle" << "drawmapellipse"
+                       << "drawmapline" << "drawmappoint" << "drawmaprectangle" << "drawmaptext";
+ui->figureInformation->scrollToAnchor(lookup.at(index));
 }

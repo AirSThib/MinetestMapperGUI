@@ -8,5 +8,20 @@
         <file alias="open">images/open.svg</file>
         <file>images/icon.svg</file>
         <file>images/minetest.svg</file>
+        <file>doc/drawfigure.html</file>
+        <file>images/draw-arrow.svg</file>
+        <file>images/draw-circle.svg</file>
+        <file>images/draw-ellipse.svg</file>
+        <file>images/draw-line.svg</file>
+        <file>images/draw-point.svg</file>
+        <file>images/draw-rectangle.svg</file>
+        <file>images/draw-unknown.svg</file>
+        <file>images/draw-text.svg</file>
+        <file>images/drawarrow.png</file>
+        <file>images/drawcircle.png</file>
+        <file>images/drawline.png</file>
+        <file>images/drawpoint.png</file>
+        <file>images/drawrectangle.png</file>
+        <file>images/drawtext.png</file>
     </qresource>
 </RCC>

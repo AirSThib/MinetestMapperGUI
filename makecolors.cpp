@@ -173,12 +173,13 @@ bool MakeColors::writeColorsTxt(const QString file)
         {
             mi.next();
             const QString fullNodeName = mi.key();
-            const QString currentMod = fullNodeName.split(':')[0];
+            const QString currentMod = fullNodeName.section(':',0,0,QString::SectionIncludeLeadingSep);
 
             //write a new paragraph
-            if(currentMod != lastMod){
-                out<<endl<<"# "<<fullNodeName.split(':')[0]<<endl;
+            if(currentMod != lastMod)
+            {
                 lastMod = currentMod;
+                out<<endl<<"# "<<currentMod<<endl;
             }
             //read the color for texture out of requiredColors QHash
             QColor color = requiredColors.value(mi.value());

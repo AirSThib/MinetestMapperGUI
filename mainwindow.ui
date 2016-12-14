@@ -894,7 +894,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>503</width>
+             <width>524</width>
              <height>427</height>
             </rect>
            </property>
@@ -2178,6 +2178,174 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Draw figures</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title">
+           <string>Elements</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_16">
+           <item row="1" column="0">
+            <widget class="QPushButton" name="button_addFigure">
+             <property name="text">
+              <string>+</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="button_deleteFigure">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QTableView" name="figures_list">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="dragDropMode">
+              <enum>QAbstractItemView::DragDrop</enum>
+             </property>
+             <property name="defaultDropAction">
+              <enum>Qt::MoveAction</enum>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>30</number>
+             </attribute>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_8">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title">
+           <string>Properties</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_14">
+           <item row="3" column="2">
+            <widget class="QLineEdit" name="figure_point"/>
+           </item>
+           <item row="6" column="1">
+            <widget class="QLabel" name="label_22">
+             <property name="text">
+              <string>Information: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QComboBox" name="figureSelect"/>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Figure:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="ColorLineEdit" name="figure_color">
+             <property name="text">
+              <string>red</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>Color: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="QCheckBox" name="figureUseImageCoordinates">
+             <property name="text">
+              <string>Use Image Coodinates</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QLineEdit" name="figure_text"/>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>Text:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
+            <widget class="QGroupBox" name="groupBox_9">
+             <property name="title">
+              <string>Geometry</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_10">
+              <item>
+               <widget class="GeometryWidget" name="figure_geometry" native="true"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="figure_geometry_apply">
+                <property name="text">
+                 <string>Apply</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="label_21">
+             <property name="text">
+              <string>Point</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1" colspan="2">
+            <widget class="QTextBrowser" name="figureInformation">
+             <property name="acceptRichText">
+              <bool>false</bool>
+             </property>
+             <property name="source">
+              <url>
+               <string>qrc:/doc/drawfigure.html</string>
+              </url>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="tab_output">
        <attribute name="title">
         <string>MinetestMapper Output</string>
@@ -3092,7 +3260,7 @@ p, li { white-space: pre-wrap; }
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="geometrymode_size_group"/>
   <buttongroup name="geometrymode_granularity_group"/>
+  <buttongroup name="geometrymode_size_group"/>
  </buttongroups>
 </ui>
