@@ -11,7 +11,7 @@
 
 class DrawMapFigure : public QObject
 {
-    Q_OBJECT
+
 public:
     enum Figure{
         Unknown,
@@ -100,7 +100,8 @@ protected:
     QColor color;
     QMetaEnum metaFigure = QMetaEnum::fromType<Figure>();
 private:
-
+    Q_OBJECT
+    static QStringList figuresList;
 };
 
 #endif // DRAWMAPFIGURE_H

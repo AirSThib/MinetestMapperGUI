@@ -52,6 +52,8 @@ private:
     void computeCorner1(void);
     void computeCenter(void);           // Depends dimensions to be correct !
     void computeDimensions(void);
+
+    Format format = FormatNone;
 };
 
 #endif // GEOMETRY_H

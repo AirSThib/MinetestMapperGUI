@@ -12,7 +12,6 @@ class DrawMapFigureTableModel : public QAbstractTableModel
 
 public:
     explicit DrawMapFigureTableModel(QObject *parent = 0);
-    explicit DrawMapFigureTableModel(QList<DrawMapFigure *> *list, QObject *parent = 0);
 
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;

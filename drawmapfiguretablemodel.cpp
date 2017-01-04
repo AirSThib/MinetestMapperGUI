@@ -6,14 +6,7 @@ DrawMapFigureTableModel::DrawMapFigureTableModel(QObject *parent)
     : QAbstractTableModel(parent)
 {
     list = new QList<DrawMapFigure *>;
-    header <<"Figure"<<"Use image coordinates"<<"Point"<<"Geometry"<<"Color"<<"Text";
-}
-
-DrawMapFigureTableModel::DrawMapFigureTableModel(QList<DrawMapFigure *> *list, QObject *parent)
-    : QAbstractTableModel(parent)
-{
-    this->list = list;
-    header <<"Figure"<<"Use image coordinates"<<"Point"<<"Geometry"<<"Color"<<"Text";
+    header <<tr("Figure")<<tr("Coordinates")<<tr("Point")<<tr("Geometry")<<tr("Color")<<tr("Text");
 }
 
 QVariant DrawMapFigureTableModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -97,13 +90,18 @@ QVariant DrawMapFigureTableModel::data(const QModelIndex &index, int role) const
                 break;
 
             case 1:
-                return item->getUseImageCoordinates();
+                if(role == Qt::EditRole){
+                    return item->getUseImageCoordinates();
+                }
+                else {
+                    return item->getUseImageCoordinates() ? "Image (x,y)" : "Minetest (x,z)";
+                }
                 break;
             case 2:
                 return (item->requiresPoint()) ? QString("(%1,%2)").arg(p.x()).arg(p.y()) : QVariant();
                 break;
             case 3:
-                return item->requiresGeometry() ? item->getGeometry()->getString() : QVariant();
+                return item->requiresGeometry() ? item->getGeometry()->getString(Geometry::FormatKeep) : QVariant();
                 break;
             case 4:
                 return item->getColor();
@@ -120,6 +118,9 @@ QVariant DrawMapFigureTableModel::data(const QModelIndex &index, int role) const
         }
        else if(role == Qt::DecorationRole && col==4){
             return item->getColor();
+        }
+        else if(role == Qt::CheckStateRole && col ==1){
+            return item->getUseImageCoordinates()? Qt::Checked : Qt::Unchecked;
         }
     }
     return QVariant();
@@ -156,6 +157,12 @@ bool DrawMapFigureTableModel::setData(const QModelIndex &index, const QVariant &
         emit dataChanged(index, index, QVector<int>() << role);
         return true;
     }
+    else if( index.isValid() && role == Qt::CheckStateRole &&index.column()==1){
+        DrawMapFigure *item = list->at(index.row());
+        item->setUseImageCoordinates(value.toInt() == Qt::Checked);
+        emit dataChanged(index, index, QVector<int>() << role);
+        return true;
+    }
     return false;
 }
 
@@ -169,7 +176,7 @@ Qt::ItemFlags DrawMapFigureTableModel::flags(const QModelIndex &index) const
     if(col == 0)
         flag |= Qt::ItemIsEnabled|Qt::ItemIsEditable;
     else if(col == 1)
-        flag |= Qt::ItemIsEditable;
+        flag |= Qt::ItemIsUserCheckable;
     else if (col == 2 && item->requiresPoint())
         flag |= Qt::ItemIsEditable;
     else if (col == 3 && item->requiresGeometry())

@@ -1,5 +1,14 @@
 #include "drawmapfigure.h"
 
+QStringList DrawMapFigure::figuresList = QStringList() << QT_TR_NOOP("Unknown")
+                                                       << QT_TR_NOOP("Arrow")
+                                                       << QT_TR_NOOP("Circle")
+                                                       << QT_TR_NOOP("Ellipse")
+                                                       << QT_TR_NOOP("Line")
+                                                       << QT_TR_NOOP("Point")
+                                                       << QT_TR_NOOP("Rectangle")
+                                                       << QT_TR_NOOP("Text");
+
 DrawMapFigure::DrawMapFigure(QObject *parent) :
     QObject(parent)
 {
@@ -18,9 +27,8 @@ DrawMapFigure::DrawMapFigure(const QString &str, QObject *parent) :
         QString params = match.captured("params");
 
         color.setNamedColor(params.section(' ', 1, 1));
-        bool ok;
         figure = getFigure(match.captured("type"));
-        if(color.isValid() && ok){
+        if(color.isValid()){
             switch (figure) {
             case Text:
                 //parse text and fall through for point
@@ -143,12 +151,7 @@ QColor DrawMapFigure::getColor() const
 
 QStringList DrawMapFigure::getFigureList()
 {
-    QMetaEnum metaEnum = QMetaEnum::fromType<Figure>();
-    QStringList list;
-    for(int i =0; i<metaEnum.keyCount();i++){
-        list <<  metaEnum.key(i);
-    }
-    return list;
+    return figuresList;
 }
 
 void DrawMapFigure::setFigure(const Figure &value)

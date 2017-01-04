@@ -40,7 +40,7 @@ Geometry::Format Geometry::set(QString str)
     QRegularExpressionMatch match;
     if(str.isEmpty()){
         qDebug()<<"format is FormatNone";
-        return FormatNone;
+        format = FormatNone;
     }
     else if((match =corners.match(str)).hasMatch()) {
         qDebug()<<"format is Corners";
@@ -52,7 +52,7 @@ Geometry::Format Geometry::set(QString str)
         // Order is important here!
         computeDimensions();
         computeCenter();
-        return Geometry::Corners;
+        format = Geometry::Corners;
     }
     else if((match =centerDimension.match(str)).hasMatch()){
         qDebug()<<"format is CenterDimensions";
@@ -67,7 +67,7 @@ Geometry::Format Geometry::set(QString str)
             computeDimensions();
             computeCenter();
         }
-        return Geometry::CenterDimensions;
+        format = Geometry::CenterDimensions;
     }
     else if((match = cornerDimension.match(str)).hasMatch()){
         qDebug()<<"format is CornerDimensions";
@@ -82,7 +82,7 @@ Geometry::Format Geometry::set(QString str)
             computeDimensions();
             computeCenter();
         }
-        return Geometry::CornerDimensions;
+        format = Geometry::CornerDimensions;
     }
     else if((match = cornerDimensionAlternate.match(str)).hasMatch()){
         qDebug() << "format is <width>x<height>[<+|-xoffset><+|-yoffset>]";
@@ -99,7 +99,7 @@ Geometry::Format Geometry::set(QString str)
                 computeDimensions();
                 computeCenter();
             }
-            return Geometry::CenterDimensions;
+            format = Geometry::CenterDimensions;
         }
         else if(match.lastCapturedIndex() ==4){
             qDebug() << "format is CornerDimensions";
@@ -114,14 +114,16 @@ Geometry::Format Geometry::set(QString str)
                 computeDimensions();
                 computeCenter();
             }
-            return Geometry::CornerDimensions;
+            format = Geometry::CornerDimensions;
         }
-        else return Geometry::FormatCustom;
+        else format = Geometry::FormatCustom;
     }
     else {
         qDebug()<<"Warning: Could not parse format of string: "<<str;
-        return Geometry::FormatCustom;
+        format = Geometry::FormatCustom;
     }
+
+    return format;
 
 }
 void Geometry::setMax(void)
@@ -184,6 +186,8 @@ void Geometry::setCorners(int c0x, int c0y, int c1x, int c1y)
 
 QString Geometry::getString(Geometry::Format format)
 {
+    if(format == FormatKeep)
+        format = this->format; // Use the preferred format
     switch (format) {
         case CenterDimensions:
             if(center[0]==0 && center[1] ==0)
