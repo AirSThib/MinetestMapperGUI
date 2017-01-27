@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     makecolors.cpp \
     drawmapfigure.cpp \
     drawmapfiguretablemodel.cpp \
-    figuredelegate.cpp
+    figuredelegate.cpp \
+    minetestmapperexe.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -35,7 +36,8 @@ HEADERS  += mainwindow.h \
     makecolors.h \
     drawmapfigure.h \
     drawmapfiguretablemodel.h \
-    figuredelegate.h
+    figuredelegate.h \
+    minetestmapperexe.h
 
 FORMS    += mainwindow.ui \
     geometrywidget.ui \

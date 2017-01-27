@@ -13,8 +13,10 @@
 #include <QInputDialog>
 #include <QActionGroup>
 #include <QSettings>
+#include <QStringListModel>
 #include <QMessageBox>
 #include <QDataWidgetMapper>
+
 #ifdef Q_OS_WIN
 #include <QWinTaskbarProgress>
 #include <QWinTaskbarButton>
@@ -25,6 +27,7 @@
 #include "drawmapfigure.h"
 #include "drawmapfiguretablemodel.h"
 #include "figuredelegate.h"
+#include "minetestmapperexe.h"
 
 namespace Ui {
 class MainWindow;
@@ -35,7 +38,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(bool portable, QWidget *parent = 0);
     ~MainWindow();
 
     // Interaction with config dialog
@@ -49,6 +52,7 @@ protected:
     // this event is called, when a new translator is loaded or the system language is changed
     void changeEvent(QEvent*);
 
+    void showEvent(QShowEvent *event);
 protected slots:
     // this slot is called by the language menu actions
     void slotLanguageChanged(QAction* action);
@@ -57,16 +61,15 @@ protected slots:
 private slots:
     QString getOutputFileName();
     void on_button_generate_clicked();
-    void readOutput();
-    void readError();
+    void readError(const QString &str);
+    void mapperInitialized(void);
     void mapperFinisched(int exit);
     void error(QProcess::ProcessError error);
-    void wrapupMapper();
     void createProfilesMenu();
     void writeSettings();
-    void writeProfile(QString strProfile);
+    void writeProfile();
     void readSettings();
-    void readProfile(QString strProfile);
+    void readProfile();
     bool migrateSettingsProfiles();
 
     void on_browseWorld_clicked();
@@ -147,10 +150,13 @@ private:
     QString pathProfiles; // path where the profiles should be stored.
     //QSettings profile;
     QSettings *settings;
+    QSettings *profile;
     QString getColorsTxtFilePath(QDir *appDir, QDir *worldDir);
 
     DrawMapFigureTableModel *drawMapFigureTable;
     QDataWidgetMapper *drawMapFigureTableMapper;
+    MinetestMapperExe *minetestMapper;
+    QStringListModel *backends = new QStringListModel();
 };
 
 #endif // MAINWINDOW_H
