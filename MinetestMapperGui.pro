@@ -73,7 +73,9 @@ RC_LANG = 0x04b0
 
 QMAKE_TARGET_PRODUCT = "Minetest Mappger GUI"
 QMAKE_TARGET_DESCRIPTION = "Graphical user interface for MinetestMapper"
-QMAKE_TARGET_COPYRIGHT = "2015 addi; CC BY"
+QMAKE_TARGET_COPYRIGHT = "2015-2017 addi; CC BY"
 
-#add support for windows XP
-QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
+win32:contains(QT_ARCH, i386) {
+    # Support for x32 Windows XP (Windows 5.01)
+    QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
+}

@@ -55,7 +55,7 @@
    <item row="1" column="0">
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="stackedWidgetPage1">
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -183,7 +183,7 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item row="0" column="0" colspan="2">
-        <widget class="QTextBrowser" name="textBrowser">
+        <widget class="QTextBrowser" name="textBrowser_3">
          <property name="html">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
