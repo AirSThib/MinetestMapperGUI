@@ -3,11 +3,21 @@
 MinetestMapperExe::MinetestMapperExe(const QString &program, QObject *parent) : QObject(parent)
 {
     process = new QProcess(this);
-    minetestMapperExecutableFile = program;
-    process->setProgram(program);
+    setExecutableFile(program);
     connect(process, SIGNAL(errorOccurred(QProcess::ProcessError)),
             this, SLOT(errorOccured(QProcess::ProcessError)));
-
+    connect(process, SIGNAL(finished(int,QProcess::ExitStatus)),
+            this,    SLOT(finished(int,QProcess::ExitStatus)));
+    connect(process, SIGNAL(readyReadStandardOutput()),
+            this,    SLOT(readStandardOutput()));
+    connect(process, SIGNAL(readyReadStandardError()),
+            this,    SLOT(readStandardError()));
+}
+void MinetestMapperExe::setExecutableFile(const QString &program)
+{
+    state = Uninitialized;
+    minetestMapperExecutableFile = program;
+    process->setProgram(program);
 }
 
 QStringList MinetestMapperExe::getSupportedBackends() const
@@ -53,8 +63,7 @@ bool MinetestMapperExe::init(){
     {
         emit busyStateChanged(true);
         emit progressRangeChanged(0, 0);
-        connect(process, SIGNAL(finished(int,QProcess::ExitStatus)),
-                this,    SLOT(finished(int,QProcess::ExitStatus)));
+
         state = InitVersion;
         emit stateChanged("Init Version...");
         process->setArguments(QStringList("--version"));
@@ -159,48 +168,47 @@ bool MinetestMapperExe::initHelp()
 void MinetestMapperExe::readStandardOutput(void)
 {
     static const QRegularExpression re("([0-9]{1,3})(\\%)");
-    QByteArray outData = process->readAllStandardOutput();
-    QString out = QString(outData).trimmed();
-    if(!out.isEmpty()) {
-        QRegularExpressionMatch match = re.match(out);
-        if(match.hasMatch()){
-            if(state == MappingStart)
-            {
-                state = MappingProgress;
-                emit progressRangeChanged(0, 100);
+    if(state == MappingStart || state == MappingProgress || state == MappingEnd) {
+        QByteArray outData = process->readAllStandardOutput();
+        QString out = QString(outData).trimmed();
+        if(!out.isEmpty()) {
+            QRegularExpressionMatch match = re.match(out);
+            if(match.hasMatch()){
+                if(state == MappingStart)
+                {
+                    state = MappingProgress;
+                    emit progressRangeChanged(0, 100);
+                }
+                int percent = match.captured(1).toInt(); // percent == number
+                emit progressChanged(percent);
             }
-            int percent = match.captured(1).toInt(); // percent == number
-            emit progressChanged(percent);
-        }
-        else {
-            if(state == MappingProgress)
-            {
+            else {
+                if(state == MappingProgress)
+                {
 
-                state = MappingEnd;
-                emit progressRangeChanged(0, 0);
+                    state = MappingEnd;
+                    emit progressRangeChanged(0, 0);
+                }
             }
+            emit stateChanged(out);
+            emit mappingStandardOutput(out);
         }
-        emit stateChanged(out);
-        emit mappingStandardOutput(out);
     }
 }
 
 void MinetestMapperExe::readStandardError()
 {
-    const QByteArray outData = process->readAllStandardError();
-    if(outData.length() >1) {
-        const QString out = QString(outData).trimmed();
-        emit mappingStandardError(out);
-       }
+    if(state == MappingStart || state == MappingProgress || state == MappingEnd) {
+        const QByteArray outData = process->readAllStandardError();
+        if(outData.length() >1) {
+            const QString out = QString(outData).trimmed();
+            emit mappingStandardError(out);
+        }
+    }
 }
 
 void MinetestMapperExe::finishInitialization()
 {
-    connect(process, SIGNAL(readyReadStandardOutput()),
-            this,    SLOT(readStandardOutput()));
-    connect(process, SIGNAL(readyReadStandardError()),
-            this,    SLOT(readStandardError()));
-
     emit initialisationFinished(true);
 }
 

@@ -37,8 +37,7 @@ InitStatics::InitStatics(void)
 
 MainWindow::MainWindow(bool portable, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    configDialog(NULL)
+    ui(new Ui::MainWindow)
 {
     #ifndef Q_OS_WIN
     if (!migrateSettingsProfiles())
@@ -284,10 +283,6 @@ void MainWindow::changeEvent(QEvent* event)
 
 MainWindow::~MainWindow()
 {
-    if (configDialog) {
-        delete configDialog;
-        configDialog = NULL;
-    }
     minetestMapper->cancel();
     delete ui;
 }
@@ -1127,33 +1122,19 @@ void MainWindow::on_tileorigin_clicked()
 
 void MainWindow::on_actionPreferences_triggered()
 {
-    if (!configDialog) {
-        configDialog = new ConfigDialog(currentSettings, this, this);
-        configDialog->show();
-    } else {
-        configDialog->show();
-        configDialog->activateWindow();
-    }
-}
-
-void MainWindow::closeConfigDialog(void)
-{
-    if (configDialog) {
-        delete configDialog;
-        configDialog = NULL;
-    }
-}
-
-void MainWindow::updateConfigSettings(const ConfigSettings &newSettings)
-{
-    if (newSettings.mapperPath != currentSettings.mapperPath) {
+    ConfigDialog *d = new ConfigDialog(currentSettings, this, this);
+    int ret = d->exec();
+    if(ret == ConfigDialog::Accepted)
+    {
         // Update all 'auto' paths (colors files, ...) ???
         // (currently there are none, but in the future,
         //  colors files could be searched for relative to the minetestmapper path.
         //  If the mapper path changes, the paths of the possible colors files
         //  may change as well
+        currentSettings = d->getSettings();
+        minetestMapper->setExecutableFile(currentSettings.mapperPath);
+        minetestMapper->init();
     }
-    currentSettings = newSettings;
 }
 
 void MainWindow::startColorsTxtAssistant(void)

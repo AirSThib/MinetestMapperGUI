@@ -57,13 +57,23 @@ ConfigDialog::~ConfigDialog()
     delete ui;
 }
 
+ConfigSettings ConfigDialog::getSettings() const
+{
+    return settings;
+}
+
+void ConfigDialog::setSettings(const ConfigSettings &value)
+{
+    settings = value;
+}
+
 void ConfigDialog::on_browseMapper_clicked()
 {
-    #ifdef Q_OS_WIN
+#ifdef Q_OS_WIN
     QString fileType = tr("Executable (*.exe)");
-    #else
+#else
     QString fileType;
-    #endif
+#endif
 
     bool selectionSeemsOK;
     QString fileName;
@@ -180,18 +190,11 @@ void ConfigDialog::on_path_Minetestmapper_currentIndexChanged(int index)
 
 
 
-void ConfigDialog::on_CancelButton_clicked()
+void ConfigDialog::on_buttonBox_clicked(QAbstractButton *button)
 {
-    application->closeConfigDialog();
-}
-
-void ConfigDialog::on_ApplyButton_clicked()
-{
-    application->updateConfigSettings(settings);
-}
-
-void ConfigDialog::on_OKButton_clicked()
-{
-    on_ApplyButton_clicked();
-    on_CancelButton_clicked();
+    QDialogButtonBox::StandardButton b = ui->buttonBox->standardButton(button);
+    if(b== QDialogButtonBox::RestoreDefaults)
+    {
+        ui->path_Minetestmapper->setCurrentIndex(0);
+    }
 }

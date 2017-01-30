@@ -41,10 +41,6 @@ public:
     explicit MainWindow(bool portable, QWidget *parent = 0);
     ~MainWindow();
 
-    // Interaction with config dialog
-    void closeConfigDialog(void);
-    void updateConfigSettings(const ConfigSettings &newSettings);
-
 public slots:
     void startColorsTxtAssistant();
 protected:
@@ -131,7 +127,6 @@ private:
     QWinTaskbarProgress *taskbarProgress;
     #endif
     ConfigSettings currentSettings;
-    ConfigDialog *configDialog;
 
     void finishUiInitialisation(void);
 

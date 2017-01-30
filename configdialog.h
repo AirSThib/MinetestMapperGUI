@@ -37,6 +37,9 @@ public:
     explicit ConfigDialog(const ConfigSettings &settings, MainWindow *app, QWidget *parent = 0);
     ~ConfigDialog();
 
+    ConfigSettings getSettings() const;
+    void setSettings(const ConfigSettings &value);
+
 private:
     Ui::ConfigDialog *ui;
     QStringList executableList;
@@ -50,10 +53,7 @@ private slots:
     void on_browseMapper_clicked();
 
     void on_path_Minetestmapper_currentIndexChanged(int index);
-
-    void on_CancelButton_clicked();
-    void on_ApplyButton_clicked();
-    void on_OKButton_clicked();
+    void on_buttonBox_clicked(QAbstractButton *button);
 };
 
 #endif // CONFIGDIALOG_H

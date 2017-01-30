@@ -52,6 +52,7 @@ public:
     Tree getTree(void) const;
     QString getTreeString(void) const;
 
+    void setExecutableFile(const QString &program);
 signals:
     void stateChanged(const QString &str);
     /**
