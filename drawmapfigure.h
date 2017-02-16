@@ -35,13 +35,13 @@ public:
     explicit DrawMapFigure(const QString &str, QObject *parent = 0);
 
     explicit DrawMapFigure(QColor color, QObject *parent = 0) :
-        color(color), QObject(parent) { }
+        QObject(parent), color(color) { }
 
     explicit DrawMapFigure(QPoint point, QColor color, QObject *parent = 0) :
-        point(point), color(color), QObject(parent) {}
+        QObject(parent), point(point), color(color) {}
 
     explicit DrawMapFigure(Geometry *geometry, QColor color, QObject *parent = 0) :
-        geometry(geometry), color(color), QObject(parent) { }
+        QObject(parent), geometry(geometry), color(color) { }
 
     //DrawMapFigure(const DrawMapFigure &f) {}
     bool requiresPoint(void) const;
