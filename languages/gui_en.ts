@@ -129,53 +129,81 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configdialog.ui" line="52"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../configdialog.ui" line="59"/>
-        <source>Apply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../configdialog.ui" line="66"/>
-        <source>OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../configdialog.ui" line="91"/>
+        <location filename="../configdialog.ui" line="53"/>
         <source>Mapper Location: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configdialog.cpp" line="44"/>
+        <location filename="../configdialog.cpp" line="37"/>
         <source>---Automatic---  (Currently: %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configdialog.cpp" line="46"/>
+        <location filename="../configdialog.cpp" line="39"/>
         <source>---Automatic---  (Currently: NONE - Minetestmapper Not Found)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configdialog.cpp" line="70"/>
+        <location filename="../configdialog.cpp" line="73"/>
         <source>Executable (*.exe)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configdialog.cpp" line="91"/>
+        <location filename="../configdialog.cpp" line="94"/>
         <source>Select Mapper Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configdialog.cpp" line="96"/>
+        <location filename="../configdialog.cpp" line="99"/>
         <source>Invalid minetestmapper executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configdialog.cpp" line="97"/>
+        <location filename="../configdialog.cpp" line="100"/>
         <source>ERROR: The selected file is not executable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DrawMapFigure</name>
+    <message>
+        <location filename="../drawmapfigure.cpp" line="3"/>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../drawmapfigure.cpp" line="4"/>
+        <source>Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../drawmapfigure.cpp" line="5"/>
+        <source>Circle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../drawmapfigure.cpp" line="6"/>
+        <source>Ellipse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../drawmapfigure.cpp" line="7"/>
+        <source>Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../drawmapfigure.cpp" line="8"/>
+        <source>Point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../drawmapfigure.cpp" line="9"/>
+        <source>Rectangle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../drawmapfigure.cpp" line="10"/>
+        <source>Text</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -556,7 +584,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../mainwindow.ui" line="1314"/>
         <location filename="../mainwindow.ui" line="1325"/>
         <location filename="../mainwindow.ui" line="1336"/>
-        <location filename="../mainwindow.cpp" line="1045"/>
+        <location filename="../mainwindow.cpp" line="1042"/>
         <source>select color</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1009,17 +1037,17 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2289"/>
+        <location filename="../mainwindow.ui" line="2295"/>
         <source>Elements</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2295"/>
+        <location filename="../mainwindow.ui" line="2301"/>
         <source>+</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2302"/>
+        <location filename="../mainwindow.ui" line="2308"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1050,7 +1078,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2431"/>
-        <location filename="../mainwindow.cpp" line="1208"/>
+        <location filename="../mainwindow.cpp" line="1191"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1098,7 +1126,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2590"/>
-        <location filename="../mainwindow.cpp" line="1026"/>
+        <location filename="../mainwindow.cpp" line="1023"/>
         <source>About MinetestMapper</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1144,7 +1172,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2689"/>
-        <location filename="../mainwindow.cpp" line="1012"/>
+        <location filename="../mainwindow.cpp" line="1009"/>
         <source>About MinetestMapper GUI</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1168,13 +1196,13 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2730"/>
-        <location filename="../mainwindow.cpp" line="1058"/>
+        <location filename="../mainwindow.cpp" line="1055"/>
         <source>New Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2738"/>
-        <location filename="../mainwindow.cpp" line="462"/>
+        <location filename="../mainwindow.cpp" line="516"/>
         <source>Expert Mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1194,100 +1222,102 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="211"/>
+        <location filename="../mainwindow.cpp" line="255"/>
         <source>Current Language changed to %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="261"/>
-        <location filename="../mainwindow.cpp" line="270"/>
+        <location filename="../mainwindow.cpp" line="294"/>
         <source>Minetestmapper not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="280"/>
-        <source>Minetestmapper not executable</source>
+        <location filename="../mainwindow.cpp" line="295"/>
+        <source>ERROR: The Minetetmapper Application (%1) does not look like a Minetetestmapper
+Please configure a correct MinetestMapper Application. (Edit-&gt;Preferences)
+
+Do you want to open Preferences now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="295"/>
+        <location filename="../mainwindow.cpp" line="349"/>
         <source>no input world selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="296"/>
+        <location filename="../mainwindow.cpp" line="350"/>
         <source>ERROR: No MinetestWorld selected&lt;br&gt;&lt;br&gt;please select a world</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="302"/>
+        <location filename="../mainwindow.cpp" line="356"/>
         <source>no output image selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="303"/>
+        <location filename="../mainwindow.cpp" line="357"/>
         <source>ERROR: No output image selected&lt;br&gt;&lt;br&gt;please select a output image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="362"/>
         <source>the Image File does already exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="309"/>
+        <location filename="../mainwindow.cpp" line="363"/>
         <source>The File &lt;i&gt;%1&lt;/i&gt; does already exist. &lt;br&gt;&lt;br&gt;Do you want to overwrite?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="317"/>
+        <location filename="../mainwindow.cpp" line="371"/>
         <source>the directory does not exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="318"/>
+        <location filename="../mainwindow.cpp" line="372"/>
         <source>The directory &lt;i&gt;%1&lt;/i&gt; does not exist. &lt;br&gt;&lt;br&gt;Should it be created?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="463"/>
+        <location filename="../mainwindow.cpp" line="517"/>
         <source>MinetestMapper will be executed using this arguments. 
 The arguments can be removed, modified, or new arguments can be added.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="561"/>
+        <location filename="../mainwindow.cpp" line="576"/>
         <source>Finisched :)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="569"/>
+        <location filename="../mainwindow.cpp" line="584"/>
         <source>minetestmapper terminated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="573"/>
+        <location filename="../mainwindow.cpp" line="588"/>
         <source>&lt;b&gt;Minetest Mapper failed&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="578"/>
+        <location filename="../mainwindow.cpp" line="593"/>
         <source>Exit code: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="584"/>
-        <location filename="../mainwindow.cpp" line="601"/>
+        <location filename="../mainwindow.cpp" line="599"/>
+        <location filename="../mainwindow.cpp" line="616"/>
         <source>Minetest Mapper failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="585"/>
+        <location filename="../mainwindow.cpp" line="600"/>
         <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;minetestmapper failed&lt;/h2&gt;Exit code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Status of MinetestMapper: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;&lt;br&gt;Please fix the error and try again </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="602"/>
+        <location filename="../mainwindow.cpp" line="617"/>
         <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;minetestmapper failed&lt;/h2&gt;Error code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Error Message: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1366,123 +1396,112 @@ Please make shure Minetest Mapper Gui can access to the file/directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="970"/>
+        <location filename="../mainwindow.cpp" line="967"/>
         <source>Open Minetest World</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="980"/>
+        <location filename="../mainwindow.cpp" line="977"/>
         <source>Save generated map to...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="980"/>
+        <location filename="../mainwindow.cpp" line="977"/>
         <source>png image (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="987"/>
+        <location filename="../mainwindow.cpp" line="984"/>
         <source>Open HeightmapNodes File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="989"/>
-        <location filename="../mainwindow.cpp" line="997"/>
-        <location filename="../mainwindow.cpp" line="1005"/>
+        <location filename="../mainwindow.cpp" line="986"/>
+        <location filename="../mainwindow.cpp" line="994"/>
+        <location filename="../mainwindow.cpp" line="1002"/>
         <source>TXT File (*.txt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="995"/>
+        <location filename="../mainwindow.cpp" line="992"/>
         <source>Open HeightmapColors File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1003"/>
+        <location filename="../mainwindow.cpp" line="1000"/>
         <source>Open colors.txt File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1013"/>
+        <location filename="../mainwindow.cpp" line="1010"/>
         <source>&lt;h1&gt;About MinetestMapperGUI&lt;/h1&gt;The &lt;b&gt;MinetestMapper Gui&lt;/b&gt; is written by addi.&lt;br /&gt;It is licensed under a &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;Creative Commons Attribution 3.0 Unported License&lt;/a&gt;.&lt;br&gt;The current version is %1. &lt;br&gt;The sourcecode is aviable on &lt;a href=&apos;https://bitbucket.org/adrido/minetestmappergui/&apos;&gt;Bitbucket&lt;/a&gt;.&lt;br&gt;You may also want to read the &lt;a href=&apos;https://forum.minetest.net/viewtopic.php?f=14&amp;t=12139&apos;&gt;Minetest forum thread&lt;/a&gt;.&lt;br&gt;&lt;br&gt;&lt;b&gt;Thanks to:&lt;/b&gt;&lt;br&gt;McKrustenkaese for his great icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1118"/>
+        <location filename="../mainwindow.cpp" line="1115"/>
         <source>map center</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1123"/>
+        <location filename="../mainwindow.cpp" line="1120"/>
         <source>map origin (top left)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1187"/>
+        <location filename="../mainwindow.cpp" line="1170"/>
         <source>Create a colors.txt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1188"/>
+        <location filename="../mainwindow.cpp" line="1171"/>
         <source>There is a nodes.txt but no colors.txt in the world directory
 Do you want to generate one? 
 If you select &apos;No&apos; the default colors.txt will be used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1205"/>
+        <location filename="../mainwindow.cpp" line="1188"/>
         <source>No colors.txt file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1206"/>
+        <location filename="../mainwindow.cpp" line="1189"/>
         <source>ERROR: Still no colors.txt file found inside world directory.
 
 Do you want to cancel or proceed with default colors.txt file?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1209"/>
+        <location filename="../mainwindow.cpp" line="1192"/>
         <source>Proceed with default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1027"/>
+        <location filename="../mainwindow.cpp" line="1024"/>
         <source>&lt;h1&gt;About MinetestMapper&lt;/h1&gt;The &lt;b&gt;MinetestMapper&lt;/b&gt; is written by:&lt;br&gt;Miroslav Bendík &lt;miroslav.bendik@gmail.com&gt;&lt;br&gt;ShadowNinja &lt;shadowninja@minetest.net&gt;&lt;br&gt;sfan5 &lt;sfan5@live.de&gt;&lt;br&gt;Rogier &lt;rogier777@gmail.com&gt;&lt;br&gt;&lt;br&gt;&lt;u&gt;License:&lt;/u&gt;LGPLv2.1+ and BSD 2-clause.&lt;br&gt;&lt;u&gt;Source Code:&lt;/u&gt; &lt;a href=&apos;https://github.com/Rogier-5/minetest-mapper-cpp&apos;&gt;Github&lt;/a&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="262"/>
-        <source>ERROR: No minetestmapper executable could not be found.
-Please configure one. (Edit-&gt;Preferences)
-
-Do you want to open Preferences now?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="271"/>
-        <source>ERROR: Configured minetestmapper executable (%1) could not be found
-Please configure one. (Edit-&gt;Preferences)
-
-Do you want to open Preferences now?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="281"/>
-        <source>ERROR: The configured minetestmapper (%1) is not executable.
-Please configure a valid minetestmapper executable. (Edit-&gt;Preferences)
-
-Do you want to open Preferences now?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="1039"/>
+        <location filename="../mainwindow.cpp" line="1036"/>
         <source>preview: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1059"/>
+        <location filename="../mainwindow.cpp" line="1056"/>
         <source>Name of the new Profile:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MinetestMapperExe</name>
+    <message>
+        <location filename="../minetestmapperexe.cpp" line="258"/>
+        <source>Minetest Mapper failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../minetestmapperexe.cpp" line="259"/>
+        <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;minetestmapper failed&lt;/h2&gt;Error code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Error Message: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
