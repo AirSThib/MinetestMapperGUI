@@ -204,8 +204,8 @@ void MakeColors::run(void)
     parseNodesTxt(fileNodesTxt);
     emit maxProgressChanged(requiredColors.size());
     emit progressChanged(0);
-    output(QString("Found %1 nodes").arg(nodeList.size()), INFO);
-    output(QString("Searching and parsing %1 texture files").arg(requiredColors.size()), INFO);
+    output(tr("Found %Ln node(s)","",nodeList.size()), INFO);
+    output(tr("Searching and parsing %Ln texture file(s)","",requiredColors.size()), INFO);
     for(int i = 0; i < textureSearchDirectorys.size(); i++)
     {
         //emit stateChanged("search and process textures "+ i +" of "+textureSearchDirectorys.size());

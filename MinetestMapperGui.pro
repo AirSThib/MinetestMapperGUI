@@ -47,8 +47,8 @@ FORMS    += mainwindow.ui \
 RESOURCES += \
     minetestmappergui.qrc
 
-TRANSLATIONS = languages/gui_de.ts\
-               languages/gui_en.ts
+TRANSLATIONS = translations/gui_de.ts\
+               translations/gui_en.ts
 
 
 GIT_VERSION = $$system(git --git-dir $$PWD/.git --work-tree $$PWD describe --always --tags)

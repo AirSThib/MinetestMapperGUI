@@ -35,9 +35,12 @@ InitStatics::InitStatics(void)
         geometrySizeModeNumeric[geometrySizeModeSymbolic[i]] = i;
 }
 
-MainWindow::MainWindow(bool portable, QWidget *parent) :
+MainWindow::MainWindow(bool portable, const QString &translationsPath, QTranslator *translator, QTranslator *qtTranslator, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    translator(translator),
+    qtTranslator(qtTranslator),
+    translationsPath(translationsPath)
 {
     #ifndef Q_OS_WIN
     if (!migrateSettingsProfiles())
@@ -186,23 +189,22 @@ void MainWindow::createLanguageMenu(void)
 
     // format systems language
     QString defaultLocale = QLocale::system().name(); // e.g. "de_DE"
+    qDebug()<<"Default locale:"<<defaultLocale;
     defaultLocale.truncate(defaultLocale.lastIndexOf('_')); // e.g. "de"
 
-    m_langPath = QApplication::applicationDirPath();
-    m_langPath.append("/languages");
-    qDebug()<<"Lang path "<< m_langPath;
-    QDir dir(m_langPath);
-    QStringList fileNames = dir.entryList(QStringList("gui_*.qm"));
+    qDebug()<<"Lang path "<< translationsPath;
+    QDir dir(translationsPath);
+    QStringList fileNames = dir.entryList(QStringList("qt_*.qm"));
 
     for (int i = 0; i < fileNames.size(); ++i) {
         // get locale extracted by filename
         QString locale;
-        locale = fileNames[i]; // "gui_de.qm"
-        locale.truncate(locale.lastIndexOf('.')); // "gui_de"
+        locale = fileNames[i]; // "qt_de.qm"
+        locale.truncate(locale.lastIndexOf('.')); // "qt_de"
         locale.remove(0, locale.indexOf('_') + 1); // "de"
 
         QString lang = QLocale::languageToString(QLocale(locale).language());
-        QIcon ico(QString("%1/%2.png").arg(m_langPath).arg(locale));
+        QIcon ico(QString("%1/%2.png").arg(translationsPath).arg(locale));
 
         QAction *action = new QAction(ico, lang, this);
         action->setCheckable(true);
@@ -215,7 +217,7 @@ void MainWindow::createLanguageMenu(void)
         if (defaultLocale == locale)
         {
             action->setChecked(true);
-            loadLanguage(locale);
+            //loadLanguage(locale);
         }
     }
 }
@@ -226,21 +228,20 @@ void MainWindow::slotLanguageChanged(QAction* action)
     if(0 != action) {
         // load the language dependant on the action content
         loadLanguage(action->data().toString());
-        ui->menuLanguage->setIcon(action->icon());
+
     }
 }
 
-void switchTranslator(QTranslator& translator, const QString& filename)
+void MainWindow::switchTranslator(QTranslator *translator, const QString &prefix, const QLocale &locale)
 {
     // remove the old translator
-    qApp->removeTranslator(&translator);
-    QString m_langPath = QApplication::applicationDirPath();
-    m_langPath.append("/languages/");
-    qDebug()<<"Trying to load language "<< m_langPath+filename;
-    qDebug()<<translator.load(m_langPath+filename);
+    qApp->removeTranslator(translator);
+    qDebug() << "Trying to load language "<< translationsPath << prefix<<locale;
     // load the new translator
-    if(translator.load(m_langPath+filename))
-        qApp->installTranslator(&translator);
+    if(translator->load(locale , "", prefix, translationsPath)){
+        qDebug() << "Loaded translator" << locale;
+        qApp->installTranslator(translator);
+    }
 }
 
 void MainWindow::loadLanguage(const QString& rLanguage)
@@ -250,8 +251,8 @@ void MainWindow::loadLanguage(const QString& rLanguage)
         QLocale locale = QLocale(m_currLang);
         QLocale::setDefault(locale);
         QString languageName = QLocale::languageToString(locale.language());
-        switchTranslator(m_translator, QString("gui_%1.qm").arg(rLanguage));
-        switchTranslator(m_translatorQt, QString("qtbase_%1.qm").arg(rLanguage));
+        switchTranslator(translator, "gui_", locale);
+        switchTranslator(qtTranslator, "qt_", locale);
         ui->statusBar->showMessage(tr("Current Language changed to %1").arg(languageName),3000);
     }
 }

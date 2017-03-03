@@ -38,7 +38,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(bool portable, QWidget *parent = 0);
+    explicit MainWindow(bool portable, const QString &translationsPath, QTranslator *translator, QTranslator *qtTranslator, QWidget *parent = 0);
     ~MainWindow();
 
 public slots:
@@ -116,6 +116,8 @@ private slots:
 
     void on_figureSelect_currentIndexChanged(int index);
 
+    void switchTranslator(QTranslator *translator, const QString &prefix, const QLocale &locale);
+
 private:
     bool portable;
     Ui::MainWindow *ui;
@@ -136,10 +138,10 @@ private:
     // creates the language menu dynamically from the content of m_langPath
     void createLanguageMenu(void);
 
-    QTranslator m_translator; // contains the translations for this application
-    QTranslator m_translatorQt; // contains the translations for qt
+    QTranslator *translator; // contains the translations for this application
+    QTranslator *qtTranslator; // contains the translations for qt
     QString m_currLang; // contains the currently loaded language
-    QString m_langPath; // Path of language files. This is always fixed to /languages.
+    QString translationsPath; // Path of language files. This is always fixed to /languages.
     QString currentProfile; //contains the name of current loaded profile
     QString pathAppData; // Path where the settings should be stored.
     QString pathProfiles; // path where the profiles should be stored.
@@ -152,6 +154,7 @@ private:
     QDataWidgetMapper *drawMapFigureTableMapper;
     MinetestMapperExe *minetestMapper;
     QStringListModel *backends = new QStringListModel();
+
 };
 
 #endif // MAINWINDOW_H
