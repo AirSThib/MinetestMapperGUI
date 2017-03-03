@@ -1,0 +1,15 @@
+# The colors in this file are specially recommended for --drawalpha=cumulative*
+
+@include colors.txt
+
+# Colors for use without --drawalpha.
+default:water_source 49 82 132
+default:water_flowing 49 82 132
+default:river_water_flowing 59 96 154
+default:river_water_source 59 96 154
+
+default:water_source 78 132 255 64 224
+default:water_flowing 78 132 255 64 224
+default:river_water_source 88 147 255 92 224
+default:river_water_flowing 78 147 255 92 224
+
