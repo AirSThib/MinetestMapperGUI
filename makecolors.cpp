@@ -37,29 +37,26 @@ QColor MakeColors::processImage(QString path)
     QColor color;
     //convert to RGB32 format
     img = img.convertToFormat(QImage::Format_ARGB32);
-    int w = img.width();
-    int h = img.height();
-    long r,g,b;
-    r=g=b=0;
-    int counter =0;
-    for(int i = 0; i<h; i++)
+    const int width = img.width();
+    const int height = img.height();
+    long r = 0;
+    long g = 0;
+    long b = 0;
+
+    int counter = 0;
+    for (int i = 0; i<height; i++)
     {
-        //QRgb *line = static_cast<QRgb*>img.constScanLine(i);
 
         //Dont access rowData directly! it depends on platform. always use QRgb()
-        QRgb *rowData = (QRgb*)img.constScanLine(i);
-        for(int j = 0;j<w; j++){
+        const QRgb *rowData = reinterpret_cast<const QRgb *>(img.constScanLine(i));
+        for (int j = 0; j < width; j++) {
 
             QRgb pixelData = rowData[j];
             if (qAlpha(pixelData) < 128)
                 continue;
-            int red = qRed(pixelData);
-            int gre = qGreen(pixelData);
-            int blu = qBlue(pixelData);
-
-            r+=red;
-            g+=gre;
-            b+=blu;
+            r += qRed(pixelData);
+            g += qGreen(pixelData);
+            b += qBlue(pixelData);
 
             counter++;
 
