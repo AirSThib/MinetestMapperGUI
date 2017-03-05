@@ -897,8 +897,8 @@ void MainWindow::readProfile()
 
     profile->beginGroup("area");    //tab2 Area
         ui->scalefactor->setCurrentIndex(profile->value("scalefactor",0).toInt());
-        ui->geometry->set(profile->value("geometry").toString());
-        ui->geometry->setFormat(profile->value("geometry_format").toString());
+        ui->geometry->set(profile->value("geometry").toString(), Geometry::FormatUnknown);
+        //ui->geometry->setFormat(profile->value("geometry_format").toString()); // TODO: Load and set the format correctly
         ui->checkBox_maxY->setChecked(profile->value("checkBox_maxY",false).toBool());
         ui->checkBox_minY->setChecked(profile->value("checkBox_minY",false).toBool());
         ui->maxY->setValue(profile->value("maxY",0).toInt());
