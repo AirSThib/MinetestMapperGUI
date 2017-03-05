@@ -978,15 +978,17 @@ void MainWindow::on_actionAbout_MinetestMapperGUI_triggered()
 
 void MainWindow::on_actionAbout_MinetestMapper_triggered()
 {
-        QMessageBox::about(this, tr("About MinetestMapper"),
-                 tr("<h1>About MinetestMapper</h1>"
-                    "The <b>MinetestMapper</b> is written by:<br>"
-                    "Miroslav Bendík <miroslav.bendik@gmail.com><br>"
-                    "ShadowNinja <shadowninja@minetest.net><br>"
-                    "sfan5 <sfan5@live.de><br>"
-                    "Rogier <rogier777@gmail.com><br><br>"
-                    "<u>License:</u>LGPLv2.1+ and BSD 2-clause.<br>"
-                    "<u>Source Code:</u> <a href='https://github.com/Rogier-5/minetest-mapper-cpp'>Github</a><br>"));
+    QMessageBox::about(this, tr("About MinetestMapper"),
+                       tr("<h1>About MinetestMapper</h1>"
+                          "The <b>MinetestMapper</b> is written by:<br>"
+                          "Miroslav Bendík <miroslav.bendik@gmail.com><br>"
+                          "ShadowNinja <shadowninja@minetest.net><br>"
+                          "sfan5 <sfan5@live.de><br>"
+                          "Rogier <rogier777@gmail.com><br><br>"
+                          "<u>Version:</u> %1 (%2)<br>"
+                          "<u>License:</u> LGPLv2.1+ and BSD 2-clause.<br>"
+                          "<u>Source Code:</u> <a href='https://github.com/Rogier-5/minetest-mapper-cpp'>Github</a><br>")
+                       .arg(minetestMapper->getVersion()).arg(minetestMapper->getTreeString()));
 }
 
 void MainWindow::on_path_OutputImage_textChanged()
