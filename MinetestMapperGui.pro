@@ -54,9 +54,10 @@ TRANSLATIONS = translations/gui_de.ts\
 GIT_VERSION = $$system(git --git-dir $$PWD/.git --work-tree $$PWD describe --always --tags)
 #something like 0.4.2-55-g123c456
 isEmpty(GIT_VERSION) {
-    GIT_VERSION = 0.5.0
+    GIT_VERSION = 0.7.0
 }
 # Turns describe output like 0.4.2-55-g652c397 into "0.4.2.55.123c456"
+GIT_VERSION ~= s/v/""
 GIT_VERSION ~= s/-/"."
 GIT_VERSION ~= s/g/""
 
