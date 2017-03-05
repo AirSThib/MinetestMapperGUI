@@ -1,6 +1,6 @@
 # The colors in this file are specially recommended for --drawalpha=average
 
-@include colors.txt
+@include colors/colors.txt
 
 # Colors for use without --drawalpha.
 default:water_source 49 82 132
