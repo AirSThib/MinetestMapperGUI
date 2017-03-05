@@ -53,6 +53,8 @@ public:
     QString getTreeString(void) const;
 
     void setExecutableFile(const QString &program);
+    QString getMinetestMapperExecutableFile() const;
+
 signals:
     void stateChanged(const QString &str);
     /**

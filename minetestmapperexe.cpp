@@ -219,6 +219,11 @@ void MinetestMapperExe::finishInitialization()
     emit initialisationFinished(true);
 }
 
+QString MinetestMapperExe::getMinetestMapperExecutableFile() const
+{
+    return minetestMapperExecutableFile;
+}
+
 MinetestMapperExe::Tree MinetestMapperExe::getTree() const
 {
     return tree;

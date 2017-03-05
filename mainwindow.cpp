@@ -291,10 +291,20 @@ void MainWindow::on_button_generate_clicked()
 {
     if(!minetestMapper->isMinetestMapper())
     {
+        QString mapperPath = minetestMapper->getMinetestMapperExecutableFile();
+        QString message;
+        if(mapperPath.isEmpty()){
+            message = tr("ERROR: No minetestmapper executable could not be found.\n"
+                         "Please configure one. ");
+        } else {
+            message = tr("ERROR: The Minetetmapper Application (%1) does not look like a Minetetestmapper\n"
+                         "Please configure a correct MinetestMapper Application. ").arg(mapperPath);
+        }
         int ret = QMessageBox::critical(this, tr("Minetestmapper not found"),
-                                        tr("ERROR: The Minetetmapper Application (%1) does not look like a Minetetestmapper\n"
-                                           "Please configure a correct MinetestMapper Application. (Edit->Preferences)\n\n"
-                                           "Do you want to open Preferences now?").arg(currentSettings.mapperPath),
+                                        message
+                                        + tr("(Edit->Preferences)")
+                                        + "\n\n"
+                                        + tr("Do you want to open Preferences now?"),
                                         QMessageBox::Yes|QMessageBox::No,
                                         QMessageBox::Yes);
 
@@ -302,47 +312,7 @@ void MainWindow::on_button_generate_clicked()
             on_actionPreferences_triggered();
         return;
     }
-    /*
-    QFile mapperBinary;
-    if (currentSettings.mapperPath == "")
-        mapperBinary.setFileName(ConfigSettings::getDefaultMapperExecutable());
-    else
-        mapperBinary.setFileName(currentSettings.mapperPath);
-    if (!mapperBinary.exists()) {
-        QMessageBox::StandardButton ret;
-        if (currentSettings.mapperPath == "")
-        {
-            ret = QMessageBox::critical(this, tr("Minetestmapper not found"),
-                                        tr("ERROR: No minetestmapper executable could not be found.\n"
-                                           "Please configure one. (Edit->Preferences)\n\n"
-                                           "Do you want to open Preferences now?"),
-                                        QMessageBox::Yes|QMessageBox::No,
-                                        QMessageBox::Yes);
 
-        }
-        else
-            ret = QMessageBox::critical(this, tr("Minetestmapper not found"),
-                                        tr("ERROR: Configured minetestmapper executable (%1) could not be found\n"
-                                           "Please configure one. (Edit->Preferences)\n\n"
-                                           "Do you want to open Preferences now?").arg(currentSettings.mapperPath),
-                                        QMessageBox::Yes|QMessageBox::No,
-                                        QMessageBox::Yes);
-
-        if(ret == QMessageBox::Yes) on_actionPreferences_triggered();
-        return;
-    } else if (!(mapperBinary.permissions() & QFileDevice::ExeUser)) {
-        QMessageBox::StandardButton ret = QMessageBox::critical(this, tr("Minetestmapper not executable"),
-                                                                tr("ERROR: The configured minetestmapper (%1) is not executable.\n"
-                                                                   "Please configure a valid minetestmapper executable. (Edit->Preferences)\n\n"
-                                                                   "Do you want to open Preferences now?")
-                                                                .arg(mapperBinary.fileName()),
-                                                                QMessageBox::Yes|QMessageBox::No,
-                                                                QMessageBox::Yes);
-        if(ret == QMessageBox::Yes) on_actionPreferences_triggered();
-        return;
-    }
-*/
-    //qDebug() << QString("Minetestmapper version: ") + ConfigSettings::getMapperVersion(mapperBinary.fileName(), this);
     qDebug() << QString("Minetestmapper version: " + minetestMapper->getVersion() + minetestMapper->getTreeString());
     QDir worldDir = QDir(ui->path_World->text());
     if(!worldDir.exists()||worldDir.path()=="."||worldDir.path()=="/"){
