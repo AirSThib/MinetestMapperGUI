@@ -554,18 +554,6 @@ void MainWindow::mapperFinisched(int exit)
         ui->statusBar->showMessage(tr("minetestmapper terminated"));
     }
     else{//something was wrong
-        QMessageBox errBox;
-        errBox.setText(tr("<b>Minetest Mapper failed</b>"));
-        errBox.setSizeGripEnabled(true);
-        errBox.setMinimumSize(800,600);
-        errBox.resize(800,600);
-        errBox.setIcon(QMessageBox::Icon::Critical);
-          errBox.setInformativeText(tr("Exit code: %1").arg(exit));
-          errBox.setDetailedText(ui->statusBar->currentMessage());
-          errBox.setStandardButtons(QMessageBox::Close);
-          errBox.setDefaultButton(QMessageBox::Close);
-          errBox.exec();
-
         QMessageBox::critical(this, tr("Minetest Mapper failed"),
                  tr("<h1>ERROR</h1> <h2>minetestmapper failed</h2>"
                     "Exit code: <i>%1</i> <br>"
