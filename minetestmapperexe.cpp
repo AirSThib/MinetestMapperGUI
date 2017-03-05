@@ -4,6 +4,7 @@ MinetestMapperExe::MinetestMapperExe(const QString &program, QObject *parent) : 
 {
     process = new QProcess(this);
     setExecutableFile(program);
+
     connect(process, SIGNAL(errorOccurred(QProcess::ProcessError)),
             this, SLOT(errorOccured(QProcess::ProcessError)));
     connect(process, SIGNAL(finished(int,QProcess::ExitStatus)),
@@ -15,9 +16,15 @@ MinetestMapperExe::MinetestMapperExe(const QString &program, QObject *parent) : 
 }
 void MinetestMapperExe::setExecutableFile(const QString &program)
 {
-    state = Uninitialized;
-    minetestMapperExecutableFile = program;
-    process->setProgram(program);
+    if(!program.isEmpty()) {
+        state = Uninitialized;
+        minetestMapperExecutableFile = program;
+        process->setProgram(program);
+    } else {
+        state = Error;
+        valid = false;
+        minetestMapper = false;
+    }
 }
 
 QStringList MinetestMapperExe::getSupportedBackends() const
