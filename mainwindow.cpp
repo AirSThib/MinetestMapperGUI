@@ -74,11 +74,11 @@ MainWindow::MainWindow(bool portable, const QString &translationsPath, QTranslat
     progressBar = new QProgressBar(ui->statusBar);
     progressBar->setAlignment(Qt::AlignRight);
     progressBar->setMaximumSize(180, 19);
-    ui->statusBar->addPermanentWidget(progressBar);
-    //progressBar->setValue(-1);
     progressBar->setMaximum(0);
-    progressBar->setMinimum(0);
-    //progressBar->hide();
+    progressBar->hide();
+
+    ui->statusBar->addPermanentWidget(progressBar);
+
     connect(ui->actionAbout_QT, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     connect(ui->actionStart_colors_txt_assistant,SIGNAL(triggered()),this,SLOT(startColorsTxtAssistant()));
     createLanguageMenu();
@@ -113,12 +113,11 @@ MainWindow::MainWindow(bool portable, const QString &translationsPath, QTranslat
     completer->setModel(model);
     ui->path_World->setCompleter(completer);
 
-    QFile mapperBinary;
-    if (currentSettings.mapperPath == "")
-        mapperBinary.setFileName(ConfigSettings::getDefaultMapperExecutable());
-    else
-        mapperBinary.setFileName(currentSettings.mapperPath);
-    minetestMapper = new MinetestMapperExe(mapperBinary.fileName(), this);
+    if (currentSettings.mapperPath == "") {
+        minetestMapper = new MinetestMapperExe(ConfigSettings::getDefaultMapperExecutable(), this);
+    } else {
+        minetestMapper = new MinetestMapperExe(currentSettings.mapperPath, this);
+    }
     connect(minetestMapper, SIGNAL(stateChanged(QString)),
             ui->statusBar,  SLOT(showMessage(QString)));
     connect(minetestMapper, SIGNAL(busyStateChanged(bool)),
