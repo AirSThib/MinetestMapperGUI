@@ -4,10 +4,14 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+lessThan(QT_MAJOR_VERSION, 5) {
+    error(Your Qt version $$QT_VERSION is not supported. Upgrade to Qt5.)
+}
+
+
+QT       += core gui widgets
 win32:QT += winextras
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = MinetestMapperGui
 TEMPLATE = app
