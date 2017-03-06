@@ -28,7 +28,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_genaral">
        <attribute name="title">
@@ -73,7 +73,7 @@
               </size>
              </property>
              <property name="text">
-              <string>browse</string>
+              <string>Browse</string>
              </property>
              <property name="icon">
               <iconset resource="minetestmappergui.qrc">
@@ -222,7 +222,7 @@
           <item row="1" column="0">
            <widget class="QRadioButton" name="geometrymode_auto">
             <property name="text">
-             <string>auto</string>
+             <string>Auto</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -242,7 +242,7 @@ At least all pixels covered by the geometry will be in the map, but there may be
              <string>round the coodinates to a multiple of 16.</string>
             </property>
             <property name="text">
-             <string>block</string>
+             <string>Block</string>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">geometrymode_granularity_group</string>
@@ -259,7 +259,7 @@ As the database always contains a row or and column of empty, or partially empty
              <string>Generate a map of at most the requested geometry. Shrink it to the smallest possible size that still includes the same information.</string>
             </property>
             <property name="text">
-             <string>shrink</string>
+             <string>Shrink</string>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">geometrymode_size_group</string>
@@ -275,7 +275,7 @@ As the database always contains a row or and column of empty, or partially empty
              <string>don't reduce the map size. What ever is specified using a geometry option, is what will be draw, even if partly or fully empty.</string>
             </property>
             <property name="text">
-             <string>fixed</string>
+             <string>Fixed</string>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">geometrymode_size_group</string>
@@ -292,7 +292,7 @@ As the database always contains a row or and column of empty, or partially empty
              <string>interpret the coordinates with pixel granularity.</string>
             </property>
             <property name="text">
-             <string>pixel</string>
+             <string>Pixel</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -320,7 +320,7 @@ As the database always contains a row or and column of empty, or partially empty
         <item row="1" column="0">
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>geometry</string>
+           <string>Geometry</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -339,7 +339,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
            <string>Specify the minumum depth of nodes to be included</string>
           </property>
           <property name="text">
-           <string>min-Y</string>
+           <string>Height min</string>
           </property>
          </widget>
         </item>
@@ -355,7 +355,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
            <string>Specify the maximum height of nodes to be included</string>
           </property>
           <property name="text">
-           <string>max-Y</string>
+           <string>Height max</string>
           </property>
          </widget>
         </item>
@@ -394,14 +394,14 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <item row="0" column="0">
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>scalefactor</string>
+           <string>Scalefactor</string>
           </property>
          </widget>
         </item>
         <item row="7" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
-           <string>geometrymode</string>
+           <string>Geometrymode</string>
           </property>
          </widget>
         </item>
@@ -918,7 +918,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                <item row="0" column="1">
                 <widget class="QPushButton" name="browseHeightmapNodes">
                  <property name="text">
-                  <string>browse</string>
+                  <string>Browse</string>
                  </property>
                  <property name="icon">
                   <iconset resource="minetestmappergui.qrc">
@@ -977,7 +977,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                <item row="2" column="2">
                 <widget class="QPushButton" name="selectHeightmapColor">
                  <property name="text">
-                  <string>select color</string>
+                  <string>Select color</string>
                  </property>
                  <property name="icon">
                   <iconset resource="minetestmappergui.qrc">
@@ -994,7 +994,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                   <string>Specify the color definition file for the height map</string>
                  </property>
                  <property name="text">
-                  <string>browse</string>
+                  <string>Browse</string>
                  </property>
                  <property name="icon">
                   <iconset resource="minetestmappergui.qrc">
@@ -1024,7 +1024,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                <item row="1" column="1" colspan="2">
                 <widget class="QLabel" name="label_4">
                  <property name="text">
-                  <string>use color or select a heightmap-colors.txt file</string>
+                  <string>Use a color or select a heightmap-colors.txt file</string>
                  </property>
                 </widget>
                </item>
@@ -1034,7 +1034,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
             <item>
              <widget class="QGroupBox" name="groupBox_7">
               <property name="title">
-               <string>heightmap Skale</string>
+               <string>Heightmap Scale</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
                <item row="0" column="0">
@@ -1056,7 +1056,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                   <bool>false</bool>
                  </property>
                  <property name="text">
-                  <string>custom heightscale intervall</string>
+                  <string>Custom heightscale intervall</string>
                  </property>
                 </widget>
                </item>
@@ -1086,7 +1086,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
             <item>
              <widget class="QGroupBox" name="groupBox_10">
               <property name="title">
-               <string>other</string>
+               <string>Other</string>
               </property>
               <layout class="QFormLayout" name="formLayout_2">
                <item row="0" column="0">
@@ -1278,7 +1278,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <item row="6" column="2">
          <widget class="QPushButton" name="selectPlayerColor">
           <property name="text">
-           <string>select color</string>
+           <string>Select color</string>
           </property>
           <property name="icon">
            <iconset resource="minetestmappergui.qrc">
@@ -1289,7 +1289,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <item row="5" column="2">
          <widget class="QPushButton" name="selectOriginColor">
           <property name="text">
-           <string>select color</string>
+           <string>Select color</string>
           </property>
           <property name="icon">
            <iconset resource="minetestmappergui.qrc">
@@ -1300,7 +1300,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <item row="7" column="2">
          <widget class="QPushButton" name="selectTileBorderColor">
           <property name="text">
-           <string>select color</string>
+           <string>Select color</string>
           </property>
           <property name="icon">
            <iconset resource="minetestmappergui.qrc">
@@ -1311,7 +1311,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <item row="4" column="2">
          <widget class="QPushButton" name="selectScaleColor">
           <property name="text">
-           <string>select color</string>
+           <string>Select color</string>
           </property>
           <property name="icon">
            <iconset resource="minetestmappergui.qrc">
@@ -1322,7 +1322,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <item row="3" column="2">
          <widget class="QPushButton" name="selectBlockColor">
           <property name="text">
-           <string>select color</string>
+           <string>Select color</string>
           </property>
           <property name="icon">
            <iconset resource="minetestmappergui.qrc">
@@ -1333,7 +1333,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <item row="2" column="2">
          <widget class="QPushButton" name="selectBgColor">
           <property name="text">
-           <string>select color</string>
+           <string>Select color</string>
           </property>
           <property name="icon">
            <iconset resource="minetestmappergui.qrc">
@@ -1344,7 +1344,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <item row="0" column="2">
          <widget class="QPushButton" name="browseColorsTxt">
           <property name="text">
-           <string>browse</string>
+           <string>Browse</string>
           </property>
           <property name="icon">
            <iconset resource="minetestmappergui.qrc">
@@ -1385,21 +1385,21 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
            <string>Draw a scale on the left and/or top edge</string>
           </property>
           <property name="text">
-           <string>drawscale</string>
+           <string>Draw scale</string>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
          <widget class="QCheckBox" name="drawScaleLeft">
           <property name="text">
-           <string>left</string>
+           <string>Left</string>
           </property>
          </widget>
         </item>
         <item row="1" column="1">
          <widget class="QCheckBox" name="drawScaleTop">
           <property name="text">
-           <string>top</string>
+           <string>Top</string>
           </property>
          </widget>
         </item>
@@ -1409,7 +1409,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
            <bool>false</bool>
           </property>
           <property name="text">
-           <string>custom sidescale Interval</string>
+           <string>Custom scale interval</string>
           </property>
          </widget>
         </item>
@@ -1963,7 +1963,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
             <item>
              <widget class="QGroupBox" name="groupBox_11">
               <property name="title">
-               <string>tiles</string>
+               <string>Tiles</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
                <item row="0" column="1">
@@ -2040,7 +2040,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
             <item>
              <widget class="QGroupBox" name="groupBox_12">
               <property name="title">
-               <string>arrange</string>
+               <string>Arrange</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_12" columnstretch="1,2">
                <item row="1" column="0">
@@ -2379,21 +2379,21 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
           <item>
            <widget class="QPushButton" name="pushButton">
             <property name="text">
-             <string>select all</string>
+             <string>Select all</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_2">
             <property name="text">
-             <string>copy</string>
+             <string>Copy</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_3">
             <property name="text">
-             <string>clear</string>
+             <string>Clear</string>
             </property>
            </widget>
           </item>
@@ -2613,16 +2613,13 @@ p, li { white-space: pre-wrap; }
      <normaloff>:/images/icon.svg</normaloff>:/images/icon.svg</iconset>
    </property>
    <property name="text">
-    <string>generate Map</string>
+    <string>Generate Map</string>
    </property>
    <property name="toolTip">
-    <string>starting Minetestmapper to generate the map</string>
+    <string>Start Minetestmapper to generate the map</string>
    </property>
    <property name="statusTip">
     <string>generate the Map</string>
-   </property>
-   <property name="shortcut">
-    <string notr="true"/>
    </property>
   </action>
   <action name="actionExit">
@@ -2694,10 +2691,10 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionEdit_colors_txt">
    <property name="text">
-    <string>edit colors.txt</string>
+    <string>Edit colors.txt</string>
    </property>
    <property name="toolTip">
-    <string>edit colors.txt with default program</string>
+    <string>Edit colors.txt with default program</string>
    </property>
    <property name="statusTip">
     <string>edit colors.txt with default program</string>
@@ -2705,10 +2702,10 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionEdit_heightmap_nodes_txt">
    <property name="text">
-    <string>edit heightmap-nodes.txt</string>
+    <string>Edit heightmap-nodes.txt</string>
    </property>
    <property name="toolTip">
-    <string>edit heightmap-nodes.txt with default txt editor</string>
+    <string>Edit heightmap-nodes.txt with default txt editor</string>
    </property>
    <property name="statusTip">
     <string>edit heightmap-nodes.txt with default txt editor</string>
@@ -2716,10 +2713,10 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionEdit_heightmap_colors_txt">
    <property name="text">
-    <string>edit heightmap-colors.txt</string>
+    <string>Edit heightmap-colors.txt</string>
    </property>
    <property name="toolTip">
-    <string>edit heightmap-colors.txt with default txt editor</string>
+    <string>Edit heightmap-colors.txt with default txt editor</string>
    </property>
    <property name="statusTip">
     <string>edit heightmap-colors.txt with default txt editor</string>

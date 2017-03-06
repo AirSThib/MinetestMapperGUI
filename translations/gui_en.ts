@@ -12,27 +12,27 @@
 <context>
     <name>ColorsTxtAssistant</name>
     <message>
-        <location filename="../colorstxtassistant.ui" line="20"/>
+        <location filename="../colorstxtassistant.ui" line="14"/>
         <source>Create colors.txt assistant</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="28"/>
+        <location filename="../colorstxtassistant.ui" line="22"/>
         <source>Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="48"/>
+        <location filename="../colorstxtassistant.ui" line="42"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="55"/>
+        <location filename="../colorstxtassistant.ui" line="49"/>
         <source>Finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="71"/>
+        <location filename="../colorstxtassistant.ui" line="65"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -43,13 +43,13 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="95"/>
-        <location filename="../colorstxtassistant.ui" line="195"/>
+        <location filename="../colorstxtassistant.ui" line="89"/>
+        <location filename="../colorstxtassistant.ui" line="177"/>
         <source>browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="106"/>
+        <location filename="../colorstxtassistant.ui" line="100"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -64,22 +64,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="136"/>
+        <location filename="../colorstxtassistant.ui" line="124"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Now you have to specify one or more folders where the textures can be found.&lt;/p&gt;&lt;p&gt;Recomended is the minetest_game folder and the mods folder.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="145"/>
+        <location filename="../colorstxtassistant.ui" line="133"/>
         <source>add new</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="156"/>
+        <location filename="../colorstxtassistant.ui" line="144"/>
         <source>remove selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="206"/>
+        <location filename="../colorstxtassistant.ui" line="188"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -89,51 +89,30 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="222"/>
+        <location filename="../colorstxtassistant.ui" line="204"/>
         <source>Finished! Click the button Generate now to generate the colors.txt file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="229"/>
+        <location filename="../colorstxtassistant.ui" line="211"/>
         <source>Generate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.cpp" line="78"/>
+        <location filename="../colorstxtassistant.cpp" line="81"/>
         <source>Select Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.cpp" line="110"/>
-        <location filename="../colorstxtassistant.cpp" line="118"/>
+        <location filename="../colorstxtassistant.cpp" line="113"/>
+        <location filename="../colorstxtassistant.cpp" line="121"/>
         <source>Open colors.txt File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.cpp" line="112"/>
-        <location filename="../colorstxtassistant.cpp" line="120"/>
+        <location filename="../colorstxtassistant.cpp" line="115"/>
+        <location filename="../colorstxtassistant.cpp" line="123"/>
         <source>TXT File (*.txt)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ColorsTxtWizard</name>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="23"/>
-        <source>Colors Txt Wizard</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ConclusionPage</name>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="202"/>
-        <source>Conclusion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="217"/>
-        <source>Click %1 to generate the class skeleton.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -262,14 +241,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>GeneratePage</name>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="187"/>
-        <source>Conclusion</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>GeometryWidget</name>
     <message>
         <location filename="../geometrywidget.ui" line="32"/>
@@ -376,19 +347,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>IntroPage</name>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="46"/>
-        <source>Introduction</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="49"/>
-        <source>This wizard will generate a brand new colors.txt file that fits exactly to your game and mods. You simply need to specify the nodes.txt and the paths where your Game and your mods are Installed. </source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
@@ -408,14 +366,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../mainwindow.ui" line="60"/>
         <source>Select the world directory, wich contains the world Database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="76"/>
-        <location filename="../mainwindow.ui" line="921"/>
-        <location filename="../mainwindow.ui" line="997"/>
-        <location filename="../mainwindow.ui" line="1347"/>
-        <source>browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -459,46 +409,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="225"/>
-        <source>auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="397"/>
-        <source>scalefactor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="323"/>
-        <source>geometry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="404"/>
-        <source>geometrymode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="295"/>
-        <source>pixel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="245"/>
-        <source>block</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="278"/>
-        <source>fixed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="262"/>
-        <source>shrink</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="174"/>
         <source>Preview: </source>
         <translation type="unfinished"></translation>
@@ -519,18 +429,8 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="342"/>
-        <source>min-Y</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="433"/>
         <source>Specify the upper height limit for the map</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="358"/>
-        <source>max-Y</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -544,8 +444,31 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="76"/>
+        <location filename="../mainwindow.ui" line="921"/>
+        <location filename="../mainwindow.ui" line="997"/>
+        <location filename="../mainwindow.ui" line="1347"/>
+        <source>Browse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="210"/>
         <source>Specify the lower height limit for the map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="225"/>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="245"/>
+        <source>Block</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="262"/>
+        <source>Shrink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -556,6 +479,36 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../mainwindow.ui" line="275"/>
         <source>don&apos;t reduce the map size. What ever is specified using a geometry option, is what will be draw, even if partly or fully empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="278"/>
+        <source>Fixed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="295"/>
+        <source>Pixel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="342"/>
+        <source>Height min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="358"/>
+        <source>Height max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="397"/>
+        <source>Scalefactor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="404"/>
+        <source>Geometrymode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -619,14 +572,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="980"/>
-        <location filename="../mainwindow.ui" line="1281"/>
-        <location filename="../mainwindow.ui" line="1292"/>
-        <location filename="../mainwindow.ui" line="1303"/>
-        <location filename="../mainwindow.ui" line="1314"/>
-        <location filename="../mainwindow.ui" line="1325"/>
-        <location filename="../mainwindow.ui" line="1336"/>
-        <location filename="../mainwindow.cpp" line="1003"/>
+        <location filename="../mainwindow.cpp" line="904"/>
         <source>select color</source>
         <translation type="unfinished"></translation>
     </message>
@@ -634,16 +580,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../mainwindow.ui" line="994"/>
         <location filename="../mainwindow.ui" line="1014"/>
         <source>Specify the color definition file for the height map</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1027"/>
-        <source>use color or select a heightmap-colors.txt file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1037"/>
-        <source>heightmap Skale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -655,11 +591,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../mainwindow.ui" line="1049"/>
         <source>Draw Heightscale</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1089"/>
-        <source>other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -753,28 +684,48 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2755"/>
+        <location filename="../mainwindow.ui" line="2382"/>
+        <source>Select all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2389"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2396"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2616"/>
+        <source>Generate Map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2619"/>
+        <source>Start Minetestmapper to generate the map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2752"/>
         <source>Open map after creation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2758"/>
+        <location filename="../mainwindow.ui" line="2755"/>
         <source>Open map after creation with the default png viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2763"/>
+        <location filename="../mainwindow.ui" line="2760"/>
         <source>&amp;Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1385"/>
         <source>Draw a scale on the left and/or top edge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1388"/>
-        <source>drawscale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -815,21 +766,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../mainwindow.ui" line="2120"/>
         <source>map origin (top-left)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="2697"/>
-        <source>edit colors.txt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="2708"/>
-        <source>edit heightmap-nodes.txt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="2719"/>
-        <source>edit heightmap-colors.txt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -875,16 +811,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../mainwindow.ui" line="1509"/>
         <source>No Shading</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1395"/>
-        <source>left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1402"/>
-        <source>top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -937,11 +863,6 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1059"/>
-        <source>custom heightscale intervall</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="1069"/>
         <location filename="../mainwindow.ui" line="1422"/>
         <source>Major: </source>
@@ -964,23 +885,14 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1412"/>
-        <source>custom sidescale Interval</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="1517"/>
+        <location filename="../mainwindow.ui" line="1966"/>
         <source>Tiles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1523"/>
         <source>Draw tiles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1966"/>
-        <source>tiles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -996,11 +908,6 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     <message>
         <location filename="../mainwindow.ui" line="2027"/>
         <source>border: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="2043"/>
-        <source>arrange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1029,8 +936,65 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="323"/>
         <location filename="../mainwindow.ui" line="2195"/>
         <source>Geometry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="980"/>
+        <location filename="../mainwindow.ui" line="1281"/>
+        <location filename="../mainwindow.ui" line="1292"/>
+        <location filename="../mainwindow.ui" line="1303"/>
+        <location filename="../mainwindow.ui" line="1314"/>
+        <location filename="../mainwindow.ui" line="1325"/>
+        <location filename="../mainwindow.ui" line="1336"/>
+        <source>Select color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1027"/>
+        <source>Use a color or select a heightmap-colors.txt file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1037"/>
+        <source>Heightmap Scale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1059"/>
+        <source>Custom heightscale intervall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1089"/>
+        <source>Other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1388"/>
+        <source>Draw scale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1395"/>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1402"/>
+        <source>Top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1412"/>
+        <source>Custom scale interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2043"/>
+        <source>Arrange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1099,28 +1063,13 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2382"/>
-        <source>select all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="2389"/>
-        <source>copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="2396"/>
-        <source>clear</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="2417"/>
         <source>Generate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2431"/>
-        <location filename="../mainwindow.cpp" line="1154"/>
+        <location filename="../mainwindow.cpp" line="1053"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1142,7 +1091,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     <message>
         <location filename="../mainwindow.ui" line="2478"/>
         <location filename="../mainwindow.ui" line="2532"/>
-        <location filename="../mainwindow.ui" line="2645"/>
+        <location filename="../mainwindow.ui" line="2642"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1168,7 +1117,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2590"/>
-        <location filename="../mainwindow.cpp" line="982"/>
+        <location filename="../mainwindow.cpp" line="883"/>
         <source>About MinetestMapper</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1178,362 +1127,331 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2616"/>
-        <source>generate Map</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="2619"/>
-        <source>starting Minetestmapper to generate the map</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="2622"/>
         <source>generate the Map</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2630"/>
+        <location filename="../mainwindow.ui" line="2627"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2653"/>
+        <location filename="../mainwindow.ui" line="2650"/>
         <source>Whats this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2665"/>
+        <location filename="../mainwindow.ui" line="2662"/>
         <source>Open World</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2677"/>
+        <location filename="../mainwindow.ui" line="2674"/>
         <source>Save map as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2689"/>
-        <location filename="../mainwindow.cpp" line="968"/>
+        <location filename="../mainwindow.ui" line="2686"/>
+        <location filename="../mainwindow.cpp" line="869"/>
         <source>About MinetestMapper GUI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="2694"/>
+        <source>Edit colors.txt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2697"/>
+        <source>Edit colors.txt with default program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="2700"/>
-        <location filename="../mainwindow.ui" line="2703"/>
         <source>edit colors.txt with default program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="2705"/>
+        <source>Edit heightmap-nodes.txt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2708"/>
+        <source>Edit heightmap-nodes.txt with default txt editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="2711"/>
-        <location filename="../mainwindow.ui" line="2714"/>
         <source>edit heightmap-nodes.txt with default txt editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="2716"/>
+        <source>Edit heightmap-colors.txt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2719"/>
+        <source>Edit heightmap-colors.txt with default txt editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="2722"/>
-        <location filename="../mainwindow.ui" line="2725"/>
         <source>edit heightmap-colors.txt with default txt editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2730"/>
-        <location filename="../mainwindow.cpp" line="1016"/>
+        <location filename="../mainwindow.ui" line="2727"/>
+        <location filename="../mainwindow.cpp" line="917"/>
         <source>New Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2738"/>
-        <location filename="../mainwindow.cpp" line="487"/>
+        <location filename="../mainwindow.ui" line="2735"/>
+        <location filename="../mainwindow.cpp" line="479"/>
         <source>Expert Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2741"/>
+        <location filename="../mainwindow.ui" line="2738"/>
         <source>In the Expert Mode it shows you the parameters, that you can modify it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2744"/>
+        <location filename="../mainwindow.ui" line="2741"/>
         <source>Expert Mode shows the parameters, that you can modify it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2768"/>
+        <location filename="../mainwindow.ui" line="2765"/>
         <source>Start colors.txt assistant</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="256"/>
+        <location filename="../mainwindow.cpp" line="248"/>
         <source>Current Language changed to %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="298"/>
+        <location filename="../mainwindow.cpp" line="290"/>
         <source>ERROR: No minetestmapper executable could not be found.
 Please configure one. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="301"/>
+        <location filename="../mainwindow.cpp" line="293"/>
         <source>ERROR: The Minetetmapper Application (%1) does not look like a Minetetestmapper
 Please configure a correct MinetestMapper Application. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="304"/>
+        <location filename="../mainwindow.cpp" line="296"/>
         <source>Minetestmapper not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="320"/>
-        <source>no input world selected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="321"/>
-        <source>ERROR: No MinetestWorld selected&lt;br&gt;&lt;br&gt;please select a world</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="327"/>
-        <source>no output image selected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="328"/>
-        <source>ERROR: No output image selected&lt;br&gt;&lt;br&gt;please select a output image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="333"/>
-        <source>the Image File does already exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="334"/>
+        <location filename="../mainwindow.cpp" line="326"/>
         <source>The File &lt;i&gt;%1&lt;/i&gt; does already exist. &lt;br&gt;&lt;br&gt;Do you want to overwrite?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="342"/>
-        <source>the directory does not exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="343"/>
+        <location filename="../mainwindow.cpp" line="335"/>
         <source>The directory &lt;i&gt;%1&lt;/i&gt; does not exist. &lt;br&gt;&lt;br&gt;Should it be created?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="488"/>
+        <location filename="../mainwindow.cpp" line="480"/>
         <source>MinetestMapper will be executed using this arguments. 
 The arguments can be removed, modified, or new arguments can be added.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="547"/>
+        <location filename="../mainwindow.cpp" line="539"/>
         <source>Finisched :)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="555"/>
+        <location filename="../mainwindow.cpp" line="547"/>
         <source>minetestmapper terminated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="306"/>
+        <location filename="../mainwindow.cpp" line="298"/>
         <source>(Edit-&gt;Preferences)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="300"/>
         <source>Do you want to open Preferences now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="558"/>
-        <location filename="../mainwindow.cpp" line="575"/>
+        <location filename="../mainwindow.cpp" line="312"/>
+        <source>No input world selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="313"/>
+        <source>ERROR: No MinetestWorld selected.
+
+please select a world</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="319"/>
+        <source>No output image selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="320"/>
+        <source>ERROR: No output image selected.
+
+Please select a output image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="325"/>
+        <source>The image file does already exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="334"/>
+        <source>The directory does not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="550"/>
+        <location filename="../mainwindow.cpp" line="567"/>
         <source>Minetest Mapper failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="559"/>
+        <location filename="../mainwindow.cpp" line="551"/>
         <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;minetestmapper failed&lt;/h2&gt;Exit code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Status of MinetestMapper: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;&lt;br&gt;Please fix the error and try again </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="576"/>
+        <location filename="../mainwindow.cpp" line="568"/>
         <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;minetestmapper failed&lt;/h2&gt;Error code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Error Message: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="600"/>
-        <source>Migrating settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="601"/>
-        <source>&lt;h1&gt;WARNING&lt;/h1&gt; &lt;h2&gt;Migrating settings: both old and new settings found&lt;/h2&gt;old settings directory: &lt;i&gt;%1&lt;/i&gt;&lt;br&gt;new settings directory: &lt;i&gt;%2&lt;/i&gt;&lt;br&gt;&lt;h2&gt;Migrate old settings anyway ?&lt;/h2&gt;This overwrites the new settings, and some or all new profiles&lt;br&gt;&lt;br&gt;Delete the old settings files (&lt;i&gt;%1/Minetestmapper*&lt;/i&gt;) to avoid this message.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="615"/>
-        <location filename="../mainwindow.cpp" line="635"/>
-        <location filename="../mainwindow.cpp" line="644"/>
-        <source>Failed to migrate settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="616"/>
-        <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;Failed to migrate settings&lt;/h2&gt;Reason: failed to create new settings directory &lt;i&gt;%1&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="636"/>
-        <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;Failed to migrate settings&lt;/h2&gt;Reason: failed to remove existing file &lt;i&gt;%1&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="645"/>
-        <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;Failed to migrate settings&lt;/h2&gt;Reason: failed to move file &lt;i&gt;%1&lt;/i&gt; to &lt;i&gt;%2&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="654"/>
-        <source>Failed to remove old settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="655"/>
-        <source>&lt;h1&gt;WARNING&lt;/h1&gt; &lt;h2&gt;Failed to remove old settings&lt;/h2&gt;Reason: failed to remove file &lt;i&gt;%1&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="665"/>
-        <source>Failed to remove old settings directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="666"/>
-        <source>&lt;h1&gt;WARNING&lt;/h1&gt; &lt;h2&gt;Failed to remove old settings directory&lt;/h2&gt;Reason: failed to remove directory &lt;i&gt;%1&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="721"/>
+        <location filename="../mainwindow.cpp" line="622"/>
         <source>Can not save settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="722"/>
+        <location filename="../mainwindow.cpp" line="623"/>
         <source>Minetest Mapper GUI could not save the settings to %1.
 Please make shure Minetest Mapper Gui can access to the file/directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="749"/>
+        <location filename="../mainwindow.cpp" line="650"/>
         <source>Can not save profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="750"/>
+        <location filename="../mainwindow.cpp" line="651"/>
         <source>Minetest Mapper GUI could not save the current Profile &apos;%1&apos; to %2.
 Please make shure Minetest Mapper Gui can access to the file/directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="926"/>
+        <location filename="../mainwindow.cpp" line="827"/>
         <source>Open Minetest World</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="936"/>
+        <location filename="../mainwindow.cpp" line="837"/>
         <source>Save generated map to...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="936"/>
+        <location filename="../mainwindow.cpp" line="837"/>
         <source>png image (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="943"/>
+        <location filename="../mainwindow.cpp" line="844"/>
         <source>Open HeightmapNodes File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="945"/>
-        <location filename="../mainwindow.cpp" line="953"/>
-        <location filename="../mainwindow.cpp" line="961"/>
+        <location filename="../mainwindow.cpp" line="846"/>
+        <location filename="../mainwindow.cpp" line="854"/>
+        <location filename="../mainwindow.cpp" line="862"/>
         <source>TXT File (*.txt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="951"/>
+        <location filename="../mainwindow.cpp" line="852"/>
         <source>Open HeightmapColors File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="959"/>
+        <location filename="../mainwindow.cpp" line="860"/>
         <source>Open colors.txt File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="969"/>
+        <location filename="../mainwindow.cpp" line="870"/>
         <source>&lt;h1&gt;About MinetestMapperGUI&lt;/h1&gt;The &lt;b&gt;MinetestMapper Gui&lt;/b&gt; is written by addi.&lt;br /&gt;It is licensed under a &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;Creative Commons Attribution 3.0 Unported License&lt;/a&gt;.&lt;br&gt;The current version is %1. &lt;br&gt;The sourcecode is aviable on &lt;a href=&apos;https://bitbucket.org/adrido/minetestmappergui/&apos;&gt;Bitbucket&lt;/a&gt;.&lt;br&gt;You may also want to read the &lt;a href=&apos;https://forum.minetest.net/viewtopic.php?f=14&amp;t=12139&apos;&gt;Minetest forum thread&lt;/a&gt;.&lt;br&gt;&lt;br&gt;&lt;b&gt;Thanks to:&lt;/b&gt;&lt;br&gt;McKrustenkaese for his great icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="983"/>
+        <location filename="../mainwindow.cpp" line="884"/>
         <source>&lt;h1&gt;About MinetestMapper&lt;/h1&gt;The &lt;b&gt;MinetestMapper&lt;/b&gt; is written by:&lt;br&gt;Miroslav Bendík &lt;miroslav.bendik@gmail.com&gt;&lt;br&gt;ShadowNinja &lt;shadowninja@minetest.net&gt;&lt;br&gt;sfan5 &lt;sfan5@live.de&gt;&lt;br&gt;Rogier &lt;rogier777@gmail.com&gt;&lt;br&gt;&lt;br&gt;&lt;u&gt;Version:&lt;/u&gt; %1 (%2)&lt;br&gt;&lt;u&gt;License:&lt;/u&gt; LGPLv2.1+ and BSD 2-clause.&lt;br&gt;&lt;u&gt;Source Code:&lt;/u&gt; &lt;a href=&apos;https://github.com/Rogier-5/minetest-mapper-cpp&apos;&gt;Github&lt;/a&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1076"/>
+        <location filename="../mainwindow.cpp" line="977"/>
         <source>map center</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1081"/>
+        <location filename="../mainwindow.cpp" line="982"/>
         <source>map origin (top left)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1133"/>
+        <location filename="../mainwindow.cpp" line="1032"/>
         <source>Create a colors.txt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1134"/>
+        <location filename="../mainwindow.cpp" line="1033"/>
         <source>There is a nodes.txt but no colors.txt in the world directory
 Do you want to generate one? 
 If you select &apos;No&apos; the default colors.txt will be used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1151"/>
+        <location filename="../mainwindow.cpp" line="1050"/>
         <source>No colors.txt file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1152"/>
+        <location filename="../mainwindow.cpp" line="1051"/>
         <source>ERROR: Still no colors.txt file found inside world directory.
 
 Do you want to cancel or proceed with default colors.txt file?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1155"/>
+        <location filename="../mainwindow.cpp" line="1054"/>
         <source>Proceed with default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="997"/>
+        <location filename="../mainwindow.cpp" line="898"/>
         <source>preview: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1017"/>
+        <location filename="../mainwindow.cpp" line="918"/>
         <source>Name of the new Profile:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1567,110 +1485,6 @@ Do you want to cancel or proceed with default colors.txt file?</source>
     <message>
         <location filename="../minetestmapperexe.cpp" line="271"/>
         <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;minetestmapper failed&lt;/h2&gt;Error code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Error Message: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>NodesTxtPage</name>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="63"/>
-        <source>The nodes.txt file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="64"/>
-        <source>Follow the steps and specify the path to the nodes.txt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="66"/>
-        <source>&lt;ol&gt;&lt;li&gt;First, you have to install and enable the mod &lt;span style=&quot;font-style:italic;&quot;&gt;dumpnodes&lt;/span&gt;. You can download it here: &lt;a href=&quot;https://bitbucket.org/adrido/dumpnodes/overview&quot;&gt;https://bitbucket.org/adrido/dumpnodes/overview&lt;/a&gt;&lt;/li&gt;&lt;li&gt;extract it like each other mod into your mods folder. &lt;/li&gt;&lt;li&gt;Activate it in the world configuration &lt;/li&gt;&lt;li&gt;Start the game normaly &lt;/li&gt;&lt;li&gt;if you are ingame type /dumpnodes &lt;/li&gt;&lt;li&gt;Now there should be a file called nodes.txt inside the world folder. &lt;/li&gt;&lt;li&gt;Select the generated nodes.txt file down there&lt;/li&gt;&lt;/ol&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="78"/>
-        <source>nodes.txt: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="83"/>
-        <source>&amp;Browse</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="95"/>
-        <source>Open nodes.txt File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="97"/>
-        <source>TXT File (*.txt)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>OutputFilePage</name>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="154"/>
-        <source>Output colors.txt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="155"/>
-        <source>Optionally you can specify the colors.txt where the changes should be written into. If you leaf this empty its placed at the same directory as the nodes.txt file.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="160"/>
-        <source>nodes.txt: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="166"/>
-        <source>&amp;Browse</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="177"/>
-        <source>Save nodes.txt File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="179"/>
-        <source>TXT File (*.txt)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TextureFoldersPage</name>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="105"/>
-        <source>Texture Folders</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="106"/>
-        <source>Seletct one or more folders where the textures for the world are. Eg. the game folder and mods folder.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="110"/>
-        <source>Add Folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="111"/>
-        <source>Remove selected folders</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="112"/>
-        <source>Edit selected Folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtwizard.cpp" line="134"/>
-        <source>Select Folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -63,7 +63,6 @@ private slots:
     void writeProfile();
     void readSettings();
     void readProfile();
-    bool migrateSettingsProfiles();
 
     void on_browseWorld_clicked();
 

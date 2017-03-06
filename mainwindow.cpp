@@ -40,11 +40,6 @@ MainWindow::MainWindow(bool portable, const QString &translationsPath, QTranslat
     qtTranslator(qtTranslator),
     translationsPath(translationsPath)
 {
-    #ifndef Q_OS_WIN
-    if (!migrateSettingsProfiles())
-        exit(EXIT_FAILURE);
-    #endif
-
     if(portable){
         //Attention: This paths could be non writable locations!
         pathAppData = qApp->applicationDirPath(); //use the Applications directory
@@ -553,11 +548,11 @@ void MainWindow::mapperFinisched(int exit)
     }
     else{//something was wrong
         QMessageBox::critical(this, tr("Minetest Mapper failed"),
-                 tr("<h1>ERROR</h1> <h2>minetestmapper failed</h2>"
-                    "Exit code: <i>%1</i> <br>"
-                    "Status of MinetestMapper: <pre>%2</pre><br>"
-                    "<br>"
-                    "Please fix the error and try again ")
+                              tr("<h1>ERROR</h1> <h2>minetestmapper failed</h2>"
+                                 "Exit code: <i>%1</i> <br>"
+                                 "Status of MinetestMapper: <pre>%2</pre><br>"
+                                 "<br>"
+                                 "Please fix the error and try again ")
                               .arg(exit)
                               .arg(ui->statusBar->currentMessage()));
     }
@@ -570,102 +565,11 @@ void MainWindow::error(QProcess::ProcessError error)
             <<"Error code: "<<myProcess->error()
            <<"Error string: "<<myProcess->errorString();
     QMessageBox::critical(this, tr("Minetest Mapper failed"),
-             tr("<h1>ERROR</h1> <h2>minetestmapper failed</h2>"
-                "Error code: <i>%1</i> <br>"
-                "Error Message: <pre>%2</pre><br>")
+                          tr("<h1>ERROR</h1> <h2>minetestmapper failed</h2>"
+                             "Error code: <i>%1</i> <br>"
+                             "Error Message: <pre>%2</pre><br>")
                           .arg(error)
                           .arg(myProcess->errorString()));
-}
-/*
-Todo: Move migrateSettingsProfiles into an other program/script,
-      because it needs only to run once (eg. after installation); not every startup.
-*/
-bool MainWindow::migrateSettingsProfiles()
-{
-    QSettings oldSettings("addi", "Minetestmapper");
-    QFile oldSettingsFile(oldSettings.fileName());
-    if (!oldSettingsFile.exists()) return true;
-    QSettings newSettings;
-    QFile newSettingsFile(newSettings.fileName());
-
-    QDir oldDir(oldSettings.fileName().section('/', 0, -2));
-    qDebug()<<"Old settings / profile directory "<< oldDir.absolutePath();
-    QDir newDir(newSettings.fileName().section('/', 0, -2));
-    qDebug()<<"New settings / profile directory "<< newDir.absolutePath();
-
-    if (newSettingsFile.exists()) {
-        int ret = QMessageBox::question(this, tr("Migrating settings"),
-                tr("<h1>WARNING</h1> <h2>Migrating settings: both old and new settings found</h2>"
-                        "old settings directory: <i>%1</i><br>"
-                        "new settings directory: <i>%2</i><br>"
-                        "<h2>Migrate old settings anyway ?</h2>This overwrites the new settings, and some or all new profiles<br><br>"
-                        "Delete the old settings files (<i>%1/Minetestmapper*</i>) to avoid this message.")
-                        .arg(oldSettingsFile.fileName()).arg(newSettingsFile.fileName()));
-        if(ret != QMessageBox::Yes) return true;
-    }
-
-
-    QString failureCause;
-    if (!newDir.exists()) {
-        qDebug()<<"Create new settings directory " << newDir.absolutePath();
-        if (!QDir().mkpath(newDir.absolutePath())) {
-            QMessageBox::critical(this, tr("Failed to migrate settings"),
-                     tr("<h1>ERROR</h1> <h2>Failed to migrate settings</h2>"
-                        "Reason: failed to create new settings directory <i>%1</i>")
-                                  .arg(newDir.absolutePath()));
-            return false;
-        }
-    }
-
-    QStringList oldFileNames = oldDir.entryList(QStringList("Minetestmapper_*"));
-    // make sure main config file is last.
-    oldFileNames.append(oldSettingsFile.fileName().section('/', -1, -1));
-    qDebug() << "Migrate settings files: " << oldFileNames;
-    for (int i = 0; i < oldFileNames.size(); ++i) {
-        QString newFileName = oldFileNames[i];
-        newFileName.replace("Minetestmapper_","");
-        QFile oldFile(oldDir.absoluteFilePath(oldFileNames[i]));
-        QFile newFile(newDir.absoluteFilePath(newFileName));
-        if (newFile.exists()) {
-            qDebug()<<"Remove existing settings file " << newFile.fileName();
-            if (!newFile.remove()) {
-                QMessageBox::critical(this, tr("Failed to migrate settings"),
-                         tr("<h1>ERROR</h1> <h2>Failed to migrate settings</h2>"
-                            "Reason: failed to remove existing file <i>%1</i>")
-                                      .arg(newFile.fileName()));
-                return false;
-            }
-        }
-        qDebug()<<"Rename settings file " << oldFile.fileName() << " to " << newFile.fileName();
-        if (!QDir().rename(oldFile.fileName(), newFile.fileName())) {
-            QMessageBox::critical(this, tr("Failed to migrate settings"),
-                     tr("<h1>ERROR</h1> <h2>Failed to migrate settings</h2>"
-                        "Reason: failed to move file <i>%1</i> to <i>%2</i>")
-                                  .arg(oldFile.fileName())
-                                  .arg(newFile.fileName()));
-            return false;
-        }
-        if (oldFile.exists()) {
-            qDebug()<<"Remove old settings file " << oldFile.fileName();
-            if (!oldFile.remove()) {
-                QMessageBox::warning(this, tr("Failed to remove old settings"),
-                         tr("<h1>WARNING</h1> <h2>Failed to remove old settings</h2>"
-                            "Reason: failed to remove file <i>%1</i>")
-                                      .arg(oldFile.fileName()));
-            }
-        }
-    }
-
-    if (oldDir.count() == 2) {
-        qDebug()<<"Remove old directory" << oldDir.absolutePath();
-        if (!oldDir.removeRecursively()) {
-            QMessageBox::warning(this, tr("Failed to remove old settings directory"),
-                     tr("<h1>WARNING</h1> <h2>Failed to remove old settings directory</h2>"
-                        "Reason: failed to remove directory <i>%1</i>")
-                                  .arg(oldDir.absolutePath()));
-        }
-    }
-    return true;
 }
 
 void MainWindow::createProfilesMenu(){
@@ -716,8 +620,8 @@ void MainWindow::writeSettings()
 {
     if(portable && !settings->isWritable()){
         QMessageBox::warning(this, tr("Can not save settings"),
-                              tr("Minetest Mapper GUI could not save the settings to %1.\n"
-                              "Please make shure Minetest Mapper Gui can access to the file/directory").arg(settings->fileName()));
+                             tr("Minetest Mapper GUI could not save the settings to %1.\n"
+                                "Please make shure Minetest Mapper Gui can access to the file/directory").arg(settings->fileName()));
 
     }
     settings->beginGroup("MainWindow");
@@ -744,8 +648,8 @@ void MainWindow::writeProfile()
     //QSettings profile(QString("%1/%2.ini").arg(pathProfiles).arg(currentProfile), QSettings::IniFormat);
     if(portable && !profile->isWritable()){
         QMessageBox::warning(this, tr("Can not save profile"),
-                              tr("Minetest Mapper GUI could not save the current Profile '%1' to %2.\n"
-                              "Please make shure Minetest Mapper Gui can access to the file/directory").arg(currentProfile).arg(profile->fileName()));
+                             tr("Minetest Mapper GUI could not save the current Profile '%1' to %2.\n"
+                                "Please make shure Minetest Mapper Gui can access to the file/directory").arg(currentProfile).arg(profile->fileName()));
     }
     qDebug()<<"Write profile" << currentProfile << "to" << profile->fileName();
 
@@ -791,13 +695,13 @@ void MainWindow::writeProfile()
     profile->endGroup();
 
     profile->beginGroup("features");    //tab5 Featurs
-        profile->setValue("drawScaleLeft",ui->drawScaleLeft->isChecked());
-        profile->setValue("drawScaleTop",ui->drawScaleTop->isChecked());
-        profile->setValue("drawOrigin",ui->drawOrigin->isChecked());
-        profile->setValue("drawPlayers",ui->drawPlayers->isChecked());
-        profile->setValue("drawAlpha",ui->drawAlpha->currentIndex());
-        profile->setValue("drawAir",ui->drawAir->isChecked());
-        profile->setValue("noShading",ui->noShading->isChecked());
+        profile->setValue("drawScaleLeft", ui->drawScaleLeft->isChecked());
+        profile->setValue("drawScaleTop", ui->drawScaleTop->isChecked());
+        profile->setValue("drawOrigin", ui->drawOrigin->isChecked());
+        profile->setValue("drawPlayers", ui->drawPlayers->isChecked());
+        profile->setValue("drawAlpha", ui->drawAlpha->currentIndex());
+        profile->setValue("drawAir", ui->drawAir->isChecked());
+        profile->setValue("noShading", ui->noShading->isChecked());
     profile->endGroup();
 
     profile->beginGroup("tiles");   //tab6 Tiles
