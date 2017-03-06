@@ -5,14 +5,14 @@ MinetestMapperExe::MinetestMapperExe(const QString &program, QObject *parent) : 
     process = new QProcess(this);
     setExecutableFile(program);
 
-    connect(process, SIGNAL(errorOccurred(QProcess::ProcessError)),
-            this, SLOT(errorOccured(QProcess::ProcessError)));
+    connect(process, &QProcess::errorOccurred,
+            this,    &MinetestMapperExe::errorOccured);
     connect(process, SIGNAL(finished(int,QProcess::ExitStatus)),
-            this,    SLOT(finished(int,QProcess::ExitStatus)));
-    connect(process, SIGNAL(readyReadStandardOutput()),
-            this,    SLOT(readStandardOutput()));
-    connect(process, SIGNAL(readyReadStandardError()),
-            this,    SLOT(readStandardError()));
+            this,    SLOT(finished(int,QProcess::ExitStatus))); // TODO: get the pointer of this overloaded function
+    connect(process, &QProcess::readyReadStandardOutput,
+            this,    &MinetestMapperExe::readStandardOutput);
+    connect(process, &QProcess::readyReadStandardError,
+            this,    &MinetestMapperExe::readStandardError);
 }
 void MinetestMapperExe::setExecutableFile(const QString &program)
 {

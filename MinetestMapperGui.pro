@@ -54,6 +54,7 @@ RESOURCES += \
 TRANSLATIONS = translations/gui_de.ts\
                translations/gui_en.ts
 
+CONFIG += c++11
 
 GIT_VERSION = $$system(git --git-dir $$PWD/.git --work-tree $$PWD describe --always --tags)
 #something like 0.4.2-55-g123c456

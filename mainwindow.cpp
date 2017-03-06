@@ -79,8 +79,8 @@ MainWindow::MainWindow(bool portable, const QString &translationsPath, QTranslat
 
     ui->statusBar->addPermanentWidget(progressBar);
 
-    connect(ui->actionAbout_QT, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
-    connect(ui->actionStart_colors_txt_assistant,SIGNAL(triggered()),this,SLOT(startColorsTxtAssistant()));
+    connect(ui->actionAbout_QT, &QAction::triggered, qApp, &QApplication::aboutQt);
+    connect(ui->actionStart_colors_txt_assistant, &QAction::triggered,this,&MainWindow::startColorsTxtAssistant);
     createLanguageMenu();
     createProfilesMenu();
 
@@ -103,8 +103,8 @@ MainWindow::MainWindow(bool portable, const QString &translationsPath, QTranslat
     drawMapFigureTableMapper->addMapping(ui->figure_geometry, 3, "geometry");
     drawMapFigureTableMapper->addMapping(ui->figure_color,4);
     drawMapFigureTableMapper->addMapping(ui->figure_text,5);
-    connect(ui->figures_list->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
-            drawMapFigureTableMapper, SLOT(setCurrentModelIndex(QModelIndex)));
+    connect(ui->figures_list->selectionModel(), &QItemSelectionModel::currentRowChanged,
+            drawMapFigureTableMapper, &QDataWidgetMapper::setCurrentModelIndex);
     ui->figures_list->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->figures_list->resizeColumnsToContents();
     QCompleter *completer = new QCompleter(this);
@@ -118,39 +118,39 @@ MainWindow::MainWindow(bool portable, const QString &translationsPath, QTranslat
     } else {
         minetestMapper = new MinetestMapperExe(currentSettings.mapperPath, this);
     }
-    connect(minetestMapper, SIGNAL(stateChanged(QString)),
-            ui->statusBar,  SLOT(showMessage(QString)));
-    connect(minetestMapper, SIGNAL(busyStateChanged(bool)),
-            progressBar,    SLOT(setVisible(bool)));
-    connect(minetestMapper, SIGNAL(progressRangeChanged(int,int)),
-            progressBar,    SLOT(setRange(int,int)));
-    connect(minetestMapper, SIGNAL(progressChanged(int)),
-            progressBar,    SLOT(setValue(int)));
-    connect(minetestMapper, SIGNAL(busyStateChanged(bool)),
-            ui->button_generate, SLOT(setDisabled(bool)));
-    connect(minetestMapper, SIGNAL(busyStateChanged(bool)),
-            ui->button_cancel, SLOT(setEnabled(bool)));
-    connect(minetestMapper, SIGNAL(mappingFinished(int,QProcess::ExitStatus)),
-            this,           SLOT(mapperFinisched(int)));
+    connect(minetestMapper, &MinetestMapperExe::stateChanged,
+            [=](const QString &state){ ui->statusBar->showMessage(state); });//ui->statusBar,  &QStatusBar::showMessage);
+    connect(minetestMapper, &MinetestMapperExe::busyStateChanged,
+            progressBar,    &QWidget::setVisible);
+    connect(minetestMapper, &MinetestMapperExe::progressRangeChanged,
+            progressBar,    &QProgressBar::setRange);
+    connect(minetestMapper, &MinetestMapperExe::progressChanged,
+            progressBar,    &QProgressBar::setValue);
+    connect(minetestMapper, &MinetestMapperExe::busyStateChanged,
+            ui->button_generate, &QWidget::setDisabled);
+    connect(minetestMapper, &MinetestMapperExe::busyStateChanged,
+            ui->button_cancel, &QWidget::setEnabled);
+    connect(minetestMapper, &MinetestMapperExe::mappingFinished,
+            this,           &MainWindow::mapperFinisched);
 
-    connect(minetestMapper, SIGNAL(initialisationFinished(bool)),
-            this,           SLOT(mapperInitialized()));
-    connect(minetestMapper, SIGNAL(mappingStandardOutput(QString)),
-            ui->standardOutput, SLOT(append(QString)));
-    connect(minetestMapper, SIGNAL(mappingStandardError(QString)),
-            this, SLOT(readError(QString)));
+    connect(minetestMapper, &MinetestMapperExe::initialisationFinished,
+            this,           &MainWindow::mapperInitialized);
+    connect(minetestMapper, &MinetestMapperExe::mappingStandardOutput,
+            ui->standardOutput, &QTextEdit::append);
+    connect(minetestMapper, &MinetestMapperExe::mappingStandardError,
+            this, &MainWindow::readError);
 
     #ifdef Q_OS_WIN
     taskbarButton = new QWinTaskbarButton(this);
 
     taskbarProgress = taskbarButton->progress();
 
-    connect(minetestMapper, SIGNAL(progressRangeChanged(int,int)),
-            taskbarProgress,    SLOT(setRange(int,int)));
-    connect(minetestMapper, SIGNAL(progressChanged(int)),
-            taskbarProgress,    SLOT(setValue(int)));
-    connect(minetestMapper, SIGNAL(busyStateChanged(bool)),
-            taskbarProgress,    SLOT(setVisible(bool)));
+    connect(minetestMapper, &MinetestMapperExe::progressRangeChanged,
+            taskbarProgress,    &QWinTaskbarProgress::setRange);
+    connect(minetestMapper, &MinetestMapperExe::progressChanged,
+            taskbarProgress,    &QWinTaskbarProgress::setValue);
+    connect(minetestMapper, &MinetestMapperExe::busyStateChanged,
+            taskbarProgress,    &QWinTaskbarProgress::setVisible);
     #endif
     minetestMapper->init();
 }
@@ -184,7 +184,7 @@ void MainWindow::createLanguageMenu(void)
     QActionGroup* langGroup = new QActionGroup(ui->menuLanguage);
     langGroup->setExclusive(true);
 
-    connect(langGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotLanguageChanged(QAction *)));
+    connect(langGroup, &QActionGroup::triggered, this, &MainWindow::slotLanguageChanged);
 
     // format systems language
     QString defaultLocale = QLocale::system().name(); // e.g. "de_DE"
@@ -674,7 +674,7 @@ void MainWindow::createProfilesMenu(){
     profileGroup = new QActionGroup(ui->menuChoose_profile);
     profileGroup->setExclusive(true);
 
-    connect(profileGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotProfileChanged(QAction *)));
+    connect(profileGroup, &QActionGroup::triggered, this, &MainWindow::slotProfileChanged);
 
     QDir dir(pathProfiles);
     qDebug()<<pathProfiles;

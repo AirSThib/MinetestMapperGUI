@@ -28,9 +28,12 @@ void ColorsTxtAssistant::on_buttonGenerate_clicked()
     makeColors->setFileNodesTxt(fileNodesTxt);
     makeColors->setTextureSearchDirectorys(getAllSearchDirs());
 
-    connect(makeColors,SIGNAL(outputLog(QString, int)), this, SLOT(reciveOuputLog(QString, int)) );
-    connect(makeColors,SIGNAL(progressChanged(int)), this, SLOT(reciveProgressChanged(int)));
-    connect(makeColors,SIGNAL(maxProgressChanged(int)) ,this, SLOT(reciveMaxProgressChanged(int)));
+    connect(makeColors, &MakeColors::outputLog,
+            this, &ColorsTxtAssistant::reciveOuputLog );
+    connect(makeColors, &MakeColors::progressChanged,
+            this, &ColorsTxtAssistant::reciveProgressChanged);
+    connect(makeColors, &MakeColors::maxProgressChanged,
+            this, &ColorsTxtAssistant::reciveMaxProgressChanged);
     makeColors->startProcess();
 
 }
