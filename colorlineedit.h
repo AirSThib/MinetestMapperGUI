@@ -1,8 +1,8 @@
 #ifndef COLORLINEEDIT_H
 #define COLORLINEEDIT_H
+#include <QColorDialog>
 #include <QLineEdit>
 #include <QPushButton>
-#include <QColorDialog>
 
 class QToolButton;
 

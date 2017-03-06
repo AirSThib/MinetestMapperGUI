@@ -1,11 +1,11 @@
 #ifndef CONFIGDIALOG_H
 #define CONFIGDIALOG_H
 
+#include "minetestmapperexe.h"
+
 #include <QDialog>
 #include <QMap>
 #include <QString>
-#include "minetestmapperexe.h"
-
 
 namespace Ui {
 class ConfigDialog;

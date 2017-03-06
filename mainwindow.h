@@ -1,29 +1,26 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QProcess>
-#include <QProgressBar>
-#include <QMessageBox>
-#include <QRegExp>
-#include <QTranslator>
-#include <QColorDialog>
-#include <QDate>
-#include <QCloseEvent>
-#include <QInputDialog>
 #include <QActionGroup>
+#include <QCloseEvent>
+#include <QColorDialog>
+#include <QDataWidgetMapper>
+#include <QDate>
+#include <QInputDialog>
+#include <QMainWindow>
+#include <QMessageBox>
+#include <QProgressBar>
 #include <QSettings>
 #include <QStringListModel>
-#include <QMessageBox>
-#include <QDataWidgetMapper>
+#include <QTranslator>
 
 #ifdef Q_OS_WIN
-#include <QWinTaskbarProgress>
 #include <QWinTaskbarButton>
+#include <QWinTaskbarProgress>
 #endif
 
-#include "configdialog.h"
 #include "colorstxtassistant.h"
+#include "configdialog.h"
 #include "drawmapfigure.h"
 #include "drawmapfiguretablemodel.h"
 #include "figuredelegate.h"
@@ -51,8 +48,8 @@ protected:
     void showEvent(QShowEvent *event);
 protected slots:
     // this slot is called by the language menu actions
-    void slotLanguageChanged(QAction* action);
-    void slotProfileChanged(QAction* action);
+    void slotLanguageChanged(QAction *action);
+    void slotProfileChanged(QAction *action);
 
 private slots:
     QString getOutputFileName();
@@ -133,7 +130,7 @@ private:
     void finishUiInitialisation(void);
 
     // loads a language by the given language shortcur (e.g. de, en)
-    void loadLanguage(const QString& rLanguage);
+    void loadLanguage(const QString &rLanguage);
 
     // creates the language menu dynamically from the content of m_langPath
     void createLanguageMenu(void);

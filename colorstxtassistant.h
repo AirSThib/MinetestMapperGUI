@@ -1,14 +1,14 @@
 #ifndef COLORSTXTASSISTANT_H
 #define COLORSTXTASSISTANT_H
 
-#include <QObject>
 #include <QDialog>
+#include <QFileDialog>
+#include <QFileIconProvider>
 #include <QListWidget>
 #include <QListWidgetItem>
-#include <QStringList>
-#include <QFileIconProvider>
-#include <QFileDialog>
 #include <QMetaEnum>
+#include <QObject>
+#include <QStringList>
 
 #include "makecolors.h"
 

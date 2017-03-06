@@ -1,13 +1,13 @@
+#include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QString>
-#include <QDebug>
-#include <QStandardPaths>
 #include <QProcessEnvironment>
+#include <QStandardPaths>
+#include <QString>
 
 #include "configdialog.h"
-#include "ui_configdialog.h"
 #include "mainwindow.h"
+#include "ui_configdialog.h"
 
 const QString ConfigSettings::defaultMapperExecutableName("minetestmapper");
 QStringList ConfigSettings::predefinedMapperLocations;

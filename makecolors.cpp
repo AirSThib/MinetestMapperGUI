@@ -1,7 +1,7 @@
 #include "makecolors.h"
 #include <QMetaEnum>
 
-MakeColors::MakeColors(const QString nodesTxt, const QString colorsTxt, const QStringList searchPaths, QObject *parent)
+MakeColors::MakeColors(const QString &nodesTxt, const QString &colorsTxt, const QStringList &searchPaths, QObject *parent)
                  : QThread(parent)
 {
     textureFileFilter << "*.png";
@@ -30,7 +30,7 @@ MakeColors::~MakeColors()
 
 
 
-QColor MakeColors::processImage(QString path)
+QColor MakeColors::processImage(const QString &path)
 {
     //create a new image and load from path
     QImage img(path);
@@ -74,7 +74,7 @@ QColor MakeColors::processImage(QString path)
     return color;
 }
 
-bool MakeColors::parseNodesTxt(QString nodesTxt)
+bool MakeColors::parseNodesTxt(const QString &nodesTxt)
 {
     output("Parsing "+nodesTxt, INFO);
     QFile inputFile(nodesTxt);
@@ -111,7 +111,7 @@ bool MakeColors::parseNodesTxt(QString nodesTxt)
     return true;
 }
 
-bool MakeColors::searchAndProgressTextures(const QString path)
+bool MakeColors::searchAndProgressTextures(const QString &path)
 {
     QDirIterator it(path, textureFileFilter, QDir::Files, QDirIterator::Subdirectories);
     while (it.hasNext()){
@@ -154,7 +154,7 @@ void MakeColors::setFileNodesTxt(const QString &value)
     fileNodesTxt = value;
 }
 
-bool MakeColors::writeColorsTxt(const QString file)
+bool MakeColors::writeColorsTxt(const QString &file)
 {
     QFile outputFile(file);
     output("Writing colors.txt file to "+file ,INFO);
@@ -232,7 +232,7 @@ void MakeColors::stopProcess()
 }
 
 
-void MakeColors::output(QString message, LogLevel level)
+void MakeColors::output(const QString &message, LogLevel level)
 {
     if(logLevel <= level){
         emit outputLog(message,level);

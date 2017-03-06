@@ -130,6 +130,7 @@ void MinetestMapperExe::finished(int exitCode, QProcess::ExitStatus exitStatus)
 
 bool MinetestMapperExe::initVersion()
 {
+    static const QRegularExpression regexp(".*Version-ID: *");
     QByteArray dataRaw;
     QString data;
     dataRaw = process->readAllStandardError();
@@ -142,7 +143,7 @@ bool MinetestMapperExe::initVersion()
     if (!data.contains("Version-ID:")) {
         return false;
     }
-    version = data.replace(QRegularExpression(".*Version-ID: *"),"");
+    version = data.replace(regexp, "");
     return true;
 }
 
@@ -232,7 +233,6 @@ MinetestMapperExe::Tree MinetestMapperExe::getTree() const
 QString MinetestMapperExe::getTreeString() const
 {
     QMetaEnum metaEnum = QMetaEnum::fromType<MinetestMapperExe::Tree>();
-    qDebug() << metaEnum.valueToKey(tree);
     return QString(metaEnum.valueToKey(tree));
 }
 

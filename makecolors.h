@@ -18,7 +18,7 @@ class MakeColors : public QThread
 {
     Q_OBJECT
 public:
-    explicit MakeColors(const QString nodesTxt, const QString colorsTxt, const QStringList searchPaths, QObject *parent);
+    explicit MakeColors(const QString &nodesTxt, const QString &colorsTxt, const QStringList &searchPaths, QObject *parent);
     explicit MakeColors();
     ~MakeColors();
     void startProcess();
@@ -40,7 +40,7 @@ public:
     void setLogLevel(const LogLevel &value);
 
 signals:
-    void outputLog(QString message, int level);
+    void outputLog(const QString &message, int level);
     void progressChanged(int);
     void maxProgressChanged(int);
 
@@ -50,9 +50,9 @@ public slots:
 protected:
     void run();
 private slots:
-    QColor processImage(QString path);
-    bool parseNodesTxt(QString nodesTxt);
-    bool searchAndProgressTextures(const QString path);
+    QColor processImage(const QString &path);
+    bool parseNodesTxt(const QString &nodesTxt);
+    bool searchAndProgressTextures(const QString &path);
 private:
     bool abort;
     int numberOfNodes = 0;
@@ -65,8 +65,8 @@ private:
 
     QHash<QString, QColor> requiredColors;
     QMap<QString, QString> nodeList;
-    bool writeColorsTxt(const QString file);
-    void output(QString message, LogLevel level = NONE);
+    bool writeColorsTxt(const QString &file);
+    void output(const QString &message, LogLevel level = NONE);
     QMutex mutex;
 };
 

@@ -1,9 +1,9 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
+#include <QDebug>
 #include <QMap>
 #include <QRegularExpression>
-#include <QDebug>
 
 class Geometry
 {
@@ -36,7 +36,7 @@ public:
     Geometry(const QString &s) { set(s); }
     //Geometry(const Geometry &g);
 
-    Geometry::Format set(QString str);
+    Geometry::Format set(const QString &str);
     void setMax(void);
     void setCenterDimensions(int cx, int cy, int dx, int dy);
     void setCornerDimensions(int cx, int cy, int dx, int dy);

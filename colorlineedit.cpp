@@ -1,7 +1,7 @@
 #include "colorlineedit.h"
 
-#include <QToolButton>
 #include <QStyle>
+#include <QToolButton>
 
 ColorLineEdit::ColorLineEdit(QWidget *parent) :
     QLineEdit(parent)

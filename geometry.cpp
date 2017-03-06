@@ -34,7 +34,7 @@ Geometry::Format Geometry::formatId(const QString &name)
         return geometryNameIdMap[name];
 }
 
-Geometry::Format Geometry::set(QString str)
+Geometry::Format Geometry::set(const QString &str)
 {
     qDebug()<<"Trying to detect format of "<<str;
     QRegularExpressionMatch match;

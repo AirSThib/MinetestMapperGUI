@@ -1,14 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <qprocess.h>
-#include <qstringlist.h>
-#include <QDebug>
-#include <QFileDialog>
-#include <QDesktopServices>
-#include <QCompleter>
-#include <QDirModel>
 
-#include "configdialog.h"
+#include <QCompleter>
+#include <QDebug>
+#include <QDesktopServices>
+#include <QDirModel>
+#include <QFileDialog>
+#include <QStringList>
 
 static QMap<int, QString> geometryGranularitySymbolic;
 static QMap<QString, int> geometryGranularityNumeric;
@@ -313,23 +311,23 @@ void MainWindow::on_button_generate_clicked()
         return;
     }
 
-    qDebug() << QString("Minetestmapper version: " + minetestMapper->getVersion() + minetestMapper->getTreeString());
+    qDebug() << "Minetestmapper version: " << minetestMapper->getVersion() << minetestMapper->getTreeString();
     QDir worldDir = QDir(ui->path_World->text());
     if(!worldDir.exists()||worldDir.path()=="."||worldDir.path()=="/"){
-        QMessageBox::critical(this, tr("no input world selected"),
-                 tr("ERROR: No MinetestWorld selected<br><br>"
+        QMessageBox::critical(this, tr("No input world selected"),
+                 tr("ERROR: No MinetestWorld selected.\n\n"
                     "please select a world"));
         return;
     }
     QString imgName = getOutputFileName();
     if(imgName.isEmpty()){
-        QMessageBox::critical(this, tr("no output image selected"),
-                 tr("ERROR: No output image selected<br><br>"
-                    "please select a output image"));
+        QMessageBox::critical(this, tr("No output image selected"),
+                 tr("ERROR: No output image selected.\n\n"
+                    "Please select a output image"));
         return;
     }
     if(QFile::exists(imgName)){
-        int ret = QMessageBox::question(this, tr("the Image File does already exist"),
+        int ret = QMessageBox::question(this, tr("The image file does already exist"),
                  tr("The File <i>%1</i> does already exist. <br><br>"
                     "Do you want to overwrite?")
                               .arg(imgName));
@@ -338,7 +336,7 @@ void MainWindow::on_button_generate_clicked()
     QDir imgPath = QFileInfo(imgName).absoluteDir();
     if(!imgPath.exists())
     {
-        int ret = QMessageBox::question(this, tr("the directory does not exist"),
+        int ret = QMessageBox::question(this, tr("The directory does not exist"),
                  tr("The directory <i>%1</i> does not exist. <br><br>"
                     "Should it be created?")
                               .arg(imgPath.absolutePath()));
@@ -359,8 +357,8 @@ void MainWindow::on_button_generate_clicked()
     }
 
     QStringList arguments;
-    arguments           <<"-i" << ui->path_World->text()//"D:\\Programme\\minetest\\worlds\\server_minetest.king-arthur.eu_30000"
-                        <<"--output" << imgName //"D:\\Users\\Adrian\\Desktop\\test2.png"
+    arguments           <<"-i" << ui->path_World->text()
+                        <<"--output" << imgName
                         <<"--colors" <<  colorsTxtFilePath
                         <<"--progress" //<< "--verbose-search-colors=2" //<<"--verbose"
                         <<"--drawalpha="+ui->drawAlpha->currentText()
