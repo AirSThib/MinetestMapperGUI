@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>doc/intro.html</file>
-        <file>doc/manual.html</file>
         <file>images/help.svg</file>
         <file alias="color">images/color.svg</file>
         <file alias="save">images/save.svg</file>
@@ -17,13 +16,69 @@
         <file>images/draw-rectangle.svg</file>
         <file>images/draw-unknown.svg</file>
         <file>images/draw-text.svg</file>
-        <file>images/drawarrow.png</file>
-        <file>images/drawcircle.png</file>
-        <file>images/drawline.png</file>
-        <file>images/drawpoint.png</file>
-        <file>images/drawrectangle.png</file>
-        <file>images/drawtext.png</file>
         <file>images/WizardImage.bmp</file>
         <file>images/text.svg</file>
+        <file>doc/manual.htm</file>
+        <file>doc/images/alpha-average.png</file>
+        <file>doc/images/alpha-cumulative-darken.png</file>
+        <file>doc/images/alpha-cumulative.png</file>
+        <file>doc/images/background-blueish.png</file>
+        <file>doc/images/background-white.png</file>
+        <file>doc/images/blockcolor-yellowish.png</file>
+        <file>doc/images/default-0.0.png</file>
+        <file>doc/images/drawair-detail-0.png</file>
+        <file>doc/images/drawair-detail.png</file>
+        <file>doc/images/drawair.png</file>
+        <file>doc/images/drawarrow.png</file>
+        <file>doc/images/drawcircle.png</file>
+        <file>doc/images/drawline.png</file>
+        <file>doc/images/draworigin.png</file>
+        <file>doc/images/drawpoint.png</file>
+        <file>doc/images/drawrectangle.png</file>
+        <file>doc/images/drawscale-both.png</file>
+        <file>doc/images/drawscale-left.png</file>
+        <file>doc/images/drawscale-top.png</file>
+        <file>doc/images/drawtext.png</file>
+        <file>doc/images/geometrymode-block.png</file>
+        <file>doc/images/geometrymode-shrink.png</file>
+        <file>doc/images/geometrymode.png</file>
+        <file>doc/images/gui-1.png</file>
+        <file>doc/images/gui-2.png</file>
+        <file>doc/images/heightmap-color.png</file>
+        <file>doc/images/heightmap-grey.png</file>
+        <file>doc/images/heightmap-scale-interval.png</file>
+        <file>doc/images/heightmap-scale.png</file>
+        <file>doc/images/heightmap-yscale.png</file>
+        <file>doc/images/noshading.png</file>
+        <file>doc/images/players.png</file>
+        <file>doc/images/scalefactor-2.png</file>
+        <file>doc/images/scalefactor-4.png</file>
+        <file>doc/images/sidescale-interval.png</file>
+        <file>doc/images/tiles-16-centered.png</file>
+        <file>doc/images/tiles-16.png</file>
+        <file>doc/images/tiles-20-centered.png</file>
+        <file>colorlineedit.cpp</file>
+        <file>colorlineedit.h</file>
+        <file>colorstxtwizard.cpp</file>
+        <file>colorstxtwizard.h</file>
+        <file>configdialog.cpp</file>
+        <file>configdialog.h</file>
+        <file>drawmapfigure.cpp</file>
+        <file>drawmapfigure.h</file>
+        <file>drawmapfiguretablemodel.cpp</file>
+        <file>drawmapfiguretablemodel.h</file>
+        <file>figuredelegate.cpp</file>
+        <file>figuredelegate.h</file>
+        <file>geometry.cpp</file>
+        <file>geometry.h</file>
+        <file>geometrywidget.cpp</file>
+        <file>geometrywidget.h</file>
+        <file>main.cpp</file>
+        <file>mainwindow.cpp</file>
+        <file>mainwindow.h</file>
+        <file>makecolors.cpp</file>
+        <file>makecolors.h</file>
+        <file>minetestmapperexe.cpp</file>
+        <file>minetestmapperexe.h</file>
     </qresource>
 </RCC>
