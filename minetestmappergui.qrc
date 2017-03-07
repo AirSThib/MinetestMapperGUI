@@ -23,5 +23,7 @@
         <file>images/drawpoint.png</file>
         <file>images/drawrectangle.png</file>
         <file>images/drawtext.png</file>
+        <file>images/WizardImage.bmp</file>
+        <file>images/text.svg</file>
     </qresource>
 </RCC>

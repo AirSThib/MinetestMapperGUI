@@ -23,12 +23,12 @@ SOURCES += main.cpp\
     geometry.cpp \
     geometrywidget.cpp \
     configdialog.cpp \
-    colorstxtassistant.cpp \
     makecolors.cpp \
     drawmapfigure.cpp \
     drawmapfiguretablemodel.cpp \
     figuredelegate.cpp \
-    minetestmapperexe.cpp
+    minetestmapperexe.cpp \
+    colorstxtwizard.cpp \
 
 
 HEADERS  += mainwindow.h \
@@ -36,17 +36,16 @@ HEADERS  += mainwindow.h \
     geometry.h \
     geometrywidget.h \
     configdialog.h \
-    colorstxtassistant.h \
     makecolors.h \
     drawmapfigure.h \
     drawmapfiguretablemodel.h \
     figuredelegate.h \
-    minetestmapperexe.h
+    minetestmapperexe.h \
+    colorstxtwizard.h \
 
 FORMS    += mainwindow.ui \
     geometrywidget.ui \
-    configdialog.ui \
-    colorstxtassistant.ui
+    configdialog.ui
 
 RESOURCES += \
     minetestmappergui.qrc

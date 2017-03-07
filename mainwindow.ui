@@ -28,7 +28,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_genaral">
        <attribute name="title">
@@ -2214,7 +2214,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
            <item row="4" column="2">
             <widget class="ColorLineEdit" name="figure_color">
              <property name="text">
-              <string>red</string>
+              <string notr="true">red</string>
              </property>
             </widget>
            </item>

@@ -1,0 +1,2 @@
+text.svg:
+	Open Icon Libary GPL v2

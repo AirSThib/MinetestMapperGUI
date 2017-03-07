@@ -19,7 +19,8 @@
 #include <QWinTaskbarProgress>
 #endif
 
-#include "colorstxtassistant.h"
+//#include "colorstxtassistant.h"
+#include "colorstxtwizard.h"
 #include "configdialog.h"
 #include "drawmapfigure.h"
 #include "drawmapfiguretablemodel.h"

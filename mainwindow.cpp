@@ -8,6 +8,7 @@
 #include <QFileDialog>
 #include <QStringList>
 
+
 static QMap<int, QString> geometryGranularitySymbolic;
 static QMap<QString, int> geometryGranularityNumeric;
 static QMap<int, QString> geometrySizeModeSymbolic;
@@ -1001,8 +1002,8 @@ void MainWindow::on_actionPreferences_triggered()
 
 void MainWindow::startColorsTxtAssistant(void)
 {
-    ColorsTxtAssistant *assistant = new ColorsTxtAssistant(this);
-    assistant->exec();
+    ColorsTxtWizard *wizard = new ColorsTxtWizard(this);
+    wizard->exec();
 }
 
 /**
@@ -1036,9 +1037,9 @@ QString MainWindow::getColorsTxtFilePath(QDir *appDir, QDir *worldDir)
                                  );
             if(ret == QMessageBox::Yes)
             {
-                ColorsTxtAssistant assistant(this);
-                assistant.setNodesTxtFilePath(worldDir->absoluteFilePath("nodes.txt"));
-                assistant.exec();//maybe exec should return if a colors.txt file could successfuly generated.
+                ColorsTxtWizard wizard(this);
+                wizard.setNodesTxtFilePath(worldDir->absoluteFilePath("nodes.txt"));
+                wizard.exec();//maybe exec should return if a colors.txt file could successfuly generated.
 
 
                 if(QFile::exists( worldDir->absoluteFilePath("colors.txt"))){

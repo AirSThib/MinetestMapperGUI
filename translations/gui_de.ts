@@ -12,108 +12,79 @@
 <context>
     <name>ColorsTxtAssistant</name>
     <message>
-        <location filename="../colorstxtassistant.ui" line="14"/>
         <source>Create colors.txt assistant</source>
-        <translation>Erstelle colors.txt Assistent</translation>
+        <translation type="vanished">Erstelle colors.txt Assistent</translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="22"/>
         <source>Previous</source>
-        <translation>Zurück</translation>
+        <translation type="vanished">Zurück</translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="42"/>
         <source>Next</source>
-        <translation>Weiter</translation>
+        <translation type="vanished">Weiter</translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="49"/>
         <source>Finished</source>
-        <translation>Fertigstellen</translation>
+        <translation type="vanished">Fertigstellen</translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="65"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;This Assistant will help you to generate a new colors.txt that fits to your mods and games.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;To proceed click the Next button&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtassistant.ui" line="89"/>
-        <location filename="../colorstxtassistant.ui" line="177"/>
         <source>browse</source>
-        <translation>Durchsuchen</translation>
+        <translation type="vanished">Durchsuchen</translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="100"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;First, you have to install and enable the mod &amp;quot;dumpnodes&amp;quot; You can download it here: &lt;/span&gt;&lt;a href=&quot;https://bitbucket.org/adrido/dumpnodes/overview&quot;&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://bitbucket.org/adrido/dumpnodes/overview&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li style=&quot; font-size:9pt;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;extract it like each other mod into your mods folder. &lt;/li&gt;
-&lt;li style=&quot; font-size:9pt;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Activate it in the world configuration &lt;/li&gt;
-&lt;li style=&quot; font-size:9pt;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Start the game normaly &lt;/li&gt;
-&lt;li style=&quot; font-size:9pt;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;if you are ingame type /dumpnodes &lt;/li&gt;
-&lt;li style=&quot; font-size:9pt;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Now there should be a file called nodes.txt inside the world folder. If its there, click the next button if not, start with step 1.&lt;/li&gt;
-&lt;li style=&quot; font-size:9pt;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Select the generated nodes.txt file down there&lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtassistant.ui" line="124"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Now you have to specify one or more folders where the textures can be found.&lt;/p&gt;&lt;p&gt;Recomended is the minetest_game folder and the mods folder.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../colorstxtassistant.ui" line="133"/>
         <source>add new</source>
-        <translation>Neuer Ordner</translation>
+        <translation type="vanished">Neuer Ordner</translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="144"/>
         <source>remove selected</source>
-        <translation>Ausgewählten Entfernen</translation>
+        <translation type="vanished">Ausgewählten Entfernen</translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="188"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Optionaly you can specify a colors.txt here.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;If you leave this field empty, a colors.txt file will created in the same place as the nodes.txt&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>Generate</source>
+        <translation type="vanished">Erstellen</translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="204"/>
-        <source>Finished! Click the button Generate now to generate the colors.txt file</source>
-        <translation type="unfinished"></translation>
+        <source>Select Folder</source>
+        <translation type="vanished">Ordner auswählen</translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.ui" line="211"/>
+        <source>Open colors.txt File</source>
+        <translation type="vanished">Öffne colors.txt Datei</translation>
+    </message>
+    <message>
+        <source>TXT File (*.txt)</source>
+        <translation type="vanished">TXT Datei (*.txt)</translation>
+    </message>
+</context>
+<context>
+    <name>ColorsTxtWizard</name>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="24"/>
+        <source>Colors Txt Wizard</source>
+        <translation>Colors Txt Assistent</translation>
+    </message>
+</context>
+<context>
+    <name>ConclusionPage</name>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="194"/>
+        <source>Conclusion</source>
+        <translation>Zusammenfassung</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="195"/>
+        <source>All done. :-) Now click the Generate button to generate the colors.txt</source>
+        <translation>Alles erledigt :-) Clicke auf Erstellen um die colors.txt Datei zu generieren</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="202"/>
         <source>Generate</source>
         <translation>Erstellen</translation>
     </message>
     <message>
-        <location filename="../colorstxtassistant.cpp" line="81"/>
-        <source>Select Folder</source>
-        <translation>Ordner auswählen</translation>
-    </message>
-    <message>
-        <location filename="../colorstxtassistant.cpp" line="113"/>
-        <location filename="../colorstxtassistant.cpp" line="121"/>
-        <source>Open colors.txt File</source>
-        <translation>Öffne colors.txt Datei</translation>
-    </message>
-    <message>
-        <location filename="../colorstxtassistant.cpp" line="115"/>
-        <location filename="../colorstxtassistant.cpp" line="123"/>
-        <source>TXT File (*.txt)</source>
-        <translation>TXT Datei (*.txt)</translation>
+        <location filename="../colorstxtwizard.cpp" line="219"/>
+        <source>Click %1 to finish.</source>
+        <translation>Clicke auf %1 zum Fertigstellen.</translation>
     </message>
 </context>
 <context>
@@ -356,6 +327,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../geometrywidget.cpp" line="253"/>
         <source>&lt;h1&gt;WARNING&lt;/h1&gt; &lt;h2&gt;Geometry string was not recognised&lt;/h2&gt;The given geometry is either invalid, or only supported in &lt;i&gt;custom&lt;/i&gt; mode.</source>
         <translation>&lt;h1&gt;Warnung&lt;/h1&gt;&lt;h2&gt;Geometrie ist nicht bekannt&lt;/h2&gt;Die eingegebene Geometrie ist entweder ungültig oder wird nur im &lt;i&gt;Benutzerdefinierten&lt;/i&gt; modus Unterstützt.</translation>
+    </message>
+</context>
+<context>
+    <name>IntroPage</name>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="37"/>
+        <source>Introduction</source>
+        <translation>Einführung</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="40"/>
+        <source>This wizard will generate a brand new colors.txt file that fits exactly to your game and mods. You simply need to specify the nodes.txt and the paths where your game and your mods are installed.</source>
+        <translation>Dieser Asistent erstellt eine ganz neue colors.txt Datei die exakt zu dem Spiel und den mods passt. Es müssen nur die nodes.txt und die Ordner in denen das Game und die Mod&apos;s liegen angegeben werden.</translation>
     </message>
 </context>
 <context>
@@ -942,11 +926,6 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation>Zuweisen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2217"/>
-        <source>red</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="2224"/>
         <source>Figure:</source>
         <translation>Figur:</translation>
@@ -1166,7 +1145,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation>Höhenkarte Farben</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="904"/>
+        <location filename="../mainwindow.cpp" line="905"/>
         <source>select color</source>
         <translation>Farbe auswählen</translation>
     </message>
@@ -1284,7 +1263,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2431"/>
-        <location filename="../mainwindow.cpp" line="1053"/>
+        <location filename="../mainwindow.cpp" line="1054"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -1317,7 +1296,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2590"/>
-        <location filename="../mainwindow.cpp" line="883"/>
+        <location filename="../mainwindow.cpp" line="884"/>
         <source>About MinetestMapper</source>
         <translation>Über MinetestMapper</translation>
     </message>
@@ -1361,7 +1340,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2727"/>
-        <location filename="../mainwindow.cpp" line="917"/>
+        <location filename="../mainwindow.cpp" line="918"/>
         <source>New Profile</source>
         <translation>Neues Profil</translation>
     </message>
@@ -1371,7 +1350,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2735"/>
-        <location filename="../mainwindow.cpp" line="479"/>
+        <location filename="../mainwindow.cpp" line="480"/>
         <source>Expert Mode</source>
         <translation>Expertenmodus</translation>
     </message>
@@ -1386,18 +1365,18 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation>Im Expertenmodus werden die Parameter angezeigt, die du verändern kannst.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="248"/>
+        <location filename="../mainwindow.cpp" line="249"/>
         <source>Current Language changed to %1</source>
         <translation>Sprache wurde auf %1 geändert</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2686"/>
-        <location filename="../mainwindow.cpp" line="869"/>
+        <location filename="../mainwindow.cpp" line="870"/>
         <source>About MinetestMapper GUI</source>
         <translation>Über MinetestMapperGUI</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="296"/>
+        <location filename="../mainwindow.cpp" line="297"/>
         <source>Minetestmapper not found</source>
         <translation>Minetestmapper nicht gefunden</translation>
     </message>
@@ -1422,7 +1401,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Das Bild existiert bereits</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="326"/>
+        <location filename="../mainwindow.cpp" line="327"/>
         <source>The File &lt;i&gt;%1&lt;/i&gt; does already exist. &lt;br&gt;&lt;br&gt;Do you want to overwrite?</source>
         <translation>Die Datei &lt;i&gt;%1&lt;/i&gt; existiert bereits. &lt;br&gt;&lt;br&gt;Soll die Datei Überschrieben werden?</translation>
     </message>
@@ -1431,58 +1410,58 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Der Ordner existiert nicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="335"/>
+        <location filename="../mainwindow.cpp" line="336"/>
         <source>The directory &lt;i&gt;%1&lt;/i&gt; does not exist. &lt;br&gt;&lt;br&gt;Should it be created?</source>
         <translation>Der Ordner &lt;i&gt;%1&lt;/i&gt; existiert nicht. &lt;br&gt;&lt;br&gt;Möchten sie den Ordner erstellen?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="480"/>
+        <location filename="../mainwindow.cpp" line="481"/>
         <source>MinetestMapper will be executed using this arguments. 
 The arguments can be removed, modified, or new arguments can be added.</source>
         <translation>MinetestMapper wird mit den folgenden Parametern ausgeführt. 
 Die einzelnen Parameter können entfernt, verändert, oder neue hinzugefügt werden.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="539"/>
+        <location filename="../mainwindow.cpp" line="540"/>
         <source>Finisched :)</source>
         <translation>Fertig :-)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="547"/>
+        <location filename="../mainwindow.cpp" line="548"/>
         <source>minetestmapper terminated</source>
         <translation>minetestmapper abgebrochen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="290"/>
+        <location filename="../mainwindow.cpp" line="291"/>
         <source>ERROR: No minetestmapper executable could not be found.
 Please configure one. </source>
         <translation>FEHLER: Kein Minetestmapper programm gefunden. 
 Bitte Konfiguriere eins.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="293"/>
+        <location filename="../mainwindow.cpp" line="294"/>
         <source>ERROR: The Minetetmapper Application (%1) does not look like a Minetetestmapper
 Please configure a correct MinetestMapper Application. </source>
         <translation>FEHLER: Das Minetestmapper Programm (%1) ist möglicherweise kein Minetestmapper Programm.
 Bitte Wählen sie eine Korrekte Minetestmapper Anwendung aus.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="298"/>
+        <location filename="../mainwindow.cpp" line="299"/>
         <source>(Edit-&gt;Preferences)</source>
         <translation>(Bearbeiten-&gt;Einstellungen)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="300"/>
+        <location filename="../mainwindow.cpp" line="301"/>
         <source>Do you want to open Preferences now?</source>
         <translation>Sollen die Einstellungen jetzt geöffnet werden?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="312"/>
+        <location filename="../mainwindow.cpp" line="313"/>
         <source>No input world selected</source>
         <translation>Keine Welt ausgewählt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="313"/>
+        <location filename="../mainwindow.cpp" line="314"/>
         <source>ERROR: No MinetestWorld selected.
 
 please select a world</source>
@@ -1491,12 +1470,12 @@ please select a world</source>
 Bitte wähle eine aus</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="319"/>
+        <location filename="../mainwindow.cpp" line="320"/>
         <source>No output image selected</source>
         <translation>Kein Ausgansbild ausgewählt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="320"/>
+        <location filename="../mainwindow.cpp" line="321"/>
         <source>ERROR: No output image selected.
 
 Please select a output image</source>
@@ -1505,28 +1484,28 @@ Please select a output image</source>
 Bitte ein Ausgabebild wählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="325"/>
+        <location filename="../mainwindow.cpp" line="326"/>
         <source>The image file does already exist</source>
         <translation>Die Datei existiert bereits</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="334"/>
+        <location filename="../mainwindow.cpp" line="335"/>
         <source>The directory does not exist</source>
         <translation>Der Ordner existiert nicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="550"/>
-        <location filename="../mainwindow.cpp" line="567"/>
+        <location filename="../mainwindow.cpp" line="551"/>
+        <location filename="../mainwindow.cpp" line="568"/>
         <source>Minetest Mapper failed</source>
         <translation>Minetestmapper hat ein Fehler festgestellt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="551"/>
+        <location filename="../mainwindow.cpp" line="552"/>
         <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;minetestmapper failed&lt;/h2&gt;Exit code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Status of MinetestMapper: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;&lt;br&gt;Please fix the error and try again </source>
         <translation>&lt;h1&gt;Fehler&lt;/h1&gt; &lt;h2&gt;kartenerstellung fehlgeschlagen&lt;/h2&gt;Exit code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Ausgabe des Minetstmapper: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;&lt;br&gt;Bitte den Fehler beheben und erneut versuchen </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="568"/>
+        <location filename="../mainwindow.cpp" line="569"/>
         <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;minetestmapper failed&lt;/h2&gt;Error code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Error Message: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;</source>
         <translation>&lt;h1&gt;FEHLER&lt;/h1&gt; &lt;h2&gt;minetestmapper ist abgestürzt&lt;/h2&gt;Fehlercode: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Fehlernachricht: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;</translation>
     </message>
@@ -1539,113 +1518,115 @@ Bitte ein Ausgabebild wählen</translation>
         <translation type="vanished">Konnte die Einstellungen nicht migrieren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="622"/>
+        <location filename="../mainwindow.cpp" line="623"/>
         <source>Can not save settings</source>
         <translation>Kann die Einstellungen nicht speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="623"/>
+        <location filename="../mainwindow.cpp" line="624"/>
         <source>Minetest Mapper GUI could not save the settings to %1.
 Please make shure Minetest Mapper Gui can access to the file/directory</source>
         <translation>Minetest Mapper GUI konnte die Einstellungen nicht nach %1 speichern.
 Bitte stelle sicher, dass Minetest Mapper GUI auf die Datei/ den Ordner zugreifen darf.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="650"/>
+        <location filename="../mainwindow.cpp" line="651"/>
         <source>Can not save profile</source>
         <translation>Konnte das Profil nicht speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="651"/>
+        <location filename="../mainwindow.cpp" line="652"/>
         <source>Minetest Mapper GUI could not save the current Profile &apos;%1&apos; to %2.
 Please make shure Minetest Mapper Gui can access to the file/directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="827"/>
+        <location filename="../mainwindow.cpp" line="828"/>
         <source>Open Minetest World</source>
         <translation>Minetest Welt-Ordner öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="837"/>
+        <location filename="../mainwindow.cpp" line="838"/>
         <source>Save generated map to...</source>
         <translation>Karte speichern nach...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="837"/>
+        <location filename="../mainwindow.cpp" line="838"/>
         <source>png image (*.png)</source>
         <translation>png Grafik (*.png)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="844"/>
+        <location filename="../mainwindow.cpp" line="845"/>
         <source>Open HeightmapNodes File</source>
         <translation>Öffne HeightmapNodes Datei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="846"/>
-        <location filename="../mainwindow.cpp" line="854"/>
-        <location filename="../mainwindow.cpp" line="862"/>
+        <location filename="../mainwindow.cpp" line="847"/>
+        <location filename="../mainwindow.cpp" line="855"/>
+        <location filename="../mainwindow.cpp" line="863"/>
         <source>TXT File (*.txt)</source>
         <translation>TXT Datei (*.txt)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="852"/>
+        <location filename="../mainwindow.cpp" line="853"/>
         <source>Open HeightmapColors File</source>
         <translation>Öffne Höhenkarte Farbdefinitionsdatei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="860"/>
+        <location filename="../mainwindow.cpp" line="861"/>
         <source>Open colors.txt File</source>
         <translation>Öffne colors.txt Datei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="870"/>
+        <location filename="../mainwindow.cpp" line="871"/>
         <source>&lt;h1&gt;About MinetestMapperGUI&lt;/h1&gt;The &lt;b&gt;MinetestMapper Gui&lt;/b&gt; is written by addi.&lt;br /&gt;It is licensed under a &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;Creative Commons Attribution 3.0 Unported License&lt;/a&gt;.&lt;br&gt;The current version is %1. &lt;br&gt;The sourcecode is aviable on &lt;a href=&apos;https://bitbucket.org/adrido/minetestmappergui/&apos;&gt;Bitbucket&lt;/a&gt;.&lt;br&gt;You may also want to read the &lt;a href=&apos;https://forum.minetest.net/viewtopic.php?f=14&amp;t=12139&apos;&gt;Minetest forum thread&lt;/a&gt;.&lt;br&gt;&lt;br&gt;&lt;b&gt;Thanks to:&lt;/b&gt;&lt;br&gt;McKrustenkaese for his great icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="884"/>
+        <location filename="../mainwindow.cpp" line="885"/>
         <source>&lt;h1&gt;About MinetestMapper&lt;/h1&gt;The &lt;b&gt;MinetestMapper&lt;/b&gt; is written by:&lt;br&gt;Miroslav Bendík &lt;miroslav.bendik@gmail.com&gt;&lt;br&gt;ShadowNinja &lt;shadowninja@minetest.net&gt;&lt;br&gt;sfan5 &lt;sfan5@live.de&gt;&lt;br&gt;Rogier &lt;rogier777@gmail.com&gt;&lt;br&gt;&lt;br&gt;&lt;u&gt;Version:&lt;/u&gt; %1 (%2)&lt;br&gt;&lt;u&gt;License:&lt;/u&gt; LGPLv2.1+ and BSD 2-clause.&lt;br&gt;&lt;u&gt;Source Code:&lt;/u&gt; &lt;a href=&apos;https://github.com/Rogier-5/minetest-mapper-cpp&apos;&gt;Github&lt;/a&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="977"/>
+        <location filename="../mainwindow.cpp" line="978"/>
         <source>map center</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="982"/>
+        <location filename="../mainwindow.cpp" line="983"/>
         <source>map origin (top left)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1032"/>
+        <location filename="../mainwindow.cpp" line="1033"/>
         <source>Create a colors.txt</source>
-        <translation type="unfinished"></translation>
+        <translation>Erstelle eine colors.txt Datei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1033"/>
+        <location filename="../mainwindow.cpp" line="1034"/>
         <source>There is a nodes.txt but no colors.txt in the world directory
 Do you want to generate one? 
 If you select &apos;No&apos; the default colors.txt will be used.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="1050"/>
-        <source>No colors.txt file</source>
-        <translation type="unfinished"></translation>
+        <translation>Es gibt eine nodes.txt aber keine colors.txt Datei in dem Welt ordner.
+Möchtest du eine erstellen?
+Wenn du auf &apos;Nein&apos; clickst, wird eine standard colors.txt Datei verwendet.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1051"/>
+        <source>No colors.txt file</source>
+        <translation>Keine colors.txt Datei</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1052"/>
         <source>ERROR: Still no colors.txt file found inside world directory.
 
 Do you want to cancel or proceed with default colors.txt file?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1054"/>
+        <location filename="../mainwindow.cpp" line="1055"/>
         <source>Proceed with default</source>
-        <translation type="unfinished"></translation>
+        <translation>Mit standard Datei fortfahren</translation>
     </message>
     <message>
         <source>ERROR: No minetestmapper executable could not be found.
@@ -1678,12 +1659,12 @@ Bitte erneut eine gültige minetestmapper Anwendung auswählen. (Bearbeiten-&gt;
 Möchten Sie die Einstellungen jetzt öffnen? </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="898"/>
+        <location filename="../mainwindow.cpp" line="899"/>
         <source>preview: %1</source>
         <translation>Vorschau: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="918"/>
+        <location filename="../mainwindow.cpp" line="919"/>
         <source>Name of the new Profile:</source>
         <translation>Name des Neuen Profils:</translation>
     </message>
@@ -1723,15 +1704,97 @@ Möchten Sie die Einstellungen jetzt öffnen? </translation>
 <context>
     <name>NodesTxtPage</name>
     <message>
+        <location filename="../colorstxtwizard.cpp" line="54"/>
+        <source>The nodes.txt file</source>
+        <translation>Die nodes.txt Datei</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="55"/>
+        <source>Follow the steps and specify the path to the nodes.txt</source>
+        <translation>Folge den Schritten und gebe die nodes.txt an</translation>
+    </message>
+    <message>
+        <source>&lt;ol&gt;
+&lt;li&gt;First, you have to install the mod &lt;span style=&quot; font-weight:600;&quot;&gt;dumpnodes&lt;/span&gt;. You can download it here: %1&lt;/li&gt;
+&lt;li&gt;Extract it like each other mod into your mods folder. &lt;/li&gt;
+&lt;li&gt;Activate it in the world configuration &lt;/li&gt;
+&lt;li&gt;Start the game normaly &lt;/li&gt;
+&lt;li&gt;If you are ingame type /dumpnodes &lt;/li&gt;&lt;li&gt;Now there should be a file called nodes.txt inside the world folder.&lt;/li&gt;
+&lt;li&gt;Select the generated nodes.txt file down there&lt;/li&gt;
+&lt;/ol&gt;</source>
+        <translation type="vanished">&lt;ol&gt;
+&lt;li&gt;Als erstess musst du die Mod &lt;span style=&quot; font-weight:600;&quot;&gt;dumpnodes&lt;/span&gt; installieren. Du kannst diese hier herrunterladen: %1&lt;/li&gt;
+&lt;li&gt;Entpacke diese wie jede andere Mod in das mods verzeichnis. &lt;/li&gt;
+&lt;li&gt;Aktiviere diese in der Welt-Konfiguration &lt;/li&gt;
+&lt;li&gt;Starte das spiel ganz normal &lt;/li&gt;
+&lt;li&gt;Im spiel führe den befehl /dumpnodes aus&lt;/li&gt;
+&lt;li&gt;Nun sollte es eine Datei nodes.txt im Welt Ordner geben.&lt;/li&gt;
+&lt;li&gt;Wähle die Datei unten aus.&lt;/li&gt;
+&lt;/ol&gt;</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="58"/>
+        <source>&lt;ol&gt;
+&lt;li&gt;First, you have to install the mod &lt;span style=&quot; font-weight:600;&quot;&gt;dumpnodes&lt;/span&gt;. You can download it here: %1&lt;/li&gt;
+&lt;li&gt;Extract it like each other mod into your mods folder. &lt;/li&gt;
+&lt;li&gt;Activate it in the world configuration &lt;/li&gt;
+&lt;li&gt;Start the game normaly &lt;/li&gt;
+&lt;li&gt;If you are ingame type /dumpnodes &lt;/li&gt;
+&lt;li&gt;Now there should be a file called nodes.txt inside the world folder.&lt;/li&gt;
+&lt;li&gt;Select the generated nodes.txt file down there&lt;/li&gt;
+&lt;/ol&gt;</source>
+        <translation>&lt;ol&gt;
+&lt;li&gt;Als erstess musst du die Mod &lt;span style=&quot; font-weight:600;&quot;&gt;dumpnodes&lt;/span&gt; installieren. Du kannst diese hier herrunterladen: %1&lt;/li&gt;
+&lt;li&gt;Entpacke diese wie jede andere Mod in das mods verzeichnis. &lt;/li&gt;
+&lt;li&gt;Aktiviere diese in der Welt-Konfiguration &lt;/li&gt;
+&lt;li&gt;Starte das spiel ganz normal &lt;/li&gt;
+&lt;li&gt;Im spiel führe den befehl /dumpnodes aus&lt;/li&gt;
+&lt;li&gt;Nun sollte es eine Datei nodes.txt im Welt Ordner geben.&lt;/li&gt;
+&lt;li&gt;Wähle die Datei unten aus.&lt;/li&gt;
+&lt;/ol&gt;</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="75"/>
+        <source>&amp;Browse</source>
+        <translation>&amp;Durchsuchen</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="87"/>
+        <source>Open nodes.txt File</source>
+        <translation>Öffne die nodes.txt Datei</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="89"/>
         <source>TXT File (*.txt)</source>
-        <translation type="obsolete">TXT Datei (*.txt)</translation>
+        <translation>TXT Datei (*.txt)</translation>
     </message>
 </context>
 <context>
     <name>OutputFilePage</name>
     <message>
+        <location filename="../colorstxtwizard.cpp" line="162"/>
+        <source>Output colors.txt</source>
+        <translation>Ausgabe colors.txt</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="163"/>
+        <source>Optionally you can specify the colors.txt where the colors should be written into. If you leaf this empty, the file placed at the same directory as the nodes.txt file.</source>
+        <translation>Optional kannst du die colors.txt datei Festlegen in die erstellt werden soll. Wird das feld leergelassen wird die colors.txt im selben Ordner wie die nodes.txt erstellt. </translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="173"/>
+        <source>&amp;Browse</source>
+        <translation>&amp;Durchsuchen</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="184"/>
+        <source>Save colors.txt File</source>
+        <translation>Speichere die colors.txt Datei</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="186"/>
         <source>TXT File (*.txt)</source>
-        <translation type="obsolete">TXT Datei (*.txt)</translation>
+        <translation>TXT Datei (*.txt)</translation>
     </message>
 </context>
 <context>
@@ -1739,6 +1802,36 @@ Möchten Sie die Einstellungen jetzt öffnen? </translation>
     <message>
         <source>Select Folder</source>
         <translation type="obsolete">Ordner auswählen</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="97"/>
+        <source>Texture Folders</source>
+        <translation>Textur Ordner</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="98"/>
+        <source>Seletct one or more folders where the textures for the world are. Eg. the game folder and mods folder.</source>
+        <translation>Wähle einen oder Mehrere Ordner aus, in dem die Texturen für die Welt liegen. Z.B. den game- und den mods Ordner.</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="102"/>
+        <source>Add folder</source>
+        <translation>Ordner Hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="103"/>
+        <source>Remove selected folders</source>
+        <translation>Ausgewählte Ordner entfernen</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="104"/>
+        <source>Edit selected folder</source>
+        <translation>Bearbeite ausgewählten Ordner</translation>
+    </message>
+    <message>
+        <location filename="../colorstxtwizard.cpp" line="129"/>
+        <source>Select texture folder</source>
+        <translation>Wähle den Textur Ordner aus</translation>
     </message>
 </context>
 </TS>
