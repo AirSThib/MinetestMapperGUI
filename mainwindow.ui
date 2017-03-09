@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>972</width>
+    <width>1061</width>
     <height>605</height>
    </rect>
   </property>
@@ -1973,6 +1973,9 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                  <property name="text">
                   <string>chunk-aligned</string>
                  </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">group_tiles_tiles</string>
+                 </attribute>
                 </widget>
                </item>
                <item row="0" column="0">
@@ -1980,6 +1983,9 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                  <property name="text">
                   <string>tilesize+border</string>
                  </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">group_tiles_tiles</string>
+                 </attribute>
                 </widget>
                </item>
                <item row="1" column="0">
@@ -1993,6 +1999,9 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                  <property name="checked">
                   <bool>true</bool>
                  </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">group_tiles_tiles</string>
+                 </attribute>
                 </widget>
                </item>
                <item row="0" column="2">
@@ -2031,6 +2040,9 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                  <property name="text">
                   <string>tilecenter</string>
                  </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">group_tiles_arrange</string>
+                 </attribute>
                 </widget>
                </item>
                <item row="2" column="0">
@@ -2047,6 +2059,9 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                  <property name="checked">
                   <bool>true</bool>
                  </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">group_tiles_arrange</string>
+                 </attribute>
                 </widget>
                </item>
                <item row="0" column="0">
@@ -2079,6 +2094,9 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                     <property name="text">
                      <string>coordinates</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">group_tiles_arrange_at</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="1" column="0">
@@ -2089,6 +2107,9 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                     <property name="checked">
                      <bool>true</bool>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">group_tiles_arrange_at</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="2" column="0">
@@ -2096,6 +2117,9 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                     <property name="text">
                      <string>map origin (top-left)</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">group_tiles_arrange_at</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="0" column="1">
@@ -2418,7 +2442,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>972</width>
+     <width>1061</width>
      <height>26</height>
     </rect>
    </property>
@@ -3387,7 +3411,10 @@ p, li { white-space: pre-wrap; }
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="geometrymode_granularity_group"/>
   <buttongroup name="geometrymode_size_group"/>
+  <buttongroup name="group_tiles_tiles"/>
+  <buttongroup name="group_tiles_arrange"/>
+  <buttongroup name="group_tiles_arrange_at"/>
+  <buttongroup name="geometrymode_granularity_group"/>
  </buttongroups>
 </ui>

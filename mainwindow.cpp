@@ -706,10 +706,14 @@ void MainWindow::writeProfile()
     profile->endGroup();
 
     profile->beginGroup("tiles");   //tab6 Tiles
-        profile->setValue("drawTiles",ui->tiles->isChecked());
-        /*
-         * Todo: also save and restore other tiles
-        */
+        profile->setValue("drawTiles", ui->tiles->isChecked());
+        profile->setValue("tilesize", ui->tilesize->value());
+        profile->setValue("tileborder", ui->tileborder->value());
+        profile->setValue("tiles_coordinateX", ui->tiles_coordinateX->value());
+        profile->setValue("tiles_coordinateY", ui->tiles_coordinateY->value());
+        profile->setValue("group_tiles", ui->group_tiles_tiles->checkedId());
+        profile->setValue("group_tiles_arrange", ui->group_tiles_arrange->checkedId());
+        profile->setValue("group_tiles_arrange_at", ui->group_tiles_arrange_at->checkedId());
     profile->endGroup();
 
     profile->beginGroup("drawFigures");   //tab7 Draw Figures
@@ -809,6 +813,9 @@ void MainWindow::readProfile()
         ui->tileborder->setValue(profile->value("tileborder",1).toInt());
         ui->tiles_coordinateX->setValue(profile->value("tiles_coordinateX",0).toInt());
         ui->tiles_coordinateY->setValue(profile->value("tiles_coordinateY",0).toInt());
+        ui->group_tiles_tiles->button(profile->value("group_tiles",-4).toInt())->setChecked(true);
+        ui->group_tiles_arrange->button(profile->value("group_tiles_arrange",-3).toInt())->setChecked(true);
+        ui->group_tiles_arrange_at->button(profile->value("group_tiles_arrange_at",-3).toInt())->setChecked(true);
     profile->endGroup();
 
     profile->beginGroup("drawFigures");
