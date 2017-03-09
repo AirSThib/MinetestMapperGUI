@@ -57,28 +57,5 @@
         <file>doc/images/tiles-16-centered.png</file>
         <file>doc/images/tiles-16.png</file>
         <file>doc/images/tiles-20-centered.png</file>
-        <file>colorlineedit.cpp</file>
-        <file>colorlineedit.h</file>
-        <file>colorstxtwizard.cpp</file>
-        <file>colorstxtwizard.h</file>
-        <file>configdialog.cpp</file>
-        <file>configdialog.h</file>
-        <file>drawmapfigure.cpp</file>
-        <file>drawmapfigure.h</file>
-        <file>drawmapfiguretablemodel.cpp</file>
-        <file>drawmapfiguretablemodel.h</file>
-        <file>figuredelegate.cpp</file>
-        <file>figuredelegate.h</file>
-        <file>geometry.cpp</file>
-        <file>geometry.h</file>
-        <file>geometrywidget.cpp</file>
-        <file>geometrywidget.h</file>
-        <file>main.cpp</file>
-        <file>mainwindow.cpp</file>
-        <file>mainwindow.h</file>
-        <file>makecolors.cpp</file>
-        <file>makecolors.h</file>
-        <file>minetestmapperexe.cpp</file>
-        <file>minetestmapperexe.h</file>
     </qresource>
 </RCC>
