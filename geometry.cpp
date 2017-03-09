@@ -1,37 +1,28 @@
 #include "geometry.h"
 
 
-QMap<Geometry::Format, QString> Geometry::geometryIdNameMap;
-QMap<QString, Geometry::Format> Geometry::geometryNameIdMap;
-const Geometry::InitStatics initStatics;
+const QMetaEnum Geometry::metaEnumFormat = QMetaEnum::fromType<Geometry::Format>();
+const QRegularExpression Geometry::corners = QRegularExpression("(-?\\d*),(-?\\d*):(-?\\d*),(-?\\d*)");
+const QRegularExpression Geometry::centerDimension = QRegularExpression("(-?\\d*),(-?\\d*):(-?\\d*)x(-?\\d*)");
+const QRegularExpression Geometry::cornerDimension = QRegularExpression("(-?\\d*)[,:](-?\\d*)[+-](-?\\d*)[+-](-?\\d*)");
+const QRegularExpression Geometry::cornerDimensionAlternate = QRegularExpression("(\\d*)x(\\d*)[+]?(-?\\d+)?[+]?(-?\\d+)?");
 
-Geometry::InitStatics::InitStatics()
-{
-    Geometry::geometryIdNameMap[Geometry::FormatUnknown] = "unknown";
-    Geometry::geometryIdNameMap[Geometry::FormatNone] = "none";
-    Geometry::geometryIdNameMap[Geometry::CenterDimensions] = "center-dimensions";
-    Geometry::geometryIdNameMap[Geometry::CornerDimensions] = "corner-dimensions";
-    Geometry::geometryIdNameMap[Geometry::Corners] = "corners";
-    Geometry::geometryIdNameMap[Geometry::FormatCustom] = "custom";
-
-    for (int i = Geometry::FormatNone; i < Geometry::FormatMax; i++)
-        Geometry::geometryNameIdMap[Geometry::geometryIdNameMap[static_cast<Format>(i)]] = static_cast<Format>(i);
-
-}
-
-const QString &Geometry::formatName(Geometry::Format id)
+const char *Geometry::formatName(Geometry::Format id)
 {
     if (id < Geometry::FormatNone || id >= Geometry::FormatMax)
         id = Geometry::FormatUnknown;
-    return geometryIdNameMap[id];
+    return metaEnumFormat.key(id);
 }
 
 Geometry::Format Geometry::formatId(const QString &name)
 {
-    if (geometryNameIdMap.find(name) == geometryNameIdMap.end())
-        return Geometry::FormatUnknown;
-    else
-        return geometryNameIdMap[name];
+    return formatId(name.toLatin1().data());
+}
+
+Geometry::Format Geometry::formatId(const char *name)
+{
+    // keyToValue returns -1 for not found, which equals FormatUnknown
+    return static_cast<Format>(metaEnumFormat.keyToValue(name));
 }
 
 Geometry::Format Geometry::set(const QString &str)
@@ -39,11 +30,9 @@ Geometry::Format Geometry::set(const QString &str)
     qDebug()<<"Trying to detect format of "<<str;
     QRegularExpressionMatch match;
     if(str.isEmpty()){
-        qDebug()<<"format is FormatNone";
         format = FormatNone;
     }
     else if((match =corners.match(str)).hasMatch()) {
-        qDebug()<<"format is Corners";
         corner[0][0] = match.captured(1).toInt();
         corner[0][1] = match.captured(2).toInt();
         corner[1][0] = match.captured(3).toInt();
@@ -55,7 +44,6 @@ Geometry::Format Geometry::set(const QString &str)
         format = Geometry::Corners;
     }
     else if((match =centerDimension.match(str)).hasMatch()){
-        qDebug()<<"format is CenterDimensions";
         center[0]    = match.captured(1).toInt();
         center[1]    = match.captured(2).toInt();
         dimension[0] = match.captured(3).toInt();
@@ -70,7 +58,6 @@ Geometry::Format Geometry::set(const QString &str)
         format = Geometry::CenterDimensions;
     }
     else if((match = cornerDimension.match(str)).hasMatch()){
-        qDebug()<<"format is CornerDimensions";
         corner[0][0] = match.captured(1).toInt();
         corner[0][1] = match.captured(2).toInt();
         dimension[0] = match.captured(3).toInt();
@@ -85,9 +72,7 @@ Geometry::Format Geometry::set(const QString &str)
         format = Geometry::CornerDimensions;
     }
     else if((match = cornerDimensionAlternate.match(str)).hasMatch()){
-        qDebug() << "format is <width>x<height>[<+|-xoffset><+|-yoffset>]";
         if(match.lastCapturedIndex() ==2){
-            qDebug() << "format is CenterDimensions with center =0,0";
             center[0] = 0;
             center[1] = 0;
             dimension[0] = match.captured(1).toInt();
@@ -102,7 +87,6 @@ Geometry::Format Geometry::set(const QString &str)
             format = Geometry::CenterDimensions;
         }
         else if(match.lastCapturedIndex() ==4){
-            qDebug() << "format is CornerDimensions";
             corner[0][0] = match.captured(3).toInt();
             corner[0][1] = match.captured(4).toInt();
             dimension[0] = match.captured(1).toInt();
@@ -122,7 +106,8 @@ Geometry::Format Geometry::set(const QString &str)
         qDebug()<<"Warning: Could not parse format of string: "<<str;
         format = Geometry::FormatCustom;
     }
-
+    // Thanks to Qt's meta enum qDebug makes pretty printing of format
+    qDebug() << "Format is:" << format;
     return format;
 
 }
