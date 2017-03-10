@@ -115,6 +115,8 @@ private slots:
 
     void switchTranslator(QTranslator *translator, const QString &prefix, const QLocale &locale);
 
+    void on_actionOpen_Terminal_triggered();
+
 private:
     bool portable;
     Ui::MainWindow *ui;

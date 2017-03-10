@@ -1,2 +1,4 @@
 text.svg:
 	Open Icon Libary GPL v2
+terminal.svg:
+	Open Icon Libary / nuvola / LGPL-2.1

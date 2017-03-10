@@ -57,5 +57,6 @@
         <file>doc/images/tiles-16-centered.png</file>
         <file>doc/images/tiles-16.png</file>
         <file>doc/images/tiles-20-centered.png</file>
+        <file>images/terminal.svg</file>
     </qresource>
 </RCC>

@@ -1116,3 +1116,22 @@ void MainWindow::on_figureSelect_currentIndexChanged(int index)
                                                      << "drawmaptext";
     ui->figureInformation->scrollToAnchor(anchors.at(index));
 }
+
+void MainWindow::on_actionOpen_Terminal_triggered()
+{
+    QUrl mtmapperenv;
+#if defined Q_OS_LINUX
+    mtmapperenv = QUrl::fromLocalFile("mtmapperenv.sh");
+#elif defined Q_OS_WIN
+    mtmapperenv = QUrl::fromLocalFile("mtmapperenv.bat");
+#elif defined Q_OS_MACOS
+    mtmapperenv = QUrl::fromLocalFile("mtmapperenv.sh"); // The sh might also work on OSX
+#else
+    mtmapperenv = QUrl();
+#endif
+    if (!QDesktopServices::openUrl(mtmapperenv)) {
+        QMessageBox::critical(this,
+                              tr("Could not open Terminal"),
+                              tr("Error: Could not open scriptfile (%1) for Terminal").arg(mtmapperenv.toDisplayString()));
+    }
+}

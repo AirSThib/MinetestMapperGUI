@@ -2496,6 +2496,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     <addaction name="actionExpert_Mode"/>
     <addaction name="actionOpen_map_after_creation"/>
     <addaction name="actionStart_colors_txt_assistant"/>
+    <addaction name="actionOpen_Terminal"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -2809,6 +2810,15 @@ p, li { white-space: pre-wrap; }
   <action name="actionStart_colors_txt_assistant">
    <property name="text">
     <string>Start colors.txt assistant</string>
+   </property>
+  </action>
+  <action name="actionOpen_Terminal">
+   <property name="icon">
+    <iconset resource="minetestmappergui.qrc">
+     <normaloff>:/images/terminal.svg</normaloff>:/images/terminal.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Open &amp;Terminal</string>
    </property>
   </action>
  </widget>
