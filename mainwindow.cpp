@@ -1099,15 +1099,20 @@ void MainWindow::on_figure_geometry_apply_clicked()
 void MainWindow::on_button_deleteFigure_clicked()
 {
     QModelIndexList indexes;
-    while((indexes = ui->figures_list->selectionModel()->selectedIndexes()).size()) {
+    while ((indexes = ui->figures_list->selectionModel()->selectedIndexes()).size()) {
         drawMapFigureTable->removeRow(indexes.first().row());
     }
 }
 
 void MainWindow::on_figureSelect_currentIndexChanged(int index)
 {
-    QStringList lookup = QStringList()<<"figure"
-                       << "drawmaparrow" << "drawmapcircle" << "drawmapellipse"
-                       << "drawmapline" << "drawmappoint" << "drawmaprectangle" << "drawmaptext";
-ui->figureInformation->scrollToAnchor(lookup.at(index));
+    static const QStringList anchors = QStringList() << "figure"
+                                                     << "drawmaparrow"
+                                                     << "drawmapcircle"
+                                                     << "drawmapellipse"
+                                                     << "drawmapline"
+                                                     << "drawmappoint"
+                                                     << "drawmaprectangle"
+                                                     << "drawmaptext";
+    ui->figureInformation->scrollToAnchor(anchors.at(index));
 }
