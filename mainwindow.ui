@@ -936,7 +936,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
                 </widget>
                </item>
                <item row="2" column="1">
-                <widget class="QLineEdit" name="colorHeightmap">
+                <widget class="ColorLineEdit" name="colorHeightmap">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -3330,8 +3330,8 @@ p, li { white-space: pre-wrap; }
    <slot>forward()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>749</x>
-     <y>110</y>
+     <x>859</x>
+     <y>120</y>
     </hint>
     <hint type="destinationlabel">
      <x>749</x>
@@ -3346,8 +3346,8 @@ p, li { white-space: pre-wrap; }
    <slot>zoomIn()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>847</x>
-     <y>100</y>
+     <x>959</x>
+     <y>120</y>
     </hint>
     <hint type="destinationlabel">
      <x>846</x>
@@ -3362,8 +3362,8 @@ p, li { white-space: pre-wrap; }
    <slot>zoomOut()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>943</x>
-     <y>108</y>
+     <x>1059</x>
+     <y>120</y>
     </hint>
     <hint type="destinationlabel">
      <x>943</x>
@@ -3378,12 +3378,12 @@ p, li { white-space: pre-wrap; }
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>522</x>
-     <y>160</y>
+     <x>1060</x>
+     <y>241</y>
     </hint>
     <hint type="destinationlabel">
-     <x>522</x>
-     <y>104</y>
+     <x>659</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -3398,8 +3398,8 @@ p, li { white-space: pre-wrap; }
      <y>151</y>
     </hint>
     <hint type="destinationlabel">
-     <x>708</x>
-     <y>110</y>
+     <x>859</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -3410,8 +3410,8 @@ p, li { white-space: pre-wrap; }
    <slot>home()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>616</x>
-     <y>118</y>
+     <x>759</x>
+     <y>120</y>
     </hint>
     <hint type="destinationlabel">
      <x>616</x>
@@ -3419,12 +3419,28 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>selectHeightmapColor</sender>
+   <signal>clicked()</signal>
+   <receiver>colorHeightmap</receiver>
+   <slot>selectColor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>434</x>
+     <y>291</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>379</x>
+     <y>292</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="geometrymode_size_group"/>
   <buttongroup name="group_tiles_tiles"/>
   <buttongroup name="group_tiles_arrange"/>
   <buttongroup name="group_tiles_arrange_at"/>
   <buttongroup name="geometrymode_granularity_group"/>
+  <buttongroup name="geometrymode_size_group"/>
  </buttongroups>
 </ui>

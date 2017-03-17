@@ -906,18 +906,6 @@ void MainWindow::on_path_OutputImage_textChanged()
     ui->label_preview->setText(tr("preview: %1").arg(getOutputFileName()));
 }
 
-void MainWindow::on_selectHeightmapColor_clicked()
-{
-    const QColorDialog::ColorDialogOptions options =  QFlag(QColorDialog::DontUseNativeDialog);
-    const QColor color = QColorDialog::getColor(ui->colorHeightmap->text(), this, tr("select color"),options);
-
-    if (color.isValid()) {
-        ui->colorHeightmap->setText(color.name());
-        ui->colorHeightmap->setPalette(QPalette(color));
-        //ui->lineEdit_bgcolor->setAutoFillBackground(true);
-    }
-}
-
 void MainWindow::on_actionNew_Profile_triggered()
 {
     bool ok;

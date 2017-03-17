@@ -81,8 +81,6 @@ private slots:
 
     void on_path_OutputImage_textChanged();
 
-    void on_selectHeightmapColor_clicked();
-
     void on_button_cancel_clicked();
 
     void on_actionNew_Profile_triggered();
