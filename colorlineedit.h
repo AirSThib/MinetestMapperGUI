@@ -1,13 +1,11 @@
 #ifndef COLORLINEEDIT_H
 #define COLORLINEEDIT_H
+#include <QAction>
 #include <QColorDialog>
 #include <QLineEdit>
-#include <QPushButton>
+#include <QPainter>
 
-class QToolButton;
-
-class ColorLineEdit : public QLineEdit
-{
+class ColorLineEdit : public QLineEdit {
     Q_OBJECT
 
 public:
@@ -16,17 +14,15 @@ public:
 public slots:
     void selectColor();
 
-protected:
-    void resizeEvent(QResizeEvent *event);
-
 private slots:
     void updateColorButton(const QString &text);
 
 private:
-    //QString styleSheetForCurrentState() const;
-    QString buttonStyleSheetForCurrentState() const;
+    QAction *action;
+    const QIcon defaultIcon = QIcon(":/color");
+    static QPainter *painter;
 
-    QToolButton *mColorButton;
+    static inline const QIcon getColorIcon(const QColor &color) ;
 };
 
 
