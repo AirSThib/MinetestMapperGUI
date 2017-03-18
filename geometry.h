@@ -4,12 +4,12 @@
 #include <QDebug>
 #include <QMap>
 #include <QMetaEnum>
-#include <QObject>
+#include <QObject> // For Q_GADGET
 #include <QRegularExpression>
 
-class Geometry : public QObject
+class Geometry
 {
-    Q_OBJECT
+    Q_GADGET
 public:
     enum Format
     {
