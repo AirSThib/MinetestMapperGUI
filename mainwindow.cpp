@@ -511,7 +511,7 @@ void MainWindow::mapperInitialized()
 {
     backends->setStringList(minetestMapper->getSupportedBackends());
     //ui->backend->setCurrentIndex(1);
-    ui->backend->setCurrentIndex(profile->value("general/backend",0).toInt());
+    ui->backend->setCurrentIndex(profile->value("common/backend", 0).toInt());
 }
 
 
@@ -659,7 +659,7 @@ void MainWindow::writeProfile()
         profile->setValue("path_minetestmapper", currentSettings.mapperPath);
     profile->endGroup();
 
-    profile->beginGroup("general");//tab1 General
+    profile->beginGroup("common");//tab1 common
         profile->setValue("path_OutputImage", ui->path_OutputImage->text());
         profile->setValue("path_World", ui->path_World->text());
         profile->setValue("backend",ui->backend->currentIndex());
@@ -753,7 +753,7 @@ void MainWindow::readProfile()
         currentSettings.mapperPath = profile->value("path_minetestmapper").toString();
     profile->endGroup();
 
-    profile->beginGroup("general");    //tab1 Genral
+    profile->beginGroup("common");    //tab1 Common
         ui->path_World->setText(profile->value("path_World",QDir::homePath()).toString());
         ui->path_OutputImage->setText(profile->value("path_OutputImage",QDir::homePath().append("/map.png")).toString());
         //ui->backend->setCurrentIndex(profile->value("backend",0).toInt()); //loading the backend here is useless, because the backends are initialized later
