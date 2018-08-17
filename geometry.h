@@ -23,7 +23,6 @@ public:
         FormatMax
     };
     Q_ENUM(Format)
-    static const QMetaEnum metaEnumFormat;
 
     static const char *formatName(Geometry::Format id);
     static Geometry::Format formatId(const QString &name);

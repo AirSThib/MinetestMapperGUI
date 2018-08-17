@@ -1,7 +1,6 @@
 #include "geometry.h"
 
 
-const QMetaEnum Geometry::metaEnumFormat = QMetaEnum::fromType<Geometry::Format>();
 const QRegularExpression Geometry::corners = QRegularExpression("(-?\\d*),(-?\\d*):(-?\\d*),(-?\\d*)");
 const QRegularExpression Geometry::centerDimension = QRegularExpression("(-?\\d*),(-?\\d*):(-?\\d*)x(-?\\d*)");
 const QRegularExpression Geometry::cornerDimension = QRegularExpression("(-?\\d*)[,:](-?\\d*)[+-](-?\\d*)[+-](-?\\d*)");
@@ -11,7 +10,7 @@ const char *Geometry::formatName(Geometry::Format id)
 {
     if (id < Geometry::FormatNone || id >= Geometry::FormatMax)
         id = Geometry::FormatUnknown;
-    return metaEnumFormat.key(id);
+    return QMetaEnum::fromType<Geometry::Format>().key(id);
 }
 
 Geometry::Format Geometry::formatId(const QString &name)
@@ -22,7 +21,7 @@ Geometry::Format Geometry::formatId(const QString &name)
 Geometry::Format Geometry::formatId(const char *name)
 {
     // keyToValue returns -1 for not found, which equals FormatUnknown
-    return static_cast<Format>(metaEnumFormat.keyToValue(name));
+    return static_cast<Format>(QMetaEnum::fromType<Geometry::Format>().keyToValue(name));
 }
 
 Geometry::Format Geometry::set(const QString &str)
