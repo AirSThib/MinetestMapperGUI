@@ -84,3 +84,25 @@ win32:contains(QT_ARCH, i386) {
     # Support for x32 Windows XP (Windows 5.01)
     QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
 }
+
+# Copies the given files to the destination directory
+defineTest(copyToDestdir) {
+
+    files = $$1
+
+    for(FILE, files) {
+
+        !equals(OUT_PWD, $$dirname(FILE)){
+            DDIR = $$shell_path($$OUT_PWD)
+            # Replace slashes in paths with backslashes for Windows
+            FILE = $$shell_path($$FILE)
+
+            QMAKE_POST_LINK += $$QMAKE_COPY $$quote($$FILE) $$quote($$DDIR) $$escape_expand(\\n\\t)
+        }
+    }
+
+    export(QMAKE_POST_LINK)
+
+}
+
+win32:copyToDestdir($$PWD/mtmapperenv.bat)
