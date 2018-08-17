@@ -146,6 +146,13 @@ MainWindow::MainWindow(bool portable, const QString &translationsPath, QTranslat
     connect(minetestMapper, &MinetestMapperExe::busyStateChanged,
             taskbarProgress,    &QWinTaskbarProgress::setVisible);
     #endif
+
+    // Align the Console and the Help action to the right
+    QWidget *spacerWidget = new QWidget(this);
+    spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    spacerWidget->setVisible(true);
+    ui->mainToolBar->insertWidget(ui->actionOutputLog, spacerWidget);
+
     minetestMapper->init();
 }
 
@@ -635,6 +642,7 @@ void MainWindow::writeSettings()
         settings->setValue("pos", pos());
     }
     settings->setValue("help", ui->actionHelp->isChecked());
+    settings->setValue("showOutputLog", ui->actionOutputLog->isChecked());
     settings->setValue("profile", currentProfile);
     settings->setValue("expertMode",ui->actionExpert_Mode->isChecked());
     settings->setValue("openMap",ui->actionOpen_map_after_creation->isChecked());
@@ -737,6 +745,9 @@ void MainWindow::readSettings()
     }
     if(settings->value("help",false).toBool()==false){
         ui->dockHelp->close();
+    }
+    if(settings->value("showOutputLog",false).toBool()==false){
+        ui->dockOutput->close();
     }
     currentProfile = settings->value("profile","default").toString();
     ui->actionExpert_Mode->setChecked(settings->value("expertMode",false).toBool());
