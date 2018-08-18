@@ -762,7 +762,6 @@ void MainWindow::readProfile()
         index = meGeometrySizeMode.keyToValue(sizemode.toLatin1().data(), &ok);
         if(ok){
             ui->geometrymode_size_group->button(index)->setChecked(true);
-            qWarning() << "Holadiahoh GeometrySizeMode "<< sizemode << "is invalid.";
         }
         else{
             qWarning() << "GeometrySizeMode "<< sizemode << "is invalid.";
