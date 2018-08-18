@@ -196,7 +196,7 @@ bool MakeColors::writeColorsTxt(const QString &file)
     return true;
 }
 
-void MakeColors::run(void)
+void MakeColors::run()
 {
     parseNodesTxt(fileNodesTxt);
     emit maxProgressChanged(requiredColors.size());
@@ -213,7 +213,7 @@ void MakeColors::run(void)
     output("Done! :)",INFO);
 }
 
-void MakeColors::startProcess(void)
+void MakeColors::startProcess()
 {
     output("Starting...",VERBOSE);
 

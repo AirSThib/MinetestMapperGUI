@@ -92,7 +92,7 @@ bool GeometryWidget::set(const QString geomStr, Geometry::Format requestedFormat
     return true;
 }
 
-QString GeometryWidget::getGeometry(void) const
+QString GeometryWidget::getGeometry() const
 {
     Geometry geometry;
     Geometry::Format format = getFormat();
@@ -140,7 +140,7 @@ bool GeometryWidget::setFormat(Geometry::Format format)
         return true;
 }
 
-Geometry::Format GeometryWidget::getFormat(void) const
+Geometry::Format GeometryWidget::getFormat() const
 {
     Geometry::Format format = static_cast<Geometry::Format>(ui->geometryStackedWidget->currentIndex());
     // Usage of '0' instead of a symbolic value is intentional. The currentIndex() should never be less than 0.

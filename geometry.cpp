@@ -110,7 +110,7 @@ Geometry::Format Geometry::set(const QString &str)
     return format;
 
 }
-void Geometry::setMax(void)
+void Geometry::setMax()
 {
     for (int i=0; i<2; i++) {
         center[i] = 0;
@@ -120,7 +120,7 @@ void Geometry::setMax(void)
     computeCorner1();
 }
 
-bool Geometry::adjustCorners(void)
+bool Geometry::adjustCorners()
 {
     bool adjusted = false;
     for (int j = 0; j < 2; j++) {
@@ -203,7 +203,7 @@ QString Geometry::getString(Geometry::Format format)
 
 }
 
-void Geometry::computeCorner0(void)
+void Geometry::computeCorner0()
 {
     for (int i = 0; i < 2; i++) {
         if (dimension[i] < 0)
@@ -213,7 +213,7 @@ void Geometry::computeCorner0(void)
     }
 }
 
-void Geometry::computeCorner1(void)
+void Geometry::computeCorner1()
 {
     for (int i = 0; i < 2; i++) {
         if (dimension[i] < 0)
@@ -223,7 +223,7 @@ void Geometry::computeCorner1(void)
     }
 }
 
-void Geometry::computeCenter(void)
+void Geometry::computeCenter()
 {
     for (int i = 0; i < 2; i++) {
         if (corner[0][i] > corner[1][i])
@@ -233,7 +233,7 @@ void Geometry::computeCenter(void)
     }
 }
 
-void Geometry::computeDimensions(void)
+void Geometry::computeDimensions()
 {
     for (int i = 0; i < 2; i++) {
         if (corner[0][i] > corner[1][i])

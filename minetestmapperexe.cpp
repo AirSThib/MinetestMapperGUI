@@ -173,7 +173,7 @@ bool MinetestMapperExe::initHelp()
     //this->options = options;
     return true;
 }
-void MinetestMapperExe::readStandardOutput(void)
+void MinetestMapperExe::readStandardOutput()
 {
     static const QRegularExpression re("([0-9]{1,3})(\\%)");
     if(state == MappingStart || state == MappingProgress || state == MappingEnd) {

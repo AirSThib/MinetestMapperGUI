@@ -83,7 +83,7 @@ NodesTxtPage::NodesTxtPage(QWidget* parent)
     layout->addLayout(hlayout);
     setLayout(layout);
 }
-void NodesTxtPage::browse(void){
+void NodesTxtPage::browse(){
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open nodes.txt File"),
                                                     nodesTxtLineEdit->text(),
                                                     tr("TXT File (*.txt)"));
@@ -124,7 +124,7 @@ TextureFoldersPage::TextureFoldersPage(QWidget* parent)
     setLayout(vlayout);
 }
 
-void TextureFoldersPage::add(void){
+void TextureFoldersPage::add(){
 
     QString folder = QFileDialog::getExistingDirectory(this,tr("Select texture folder"));
 
@@ -143,15 +143,15 @@ void TextureFoldersPage::add(void){
     emit completeChanged();
 }
 
-void TextureFoldersPage::rem(void){
+void TextureFoldersPage::rem(){
     qDeleteAll(inputDirs->selectedItems());
     emit completeChanged();
 }
 
-void TextureFoldersPage::chg(void){
+void TextureFoldersPage::chg(){
     //TODO: Implement me
 }
-bool TextureFoldersPage::isComplete(void) const
+bool TextureFoldersPage::isComplete() const
 {
     return inputDirs->count() >= 1;
 }
@@ -180,7 +180,7 @@ OutputFilePage::OutputFilePage(QWidget* parent)
     setLayout(layout);
 }
 
-void OutputFilePage::browse(void){
+void OutputFilePage::browse(){
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save colors.txt File"),
                                                     colorsTxtLineEdit->text(),
                                                     tr("TXT File (*.txt)"));
@@ -220,11 +220,11 @@ void ConclusionPage::initializePage()
                        .arg(finishText));
 }
 
-bool ConclusionPage::isComplete(void) const {
+bool ConclusionPage::isComplete() const {
     return generated;
 }
 
-bool ConclusionPage::generate(void){
+bool ConclusionPage::generate(){
     MakeColors *makeColors = new MakeColors();
     QString fileNodesTxt = field("nodesTxt").toString();
     QString fileColorsTxt = field("colorsTxt").toString();

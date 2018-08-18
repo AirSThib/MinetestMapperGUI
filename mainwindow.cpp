@@ -144,7 +144,7 @@ void MainWindow::showEvent( QShowEvent* event ) {
 }
 
 
-void MainWindow::finishUiInitialisation(void)
+void MainWindow::finishUiInitialisation()
 {
     ui->geometrymode_granularity_group->setId(ui->geometrymode_pixel, static_cast<int>(GeometryGranularity::pixel) );
     ui->geometrymode_granularity_group->setId(ui->geometrymode_block, static_cast<int>(GeometryGranularity::block) );
@@ -155,7 +155,7 @@ void MainWindow::finishUiInitialisation(void)
 }
 
 // we create the language menu entries dynamically, dependent on the existing translations.
-void MainWindow::createLanguageMenu(void)
+void MainWindow::createLanguageMenu()
 {
     QActionGroup* langGroup = new QActionGroup(ui->menuLanguage);
     langGroup->setExclusive(true);
@@ -986,7 +986,7 @@ void MainWindow::on_actionPreferences_triggered()
     }
 }
 
-void MainWindow::startColorsTxtAssistant(void)
+void MainWindow::startColorsTxtAssistant()
 {
     ColorsTxtWizard *wizard = new ColorsTxtWizard(this);
     wizard->exec();

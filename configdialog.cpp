@@ -116,7 +116,7 @@ void ConfigDialog::on_browseMapper_clicked()
     }
 }
 
-QString ConfigSettings::getDefaultMapperExecutable(void)
+QString ConfigSettings::getDefaultMapperExecutable()
 {
     QStringList locations = getMapperExecutables();
     if (locations.empty()) return "";
@@ -142,7 +142,7 @@ void ConfigSettings::addMapperExecutablesToList(QStringList &existingList, QStri
     }
 }
 
-QStringList ConfigSettings::getMapperExecutables(void)
+QStringList ConfigSettings::getMapperExecutables()
 {
     QStringList mapperLocations;
     QStringList moreLocations = ConfigSettings::predefinedMapperLocations;
