@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QtDebug>
 #include <QActionGroup>
 #include <QCloseEvent>
 #include <QColorDialog>
@@ -38,6 +39,22 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(bool portable, const QString &translationsPath, QTranslator *translator, QTranslator *qtTranslator, QWidget *parent = 0);
     ~MainWindow();
+
+    enum class GeometryGranularity {
+        unspecified = -1,
+        pixel = 0,
+        block = 1
+    };
+    Q_ENUM(GeometryGranularity)
+    const QMetaEnum meGeometryGranularity = QMetaEnum::fromType<GeometryGranularity>();
+
+    enum class GeometrySizeMode {
+        automatic = 0,
+        fixed,
+        shrink
+    };
+    Q_ENUM(GeometrySizeMode)
+    const QMetaEnum meGeometrySizeMode = QMetaEnum::fromType<GeometrySizeMode>();
 
 public slots:
     void startColorsTxtAssistant();

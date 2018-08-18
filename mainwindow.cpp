@@ -9,31 +9,6 @@
 #include <QStringList>
 
 
-static QMap<int, QString> geometryGranularitySymbolic;
-static QMap<QString, int> geometryGranularityNumeric;
-static QMap<int, QString> geometrySizeModeSymbolic;
-static QMap<QString, int> geometrySizeModeNumeric;
-struct InitStatics { InitStatics(void); };
-static const InitStatics initStatics;
-
-InitStatics::InitStatics(void)
-{
-    int n = -1;
-    geometryGranularitySymbolic[n++] = "unspecified";
-    geometryGranularitySymbolic[n++] = "pixel";
-    geometryGranularitySymbolic[n++] = "block";
-    for (int i = -1; i < n; i++)
-        geometryGranularityNumeric[geometryGranularitySymbolic[i]] = i;
-
-    n = -1;
-    geometrySizeModeSymbolic[n++] = "auto";
-    geometrySizeModeSymbolic[n++] = "auto";
-    geometrySizeModeSymbolic[n++] = "fixed";
-    geometrySizeModeSymbolic[n++] = "shrink";
-    for (int i = -1; i < n; i++)
-        geometrySizeModeNumeric[geometrySizeModeSymbolic[i]] = i;
-}
-
 MainWindow::MainWindow(bool portable, const QString &translationsPath, QTranslator *translator, QTranslator *qtTranslator, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -171,12 +146,12 @@ void MainWindow::showEvent( QShowEvent* event ) {
 
 void MainWindow::finishUiInitialisation(void)
 {
-    ui->geometrymode_granularity_group->setId(ui->geometrymode_pixel, geometryGranularityNumeric["pixel"]);
-    ui->geometrymode_granularity_group->setId(ui->geometrymode_block, geometryGranularityNumeric["block"]);
+    ui->geometrymode_granularity_group->setId(ui->geometrymode_pixel, static_cast<int>(GeometryGranularity::pixel) );
+    ui->geometrymode_granularity_group->setId(ui->geometrymode_block, static_cast<int>(GeometryGranularity::block) );
 
-    ui->geometrymode_size_group->setId(ui->geometrymode_auto, geometrySizeModeNumeric["auto"]);
-    ui->geometrymode_size_group->setId(ui->geometrymode_fixed, geometrySizeModeNumeric["fixed"]);
-    ui->geometrymode_size_group->setId(ui->geometrymode_shrink, geometrySizeModeNumeric["shrink"]);
+    ui->geometrymode_size_group->setId(ui->geometrymode_auto, static_cast<int>(GeometrySizeMode::automatic));
+    ui->geometrymode_size_group->setId(ui->geometrymode_fixed, static_cast<int>(GeometrySizeMode::fixed));
+    ui->geometrymode_size_group->setId(ui->geometrymode_shrink, static_cast<int>(GeometrySizeMode::shrink));
 }
 
 // we create the language menu entries dynamically, dependent on the existing translations.
@@ -651,10 +626,6 @@ void MainWindow::writeSettings()
 
 void MainWindow::writeProfile()
 {
-    //QSettings::setDefaultFormat(QSettings::IniFormat);
-    //QSettings profile;
-    //looks odd, but it constructs the correct settingsfile
-    //QSettings profile(QString("%1/%2.ini").arg(pathProfiles).arg(currentProfile), QSettings::IniFormat);
     if(portable && !profile->isWritable()){
         QMessageBox::warning(this, tr("Can not save profile"),
                              tr("Minetest Mapper GUI could not save the current Profile '%1' to %2.\n"
@@ -679,8 +650,8 @@ void MainWindow::writeProfile()
         profile->setValue("geometry_format",ui->geometry->getFormatStr());
         profile->setValue("minY",ui->minY->value());
         profile->setValue("maxY",ui->maxY->value());
-        profile->setValue("geometry_granularity",geometryGranularitySymbolic[ui->geometrymode_granularity_group->checkedId()]);
-        profile->setValue("geometry_sizemode",geometrySizeModeSymbolic[ui->geometrymode_size_group->checkedId()]);
+        profile->setValue("geometry_granularity", meGeometryGranularity.key(ui->geometrymode_granularity_group->checkedId()));
+        profile->setValue("geometry_sizemode", meGeometrySizeMode.key(ui->geometrymode_size_group->checkedId()));
     profile->endGroup();
 
     profile->beginGroup("heightmap");    //tab3 heightmap
@@ -779,13 +750,23 @@ void MainWindow::readProfile()
         ui->maxY->setValue(profile->value("maxY",0).toInt());
         ui->minY->setValue(profile->value("minY",0).toInt());
         QString granularity = profile->value("geometry_granularity").toString();
-        if (geometryGranularityNumeric.find(granularity) != geometryGranularityNumeric.end())
-            ui->geometrymode_granularity_group->button(geometryGranularityNumeric[granularity])->setChecked(true);
-        // Else post a warning message ??
+        bool ok = false;
+        int index = meGeometryGranularity.keyToValue(granularity.toLatin1().data(), &ok);
+        if (ok && index != static_cast<int>(GeometryGranularity::unspecified)) {
+            ui->geometrymode_granularity_group->button(index)->setChecked(true);
+        }
+        else if(!ok) {
+            qWarning() << "Granularity "<< granularity << "is invalid.";
+        }
         QString sizemode = profile->value("geometry_sizemode").toString();
-        if (geometrySizeModeNumeric.find(sizemode) != geometrySizeModeNumeric.end())
-            ui->geometrymode_size_group->button(geometrySizeModeNumeric[sizemode])->setChecked(true);
-        // Else post a warning message ??
+        index = meGeometrySizeMode.keyToValue(sizemode.toLatin1().data(), &ok);
+        if(ok){
+            ui->geometrymode_size_group->button(index)->setChecked(true);
+            qWarning() << "Holadiahoh GeometrySizeMode "<< sizemode << "is invalid.";
+        }
+        else{
+            qWarning() << "GeometrySizeMode "<< sizemode << "is invalid.";
+        }
     profile->endGroup();
 
     profile->beginGroup("heightmap");    //tab3 Heightmap
