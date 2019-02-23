@@ -4,9 +4,8 @@
 <context>
     <name>ColorLineEdit</name>
     <message>
-        <location filename="../colorlineedit.cpp" line="38"/>
         <source>select color</source>
-        <translation>Farbe auswählen</translation>
+        <translation type="vanished">Farbe auswählen</translation>
     </message>
 </context>
 <context>
@@ -370,27 +369,22 @@
         <translation>Setzt oder überschreibt das Datenbank Backend. Wenn Sie sich nicht sicher sind wählen sie &apos;auto&apos;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="118"/>
-        <source>redis</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="129"/>
+        <location filename="../mainwindow.ui" line="106"/>
         <source>Output Image</source>
         <translation>Ausgangsbild</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="141"/>
+        <location filename="../mainwindow.ui" line="118"/>
         <source>Save as</source>
         <translation>Speichern unter</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="161"/>
+        <location filename="../mainwindow.ui" line="138"/>
         <source>Specify the map file name (mandatory)</source>
         <translation>Legen Sie den Ausgansbild Dateinamen fest</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="198"/>
+        <location filename="../mainwindow.ui" line="175"/>
         <source>Map-Limit</source>
         <translation>Karte eingrenzen</translation>
     </message>
@@ -419,43 +413,43 @@
         <translation type="vanished">verkleinern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="450"/>
+        <location filename="../mainwindow.ui" line="427"/>
         <source>Heightmap</source>
         <translation>Höhenkarte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="911"/>
+        <location filename="../mainwindow.ui" line="888"/>
         <source>Specify the nodes list for the height map</source>
         <translation>Legt die Liste für Höhenkarten-nodes fest</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="994"/>
-        <location filename="../mainwindow.ui" line="1014"/>
+        <location filename="../mainwindow.ui" line="971"/>
+        <location filename="../mainwindow.ui" line="991"/>
         <source>Specify the color definition file for the height map</source>
         <translation>Legt die Farbdefinitionsliste für die Höhenkarte fest</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="967"/>
+        <location filename="../mainwindow.ui" line="944"/>
         <source>a monochrome map is generated in shades of that color, ranging from black at depth -128 to the given color at height 127.</source>
         <translation>Eine Monochrome Karte wird erstellt. </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="973"/>
+        <location filename="../mainwindow.ui" line="950"/>
         <source>e.g. grey,black, #00FF00</source>
         <translation>z.B. grey, black, #00FF00</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="941"/>
+        <location filename="../mainwindow.ui" line="918"/>
         <source>If a color is given, a monochrome map is generated in shades of that color, ranging from black at depth -128 to the given color at height 127.</source>
         <translation>Wenn eine Farbe festgelegt ist, wird eine Monochrome Karte in Schatten dieser farbe erstellt. Diese reicht von einer Tiefe von -128 bis 127.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="174"/>
+        <location filename="../mainwindow.ui" line="151"/>
         <source>Preview: </source>
         <translation>Vorschau: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="259"/>
+        <location filename="../mainwindow.ui" line="236"/>
         <source>Generate a map of at most the requested geometry. Shrink it to the smallest possible size that still includes the same information.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -464,12 +458,12 @@
         <translation type="vanished">Die gewählte Gometrie wird ausgedehnt, sodass die Karte nur ganze Kartenblöcke (16x16) einschließt. Alle Pixel der geometrie werden eingeschlossen, aber es können bis zu 15 Pixel mehr sein.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="242"/>
+        <location filename="../mainwindow.ui" line="219"/>
         <source>round the coodinates to a multiple of 16.</source>
         <translation>Rundet die Koordinaten auf ein vielfaches von 16.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="292"/>
+        <location filename="../mainwindow.ui" line="269"/>
         <source>interpret the coordinates with pixel granularity.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -478,7 +472,7 @@
         <translation type="vanished">Untere Höhengrenze</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="433"/>
+        <location filename="../mainwindow.ui" line="410"/>
         <source>Specify the upper height limit for the map</source>
         <translation>Legt das Obere Höhenlimit für die Karte fest</translation>
     </message>
@@ -487,17 +481,17 @@
         <translation type="vanished">Obere Höhengrenze</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="430"/>
+        <location filename="../mainwindow.ui" line="407"/>
         <source>Nodes higher than this level will not be drawn. This can be used to avoid floating islands or floating artefacts from abscuring the world below.</source>
         <translation>Blöcke über diesem level werden nicht angezigt. Dies kann dazu verwendet werden um schwebende Inseln und andere gegenstände auszusortieren.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="207"/>
+        <location filename="../mainwindow.ui" line="184"/>
         <source>Any nodes below this level will not be drawn.</source>
         <translation>Alle Blöcke unterhalb dieses wertes werden nicht angezeigt.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="210"/>
+        <location filename="../mainwindow.ui" line="187"/>
         <source>Specify the lower height limit for the map</source>
         <translation>Legt das untere Höhenlimit für die Karte fest</translation>
     </message>
@@ -506,27 +500,27 @@
         <translation type="vanished">z.B. -200,-100:200,200</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="272"/>
+        <location filename="../mainwindow.ui" line="249"/>
         <source>NOTE: If this flag is used, and no actual geometry is specified, this would result in a maximum-size map (65536 x 65536), which is currently not possible, and will fail, due to a bug in the drawing library.</source>
         <translation>&lt;b&gt;Achtung:&lt;/b&gt; Wenn dieser Parameter verwendet wird, ohne dass eine geometrie festgelegt ist wird eine Karte der Maximalen Größe (65536 x 65536) erstellt. Dies ist derzeit nicht möglich aufgrund eines fehlers der Zeichenbibliothek.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="275"/>
+        <location filename="../mainwindow.ui" line="252"/>
         <source>don&apos;t reduce the map size. What ever is specified using a geometry option, is what will be draw, even if partly or fully empty.</source>
         <translation>Kartengröße wird nicht reduziert. Alles was in der Geometrie festgelegt ist wird angezeigt, egal ob es leer ist.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="944"/>
+        <location filename="../mainwindow.ui" line="921"/>
         <source>Color</source>
         <translation>Farbe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="951"/>
+        <location filename="../mainwindow.ui" line="928"/>
         <source>If no color is specified, minetestmapper will use a colors file to determine which colors to use at which height level.</source>
         <translation>Wenn keine Farbe festgelegt wurde, verwendet der minetestmapper eine datei.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="954"/>
+        <location filename="../mainwindow.ui" line="931"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
@@ -539,13 +533,13 @@
         <translation type="vanished">Höhenkarte Skala</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1043"/>
-        <location filename="../mainwindow.ui" line="1046"/>
+        <location filename="../mainwindow.ui" line="1020"/>
+        <location filename="../mainwindow.ui" line="1023"/>
         <source>Draw a height scale at the bottom of the map</source>
         <translation>Zeichne eine Höhenskala am unteren Rand der Karte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1049"/>
+        <location filename="../mainwindow.ui" line="1026"/>
         <source>Draw Heightscale</source>
         <translation>Zeichne Höhenkartenskala</translation>
     </message>
@@ -554,107 +548,107 @@
         <translation type="vanished">Weitere</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1095"/>
+        <location filename="../mainwindow.ui" line="1072"/>
         <source>Y-scale</source>
         <translation>Y-Skalierung</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1115"/>
+        <location filename="../mainwindow.ui" line="1092"/>
         <source>Height level 0</source>
         <translation>Normal Null höhe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1153"/>
+        <location filename="../mainwindow.ui" line="1130"/>
         <source>Colors</source>
         <translation>Farben</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1189"/>
+        <location filename="../mainwindow.ui" line="1166"/>
         <source>tilebordercolor</source>
         <translation>Rasterfarbe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1220"/>
+        <location filename="../mainwindow.ui" line="1197"/>
         <source>Specify the background color for the image</source>
         <translation>Legt die Hintergrundfarbe für das Bild fest</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1233"/>
+        <location filename="../mainwindow.ui" line="1210"/>
         <source>bgcolor</source>
         <translation>Hintergrundfarbe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1203"/>
+        <location filename="../mainwindow.ui" line="1180"/>
         <source>playercolor</source>
         <translation>Spielerfarbe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1210"/>
+        <location filename="../mainwindow.ui" line="1187"/>
         <source>Specify the color for empty mapblocks</source>
         <translation>Legt die Farbe für leere kartenabschnitte fest</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1254"/>
+        <location filename="../mainwindow.ui" line="1231"/>
         <source>blockcolor</source>
         <translation>Farbe für leere Kartenabschnitte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1240"/>
+        <location filename="../mainwindow.ui" line="1217"/>
         <source>origincolor</source>
         <translation>Farbe des Ursprungs</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1247"/>
+        <location filename="../mainwindow.ui" line="1224"/>
         <source>scalecolor</source>
         <translation>Farbe der Skala</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1358"/>
+        <location filename="../mainwindow.ui" line="1335"/>
         <source>Specify the color for drawing tile borders</source>
         <translation>Legt die Farbe des Rasters fest</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1179"/>
+        <location filename="../mainwindow.ui" line="1156"/>
         <source>Specify the color for drawing player locations</source>
         <translation>Legt die Farbe der Spielerpositionen fest</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1159"/>
+        <location filename="../mainwindow.ui" line="1136"/>
         <source> Specify the color for drawing the map origin (0,0)</source>
         <translation>Legt die Farbe der Ursprungsmarkierung fest</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1169"/>
+        <location filename="../mainwindow.ui" line="1146"/>
         <source> Specify the color for text in the scales on the side</source>
         <translation>Legt die Farbe des Textes in der Skala fest</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1379"/>
+        <location filename="../mainwindow.ui" line="1356"/>
         <source>Map features</source>
         <translation>Eigenschaften</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1442"/>
+        <location filename="../mainwindow.ui" line="1419"/>
         <source>Draw origin</source>
         <translation>Zeichne Ursprung</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2752"/>
+        <location filename="../mainwindow.ui" line="2811"/>
         <source>Open map after creation</source>
         <translation>Öffne Karte nach Erstellung</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2755"/>
+        <location filename="../mainwindow.ui" line="2814"/>
         <source>Open map after creation with the default png viewer</source>
         <translation>Öffnet die Karte nach dem erstellen mit dem Standard png Programm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2760"/>
+        <location filename="../mainwindow.ui" line="2819"/>
         <source>&amp;Preferences</source>
         <translation>E&amp;instellungen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1385"/>
+        <location filename="../mainwindow.ui" line="1362"/>
         <source>Draw a scale on the left and/or top edge</source>
         <translation>Zeichnet eine Skala links und/oder oben auf der Karte</translation>
     </message>
@@ -675,32 +669,32 @@
         <translation type="vanished">bearbeite heightmap-colors.txt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1439"/>
+        <location filename="../mainwindow.ui" line="1416"/>
         <source> Draw a circle at the origin (0,0) on the map</source>
         <translation>Zeichne ein Kreis am Mittelpunkt (0,0) auf der Karte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1466"/>
+        <location filename="../mainwindow.ui" line="1443"/>
         <source>Enable drawing transparency for some nodes (e.g. water)</source>
         <translation>Zeichnet Transparenz z.B. für Wasser</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1449"/>
+        <location filename="../mainwindow.ui" line="1426"/>
         <source>Draw circles at player positions on the map</source>
         <translation>Zeichet kreise bei den Spielerpositionen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1452"/>
+        <location filename="../mainwindow.ui" line="1429"/>
         <source>Draw Players</source>
         <translation>Zeichne Spielerpositionen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1496"/>
+        <location filename="../mainwindow.ui" line="1473"/>
         <source>Draw air nodes (read the warnings first!)</source>
         <translation>Macht Luft sichtbar (bitte zuerst die Warnungen lesen)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1506"/>
+        <location filename="../mainwindow.ui" line="1483"/>
         <source>Disable shading that accentuates height diffences</source>
         <translation>Deaktiviert die Schatten der Höhenunterschiede</translation>
     </message>
@@ -709,26 +703,26 @@
         <translation type="vanished">Oben</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="238"/>
+        <location filename="../mainwindow.ui" line="215"/>
         <source>The requested geometry will be extended so that the map does not contain partial map blocks (of 16x16 nodes each). 
 At least all pixels covered by the geometry will be in the map, but there may be up to 15 more in every direction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="255"/>
+        <location filename="../mainwindow.ui" line="232"/>
         <source>Currently, shrinking is done with block granularity, and based on which blocks are in the database. 
 As the database always contains a row or and column of empty, or partially empty blocks at the map edges, there will still be empty pixels at the edges of the map. Use --blockcolor to visualize these empty blocks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="288"/>
+        <location filename="../mainwindow.ui" line="265"/>
         <source>A map of exactly the requested size is generated 
 (after adjustments due to the &apos;shrink&apos; flag, or possible adjustments required by the scale factor).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../mainwindow.ui" line="349"/>
+        <location filename="../mainwindow.ui" line="310"/>
+        <location filename="../mainwindow.ui" line="326"/>
         <source>Specify the upper height limit for the map
 
 Nodes higher than this level will not be drawn. This can be used to avoid floating islands or floating artefacts from obscuring the world below.
@@ -736,332 +730,367 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="339"/>
+        <location filename="../mainwindow.ui" line="316"/>
         <source>Specify the minumum depth of nodes to be included</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="355"/>
+        <location filename="../mainwindow.ui" line="332"/>
         <source>Specify the maximum height of nodes to be included</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1368"/>
+        <location filename="../mainwindow.ui" line="1345"/>
         <source>If enabled MinetestMapperGui always uses this file instead of searching one in the World directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1371"/>
+        <location filename="../mainwindow.ui" line="1348"/>
         <source>Allways use this static colors.txt file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1994"/>
+        <location filename="../mainwindow.ui" line="1971"/>
         <source>A chunk is the unit of map generation. Usually 5x5x5 blocks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1997"/>
+        <location filename="../mainwindow.ui" line="1974"/>
         <source>chunk-aligned</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2011"/>
+        <location filename="../mainwindow.ui" line="1994"/>
         <source>A block is 16x16x16 nodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2014"/>
+        <location filename="../mainwindow.ui" line="1997"/>
         <source>block-aligned</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2084"/>
+        <location filename="../mainwindow.ui" line="2076"/>
         <source>Arrange:</source>
         <translation>Ausrichten:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2097"/>
+        <location filename="../mainwindow.ui" line="2089"/>
         <source>at:</source>
         <translation>an:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2110"/>
+        <location filename="../mainwindow.ui" line="2105"/>
         <source>world center (0,0)</source>
         <translation>Zentrum der Welt (0,0)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2120"/>
+        <location filename="../mainwindow.ui" line="2118"/>
         <source>map origin (top-left)</source>
         <translation>Kartenursprung (Oben links)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2183"/>
+        <location filename="../mainwindow.ui" line="2184"/>
         <source>Draw figures</source>
         <translation>Zeichne Figuren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2189"/>
+        <location filename="../mainwindow.ui" line="2190"/>
         <source>Properties</source>
         <translation>Eigenschaften</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="323"/>
-        <location filename="../mainwindow.ui" line="2195"/>
+        <location filename="../mainwindow.ui" line="300"/>
+        <location filename="../mainwindow.ui" line="2196"/>
         <source>Geometry</source>
         <translation>Geometrie</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="76"/>
-        <location filename="../mainwindow.ui" line="921"/>
-        <location filename="../mainwindow.ui" line="997"/>
-        <location filename="../mainwindow.ui" line="1347"/>
+        <location filename="../mainwindow.ui" line="898"/>
+        <location filename="../mainwindow.ui" line="974"/>
+        <location filename="../mainwindow.ui" line="1324"/>
         <source>Browse</source>
         <translation>Durchsuchen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="225"/>
+        <location filename="../mainwindow.ui" line="202"/>
         <source>Auto</source>
         <translation>Auto</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="245"/>
+        <location filename="../mainwindow.ui" line="222"/>
         <source>Block</source>
         <translation>Block</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="262"/>
+        <location filename="../mainwindow.ui" line="239"/>
         <source>Shrink</source>
         <translation>Verkleinern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="278"/>
+        <location filename="../mainwindow.ui" line="255"/>
         <source>Fixed</source>
         <translation>Fest</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="295"/>
+        <location filename="../mainwindow.ui" line="272"/>
         <source>Pixel</source>
         <translation>Pixel</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="342"/>
+        <location filename="../mainwindow.ui" line="319"/>
         <source>Height min</source>
         <translation>Minimale Höhe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="358"/>
+        <location filename="../mainwindow.ui" line="335"/>
         <source>Height max</source>
         <translation>Maximale Höhe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="397"/>
+        <location filename="../mainwindow.ui" line="374"/>
         <source>Scalefactor</source>
         <translation>Skalierungsfaktor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="404"/>
+        <location filename="../mainwindow.ui" line="381"/>
         <source>Geometrymode</source>
         <translation>Geometriemodus</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="980"/>
-        <location filename="../mainwindow.ui" line="1281"/>
-        <location filename="../mainwindow.ui" line="1292"/>
-        <location filename="../mainwindow.ui" line="1303"/>
-        <location filename="../mainwindow.ui" line="1314"/>
-        <location filename="../mainwindow.ui" line="1325"/>
-        <location filename="../mainwindow.ui" line="1336"/>
+        <location filename="../mainwindow.ui" line="957"/>
+        <location filename="../mainwindow.ui" line="1258"/>
+        <location filename="../mainwindow.ui" line="1269"/>
+        <location filename="../mainwindow.ui" line="1280"/>
+        <location filename="../mainwindow.ui" line="1291"/>
+        <location filename="../mainwindow.ui" line="1302"/>
+        <location filename="../mainwindow.ui" line="1313"/>
         <source>Select color</source>
         <translation>Farbe Auswählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1027"/>
+        <location filename="../mainwindow.ui" line="1004"/>
         <source>Use a color or select a heightmap-colors.txt file</source>
         <translation>Verwende eine Farbe, oder wähle eine heightmap-colors.txt Datei aus</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1037"/>
+        <location filename="../mainwindow.ui" line="1014"/>
         <source>Heightmap Scale</source>
         <translation>Höhenkarten Skala</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1059"/>
+        <location filename="../mainwindow.ui" line="1036"/>
         <source>Custom heightscale intervall</source>
         <translation>Benutzerdefinierte Skaleneinteilung</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1089"/>
+        <location filename="../mainwindow.ui" line="1066"/>
         <source>Other</source>
         <translation>Weitere</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1388"/>
+        <location filename="../mainwindow.ui" line="1365"/>
         <source>Draw scale</source>
         <translation>Zeichne Skala</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1395"/>
+        <location filename="../mainwindow.ui" line="1372"/>
         <source>Left</source>
         <translation>Links</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1402"/>
+        <location filename="../mainwindow.ui" line="1379"/>
         <source>Top</source>
         <translation>Oben</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1412"/>
+        <location filename="../mainwindow.ui" line="1389"/>
         <source>Custom scale interval</source>
         <translation>Benutzerdefinierte Skaleneinteilung</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2043"/>
+        <location filename="../mainwindow.ui" line="2029"/>
         <source>Arrange</source>
         <translation>Ausrichten</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2204"/>
+        <location filename="../mainwindow.ui" line="2205"/>
         <source>Apply</source>
         <translation>Zuweisen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2224"/>
+        <location filename="../mainwindow.ui" line="2225"/>
         <source>Figure:</source>
         <translation>Figur:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2234"/>
+        <location filename="../mainwindow.ui" line="2235"/>
         <source>Use Image Coodinates</source>
         <translation>Verwende Bild Koordinaten</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2241"/>
+        <location filename="../mainwindow.ui" line="2242"/>
         <source>Color: </source>
         <translation>Farbe:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2251"/>
+        <location filename="../mainwindow.ui" line="2252"/>
         <source>Text:</source>
         <translation>Text:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2258"/>
+        <location filename="../mainwindow.ui" line="2259"/>
         <source>Point</source>
         <translation>Punkt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2268"/>
+        <location filename="../mainwindow.ui" line="2269"/>
         <source>Information:</source>
         <translation>Information:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2278"/>
+        <location filename="../mainwindow.ui" line="2279"/>
         <source>qrc:/doc/drawfigure.html</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2295"/>
+        <location filename="../mainwindow.ui" line="2296"/>
         <source>Elements</source>
         <translation>Elemente</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2301"/>
+        <location filename="../mainwindow.ui" line="2302"/>
         <source>+</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2308"/>
+        <location filename="../mainwindow.ui" line="2309"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2382"/>
+        <location filename="../mainwindow.ui" line="2515"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2587"/>
+        <source>Output log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2634"/>
         <source>Select all</source>
         <translation>Alles Markieren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2389"/>
+        <location filename="../mainwindow.ui" line="2833"/>
+        <source>Open &amp;Terminal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2836"/>
+        <source>T</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2848"/>
+        <source>Output &amp;Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2851"/>
+        <source>Shows / Hides Output Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2854"/>
+        <source>Ctrl+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2627"/>
         <source>Copy</source>
         <translation>Kopieren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2396"/>
+        <location filename="../mainwindow.ui" line="2614"/>
         <source>Clear</source>
         <translation>Leeren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2468"/>
+        <location filename="../mainwindow.ui" line="2410"/>
         <source>&amp;Edit</source>
         <translation>&amp;Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2507"/>
+        <location filename="../mainwindow.ui" line="2451"/>
         <source>Main Toolbar</source>
         <translation>Hauptwerkzeugleiste</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2571"/>
+        <location filename="../mainwindow.ui" line="2562"/>
         <source>qrc:/doc/intro.html</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2616"/>
+        <location filename="../mainwindow.ui" line="2675"/>
         <source>Generate Map</source>
         <translation>Karte Erstellen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2619"/>
+        <location filename="../mainwindow.ui" line="2678"/>
         <source>Start Minetestmapper to generate the map</source>
         <translation>Startet den Minetestmapper um die Karte zu erstellen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2650"/>
+        <location filename="../mainwindow.ui" line="2709"/>
         <source>Whats this?</source>
         <translation>Was ist das?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2662"/>
+        <location filename="../mainwindow.ui" line="2721"/>
         <source>Open World</source>
         <translation>Öffne Welt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2674"/>
+        <location filename="../mainwindow.ui" line="2733"/>
         <source>Save map as</source>
         <translation>Speichere karte als</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2694"/>
+        <location filename="../mainwindow.ui" line="2753"/>
         <source>Edit colors.txt</source>
         <translation>Bearbeite colors.txt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2697"/>
+        <location filename="../mainwindow.ui" line="2756"/>
         <source>Edit colors.txt with default program</source>
         <translation>Bearbeite die colors.txt Datei mit dem Standard Programm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2705"/>
+        <location filename="../mainwindow.ui" line="2764"/>
         <source>Edit heightmap-nodes.txt</source>
         <translation>Bearbeite heightmap-nodes.txt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2708"/>
+        <location filename="../mainwindow.ui" line="2767"/>
         <source>Edit heightmap-nodes.txt with default txt editor</source>
         <translation>Bearbeite heightmap-colors.txt mit dem Standard TXT Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2716"/>
+        <location filename="../mainwindow.ui" line="2775"/>
         <source>Edit heightmap-colors.txt</source>
         <translation>Bearbeite heightmap-colors.txt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2719"/>
+        <location filename="../mainwindow.ui" line="2778"/>
         <source>Edit heightmap-colors.txt with default txt editor</source>
         <translation>Bearbeite heightmap-colors.txt mit dem Standard TXT Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2765"/>
+        <location filename="../mainwindow.ui" line="2824"/>
         <source>Start colors.txt assistant</source>
         <translation>Starte colors.txt Assistent</translation>
     </message>
@@ -1070,32 +1099,32 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Links</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1459"/>
+        <location filename="../mainwindow.ui" line="1436"/>
         <source>Draw Alpha</source>
         <translation>Durchsichtiges Wasser</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1499"/>
+        <location filename="../mainwindow.ui" line="1476"/>
         <source>Draw Air</source>
         <translation>Zeichne Luft</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1509"/>
+        <location filename="../mainwindow.ui" line="1486"/>
         <source>No Shading</source>
         <translation>Keine Schatten</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="462"/>
+        <location filename="../mainwindow.ui" line="439"/>
         <source>Generate a height map instead of a regular map</source>
         <translation>Erstellt eine Höhenkarte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="465"/>
+        <location filename="../mainwindow.ui" line="442"/>
         <source> Generate a height map instead of a regular map</source>
         <translation>Eine Höhenkarte anstatt einer normalen erstellen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="905"/>
+        <location filename="../mainwindow.ui" line="882"/>
         <source>Heightmap nodes</source>
         <translation>Höhenkarte Nodes</translation>
     </message>
@@ -1109,8 +1138,8 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation>Wählen Sie den Welt-ordner aus, der die Datenbank enthält</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="152"/>
-        <location filename="../mainwindow.ui" line="181"/>
+        <location filename="../mainwindow.ui" line="129"/>
+        <location filename="../mainwindow.ui" line="158"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
 &lt;p&gt;you can use placeholders in the filename:&lt;/p&gt;
 &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;isodate&amp;gt;&lt;/span&gt; is replaced with the current date&lt;br&gt;
@@ -1127,7 +1156,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
 &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;time&amp;gt;&lt;/span&gt; wird mit der aktuellen Uhrzeit ersetzt&lt;br&gt;auch Pfadangaben wie z.B. D:/&amp;lt;world&amp;gt;/&amp;lt;isodate&amp;gt;.png sind möglich.&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="167"/>
+        <location filename="../mainwindow.ui" line="144"/>
         <source>map.png</source>
         <translation>karte.png</translation>
     </message>
@@ -1140,33 +1169,32 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Geometrie</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="935"/>
+        <location filename="../mainwindow.ui" line="912"/>
         <source>Heightmap colors</source>
         <translation>Höhenkarte Farben</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="905"/>
         <source>select color</source>
-        <translation>Farbe auswählen</translation>
+        <translation type="vanished">Farbe auswählen</translation>
     </message>
     <message>
         <source>custom heightscale intervall</source>
         <translation type="vanished">Benuzerdefinierte Höhenskalaeinteilung</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1069"/>
-        <location filename="../mainwindow.ui" line="1422"/>
+        <location filename="../mainwindow.ui" line="1046"/>
+        <location filename="../mainwindow.ui" line="1399"/>
         <source>Major: </source>
         <translation>Hauptskalierung: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1079"/>
-        <location filename="../mainwindow.ui" line="1432"/>
+        <location filename="../mainwindow.ui" line="1056"/>
+        <location filename="../mainwindow.ui" line="1409"/>
         <source>Minor: </source>
         <translation>Nebenskalierung: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1261"/>
+        <location filename="../mainwindow.ui" line="1238"/>
         <source>colors.txt file</source>
         <translation>colors.txt Datei</translation>
     </message>
@@ -1175,13 +1203,13 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Benutzerdefinierte Skaleneinteilung</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1517"/>
-        <location filename="../mainwindow.ui" line="1966"/>
+        <location filename="../mainwindow.ui" line="1494"/>
+        <location filename="../mainwindow.ui" line="1943"/>
         <source>Tiles</source>
         <translation>Raster</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1523"/>
+        <location filename="../mainwindow.ui" line="1500"/>
         <source>Draw tiles</source>
         <translation>Zeichne Raster</translation>
     </message>
@@ -1190,7 +1218,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Raster</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1975"/>
+        <location filename="../mainwindow.ui" line="1952"/>
         <source>size: </source>
         <translation>Größe: </translation>
     </message>
@@ -1199,12 +1227,12 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Kartengeneratorblock (5x5x5)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2004"/>
+        <location filename="../mainwindow.ui" line="1984"/>
         <source>tilesize+border</source>
         <translation>Größe+Rahmen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2027"/>
+        <location filename="../mainwindow.ui" line="2013"/>
         <source>border: </source>
         <translation>Rahmen: </translation>
     </message>
@@ -1213,12 +1241,12 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Ausrichten</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2055"/>
+        <location filename="../mainwindow.ui" line="2041"/>
         <source>tilecenter</source>
         <translation>Zentrieren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2068"/>
+        <location filename="../mainwindow.ui" line="2057"/>
         <source>tileorigin</source>
         <translation>Ursprung</translation>
     </message>
@@ -1227,7 +1255,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Ausrichten an</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2103"/>
+        <location filename="../mainwindow.ui" line="2095"/>
         <source>coordinates</source>
         <translation>Koordinaten</translation>
     </message>
@@ -1240,9 +1268,8 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Karte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2347"/>
         <source>MinetestMapper Output</source>
-        <translation>Ausgabe des minetestmapper</translation>
+        <translation type="vanished">Ausgabe des minetestmapper</translation>
     </message>
     <message>
         <source>select all</source>
@@ -1257,51 +1284,51 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">leeren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2417"/>
+        <location filename="../mainwindow.ui" line="2359"/>
         <source>Generate</source>
         <translation>Erstellen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2431"/>
-        <location filename="../mainwindow.cpp" line="1054"/>
+        <location filename="../mainwindow.ui" line="2373"/>
+        <location filename="../mainwindow.cpp" line="1040"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2450"/>
+        <location filename="../mainwindow.ui" line="2392"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2454"/>
+        <location filename="../mainwindow.ui" line="2396"/>
         <source>Choose profile:</source>
         <translation>Profil auswählen:</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="2420"/>
         <location filename="../mainwindow.ui" line="2478"/>
-        <location filename="../mainwindow.ui" line="2532"/>
-        <location filename="../mainwindow.ui" line="2642"/>
+        <location filename="../mainwindow.ui" line="2701"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2488"/>
+        <location filename="../mainwindow.ui" line="2430"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2493"/>
+        <location filename="../mainwindow.ui" line="2435"/>
         <source>Extras</source>
         <translation>Extras</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2590"/>
-        <location filename="../mainwindow.cpp" line="884"/>
+        <location filename="../mainwindow.ui" line="2649"/>
+        <location filename="../mainwindow.cpp" line="882"/>
         <source>About MinetestMapper</source>
         <translation>Über MinetestMapper</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2601"/>
+        <location filename="../mainwindow.ui" line="2660"/>
         <source>About QT</source>
         <translation>Über QT</translation>
     </message>
@@ -1314,33 +1341,33 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">startet den Minetestmapper um die Karte zu erstellen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2622"/>
+        <location filename="../mainwindow.ui" line="2681"/>
         <source>generate the Map</source>
         <translation>erstellt die Karte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2627"/>
+        <location filename="../mainwindow.ui" line="2686"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2700"/>
+        <location filename="../mainwindow.ui" line="2759"/>
         <source>edit colors.txt with default program</source>
         <translation>Bearbeite die colors.txt Datei mit dem Standard Programm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2711"/>
+        <location filename="../mainwindow.ui" line="2770"/>
         <source>edit heightmap-nodes.txt with default txt editor</source>
         <translation>Bearbeite heightmap-nodes.txt mit dem Standard TXT Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2722"/>
+        <location filename="../mainwindow.ui" line="2781"/>
         <source>edit heightmap-colors.txt with default txt editor</source>
         <translation>Bearbeite heightmap-colors.txt mit dem Standard TXT Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2727"/>
-        <location filename="../mainwindow.cpp" line="918"/>
+        <location filename="../mainwindow.ui" line="2786"/>
+        <location filename="../mainwindow.cpp" line="904"/>
         <source>New Profile</source>
         <translation>Neues Profil</translation>
     </message>
@@ -1349,34 +1376,34 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Standart</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2735"/>
-        <location filename="../mainwindow.cpp" line="480"/>
+        <location filename="../mainwindow.ui" line="2794"/>
+        <location filename="../mainwindow.cpp" line="462"/>
         <source>Expert Mode</source>
         <translation>Expertenmodus</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2738"/>
+        <location filename="../mainwindow.ui" line="2797"/>
         <source>In the Expert Mode it shows you the parameters, that you can modify it.</source>
         <translation>Im Expertenmodus wird ein Fenster mit den Parametern geöfnet. Die Parameter können dann Manuell verändert werden.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2741"/>
+        <location filename="../mainwindow.ui" line="2800"/>
         <source>Expert Mode shows the parameters, that you can modify it.</source>
         <translation>Im Expertenmodus werden die Parameter angezeigt, die du verändern kannst.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="249"/>
+        <location filename="../mainwindow.cpp" line="231"/>
         <source>Current Language changed to %1</source>
         <translation>Sprache wurde auf %1 geändert</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2686"/>
-        <location filename="../mainwindow.cpp" line="870"/>
+        <location filename="../mainwindow.ui" line="2745"/>
+        <location filename="../mainwindow.cpp" line="868"/>
         <source>About MinetestMapper GUI</source>
         <translation>Über MinetestMapperGUI</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="297"/>
+        <location filename="../mainwindow.cpp" line="279"/>
         <source>Minetestmapper not found</source>
         <translation>Minetestmapper nicht gefunden</translation>
     </message>
@@ -1401,7 +1428,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Das Bild existiert bereits</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="327"/>
+        <location filename="../mainwindow.cpp" line="309"/>
         <source>The File &lt;i&gt;%1&lt;/i&gt; does already exist. &lt;br&gt;&lt;br&gt;Do you want to overwrite?</source>
         <translation>Die Datei &lt;i&gt;%1&lt;/i&gt; existiert bereits. &lt;br&gt;&lt;br&gt;Soll die Datei Überschrieben werden?</translation>
     </message>
@@ -1410,58 +1437,58 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Der Ordner existiert nicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="336"/>
+        <location filename="../mainwindow.cpp" line="318"/>
         <source>The directory &lt;i&gt;%1&lt;/i&gt; does not exist. &lt;br&gt;&lt;br&gt;Should it be created?</source>
         <translation>Der Ordner &lt;i&gt;%1&lt;/i&gt; existiert nicht. &lt;br&gt;&lt;br&gt;Möchten sie den Ordner erstellen?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="481"/>
+        <location filename="../mainwindow.cpp" line="463"/>
         <source>MinetestMapper will be executed using this arguments. 
 The arguments can be removed, modified, or new arguments can be added.</source>
         <translation>MinetestMapper wird mit den folgenden Parametern ausgeführt. 
 Die einzelnen Parameter können entfernt, verändert, oder neue hinzugefügt werden.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="540"/>
+        <location filename="../mainwindow.cpp" line="522"/>
         <source>Finisched :)</source>
         <translation>Fertig :-)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="548"/>
+        <location filename="../mainwindow.cpp" line="530"/>
         <source>minetestmapper terminated</source>
         <translation>minetestmapper abgebrochen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="291"/>
+        <location filename="../mainwindow.cpp" line="273"/>
         <source>ERROR: No minetestmapper executable could not be found.
 Please configure one. </source>
         <translation>FEHLER: Kein Minetestmapper programm gefunden. 
 Bitte Konfiguriere eins.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="294"/>
+        <location filename="../mainwindow.cpp" line="276"/>
         <source>ERROR: The Minetetmapper Application (%1) does not look like a Minetetestmapper
 Please configure a correct MinetestMapper Application. </source>
         <translation>FEHLER: Das Minetestmapper Programm (%1) ist möglicherweise kein Minetestmapper Programm.
 Bitte Wählen sie eine Korrekte Minetestmapper Anwendung aus.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="299"/>
+        <location filename="../mainwindow.cpp" line="281"/>
         <source>(Edit-&gt;Preferences)</source>
         <translation>(Bearbeiten-&gt;Einstellungen)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="301"/>
+        <location filename="../mainwindow.cpp" line="283"/>
         <source>Do you want to open Preferences now?</source>
         <translation>Sollen die Einstellungen jetzt geöffnet werden?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="313"/>
+        <location filename="../mainwindow.cpp" line="295"/>
         <source>No input world selected</source>
         <translation>Keine Welt ausgewählt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="314"/>
+        <location filename="../mainwindow.cpp" line="296"/>
         <source>ERROR: No MinetestWorld selected.
 
 please select a world</source>
@@ -1470,12 +1497,12 @@ please select a world</source>
 Bitte wähle eine aus</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="320"/>
+        <location filename="../mainwindow.cpp" line="302"/>
         <source>No output image selected</source>
         <translation>Kein Ausgansbild ausgewählt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="321"/>
+        <location filename="../mainwindow.cpp" line="303"/>
         <source>ERROR: No output image selected.
 
 Please select a output image</source>
@@ -1484,28 +1511,28 @@ Please select a output image</source>
 Bitte ein Ausgabebild wählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="326"/>
+        <location filename="../mainwindow.cpp" line="308"/>
         <source>The image file does already exist</source>
         <translation>Die Datei existiert bereits</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="335"/>
+        <location filename="../mainwindow.cpp" line="317"/>
         <source>The directory does not exist</source>
         <translation>Der Ordner existiert nicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="551"/>
-        <location filename="../mainwindow.cpp" line="568"/>
+        <location filename="../mainwindow.cpp" line="533"/>
+        <location filename="../mainwindow.cpp" line="550"/>
         <source>Minetest Mapper failed</source>
         <translation>Minetestmapper hat ein Fehler festgestellt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="552"/>
+        <location filename="../mainwindow.cpp" line="534"/>
         <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;minetestmapper failed&lt;/h2&gt;Exit code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Status of MinetestMapper: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;&lt;br&gt;Please fix the error and try again </source>
         <translation>&lt;h1&gt;Fehler&lt;/h1&gt; &lt;h2&gt;kartenerstellung fehlgeschlagen&lt;/h2&gt;Exit code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Ausgabe des Minetstmapper: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;&lt;br&gt;Bitte den Fehler beheben und erneut versuchen </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="569"/>
+        <location filename="../mainwindow.cpp" line="551"/>
         <source>&lt;h1&gt;ERROR&lt;/h1&gt; &lt;h2&gt;minetestmapper failed&lt;/h2&gt;Error code: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Error Message: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;</source>
         <translation>&lt;h1&gt;FEHLER&lt;/h1&gt; &lt;h2&gt;minetestmapper ist abgestürzt&lt;/h2&gt;Fehlercode: &lt;i&gt;%1&lt;/i&gt; &lt;br&gt;Fehlernachricht: &lt;pre&gt;%2&lt;/pre&gt;&lt;br&gt;</translation>
     </message>
@@ -1518,92 +1545,92 @@ Bitte ein Ausgabebild wählen</translation>
         <translation type="vanished">Konnte die Einstellungen nicht migrieren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="623"/>
+        <location filename="../mainwindow.cpp" line="605"/>
         <source>Can not save settings</source>
         <translation>Kann die Einstellungen nicht speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="624"/>
+        <location filename="../mainwindow.cpp" line="606"/>
         <source>Minetest Mapper GUI could not save the settings to %1.
 Please make shure Minetest Mapper Gui can access to the file/directory</source>
         <translation>Minetest Mapper GUI konnte die Einstellungen nicht nach %1 speichern.
 Bitte stelle sicher, dass Minetest Mapper GUI auf die Datei/ den Ordner zugreifen darf.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="651"/>
+        <location filename="../mainwindow.cpp" line="630"/>
         <source>Can not save profile</source>
         <translation>Konnte das Profil nicht speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="652"/>
+        <location filename="../mainwindow.cpp" line="631"/>
         <source>Minetest Mapper GUI could not save the current Profile &apos;%1&apos; to %2.
 Please make shure Minetest Mapper Gui can access to the file/directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="828"/>
+        <location filename="../mainwindow.cpp" line="826"/>
         <source>Open Minetest World</source>
         <translation>Minetest Welt-Ordner öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="838"/>
+        <location filename="../mainwindow.cpp" line="836"/>
         <source>Save generated map to...</source>
         <translation>Karte speichern nach...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="838"/>
+        <location filename="../mainwindow.cpp" line="836"/>
         <source>png image (*.png)</source>
         <translation>png Grafik (*.png)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="845"/>
+        <location filename="../mainwindow.cpp" line="843"/>
         <source>Open HeightmapNodes File</source>
         <translation>Öffne HeightmapNodes Datei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="847"/>
-        <location filename="../mainwindow.cpp" line="855"/>
-        <location filename="../mainwindow.cpp" line="863"/>
+        <location filename="../mainwindow.cpp" line="845"/>
+        <location filename="../mainwindow.cpp" line="853"/>
+        <location filename="../mainwindow.cpp" line="861"/>
         <source>TXT File (*.txt)</source>
         <translation>TXT Datei (*.txt)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="853"/>
+        <location filename="../mainwindow.cpp" line="851"/>
         <source>Open HeightmapColors File</source>
         <translation>Öffne Höhenkarte Farbdefinitionsdatei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="861"/>
+        <location filename="../mainwindow.cpp" line="859"/>
         <source>Open colors.txt File</source>
         <translation>Öffne colors.txt Datei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="871"/>
+        <location filename="../mainwindow.cpp" line="869"/>
         <source>&lt;h1&gt;About MinetestMapperGUI&lt;/h1&gt;The &lt;b&gt;MinetestMapper Gui&lt;/b&gt; is written by addi.&lt;br /&gt;It is licensed under a &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;Creative Commons Attribution 3.0 Unported License&lt;/a&gt;.&lt;br&gt;The current version is %1. &lt;br&gt;The sourcecode is aviable on &lt;a href=&apos;https://bitbucket.org/adrido/minetestmappergui/&apos;&gt;Bitbucket&lt;/a&gt;.&lt;br&gt;You may also want to read the &lt;a href=&apos;https://forum.minetest.net/viewtopic.php?f=14&amp;t=12139&apos;&gt;Minetest forum thread&lt;/a&gt;.&lt;br&gt;&lt;br&gt;&lt;b&gt;Thanks to:&lt;/b&gt;&lt;br&gt;McKrustenkaese for his great icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="885"/>
+        <location filename="../mainwindow.cpp" line="883"/>
         <source>&lt;h1&gt;About MinetestMapper&lt;/h1&gt;The &lt;b&gt;MinetestMapper&lt;/b&gt; is written by:&lt;br&gt;Miroslav Bendík &lt;miroslav.bendik@gmail.com&gt;&lt;br&gt;ShadowNinja &lt;shadowninja@minetest.net&gt;&lt;br&gt;sfan5 &lt;sfan5@live.de&gt;&lt;br&gt;Rogier &lt;rogier777@gmail.com&gt;&lt;br&gt;&lt;br&gt;&lt;u&gt;Version:&lt;/u&gt; %1 (%2)&lt;br&gt;&lt;u&gt;License:&lt;/u&gt; LGPLv2.1+ and BSD 2-clause.&lt;br&gt;&lt;u&gt;Source Code:&lt;/u&gt; &lt;a href=&apos;https://github.com/Rogier-5/minetest-mapper-cpp&apos;&gt;Github&lt;/a&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="978"/>
+        <location filename="../mainwindow.cpp" line="964"/>
         <source>map center</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="983"/>
+        <location filename="../mainwindow.cpp" line="969"/>
         <source>map origin (top left)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1033"/>
+        <location filename="../mainwindow.cpp" line="1019"/>
         <source>Create a colors.txt</source>
         <translation>Erstelle eine colors.txt Datei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1034"/>
+        <location filename="../mainwindow.cpp" line="1020"/>
         <source>There is a nodes.txt but no colors.txt in the world directory
 Do you want to generate one? 
 If you select &apos;No&apos; the default colors.txt will be used.</source>
@@ -1612,21 +1639,31 @@ Möchtest du eine erstellen?
 Wenn du auf &apos;Nein&apos; clickst, wird eine standard colors.txt Datei verwendet.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1051"/>
+        <location filename="../mainwindow.cpp" line="1037"/>
         <source>No colors.txt file</source>
         <translation>Keine colors.txt Datei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1052"/>
+        <location filename="../mainwindow.cpp" line="1038"/>
         <source>ERROR: Still no colors.txt file found inside world directory.
 
 Do you want to cancel or proceed with default colors.txt file?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1055"/>
+        <location filename="../mainwindow.cpp" line="1041"/>
         <source>Proceed with default</source>
         <translation>Mit standard Datei fortfahren</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1113"/>
+        <source>Could not open Terminal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1114"/>
+        <source>Error: Could not open scriptfile (%1) for Terminal</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>ERROR: No minetestmapper executable could not be found.
@@ -1659,12 +1696,12 @@ Bitte erneut eine gültige minetestmapper Anwendung auswählen. (Bearbeiten-&gt;
 Möchten Sie die Einstellungen jetzt öffnen? </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="899"/>
+        <location filename="../mainwindow.cpp" line="897"/>
         <source>preview: %1</source>
         <translation>Vorschau: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="919"/>
+        <location filename="../mainwindow.cpp" line="905"/>
         <source>Name of the new Profile:</source>
         <translation>Name des Neuen Profils:</translation>
     </message>
