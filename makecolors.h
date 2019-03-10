@@ -29,11 +29,11 @@ public:
     void setTextureSearchDirectorys(const QStringList &value);
 
     enum LogLevel {
-        NONE,
-        VERBOSE,
-        INFO,
-        WARNING,
-        ERROR
+        None,
+        Verbose,
+        Info,
+        Warning,
+        Error
     };
     Q_ENUM(LogLevel)
 
@@ -61,12 +61,12 @@ private:
     QString fileColorsTxt;
     QStringList textureSearchDirectorys;
     QStringList textureFileFilter;
-    LogLevel logLevel = INFO;
+    LogLevel logLevel = Info;
 
     QHash<QString, QColor> requiredColors;
     QMap<QString, QString> nodeList;
     bool writeColorsTxt(const QString &file);
-    void output(const QString &message, LogLevel level = NONE);
+    void output(const QString &message, LogLevel level = None);
     QMutex mutex;
 };
 

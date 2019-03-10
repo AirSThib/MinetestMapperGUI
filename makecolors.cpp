@@ -64,7 +64,7 @@ QColor MakeColors::processImage(const QString &path)
     }
     if(counter == 0)
     {
-        output("could not generate color of " +path +" too much transparency", WARNING);
+        output("could not generate color of " +path +" too much transparency", Warning);
         color = QColor();//invalid color
     }
     else{
@@ -76,7 +76,7 @@ QColor MakeColors::processImage(const QString &path)
 
 bool MakeColors::parseNodesTxt(const QString &nodesTxt)
 {
-    output("Parsing "+nodesTxt, INFO);
+    output("Parsing "+nodesTxt, Info);
     QFile inputFile(nodesTxt);
     if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
@@ -105,7 +105,7 @@ bool MakeColors::parseNodesTxt(const QString &nodesTxt)
         numberOfNodes = requiredColors.size();
     }
     else{
-        output("Could not open "+nodesTxt+" for reading!", ERROR);
+        output("Could not open "+nodesTxt+" for reading!", Error);
         return false;
     }
     return true;
@@ -118,7 +118,7 @@ bool MakeColors::searchAndProgressTextures(const QString &path)
         const QString textureFilePath = it.next();
         const QString textureFileName = it.fileName();
         if(requiredColors.contains(textureFileName)){
-            output("Processing "+textureFileName, VERBOSE);
+            output("Processing "+textureFileName, Verbose);
             const QColor color = processImage(textureFilePath);
 
 
@@ -128,7 +128,7 @@ bool MakeColors::searchAndProgressTextures(const QString &path)
             emit progressChanged(++numberOfColors);
         }
         else{
-            output("Not required: "+textureFileName, VERBOSE);
+            output("Not required: "+textureFileName, Verbose);
         }
     }
     return true;
@@ -157,7 +157,7 @@ void MakeColors::setFileNodesTxt(const QString &value)
 bool MakeColors::writeColorsTxt(const QString &file)
 {
     QFile outputFile(file);
-    output("Writing colors.txt file to "+file ,INFO);
+    output("Writing colors.txt file to "+file ,Info);
     if (outputFile.open(QIODevice::WriteOnly| QIODevice::Truncate | QIODevice::Text)) {
         //QTextStream in(&inputFile);
         QMapIterator<QString,QString> mi(nodeList);
@@ -184,7 +184,7 @@ bool MakeColors::writeColorsTxt(const QString &file)
                 out<<fullNodeName<< QString(" %1 %2 %3").arg(color.red(),3).arg(color.green(),3).arg(color.blue(),3) <<endl;
             }
             else{
-                output("No color found for " +fullNodeName, WARNING);
+                output("No color found for " +fullNodeName, Warning);
             }
 
 
@@ -201,8 +201,8 @@ void MakeColors::run()
     parseNodesTxt(fileNodesTxt);
     emit maxProgressChanged(requiredColors.size());
     emit progressChanged(0);
-    output(tr("Found %Ln node(s)","",nodeList.size()), INFO);
-    output(tr("Searching and parsing %Ln texture file(s)","",requiredColors.size()), INFO);
+    output(tr("Found %Ln node(s)","",nodeList.size()), Info);
+    output(tr("Searching and parsing %Ln texture file(s)","",requiredColors.size()), Info);
     for(int i = 0; i < textureSearchDirectorys.size(); i++)
     {
         //emit stateChanged("search and process textures "+ i +" of "+textureSearchDirectorys.size());
@@ -210,12 +210,12 @@ void MakeColors::run()
 
     }
     writeColorsTxt(fileColorsTxt);
-    output("Done! :)",INFO);
+    output("Done! :)",Info);
 }
 
 void MakeColors::startProcess()
 {
-    output("Starting...",VERBOSE);
+    output("Starting...",Verbose);
 
     // Set this to 0 and -1 makes the progressbar shows busy
     emit maxProgressChanged(0);
