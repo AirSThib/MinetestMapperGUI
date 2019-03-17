@@ -130,11 +130,12 @@ endif()
 # Installation
 ###############################################################################
 
-set (CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
-include (InstallRequiredSystemLibraries)
+set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
+include(InstallRequiredSystemLibraries)
 
+#set(CPACK_PACKAGE_EXECUTABLES MinetestMapperGUI "Minetest Mapper GUI")
 
-INSTALL(TARGETS MinetestMapperGUI
+install(TARGETS MinetestMapperGUI
 	RUNTIME DESTINATION .
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib
@@ -169,3 +170,4 @@ if(WIN32)
 			FILES_MATCHING PATTERN "*.dll")
 endif(WIN32)
 
+include(CPack)
