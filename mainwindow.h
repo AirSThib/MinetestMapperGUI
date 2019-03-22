@@ -13,20 +13,19 @@
 #include <QProgressBar>
 #include <QSettings>
 #include <QStringListModel>
-#include <QTranslator>
 
 #ifdef Q_OS_WIN
 #include <QWinTaskbarButton>
 #include <QWinTaskbarProgress>
 #endif
 
-//#include "colorstxtassistant.h"
 #include "colorstxtwizard.h"
 #include "configdialog.h"
 #include "drawmapfigure.h"
 #include "drawmapfiguretablemodel.h"
 #include "figuredelegate.h"
 #include "minetestmapperexe.h"
+#include "translator.h"
 
 namespace Ui {
 class MainWindow;
@@ -37,7 +36,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(bool portable, const QString &translationsPath, QTranslator *translator, QTranslator *qtTranslator, QWidget *parent = 0);
+    explicit MainWindow(bool portable, Translator *translator, QWidget *parent = 0);
     ~MainWindow();
 
     enum class GeometryGranularity {
@@ -128,8 +127,6 @@ private slots:
 
     void on_figureSelect_currentIndexChanged(int index);
 
-    void switchTranslator(QTranslator *translator, const QString &prefix, const QLocale &locale);
-
     void on_actionOpen_Terminal_triggered();
 
 private:
@@ -146,20 +143,13 @@ private:
 
     void finishUiInitialisation(void);
 
-    // loads a language by the given language shortcur (e.g. de, en)
-    void loadLanguage(const QString &rLanguage);
-
     // creates the language menu dynamically from the content of m_langPath
     void createLanguageMenu(void);
 
-    QTranslator *translator; // contains the translations for this application
-    QTranslator *qtTranslator; // contains the translations for qt
-    QString m_currLang; // contains the currently loaded language
-    QString translationsPath; // Path of language files. This is always fixed to /languages.
+    Translator *translator; // contains the translations for this application
     QString currentProfile; //contains the name of current loaded profile
     QString pathAppData; // Path where the settings should be stored.
     QString pathProfiles; // path where the profiles should be stored.
-    //QSettings profile;
     QSettings *settings;
     QSettings *profile;
     QString getColorsTxtFilePath(QDir *appDir, QDir *worldDir);

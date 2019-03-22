@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "translator.h"
 #include <QCoreApplication>
 #include <QApplication>
 #include <QDebug>
@@ -15,23 +16,7 @@ int main(int argc, char *argv[])
 
 
     // Setup the translators
-
-    const QString translationsPath = "./translations/";
-    QTranslator qtTranslator;
-    if(qtTranslator.load("qt_" + QLocale::system().name(),
-                         QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
-        a.installTranslator(&qtTranslator);
-        qDebug()<< QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-    }
-    else{
-        qtTranslator.load("qt_" + QLocale::system().name(),
-                          translationsPath);
-        a.installTranslator(&qtTranslator);
-    }
-
-    QTranslator translator;
-    if (translator.load("gui_" + QLocale::system().name(), translationsPath))
-        a.installTranslator(&translator);
+	Translator t(QLocale::system());
 
 
     // Init commandline parser
@@ -48,7 +33,7 @@ int main(int argc, char *argv[])
 
     bool portable = parser.isSet(startPortableOption);
 
-    MainWindow w(portable, translationsPath, &translator, &qtTranslator);
+    MainWindow w(portable, &t);
     w.show();
 
     return a.exec();

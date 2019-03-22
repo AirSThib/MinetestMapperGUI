@@ -32,6 +32,7 @@ set(SOURCES
 	figuredelegate.cpp
 	minetestmapperexe.cpp
 	colorstxtwizard.cpp
+	translator.cpp
 )
 
 set(HEADERS
@@ -46,6 +47,7 @@ set(HEADERS
 	figuredelegate.h
 	minetestmapperexe.h
 	colorstxtwizard.h
+	translator.h
 )
 
 set(FORMS
