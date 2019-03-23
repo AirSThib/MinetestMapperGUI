@@ -90,7 +90,7 @@ configure_file(MinetestMapperGui.in.rc MinetestMapperGui.rc)
 
 source_group("UI Files" FILES ${FORMS})
 find_package(Qt5LinguistTools REQUIRED)
-set_source_files_properties(${TRANSLATIONS} PROPERTIES OUTPUT_LOCATION "translations/")
+set_source_files_properties(${TRANSLATIONS} PROPERTIES OUTPUT_LOCATION "${CMAKE_CURRENT_BINARY_DIR}/translations/")
 qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TRANSLATIONS})
 add_executable(MinetestMapperGUI ${SOURCES} ${HEADERS} ${FORMS} ${RESOURCES} ${QM_FILES} ${CMAKE_CURRENT_BINARY_DIR}/MinetestMapperGui.rc)
 
