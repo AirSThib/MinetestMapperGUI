@@ -8,28 +8,28 @@
 #include <QStringList>
 
 
-MainWindow::MainWindow(bool portable, Translator *translator, QWidget *parent) :
+MainWindow::MainWindow(Translator *translator, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     translator(translator)
 {
-    if(portable){
-        //Attention: This paths could be non writable locations!
-        pathAppData = qApp->applicationDirPath(); //use the Applications directory
-        pathProfiles = pathAppData + "/profiles/";
+#ifdef PORTABLE
+	//Attention: This paths could be non writable locations!
+	pathAppData = qApp->applicationDirPath(); //use the Applications directory
+	pathProfiles = pathAppData + "/profiles/";
 
-        //manipulate settingsfile on portable mode
-        settings = new QSettings(pathAppData+"/MinetestMapperGui.ini",QSettings::IniFormat);
-    }
-    else{
-        QSettings dummySettings(QSettings::IniFormat, QSettings::UserScope,qApp->organizationName(),"dummy");
-        pathAppData = QFileInfo(dummySettings.fileName()).path();
-        pathProfiles = pathAppData + "/profiles/";
-        dummySettings.deleteLater();
+	//manipulate settingsfile on portable mode
+	settings = new QSettings(pathAppData + "/MinetestMapperGui.ini", QSettings::IniFormat);
+#else
+	QSettings dummySettings(QSettings::IniFormat, QSettings::UserScope, qApp->organizationName(), "dummy");
+	pathAppData = QFileInfo(dummySettings.fileName()).path();
+	pathProfiles = pathAppData + "/profiles/";
+	dummySettings.deleteLater();
 
-        //non portable use OS defaults
-        settings = new QSettings();
-    }
+	//non portable use OS defaults
+	settings = new QSettings();
+#endif // PORTABLE
+
     ui->setupUi(this);
     finishUiInitialisation();
     //profile = new ProfileSettings(ui, portable);
@@ -560,12 +560,15 @@ void MainWindow::slotProfileChanged(QAction* action)
 
 void MainWindow::writeSettings()
 {
-    if(portable && !settings->isWritable()){
-        QMessageBox::warning(this, tr("Can not save settings"),
-                             tr("Minetest Mapper GUI could not save the settings to %1.\n"
-                                "Please make shure Minetest Mapper Gui can access to the file/directory").arg(settings->fileName()));
+#ifdef PORTABLE
+	if (!settings->isWritable())
+	{
+		QMessageBox::warning(this, tr("Can not save settings"),
+			tr("Minetest Mapper GUI could not save the settings to %1.\n"
+				"Please make shure Minetest Mapper Gui can access to the file/directory").arg(settings->fileName()));
+	}
+#endif // PORTABLE
 
-    }
     settings->beginGroup("MainWindow");
     if(isMaximized()){
         settings->setValue("maximized", true);
@@ -585,11 +588,15 @@ void MainWindow::writeSettings()
 
 void MainWindow::writeProfile()
 {
-    if(portable && !profile->isWritable()){
-        QMessageBox::warning(this, tr("Can not save profile"),
-                             tr("Minetest Mapper GUI could not save the current Profile '%1' to %2.\n"
-                                "Please make shure Minetest Mapper Gui can access to the file/directory").arg(currentProfile).arg(profile->fileName()));
-    }
+#ifdef PORTABLE
+	if (!profile->isWritable())
+	{
+		QMessageBox::warning(this, tr("Can not save profile"),
+			tr("Minetest Mapper GUI could not save the current Profile '%1' to %2.\n"
+				"Please make shure Minetest Mapper Gui can access to the file/directory").arg(currentProfile).arg(profile->fileName()));
+	}
+#endif // PORTABLE
+
     qDebug()<<"Write profile" << currentProfile << "to" << profile->fileName();
 
     profile->beginGroup("Mapper");

@@ -19,6 +19,8 @@ else()
 endif()
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+option(BUILD_PORTABLE "To create a MinetestMapperGUI that uses only the current directory." OFF)
+
 set(SOURCES
 	main.cpp
 	mainwindow.cpp
@@ -103,6 +105,10 @@ if(WIN32)
 endif()
 
 target_compile_definitions(MinetestMapperGUI PRIVATE GIT_VERSION="${PROJECT_VERSION}")
+
+if(BUILD_PORTABLE)
+	target_compile_definitions(MinetestMapperGUI PRIVATE PORTABLE)
+endif(BUILD_PORTABLE)
 
 if(WIN32)
 	# Get the location of the qmake exe

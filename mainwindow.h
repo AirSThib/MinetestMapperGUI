@@ -36,7 +36,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(bool portable, Translator *translator, QWidget *parent = 0);
+    explicit MainWindow(Translator *translator, QWidget *parent = 0);
     ~MainWindow();
 
     enum class GeometryGranularity {
@@ -130,7 +130,6 @@ private slots:
     void on_actionOpen_Terminal_triggered();
 
 private:
-    bool portable;
     Ui::MainWindow *ui;
     QProgressBar *progressBar;
     QProcess *myProcess;
