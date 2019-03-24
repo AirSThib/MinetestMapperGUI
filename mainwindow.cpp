@@ -125,6 +125,15 @@ MainWindow::MainWindow(Translator *translator, QWidget *parent) :
     spacerWidget->setVisible(true);
     ui->mainToolBar->insertWidget(ui->actionOutputLog, spacerWidget);
 
+    minetestWorldsModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
+    ui->treeView->setItemsExpandable(false);
+    ui->treeView->setModel(minetestWorldsModel);
+    QString worldsPath = ui->path_minetestWorlds->text();
+
+    minetestWorldsModel->setRootPath(worldsPath);
+    auto index = minetestWorldsModel->index(worldsPath);
+    ui->treeView->setRootIndex(index);
+
     minetestMapper->init();
 }
 
@@ -607,6 +616,7 @@ void MainWindow::writeProfile()
     profile->beginGroup("common");//tab1 common
         profile->setValue("path_OutputImage", ui->path_OutputImage->text());
         profile->setValue("path_World", ui->path_World->text());
+		profile->setValue("path_minetestWorlds", ui->path_minetestWorlds->text());
         profile->setValue("backend",ui->backend->currentIndex());
     profile->endGroup();
 
@@ -703,6 +713,14 @@ void MainWindow::readProfile()
 
     profile->beginGroup("common");    //tab1 Common
         ui->path_World->setText(profile->value("path_World",QDir::homePath()).toString());
+		// TODO: Create a static class where all standard paths are set.
+#ifdef Q_OS_WIN
+		QString standard = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/../../Minetest/worlds";
+		standard = QDir(standard).absolutePath();
+#else
+		QString standard = "/home/.minetest/worlds";
+#endif
+		ui->path_minetestWorlds->setText(profile->value("path_minetestWorlds", standard).toString());
         ui->path_OutputImage->setText(profile->value("path_OutputImage",QDir::homePath().append("/map.png")).toString());
         //ui->backend->setCurrentIndex(profile->value("backend",0).toInt()); //loading the backend here is useless, because the backends are initialized later
     profile->endGroup();
@@ -1078,5 +1096,36 @@ void MainWindow::on_actionOpen_Terminal_triggered()
         QMessageBox::critical(this,
                               tr("Could not open Terminal"),
                               tr("Error: Could not open scriptfile (%1) for Terminal").arg(mtmapperenv.toDisplayString()));
+    }
+}
+
+void MainWindow::on_treeView_activated(const QModelIndex &index)
+{
+    ui->path_World->setText(minetestWorldsModel->filePath(index));
+}
+
+void MainWindow::on_path_minetestWorlds_editingFinished()
+{
+    minetestWorldsModel->setRootPath(ui->path_minetestWorlds->text());
+    auto index = minetestWorldsModel->index(ui->path_minetestWorlds->text());
+    ui->treeView->setRootIndex(index);
+}
+
+void MainWindow::on_treeView_clicked(const QModelIndex &index)
+{
+    ui->path_World->setText(minetestWorldsModel->filePath(index));
+}
+
+
+void MainWindow::on_browseWorldsDir_clicked()
+{
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
+                                                    ui->path_minetestWorlds->text(),
+                                                    QFileDialog::ShowDirsOnly
+                                                    | QFileDialog::DontResolveSymlinks);
+    if(!dir.isEmpty())
+    {
+        ui->path_minetestWorlds->setText(dir);
+        on_path_minetestWorlds_editingFinished();
     }
 }

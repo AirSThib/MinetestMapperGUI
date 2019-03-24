@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1061</width>
-    <height>754</height>
+    <height>794</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,26 +35,29 @@
         <string>General</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="3" column="0">
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
+        <item row="1" column="1">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Database backend</string>
           </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QComboBox" name="backend">
+             <property name="statusTip">
+              <string>Set or override the database backend to use. If you are not shure, select 'auto'</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </item>
-        <item row="0" column="0">
+        <item row="1" column="0">
          <widget class="QGroupBox" name="groupBox_2">
           <property name="title">
            <string>Select World dir</string>
           </property>
           <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
+           <item row="1" column="0">
             <widget class="QLineEdit" name="path_World">
              <property name="statusTip">
               <string>Select the world directory, wich contains the world Database</string>
@@ -64,7 +67,7 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
+           <item row="1" column="1">
             <widget class="QPushButton" name="browseWorld">
              <property name="maximumSize">
               <size>
@@ -84,46 +87,26 @@
           </layout>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QGroupBox" name="groupBox">
-          <property name="title">
-           <string>Database backend</string>
+        <item row="4" column="0">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_2">
-           <item>
-            <widget class="QComboBox" name="backend">
-             <property name="statusTip">
-              <string>Set or override the database backend to use. If you are not shure, select 'auto'</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
         </item>
-        <item row="2" column="0" colspan="2">
+        <item row="3" column="0" colspan="2">
          <widget class="QGroupBox" name="groupBox_4">
           <property name="title">
            <string>Output Image</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="1">
-            <widget class="QPushButton" name="saveImage">
-             <property name="maximumSize">
-              <size>
-               <width>157</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Save as</string>
-             </property>
-             <property name="icon">
-              <iconset resource="minetestmappergui.qrc">
-               <normaloff>:/save</normaloff>:/save</iconset>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
+           <item row="1" column="0">
             <widget class="QLineEdit" name="path_OutputImage">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
@@ -145,14 +128,24 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="0" colspan="2">
-            <widget class="QLabel" name="label_preview">
+           <item row="1" column="1">
+            <widget class="QPushButton" name="saveImage">
+             <property name="maximumSize">
+              <size>
+               <width>157</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
-              <string>Preview: </string>
+              <string>Save as</string>
+             </property>
+             <property name="icon">
+              <iconset resource="minetestmappergui.qrc">
+               <normaloff>:/save</normaloff>:/save</iconset>
              </property>
             </widget>
            </item>
-           <item row="1" column="0" colspan="2">
+           <item row="2" column="0" colspan="2">
             <widget class="QLabel" name="label_20">
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
@@ -162,6 +155,59 @@
 &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;date&amp;gt;&lt;/span&gt; is replaced with local date format&lt;br&gt;
 &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;longdate&amp;gt;&lt;/span&gt; is replaced with the local spoken date format&lt;br&gt;
 &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;time&amp;gt;&lt;/span&gt; is replaced with current time&lt;br&gt;also something like D:/&amp;lt;world&amp;gt;/&amp;lt;isodate&amp;gt;.png is possible.&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QLabel" name="label_preview">
+             <property name="text">
+              <string>Preview: </string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QGroupBox" name="groupBox_15">
+          <property name="title">
+           <string>Minetest Worlds</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_17">
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="path_minetestWorlds"/>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_22">
+             <property name="text">
+              <string>Minetest worlds dir:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="browseWorldsDir">
+             <property name="maximumSize">
+              <size>
+               <width>157</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Browse</string>
+             </property>
+             <property name="icon">
+              <iconset resource="minetestmappergui.qrc">
+               <normaloff>:/open</normaloff>:/open</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
+            <widget class="QTreeView" name="treeView"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_23">
+             <property name="text">
+              <string>Worlds:</string>
              </property>
             </widget>
            </item>
@@ -871,8 +917,8 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>503</width>
-             <height>427</height>
+             <width>524</width>
+             <height>448</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1933,7 +1979,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
              <x>0</x>
              <y>0</y>
              <width>513</width>
-             <height>374</height>
+             <height>437</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -3466,10 +3512,10 @@ p, li { white-space: pre-wrap; }
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="group_tiles_arrange_at"/>
-  <buttongroup name="group_tiles_tiles"/>
-  <buttongroup name="group_tiles_arrange"/>
-  <buttongroup name="geometrymode_size_group"/>
   <buttongroup name="geometrymode_granularity_group"/>
+  <buttongroup name="group_tiles_arrange"/>
+  <buttongroup name="group_tiles_tiles"/>
+  <buttongroup name="group_tiles_arrange_at"/>
+  <buttongroup name="geometrymode_size_group"/>
  </buttongroups>
 </ui>

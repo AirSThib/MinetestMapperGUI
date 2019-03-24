@@ -13,6 +13,7 @@
 #include <QProgressBar>
 #include <QSettings>
 #include <QStringListModel>
+#include <QFileSystemModel>
 
 #ifdef Q_OS_WIN
 #include <QWinTaskbarButton>
@@ -129,6 +130,14 @@ private slots:
 
     void on_actionOpen_Terminal_triggered();
 
+    void on_treeView_activated(const QModelIndex &index);
+
+    void on_path_minetestWorlds_editingFinished();
+
+    void on_treeView_clicked(const QModelIndex &index);
+
+    void on_browseWorldsDir_clicked();
+
 private:
     Ui::MainWindow *ui;
     QProgressBar *progressBar;
@@ -157,6 +166,7 @@ private:
     QDataWidgetMapper *drawMapFigureTableMapper;
     MinetestMapperExe *minetestMapper;
     QStringListModel *backends = new QStringListModel();
+    QFileSystemModel *minetestWorldsModel = new QFileSystemModel();
 
 };
 
