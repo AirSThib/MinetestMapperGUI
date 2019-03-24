@@ -170,6 +170,9 @@ if(WIN32)
 			DESTINATION .
 			CONFIGURATIONS RelWithDebInfo
 			FILES_MATCHING PATTERN "*.dll")
-endif(WIN32)
+elseif(UNIX)
+	install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/images/icon.svg" DESTINATION "/usr/local/share/icons/hicolor/scalable/apps" RENAME "MinetestMapperGUI.svg")
+	install(FILES "MinetestMapperGUI.desktop" DESTINATION "/usr/share/applications") 
+endif()
 
 include(CPack)
