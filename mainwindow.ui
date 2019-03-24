@@ -2581,7 +2581,7 @@ p, li { white-space: pre-wrap; }
     <bool>false</bool>
    </property>
    <property name="features">
-    <set>QDockWidget::DockWidgetFeatureMask</set>
+    <set>QDockWidget::AllDockWidgetFeatures</set>
    </property>
    <property name="windowTitle">
     <string>Output log</string>
@@ -2591,6 +2591,18 @@ p, li { white-space: pre-wrap; }
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_2">
     <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
      <item>
       <widget class="QTextBrowser" name="standardOutput">
        <property name="font">
@@ -3455,9 +3467,9 @@ p, li { white-space: pre-wrap; }
  </connections>
  <buttongroups>
   <buttongroup name="group_tiles_arrange_at"/>
-  <buttongroup name="group_tiles_arrange"/>
-  <buttongroup name="geometrymode_granularity_group"/>
-  <buttongroup name="geometrymode_size_group"/>
   <buttongroup name="group_tiles_tiles"/>
+  <buttongroup name="group_tiles_arrange"/>
+  <buttongroup name="geometrymode_size_group"/>
+  <buttongroup name="geometrymode_granularity_group"/>
  </buttongroups>
 </ui>
