@@ -65,8 +65,6 @@ set(TRANSLATIONS
 	translations/gui_en.ts
 )
 
-include(getGitVersion)
-
 if(${git_commits_since_last_tag} EQUAL 0)
 	set (PRERELEASE 0)
 else()
@@ -132,13 +130,19 @@ endif()
 # Installation
 ###############################################################################
 
-set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
+set(INSTALL_RUNTIME_DIR "bin")
+if(WIN32)
+	set(INSTALL_RUNTIME_DIR ".")
+endif()
+
+
+set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ${INSTALL_RUNTIME_DIR})
 include(InstallRequiredSystemLibraries)
 
 #set(CPACK_PACKAGE_EXECUTABLES MinetestMapperGUI "Minetest Mapper GUI")
 
 install(TARGETS MinetestMapperGUI
-	RUNTIME DESTINATION .
+	RUNTIME DESTINATION ${INSTALL_RUNTIME_DIR}
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib
 )
@@ -155,19 +159,19 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/translations/
 if(WIN32)
 	#copy required dlls to install dir
 	install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Release/
-			DESTINATION .
+			DESTINATION ${INSTALL_RUNTIME_DIR}
 			CONFIGURATIONS Release
 			FILES_MATCHING PATTERN "*.dll")
 	install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Debug/
-			DESTINATION .
+			DESTINATION ${INSTALL_RUNTIME_DIR}
 			CONFIGURATIONS Debug
 			FILES_MATCHING PATTERN "*.dll")
 	install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RelWithDebInfo/
-			DESTINATION .
+			DESTINATION ${INSTALL_RUNTIME_DIR}
 			CONFIGURATIONS RelWithDebInfo
 			FILES_MATCHING PATTERN "*.dll")
 	install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/MinSizeRel/
-			DESTINATION .
+			DESTINATION ${INSTALL_RUNTIME_DIR}
 			CONFIGURATIONS RelWithDebInfo
 			FILES_MATCHING PATTERN "*.dll")
 elseif(UNIX)
