@@ -431,7 +431,7 @@ void MainWindow::on_button_generate_clicked()
                                                             tr("MinetestMapper will be executed using this arguments. \n"
                                                                "The arguments can be removed, modified, or new arguments can be added."),//label
                                                             arguments.join("\n"),//text
-                                                            &ok,0);
+                                                            &ok);
         if (ok) arguments = parameters.split("\n");
         else {
             ui->button_generate->setDisabled(false);
@@ -560,7 +560,7 @@ void MainWindow::createProfilesMenu(){
 // Called every time, when a menu entry of the profile menu is called
 void MainWindow::slotProfileChanged(QAction* action)
 {
-    if(action != 0) {
+    if(action) {
         writeProfile();
         currentProfile = action->data().toString();
         readProfile();
@@ -889,7 +889,7 @@ void MainWindow::on_actionNew_Profile_triggered()
                                             tr("Name of the new Profile:"),//label
                                             QLineEdit::Normal,
                                             "",//text
-                                            &ok,0);
+                                            &ok);
     if(ok && !profile.isEmpty()) {
         currentProfile = profile;
         QAction *action = new QAction(profile, this);

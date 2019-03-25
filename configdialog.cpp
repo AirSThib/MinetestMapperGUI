@@ -119,8 +119,9 @@ void ConfigDialog::on_browseMapper_clicked()
 QString ConfigSettings::getDefaultMapperExecutable()
 {
     QStringList locations = getMapperExecutables();
-    if (locations.empty()) return "";
-    else return locations.at(0);
+    if (locations.empty())
+        return QString();
+    return locations.at(0);
 }
 
 void ConfigSettings::addMapperExecutablesToList(QStringList &existingList, QStringList &pathList)

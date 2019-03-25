@@ -207,9 +207,9 @@ void Geometry::computeCorner0()
 {
     for (int i = 0; i < 2; i++) {
         if (dimension[i] < 0)
-                corner[0][i] = center[i] + (-dimension[i]) / 2;
-            else
-                corner[0][i] = center[i] - dimension[i] / 2;
+            corner[0][i] = center[i] + (-dimension[i]) / 2;
+        else
+            corner[0][i] = center[i] - dimension[i] / 2;
     }
 }
 
@@ -217,9 +217,9 @@ void Geometry::computeCorner1()
 {
     for (int i = 0; i < 2; i++) {
         if (dimension[i] < 0)
-                corner[1][i] = corner[0][i] + dimension[i] + 1;
-            else
-                corner[1][i] = corner[0][i] + dimension[i] - 1;
+            corner[1][i] = corner[0][i] + dimension[i] + 1;
+        else
+            corner[1][i] = corner[0][i] + dimension[i] - 1;
     }
 }
 
@@ -227,9 +227,9 @@ void Geometry::computeCenter()
 {
     for (int i = 0; i < 2; i++) {
         if (corner[0][i] > corner[1][i])
-                center[i] = corner[0][i] - (-dimension[i]) / 2;
-            else
-                center[i] = corner[0][i] + dimension[i] / 2;
+            center[i] = corner[0][i] - (-dimension[i]) / 2;
+        else
+            center[i] = corner[0][i] + dimension[i] / 2;
     }
 }
 
@@ -237,8 +237,8 @@ void Geometry::computeDimensions()
 {
     for (int i = 0; i < 2; i++) {
         if (corner[0][i] > corner[1][i])
-                dimension[i] = corner[1][i] - corner[0][i] - 1;
-            else
-                dimension[i] = corner[1][i] - corner[0][i] + 1;
+            dimension[i] = corner[1][i] - corner[0][i] - 1;
+        else
+            dimension[i] = corner[1][i] - corner[0][i] + 1;
     }
 }

@@ -19,7 +19,7 @@ void ColorLineEdit::selectColor()
     if (!current.isValid()) {
         current = Qt::white;
     }
-    const QColor color = QColorDialog::getColor(current, this, NULL, options);
+    const QColor color = QColorDialog::getColor(current, this, nullptr, options);
 
     if (color.isValid()) {
         this->setText(color.name());

@@ -116,7 +116,7 @@ QVariant DrawMapFigureTableModel::data(const QModelIndex &index, int role) const
             // FIXME: Implement me!
             return QVariant();
         }
-       else if(role == Qt::DecorationRole && col==4){
+        else if(role == Qt::DecorationRole && col==4){
             return item->getColor();
         }
         else if(role == Qt::CheckStateRole && col ==1){
