@@ -228,16 +228,16 @@ bool DrawMapFigureTableModel::removeColumns(int column, int count, const QModelI
 QStringList DrawMapFigureTableModel::getStringList() const
 {
     QStringList retval;
-    for (int i = 0; i < list->size(); ++i)
-         retval << list->at(i)->getString();
+    for (auto i : *list)
+         retval << i->getString();
     return retval;
 }
 
 QStringList DrawMapFigureTableModel::getArguments() const
 {
     QStringList retval;
-    for (int i = 0; i < list->size(); ++i)
-         retval << list->at(i)->getSplittedString();
+    for (auto i : *list)
+         retval << i->getSplittedString();
     return retval;
 }
 

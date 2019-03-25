@@ -123,14 +123,14 @@ void Geometry::setMax()
 bool Geometry::adjustCorners()
 {
     bool adjusted = false;
-    for (int j = 0; j < 2; j++) {
-        for (int i = 0; i < 2; i++) {
-            if (corner[j][i] < -32768) {
-                corner[j][i] = -32768;
+    for (auto & j : corner) {
+        for (int & i : j) {
+            if (i < -32768) {
+                i = -32768;
                 adjusted = true;
             }
-            if (corner[j][i] > 32767) {
-                corner[j][i] = 32767;
+            if (i > 32767) {
+                i = 32767;
                 adjusted = true;
             }
         }
