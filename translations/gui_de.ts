@@ -633,17 +633,17 @@
         <translation>Zeichne Ursprung</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2869"/>
+        <location filename="../mainwindow.ui" line="2872"/>
         <source>Open map after creation</source>
         <translation>Öffne Karte nach Erstellung</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2872"/>
+        <location filename="../mainwindow.ui" line="2875"/>
         <source>Open map after creation with the default png viewer</source>
         <translation>Öffnet die Karte nach dem erstellen mit dem Standard png Programm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2877"/>
+        <location filename="../mainwindow.ui" line="2880"/>
         <source>&amp;Preferences</source>
         <translation>E&amp;instellungen</translation>
     </message>
@@ -1001,27 +1001,27 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation>Alles Markieren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2891"/>
+        <location filename="../mainwindow.ui" line="2894"/>
         <source>Open &amp;Terminal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2894"/>
+        <location filename="../mainwindow.ui" line="2897"/>
         <source>T</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2906"/>
+        <location filename="../mainwindow.ui" line="2909"/>
         <source>Output &amp;Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2909"/>
+        <location filename="../mainwindow.ui" line="2912"/>
         <source>Shows / Hides Output Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2912"/>
+        <location filename="../mainwindow.ui" line="2915"/>
         <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1051,62 +1051,62 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2733"/>
+        <location filename="../mainwindow.ui" line="2736"/>
         <source>Generate Map</source>
         <translation>Karte Erstellen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2736"/>
+        <location filename="../mainwindow.ui" line="2739"/>
         <source>Start Minetestmapper to generate the map</source>
         <translation>Startet den Minetestmapper um die Karte zu erstellen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2767"/>
+        <location filename="../mainwindow.ui" line="2770"/>
         <source>Whats this?</source>
         <translation>Was ist das?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2779"/>
+        <location filename="../mainwindow.ui" line="2782"/>
         <source>Open World</source>
         <translation>Öffne Welt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2791"/>
+        <location filename="../mainwindow.ui" line="2794"/>
         <source>Save map as</source>
         <translation>Speichere karte als</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2811"/>
+        <location filename="../mainwindow.ui" line="2814"/>
         <source>Edit colors.txt</source>
         <translation>Bearbeite colors.txt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2814"/>
+        <location filename="../mainwindow.ui" line="2817"/>
         <source>Edit colors.txt with default program</source>
         <translation>Bearbeite die colors.txt Datei mit dem Standard Programm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2822"/>
+        <location filename="../mainwindow.ui" line="2825"/>
         <source>Edit heightmap-nodes.txt</source>
         <translation>Bearbeite heightmap-nodes.txt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2825"/>
+        <location filename="../mainwindow.ui" line="2828"/>
         <source>Edit heightmap-nodes.txt with default txt editor</source>
         <translation>Bearbeite heightmap-colors.txt mit dem Standard TXT Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2833"/>
+        <location filename="../mainwindow.ui" line="2836"/>
         <source>Edit heightmap-colors.txt</source>
         <translation>Bearbeite heightmap-colors.txt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2836"/>
+        <location filename="../mainwindow.ui" line="2839"/>
         <source>Edit heightmap-colors.txt with default txt editor</source>
         <translation>Bearbeite heightmap-colors.txt mit dem Standard TXT Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2882"/>
+        <location filename="../mainwindow.ui" line="2885"/>
         <source>Start colors.txt assistant</source>
         <translation>Starte colors.txt Assistent</translation>
     </message>
@@ -1323,7 +1323,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     <message>
         <location filename="../mainwindow.ui" line="2466"/>
         <location filename="../mainwindow.ui" line="2524"/>
-        <location filename="../mainwindow.ui" line="2759"/>
+        <location filename="../mainwindow.ui" line="2762"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
@@ -1344,7 +1344,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation>Über MinetestMapper</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2718"/>
+        <location filename="../mainwindow.ui" line="2721"/>
         <source>About QT</source>
         <translation>Über QT</translation>
     </message>
@@ -1357,32 +1357,32 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">startet den Minetestmapper um die Karte zu erstellen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2739"/>
+        <location filename="../mainwindow.ui" line="2742"/>
         <source>generate the Map</source>
         <translation>erstellt die Karte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2744"/>
+        <location filename="../mainwindow.ui" line="2747"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2817"/>
+        <location filename="../mainwindow.ui" line="2820"/>
         <source>edit colors.txt with default program</source>
         <translation>Bearbeite die colors.txt Datei mit dem Standard Programm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2828"/>
+        <location filename="../mainwindow.ui" line="2831"/>
         <source>edit heightmap-nodes.txt with default txt editor</source>
         <translation>Bearbeite heightmap-nodes.txt mit dem Standard TXT Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2839"/>
+        <location filename="../mainwindow.ui" line="2842"/>
         <source>edit heightmap-colors.txt with default txt editor</source>
         <translation>Bearbeite heightmap-colors.txt mit dem Standard TXT Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2844"/>
+        <location filename="../mainwindow.ui" line="2847"/>
         <location filename="../mainwindow.cpp" line="888"/>
         <source>New Profile</source>
         <translation>Neues Profil</translation>
@@ -1392,18 +1392,18 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Standart</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2852"/>
+        <location filename="../mainwindow.ui" line="2855"/>
         <location filename="../mainwindow.cpp" line="430"/>
         <source>Expert Mode</source>
         <translation>Expertenmodus</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2855"/>
+        <location filename="../mainwindow.ui" line="2858"/>
         <source>In the Expert Mode it shows you the parameters, that you can modify it.</source>
         <translation>Im Expertenmodus wird ein Fenster mit den Parametern geöfnet. Die Parameter können dann Manuell verändert werden.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2858"/>
+        <location filename="../mainwindow.ui" line="2861"/>
         <source>Expert Mode shows the parameters, that you can modify it.</source>
         <translation>Im Expertenmodus werden die Parameter angezeigt, die du verändern kannst.</translation>
     </message>
@@ -1412,7 +1412,7 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
         <translation type="vanished">Sprache wurde auf %1 geändert</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2803"/>
+        <location filename="../mainwindow.ui" line="2806"/>
         <location filename="../mainwindow.cpp" line="852"/>
         <source>About MinetestMapper GUI</source>
         <translation>Über MinetestMapperGUI</translation>
@@ -1729,7 +1729,7 @@ Möchten Sie die Einstellungen jetzt öffnen? </translation>
 <context>
     <name>MakeColors</name>
     <message numerus="yes">
-        <location filename="../makecolors.cpp" line="204"/>
+        <location filename="../makecolors.cpp" line="200"/>
         <source>Found %Ln node(s)</source>
         <translation>
             <numerusform>%Ln Node gefunden</numerusform>
@@ -1737,7 +1737,7 @@ Möchten Sie die Einstellungen jetzt öffnen? </translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../makecolors.cpp" line="205"/>
+        <location filename="../makecolors.cpp" line="201"/>
         <source>Searching and parsing %Ln texture file(s)</source>
         <translation>
             <numerusform>Suche und verarbeite %n Textur</numerusform>

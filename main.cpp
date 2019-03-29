@@ -10,7 +10,11 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QApplication::setApplicationName("MinetestMapperGui");
-    QApplication::setApplicationDisplayName("Minetest Mapper GUI");
+#ifdef PORTABLE
+	QApplication::setApplicationDisplayName("Minetest Mapper GUI (Portable)");
+#else
+	QApplication::setApplicationDisplayName("Minetest Mapper GUI");
+#endif // PORTABLE
     QApplication::setApplicationVersion(GIT_VERSION);
     QApplication::setOrganizationName("MinetestMapperGui");
 
