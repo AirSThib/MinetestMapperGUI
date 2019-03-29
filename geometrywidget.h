@@ -24,13 +24,13 @@ public:
     ~GeometryWidget();
 
     bool set(const QString& geomStr, Geometry::Format format = Geometry::FormatUnknown); //{ return set(geomStr.toStdString().c_str(), format); }
-    bool setDefault(void) { return set(""); }
+    bool setDefault() { return set(""); }
     bool setFormat(int i) { return setFormat(static_cast<Geometry::Format>(i)); }
     bool setFormat(Geometry::Format format);
     bool setFormat(QString formatStr) { return setFormat(Geometry::formatId(formatStr)); }
-    Geometry::Format getFormat(void) const;
-    QString getFormatStr(void) { return Geometry::formatName(getFormat()); }
-    QString getGeometry(void) const;
+    Geometry::Format getFormat() const;
+    QString getFormatStr() { return Geometry::formatName(getFormat()); }
+    QString getGeometry() const;
 
 private slots:
     void on_geometryFormat_currentIndexChanged(int index);
@@ -55,7 +55,7 @@ private:
     QSpinBox *m_ui_C0D_dimension[2];
     QSpinBox *m_ui_C01_corner[2][2];
 signals:
-    void editingFinished(void);
+    void editingFinished();
 
 };
 

@@ -38,8 +38,8 @@ public:
     bool removeRows(int position, int count, const QModelIndex &parent = QModelIndex()) override;
     bool removeColumns(int column, int count, const QModelIndex &parent = QModelIndex()) override;
 
-    QStringList getStringList(void) const;
-    QStringList getArguments(void) const;
+    QStringList getStringList() const;
+    QStringList getArguments() const;
     void insertStringList(const QStringList &other);
 
 private:

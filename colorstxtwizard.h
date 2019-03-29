@@ -53,7 +53,7 @@ class TextureFoldersPage : public QWizardPage
 public:
     TextureFoldersPage(QWidget *parent = nullptr);
 
-    bool isComplete(void) const;
+    bool isComplete() const;
 private slots:
     void add();
     void rem();
@@ -87,7 +87,7 @@ class ConclusionPage : public QWizardPage
 public:
     ConclusionPage(QWidget *parent = nullptr);
 
-    bool isComplete(void) const override;
+    bool isComplete() const override;
 protected:
     void initializePage() override;
 

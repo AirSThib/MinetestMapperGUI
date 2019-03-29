@@ -16,13 +16,13 @@ struct ConfigSettings
 {
     QString mapperPath;
 
-    static QStringList getMapperExecutables(void);
-    static QString getDefaultMapperExecutable(void);
+    static QStringList getMapperExecutables();
+    static QString getDefaultMapperExecutable();
     static const QString defaultMapperExecutableName;
     static QStringList predefinedMapperLocations;
 
 private:
-    struct InitStatics { InitStatics(void); };
+    struct InitStatics { InitStatics(); };
     static const InitStatics initStatics;
     friend struct InitStatics;
 

@@ -73,7 +73,7 @@ private slots:
     QString getOutputFileName();
     void on_button_generate_clicked();
     void readError(const QString &str);
-    void mapperInitialized(void);
+    void mapperInitialized();
     void mapperFinisched(int exit);
     void error(QProcess::ProcessError error);
     void createProfilesMenu();
@@ -149,10 +149,10 @@ private:
     #endif
     ConfigSettings currentSettings;
 
-    void finishUiInitialisation(void);
+    void finishUiInitialisation();
 
     // creates the language menu dynamically from the content of m_langPath
-    void createLanguageMenu(void);
+    void createLanguageMenu();
 
     Translator *translator; // contains the translations for this application
     QString currentProfile; //contains the name of current loaded profile

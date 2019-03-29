@@ -32,13 +32,13 @@ public:
     int dimension[2];
     int corner[2][2];
 
-    Geometry(void) { setMax(); }
+    Geometry() { setMax(); }
     Geometry(const char *s) { set(s); }
     Geometry(const QString &s) { set(s); }
     // Geometry(const Geometry &g);
 
     Geometry::Format set(const QString &str);
-    void setMax(void);
+    void setMax();
     void setCenterDimensions(int cx, int cy, int dx, int dy);
     void setCornerDimensions(int cx, int cy, int dx, int dy);
     void setCorners(int c0x, int c0y, int c1x, int c1y);
@@ -49,11 +49,11 @@ private:
     static const QRegularExpression centerDimension;
     static const QRegularExpression cornerDimension;
     static const QRegularExpression cornerDimensionAlternate;
-    bool adjustCorners(void);
+    bool adjustCorners();
     void computeCorner0(void);
-    void computeCorner1(void);
+    void computeCorner1();
     void computeCenter(void); // Depends dimensions to be correct !
-    void computeDimensions(void);
+    void computeDimensions();
 
     Format format = FormatNone;
 };

@@ -44,12 +44,12 @@ public:
         QObject(parent), geometry(geometry), color(color) { }
 
     //DrawMapFigure(const DrawMapFigure &f) {}
-    bool requiresPoint(void) const;
-    bool requiresGeometry(void) const;
-    bool requiresText(void) const;
+    bool requiresPoint() const;
+    bool requiresGeometry() const;
+    bool requiresText() const;
 
-    QString getString(void) const;
-    QStringList getSplittedString(void) const;
+    QString getString() const;
+    QStringList getSplittedString() const;
     bool getUseImageCoordinates() const;
 
     int getFigureIndex() const;

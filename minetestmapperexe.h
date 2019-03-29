@@ -39,18 +39,18 @@ public:
         MappingEnd // Writing image...
     };
 
-    QStringList getSupportedBackends(void) const;
+    QStringList getSupportedBackends() const;
 
     bool init();
     bool startMapping(const QStringList &arguments);
     bool isValid() const;
 
-    bool isMinetestMapper(void) const;
+    bool isMinetestMapper() const;
 
-    QString getVersion(void) const;
+    QString getVersion() const;
 
-    Tree getTree(void) const;
-    QString getTreeString(void) const;
+    Tree getTree() const;
+    QString getTreeString() const;
 
     void setExecutableFile(const QString &program);
     QString getMinetestMapperExecutableFile() const;
@@ -88,8 +88,8 @@ public slots:
     void cancel() const;
 private slots:
     void finished(int exitCode, QProcess::ExitStatus exitStatus);
-    void readStandardOutput(void);
-    void readStandardError(void);
+    void readStandardOutput();
+    void readStandardError();
     void errorOccured(QProcess::ProcessError error);
 private:
     void finishInitialization(void);
