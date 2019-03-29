@@ -16,7 +16,7 @@ class ColorsTxtWizard : public QWizard
     Q_OBJECT
 
 public:
-    ColorsTxtWizard(QWidget *parent = 0);
+    ColorsTxtWizard(QWidget *parent = nullptr);
     void setNodesTxtFilePath(const QString &nodesTxtFilePath);
 };
 
@@ -25,7 +25,7 @@ class IntroPage : public QWizardPage
     Q_OBJECT
 
 public:
-    IntroPage(QWidget *parent = 0);
+    IntroPage(QWidget *parent = nullptr);
 
 private:
     QLabel *label;
@@ -36,7 +36,7 @@ class NodesTxtPage : public QWizardPage
     Q_OBJECT
 
 public:
-    NodesTxtPage(QWidget *parent = 0);
+    NodesTxtPage(QWidget *parent = nullptr);
 
 private slots:
     void browse();
@@ -51,7 +51,7 @@ class TextureFoldersPage : public QWizardPage
     Q_OBJECT
 
 public:
-    TextureFoldersPage(QWidget *parent = 0);
+    TextureFoldersPage(QWidget *parent = nullptr);
 
     bool isComplete(void) const;
 private slots:
@@ -71,7 +71,7 @@ class OutputFilePage : public QWizardPage
     Q_OBJECT
 
 public:
-    OutputFilePage(QWidget *parent = 0);
+    OutputFilePage(QWidget *parent = nullptr);
 
 private slots:
     void browse();
@@ -85,7 +85,7 @@ class ConclusionPage : public QWizardPage
     Q_OBJECT
 
 public:
-    ConclusionPage(QWidget *parent = 0);
+    ConclusionPage(QWidget *parent = nullptr);
 
     bool isComplete(void) const override;
 protected:

@@ -26,21 +26,21 @@ public:
     };
     Q_ENUM(Figure)
 
-    explicit DrawMapFigure(QObject *parent = 0);
+    explicit DrawMapFigure(QObject *parent = nullptr);
     /**
      * @brief DrawMapFigure
      * @param str QString to convert to DrawMapFigure
      * @param parent
      */
-    explicit DrawMapFigure(const QString &str, QObject *parent = 0);
+    explicit DrawMapFigure(const QString &str, QObject *parent = nullptr);
 
-    explicit DrawMapFigure(QColor color, QObject *parent = 0) :
+    explicit DrawMapFigure(QColor color, QObject *parent = nullptr) :
         QObject(parent), color(color) { }
 
-    explicit DrawMapFigure(QPoint point, QColor color, QObject *parent = 0) :
+    explicit DrawMapFigure(QPoint point, QColor color, QObject *parent = nullptr) :
         QObject(parent), point(point), color(color) {}
 
-    explicit DrawMapFigure(Geometry *geometry, QColor color, QObject *parent = 0) :
+    explicit DrawMapFigure(Geometry *geometry, QColor color, QObject *parent = nullptr) :
         QObject(parent), geometry(geometry), color(color) { }
 
     //DrawMapFigure(const DrawMapFigure &f) {}

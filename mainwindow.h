@@ -37,7 +37,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(Translator *translator, QWidget *parent = 0);
+    explicit MainWindow(Translator *translator, QWidget *parent = nullptr);
     ~MainWindow();
 
     enum class GeometryGranularity {

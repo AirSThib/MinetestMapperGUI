@@ -20,7 +20,7 @@ class GeometryWidget : public QWidget
     Q_PROPERTY(QString geometry READ getGeometry WRITE set NOTIFY editingFinished USER true)
 
 public:
-    explicit GeometryWidget(QWidget *parent = 0);
+    explicit GeometryWidget(QWidget *parent = nullptr);
     ~GeometryWidget();
 
     bool set(const QString& geomStr, Geometry::Format format = Geometry::FormatUnknown); //{ return set(geomStr.toStdString().c_str(), format); }

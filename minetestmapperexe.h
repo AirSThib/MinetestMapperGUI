@@ -19,7 +19,7 @@ class MinetestMapperExe : public QObject
 {
     Q_OBJECT
 public:
-    explicit MinetestMapperExe(const QString &program, QObject *parent = 0);
+    explicit MinetestMapperExe(const QString &program, QObject *parent = nullptr);
 
     enum Tree{
         Unknown,

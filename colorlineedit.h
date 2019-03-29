@@ -9,7 +9,7 @@ class ColorLineEdit : public QLineEdit {
     Q_OBJECT
 
 public:
-    explicit ColorLineEdit(QWidget *parent = NULL);
+    explicit ColorLineEdit(QWidget *parent = nullptr);
 
 public slots:
     void selectColor();

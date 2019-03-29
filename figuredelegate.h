@@ -15,7 +15,7 @@ class FigureDelegate : public QStyledItemDelegate
     Q_OBJECT
 
 public:
-    FigureDelegate(QObject *parent = 0);
+    FigureDelegate(QObject *parent = nullptr);
 
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option,
                              const QModelIndex &index) const Q_DECL_OVERRIDE;
