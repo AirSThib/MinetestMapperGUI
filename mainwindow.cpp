@@ -535,7 +535,7 @@ void MainWindow::createProfilesMenu(){
 
     qDebug()<<"found the Profiles"<< fileNames<< "in"<<dir.absolutePath();
 
-    if(fileNames.size()==0){
+    if(fileNames.empty()){
         fileNames.append("default");//if nothing found create default profile
     }
     foreach (QString file, fileNames) {
@@ -690,10 +690,10 @@ void MainWindow::readSettings()
         move(settings->value("pos", QPoint(200, 200)).toPoint());
 
     }
-    if(settings->value("help",false).toBool()==false){
+    if(!settings->value("help",false).toBool()){
         ui->dockHelp->close();
     }
-    if(settings->value("showOutputLog",false).toBool()==false){
+    if(!settings->value("showOutputLog",false).toBool()){
         ui->dockOutput->close();
     }
     currentProfile = settings->value("profile","default").toString();
@@ -1062,7 +1062,7 @@ void MainWindow::on_figure_geometry_apply_clicked()
 void MainWindow::on_button_deleteFigure_clicked()
 {
     QModelIndexList indexes;
-    while ((indexes = ui->figures_list->selectionModel()->selectedIndexes()).size()) {
+    while (!(indexes = ui->figures_list->selectionModel()->selectedIndexes()).empty()) {
         drawMapFigureTable->removeRow(indexes.first().row());
     }
 }

@@ -23,7 +23,7 @@ public:
     explicit GeometryWidget(QWidget *parent = 0);
     ~GeometryWidget();
 
-    bool set(const QString geomStr, Geometry::Format format = Geometry::FormatUnknown); //{ return set(geomStr.toStdString().c_str(), format); }
+    bool set(const QString& geomStr, Geometry::Format format = Geometry::FormatUnknown); //{ return set(geomStr.toStdString().c_str(), format); }
     bool setDefault(void) { return set(""); }
     bool setFormat(int i) { return setFormat(static_cast<Geometry::Format>(i)); }
     bool setFormat(Geometry::Format format);

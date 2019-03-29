@@ -9,10 +9,10 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setApplicationName("MinetestMapperGui");
-    a.setApplicationDisplayName("Minetest Mapper GUI");
-    a.setApplicationVersion(GIT_VERSION);
-    a.setOrganizationName("MinetestMapperGui");
+    QApplication::setApplicationName("MinetestMapperGui");
+    QApplication::setApplicationDisplayName("Minetest Mapper GUI");
+    QApplication::setApplicationVersion(GIT_VERSION);
+    QApplication::setOrganizationName("MinetestMapperGui");
 
 
     // Setup the translators
@@ -21,5 +21,5 @@ int main(int argc, char *argv[])
     MainWindow w(&t);
     w.show();
 
-    return a.exec();
+    return QApplication::exec();
 }

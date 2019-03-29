@@ -267,7 +267,7 @@ void MinetestMapperExe::errorOccured(QProcess::ProcessError error)
     qDebug() <<"Error starting MinetestMapper:"<<error
             <<"Error code: "<<process->error()
            <<"Error string: "<<process->errorString();
-    QMessageBox::critical((QWidget*)this->parent(), tr("Minetest Mapper failed"),
+    QMessageBox::critical(dynamic_cast<QWidget*>(this->parent()), tr("Minetest Mapper failed"),
              tr("<h1>ERROR</h1> <h2>minetestmapper failed</h2>"
                 "Error code: <i>%1</i> <br>"
                 "Error Message: <pre>%2</pre><br>")

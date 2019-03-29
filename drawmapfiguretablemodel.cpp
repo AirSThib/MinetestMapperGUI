@@ -15,7 +15,7 @@ QVariant DrawMapFigureTableModel::headerData(int section, Qt::Orientation orient
     {
         return header[section];
     }
-    else if(role == Qt::DisplayRole && orientation == Qt::Vertical){
+    if(role == Qt::DisplayRole && orientation == Qt::Vertical){
         return section+1;
     }
     return QVariant();
@@ -67,18 +67,18 @@ QVariant DrawMapFigureTableModel::data(const QModelIndex &index, int role) const
         {
             return item->getIcon();
         }
-        else if(role == Qt::BackgroundRole)
+        if(role == Qt::BackgroundRole)
         {
             if(item->getFigure()==DrawMapFigure::Unknown){
                 return QBrush(Qt::red);
             }
-            else if(col == 2 && !item->requiresPoint()){
+            if(col == 2 && !item->requiresPoint()){
                 return QBrush(Qt::lightGray);
             }
-            else if (col == 3 && !item->requiresGeometry()){
+            if (col == 3 && !item->requiresGeometry()){
                 return QBrush(Qt::lightGray);
             }
-            else if(col == 5 && !item->requiresText()){
+            if(col == 5 && !item->requiresText()){
                 return QBrush(Qt::lightGray);
             }
         }
@@ -157,7 +157,7 @@ bool DrawMapFigureTableModel::setData(const QModelIndex &index, const QVariant &
         emit dataChanged(index, index, QVector<int>() << role);
         return true;
     }
-    else if( index.isValid() && role == Qt::CheckStateRole &&index.column()==1){
+    if( index.isValid() && role == Qt::CheckStateRole &&index.column()==1){
         DrawMapFigure *item = list->at(index.row());
         item->setUseImageCoordinates(value.toInt() == Qt::Checked);
         emit dataChanged(index, index, QVector<int>() << role);
@@ -170,7 +170,7 @@ Qt::ItemFlags DrawMapFigureTableModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
         return Qt::NoItemFlags;
-    Qt::ItemFlags flag = QAbstractItemModel::flags(index);
+    Qt::ItemFlags flag = QAbstractTableModel::flags(index);
     int col = index.column();
     DrawMapFigure *item = list->at(index.row());
     if(col == 0)

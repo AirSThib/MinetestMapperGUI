@@ -28,14 +28,14 @@ void FigureDelegate::setEditorData(QWidget *editor,
 {
     int value = index.model()->data(index, Qt::EditRole).toInt();
 
-    QComboBox *comboBox = static_cast<QComboBox*>(editor);
+    QComboBox *comboBox = dynamic_cast<QComboBox*>(editor);
     comboBox->setCurrentIndex(value);
 }
 
 void FigureDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
                                    const QModelIndex &index) const
 {
-    QComboBox *comboBox = static_cast<QComboBox*>(editor);
+    QComboBox *comboBox = dynamic_cast<QComboBox*>(editor);
 
     model->setData(index, comboBox->currentData(), Qt::EditRole);
 }

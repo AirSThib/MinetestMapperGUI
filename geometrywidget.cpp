@@ -51,7 +51,7 @@ GeometryWidget::~GeometryWidget()
 }
 // Return true when parsing succeeded
 //        false when not (string was still accepted, mode was set to custom)
-bool GeometryWidget::set(const QString geomStr, Geometry::Format requestedFormat)
+bool GeometryWidget::set(const QString& geomStr, Geometry::Format requestedFormat)
 {
     Geometry geometry;
     Geometry::Format parsedFormat;
@@ -136,8 +136,8 @@ bool GeometryWidget::setFormat(Geometry::Format format)
     if (format != prevFormat)
         // Update all invisible widgets
         return set(getGeometry(), format);
-    else
-        return true;
+    
+    return true;
 }
 
 Geometry::Format GeometryWidget::getFormat() const

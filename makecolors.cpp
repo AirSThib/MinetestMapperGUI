@@ -83,23 +83,19 @@ bool MakeColors::parseNodesTxt(const QString &nodesTxt)
         QTextStream in(&inputFile);
         while (!in.atEnd())
         {
-
             QString line = in.readLine();
             if(line.isEmpty() || line.startsWith('#'))
                 continue;
-            else{
-                //qDebug()<< line;
-                QStringList lineS = line.split(' ');
-                const QString textureName = lineS[1];//get the filename out of the line
+            
+            //qDebug()<< line;
+            QStringList lineS = line.split(' ');
+            const QString textureName = lineS[1];//get the filename out of the line
 
-                //Insert the texturename and a invalid Color. The color will be set by searchAndProgrssTextures
-                requiredColors.insert(textureName,QColor());
+            //Insert the texturename and a invalid Color. The color will be set by searchAndProgrssTextures
+            requiredColors.insert(textureName,QColor());
 
-                //Insert Nodename and texturename into QMap to be sorted in alphabetical order
-                nodeList.insert(lineS[0],lineS[1]);
-            }
-
-
+            //Insert Nodename and texturename into QMap to be sorted in alphabetical order
+            nodeList.insert(lineS[0],lineS[1]);
         }
         inputFile.close();
         numberOfNodes = requiredColors.size();
