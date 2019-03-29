@@ -20,7 +20,7 @@ class MakeColors : public QThread
 public:
     explicit MakeColors(const QString &nodesTxt, const QString &colorsTxt, const QStringList &searchPaths, QObject *parent);
     explicit MakeColors();
-    ~MakeColors();
+    ~MakeColors() override;
     void startProcess();
     void setFileNodesTxt(const QString &value);
 
@@ -48,7 +48,7 @@ public slots:
     void stopProcess();
 
 protected:
-    void run();
+    void run() override;
 private slots:
     QColor processImage(const QString &path);
     bool parseNodesTxt(const QString &nodesTxt);

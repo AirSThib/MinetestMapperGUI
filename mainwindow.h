@@ -38,7 +38,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(Translator *translator, QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 
     enum class GeometryGranularity {
         unspecified = -1,
@@ -59,11 +59,11 @@ public:
 public slots:
     void startColorsTxtAssistant();
 protected:
-    void closeEvent(QCloseEvent* event);
+    void closeEvent(QCloseEvent* event) override;
     // this event is called, when a new translator is loaded or the system language is changed
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent*) override;
 
-    void showEvent(QShowEvent *event);
+    void showEvent(QShowEvent *event) override;
 protected slots:
     // this slot is called by the language menu actions
     void slotLanguageChanged(QAction *action);

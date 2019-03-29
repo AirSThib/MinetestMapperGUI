@@ -21,7 +21,7 @@ class GeometryWidget : public QWidget
 
 public:
     explicit GeometryWidget(QWidget *parent = nullptr);
-    ~GeometryWidget();
+    ~GeometryWidget() override;
 
     bool set(const QString& geomStr, Geometry::Format format = Geometry::FormatUnknown); //{ return set(geomStr.toStdString().c_str(), format); }
     bool setDefault() { return set(""); }

@@ -35,7 +35,7 @@ class ConfigDialog : public QDialog
 
 public:
     explicit ConfigDialog(const ConfigSettings &settings, MainWindow *app, QWidget *parent = nullptr);
-    ~ConfigDialog();
+    ~ConfigDialog() override;
 
     ConfigSettings getSettings() const;
     void setSettings(const ConfigSettings &value);
