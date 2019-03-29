@@ -622,8 +622,7 @@ void MainWindow::writeProfile()
 
     profile->beginGroup("area");    //tab2 area
         profile->setValue("scalefactor",ui->scalefactor->currentIndex());
-        profile->setValue("geometry",ui->geometry->getGeometry());
-        profile->setValue("geometry_format",ui->geometry->getFormatStr());
+		profile->setValue("geometry", ui->geometry->getGeometry());
         profile->setValue("minY",ui->minY->value());
         profile->setValue("maxY",ui->maxY->value());
         profile->setValue("geometry_granularity", meGeometryGranularity.key(ui->geometrymode_granularity_group->checkedId()));
@@ -728,7 +727,6 @@ void MainWindow::readProfile()
     profile->beginGroup("area");    //tab2 Area
         ui->scalefactor->setCurrentIndex(profile->value("scalefactor",0).toInt());
         ui->geometry->set(profile->value("geometry").toString(), Geometry::FormatUnknown);
-        //ui->geometry->setFormat(profile->value("geometry_format").toString()); // TODO: Load and set the format correctly
         ui->checkBox_maxY->setChecked(profile->value("checkBox_maxY",false).toBool());
         ui->checkBox_minY->setChecked(profile->value("checkBox_minY",false).toBool());
         ui->maxY->setValue(profile->value("maxY",0).toInt());

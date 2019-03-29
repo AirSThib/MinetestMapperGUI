@@ -97,7 +97,6 @@ QString GeometryWidget::getGeometry() const
     Geometry geometry;
     Geometry::Format format = getFormat();
     switch (format) {
-        case Geometry::FormatNone:
         case Geometry::CenterDimensions:
             geometry.setCenterDimensions(
                 m_ui_CD_center[0]->value(),
@@ -121,6 +120,7 @@ QString GeometryWidget::getGeometry() const
             break;
         case Geometry::FormatCustom:
             return ui->geometry_custom->text();
+		case Geometry::FormatNone:
         default:
             return "";
             break;
