@@ -2714,6 +2714,9 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="actionAbout_QT">
+   <property name="icon">
+    <iconset theme=":/qt-project.org/qmessagebox/images/qtlogo-64.png"/>
+   </property>
    <property name="text">
     <string>About QT</string>
    </property>
