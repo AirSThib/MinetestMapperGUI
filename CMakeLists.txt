@@ -170,6 +170,8 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/translations/
 )
 
 if(WIN32)
+	install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/mtmapperenv.bat
+			DESTINATION ${INSTALL_RUNTIME_DIR})
 	#copy required dlls to install dir
 	install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Release/
 			DESTINATION ${INSTALL_RUNTIME_DIR}
@@ -188,6 +190,8 @@ if(WIN32)
 			CONFIGURATIONS RelWithDebInfo
 			FILES_MATCHING PATTERN "*.dll")
 elseif(UNIX)
+	install(PROGRAMS ${CMAKE_CURRENT_SOURCE_DIR}/mtmapperenv.sh
+			DESTINATION ${INSTALL_RUNTIME_DIR})
 	if(BUILD_PORTABLE)
 		# .desktop files does not support relative paths.
 	else()
