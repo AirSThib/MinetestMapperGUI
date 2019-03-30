@@ -817,17 +817,17 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     <message>
         <location filename="../mainwindow.ui" line="174"/>
         <source>Minetest Worlds</source>
-        <translation type="unfinished"></translation>
+        <translation>Minetest Welten</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="183"/>
         <source>Minetest worlds dir:</source>
-        <translation type="unfinished"></translation>
+        <translation>Minetest Welten Ordner:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="210"/>
         <source>Worlds:</source>
-        <translation type="unfinished"></translation>
+        <translation>Welten:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="248"/>
@@ -978,22 +978,22 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     <message>
         <location filename="../mainwindow.ui" line="2348"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2355"/>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2561"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2633"/>
         <source>Output log</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgaben Log</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2692"/>
@@ -1013,12 +1013,12 @@ Nodes higher than this level will not be drawn. This can be used to avoid floati
     <message>
         <location filename="../mainwindow.ui" line="2909"/>
         <source>Output &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgaben &amp;Log</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2912"/>
         <source>Shows / Hides Output Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeigt / Versteckt den Ausgaben Log</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2915"/>
@@ -1836,7 +1836,7 @@ Möchten Sie die Einstellungen jetzt öffnen? </translation>
     <message>
         <location filename="../colorstxtwizard.cpp" line="163"/>
         <source>Optionally you can specify the colors.txt where the colors should be written into. If you leaf this empty, the file placed at the same directory as the nodes.txt file.</source>
-        <translation>Optional kannst du die colors.txt datei Festlegen in die erstellt werden soll. Wird das feld leergelassen wird die colors.txt im selben Ordner wie die nodes.txt erstellt. </translation>
+        <translation>Optional kannst du die colors.txt Datei festlegen in die erstellt werden soll. Wird das Feld leergelassen wird die colors.txt im selben Ordner wie die nodes.txt erstellt.</translation>
     </message>
     <message>
         <location filename="../colorstxtwizard.cpp" line="173"/>
