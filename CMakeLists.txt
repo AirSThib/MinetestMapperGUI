@@ -141,6 +141,13 @@ if(WIN32)
 	set(INSTALL_RUNTIME_DIR ".")
 endif()
 
+if(UNIX)
+	set(ICON_DIR "/usr/local/share/icons/hicolor/scalable/apps")
+	if(BUILD_PORTABLE)
+		set(ICON_DIR ".")
+	endif()
+	configure_file("${CMAKE_CURRENT_SOURCE_DIR}/MinetestMapperGui.in.desktop" "${CMAKE_CURRENT_BINARY_DIR}/MinetestMapperGui.desktop")
+endif()
 
 set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ${INSTALL_RUNTIME_DIR})
 include(InstallRequiredSystemLibraries)
@@ -181,8 +188,12 @@ if(WIN32)
 			CONFIGURATIONS RelWithDebInfo
 			FILES_MATCHING PATTERN "*.dll")
 elseif(UNIX)
-	install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/images/icon.svg" DESTINATION "/usr/local/share/icons/hicolor/scalable/apps" RENAME "MinetestMapperGUI.svg")
-	install(FILES "MinetestMapperGUI.desktop" DESTINATION "/usr/share/applications") 
+	if(BUILD_PORTABLE)
+		# .desktop files does not support relative paths.
+	else()
+		install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/images/icon.svg" DESTINATION "${ICON_DIR}" RENAME "${PROJECT_NAME}.svg")
+		install(FILES "${CMAKE_CURRENT_BINARY_DIR}/MinetestMapperGui.desktop" DESTINATION "/usr/share/applications") 
+	endif()
 endif()
 
 include(CPack)

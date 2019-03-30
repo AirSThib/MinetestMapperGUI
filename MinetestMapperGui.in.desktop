@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=${PROJECT_VERSION}
+Type=Application
+Terminal=false
+Name=${PROJECT_NAME}
+Comment=${PROJECT_DESCRIPTION}
+TryExec=${PROJECT_NAME}
+Exec=${PROJECT_NAME}
+Icon=${ICON_DIR}/${PROJECT_NAME}.svg
+Categories=Utility;Application;
