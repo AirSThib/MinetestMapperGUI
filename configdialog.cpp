@@ -9,7 +9,7 @@
 #include "mainwindow.h"
 #include "ui_configdialog.h"
 
-const QString ConfigSettings::defaultMapperExecutableName("minetestmapper");
+const QString ConfigSettings::defaultMapperExecutableName("Minetestmapper");
 QStringList ConfigSettings::predefinedMapperLocations;
 
 ConfigSettings::InitStatics::InitStatics()
@@ -154,15 +154,11 @@ QStringList ConfigSettings::getMapperExecutables()
     QString mapperFileName;
 
     mapperFileName = QStandardPaths::findExecutable(ConfigSettings::defaultMapperExecutableName, QStringList(appDir));
-    if (mapperFileName != "")
+    if (!mapperFileName.isEmpty())
         mapperLocations << mapperFileName;
 
     mapperFileName = QStandardPaths::findExecutable(ConfigSettings::defaultMapperExecutableName, QStringList(appDir + '/' + ConfigSettings::defaultMapperExecutableName));
-    if (mapperFileName != "")
-        mapperLocations << mapperFileName;
-
-    mapperFileName = QStandardPaths::findExecutable(ConfigSettings::defaultMapperExecutableName, QStringList(appDir + "/mapper"));
-    if (mapperFileName != "")
+    if (!mapperFileName.isEmpty())
         mapperLocations << mapperFileName;
     #endif
 
