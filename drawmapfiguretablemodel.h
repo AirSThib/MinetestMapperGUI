@@ -13,6 +13,12 @@ class DrawMapFigureTableModel : public QAbstractTableModel
 public:
     explicit DrawMapFigureTableModel(QObject *parent = nullptr);
 
+	~DrawMapFigureTableModel()
+	{
+		list->clear();
+		delete list;
+	}
+
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 

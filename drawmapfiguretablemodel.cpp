@@ -112,9 +112,6 @@ QVariant DrawMapFigureTableModel::data(const QModelIndex &index, int role) const
             default:
                 return QVariant();
             }
-
-            // FIXME: Implement me!
-            return QVariant();
         }
         else if(role == Qt::DecorationRole && col==4){
             return item->getColor();
@@ -153,7 +150,6 @@ bool DrawMapFigureTableModel::setData(const QModelIndex &index, const QVariant &
         default:
             break;
         }
-        // FIXME: Implement me!
         emit dataChanged(index, index, QVector<int>() << role);
         return true;
     }
@@ -202,7 +198,6 @@ bool DrawMapFigureTableModel::insertRows(int position, int count, const QModelIn
 bool DrawMapFigureTableModel::insertColumns(int column, int count, const QModelIndex &parent)
 {
     beginInsertColumns(parent, column, column + count - 1);
-    // FIXME: Implement me!
     endInsertColumns();
     return false;
 }
@@ -220,7 +215,6 @@ bool DrawMapFigureTableModel::removeRows(int position, int count, const QModelIn
 bool DrawMapFigureTableModel::removeColumns(int column, int count, const QModelIndex &parent)
 {
     beginRemoveColumns(parent, column, column + count - 1);
-    // FIXME: Implement me!
     endRemoveColumns();
     return false;
 }

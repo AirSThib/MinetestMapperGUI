@@ -43,6 +43,11 @@ public:
     explicit DrawMapFigure(Geometry *geometry, QColor color, QObject *parent = nullptr) :
         QObject(parent), geometry(geometry), color(color) { }
 
+	~DrawMapFigure()
+	{
+		delete geometry;
+	}
+
     //DrawMapFigure(const DrawMapFigure &f) {}
     bool requiresPoint() const;
     bool requiresGeometry() const;

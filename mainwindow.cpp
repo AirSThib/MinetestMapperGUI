@@ -228,6 +228,8 @@ void MainWindow::changeEvent(QEvent* event)
 MainWindow::~MainWindow()
 {
     minetestMapper->cancel();
+	delete settings;
+	delete profile;
     delete ui;
 }
 
