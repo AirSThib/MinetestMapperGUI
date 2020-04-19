@@ -141,7 +141,7 @@ if(WIN32)
 	set(INSTALL_RUNTIME_DIR ".")
 endif()
 
-if(UNIX)
+if(UNIX AND NOT APPLE)
 	set(ICON_DIR "/usr/local/share/icons/hicolor/scalable/apps")
 	if(BUILD_PORTABLE)
 		set(ICON_DIR ".")
@@ -158,6 +158,7 @@ install(TARGETS MinetestMapperGUI
 	RUNTIME DESTINATION ${INSTALL_RUNTIME_DIR}
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib
+	BUNDLE DESTINATION .
 )
 
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/translations/
@@ -189,7 +190,7 @@ if(WIN32)
 			DESTINATION ${INSTALL_RUNTIME_DIR}
 			CONFIGURATIONS RelWithDebInfo
 			FILES_MATCHING PATTERN "*.dll")
-elseif(UNIX)
+elseif(UNIX AND NOT APPLE)
 	install(PROGRAMS ${CMAKE_CURRENT_SOURCE_DIR}/mtmapperenv.sh
 			DESTINATION ${INSTALL_RUNTIME_DIR})
 	if(BUILD_PORTABLE)
@@ -199,5 +200,8 @@ elseif(UNIX)
 		install(FILES "${CMAKE_CURRENT_BINARY_DIR}/MinetestMapperGui.desktop" DESTINATION "/usr/share/applications") 
 	endif()
 endif()
+
+
+set(CPACK_PACKAGE_CONTACT "https://github.com/adrido")
 
 include(CPack)
