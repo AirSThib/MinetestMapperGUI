@@ -1,4 +1,4 @@
-# README # ![CI](https://github.com/adrido/MinetestMapperGUI/workflows/CI/badge.svg)
+# README ![CI](https://github.com/adrido/MinetestMapperGUI/workflows/CI/badge.svg)
 
 MinetestMapperGui is a program written in C++ using the Qt framework that executes the minetestmapper over an graphical interface.
 
@@ -19,13 +19,20 @@ If it isn't available you can easyly compile it yourself.
 * A modern C++ compiler
 * Qt-Framework
 * CMake
+* git
 
 ### Compiling ###
 
+Open the Folder in your preferred IDE. Visual Studio and Qt-Creator are known to work.
+
+OR:
+
+Use the commandline:
 ```
 cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_PORTABLE=TRUE .
 cmake --build . --config Release
 ```
+
 
 ### Creating a package ###
 
